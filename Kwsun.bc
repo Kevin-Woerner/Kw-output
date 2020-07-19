@@ -1,0 +1,460 @@
+#    Copyright (C) 2020 by Kevin D. Woerner
+##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
+##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
+##-# =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
+# 2020-07-17 kdw  For Changelog,See File Kwsun.varylog
+true = 1;
+false = 0;
+#IMPORT "Kw";
+#IMPORT "Kwplanets";
+cxsunbelow_rad = 0.5667 * arcdeg + radian * sunradius /\
+      earthorbit;
+define kwsun_obliquity_rad(jtwok) {
+   auto tmill,ob_arcsec;
+   tmill = jtwok * day / ((1.0 * 10^4) * jyear);
+   ob_arcsec = (((((((((((2.45) * tmill + 5.79) * tmill +\
+         27.8) * tmill + 7.12) * tmill - 39.05) * tmill -\
+         249.67) * tmill - 51.38) * tmill + 1999.25) * tmill\
+         - 1.55) * tmill - 4680.93) * tmill + 84381.448);
+   return (sec2rad(ob_arcsec));
+}
+define kwsun_eccentricity(jtwok) {
+   return (((-(1.2025 * 10^-9)) * jtwok + 0.01671123));
+}
+define kwsun_perihelion_rad(jtwok) {
+   auto pdeg;
+   pdeg = ((8.850749897 * 10^-6) * jtwok + 282.93768193);
+   return (deg2rad(fmodu(pdeg,tur2deg(1.0))));
+}
+define kwsun_mean_anomaly_rad(jtwok) {
+   auto madeg,jtwoke;
+   jtwoke = jtwok + tt_at_0ut1 / day;
+   madeg = ((((-(6.84081855587485 * 10^-20)) * jtwoke -\
+         (1.20158105729576 * 10^-13)) * jtwoke +\
+         0.98560028309377146) * jtwoke + 357.52772);
+   return (deg2rad(fmodu(madeg,tur2deg(1.0))));
+}
+define kwsun_gmst_rad(jtwok) {
+   auto gmt_arcdeg;
+   gmt_arcdeg = ((((-(5.30159020088 * 10^-22)) * jtwok +\
+         (2.90787862944 * 10^-13)) * jtwok + tur2deg(day /\
+         siderealday)) * jtwok + rad2deg(earththeta_0));
+   return (fmodu(deg2rad(gmt_arcdeg),tur2rad(1.0)));
+}
+define kwsun_lmst_rad(jtwok,geo_longitude_deg) {
+   return (fmodu(kwsun_gmst_rad(jtwok) +\
+         deg2rad(geo_longitude_deg),tur2rad(1.0)));
+}
+lv_x_sun_dist_m = 0.0;
+lv_x_sun_dec_rad = 0.0;
+lv_x_sun_ra_rad = 0.0;
+lv_x_sun_rad = 0.0;
+lv_x_loc_transit_tz_day = 0.0;
+lv_x_loc_halfday_day = 0.0;
+define lf_x_earth_position(jtwok) {
+   # local-use Bc lv_x_sun_rad;
+   # local-use Bc lv_x_sun_ra_rad;
+   # local-use Bc lv_x_sun_dec_rad;
+   # local-use Bc lv_x_sun_dist_m;
+   auto ww_rad,ecc,mm_rad,obl_rad,sun_rad,sun_xx_au,\
+         sun_yy_au,sun_dist_au,lonsun_rad,ys,earth_xx_au,\
+         earth_yy_au,earth_zz_au;
+   ww_rad = kwsun_perihelion_rad(jtwok);
+   ecc = kwsun_eccentricity(jtwok);
+   mm_rad = kwsun_mean_anomaly_rad(jtwok);
+   obl_rad = kwsun_obliquity_rad(jtwok);
+   lv_x_sun_rad = (ww_rad + mm_rad + tur2rad(0.5));
+   sun_rad = (mm_rad + ecc * sin(mm_rad) * (1.0 + ecc *\
+         cos(mm_rad)));
+   sun_xx_au = cos(sun_rad) - ecc;
+   sun_yy_au = topyh1(ecc) * sin(sun_rad);
+   sun_dist_au = hypot(sun_xx_au,sun_yy_au);
+   lv_x_sun_dist_m = astronomicalunit * (1.0 - ecc *\
+         cos(sun_rad));
+   lonsun_rad = atan2(sun_yy_au,sun_xx_au) + ww_rad;
+   earth_xx_au = sun_dist_au * cos(lonsun_rad);
+   ys = sun_dist_au * sin(lonsun_rad);
+   earth_yy_au = ys * cos(obl_rad);
+   earth_zz_au = ys * sin(obl_rad);
+   lv_x_sun_ra_rad = fmodu(atan2(earth_yy_au,earth_xx_au),\
+         tur2rad(1.0));
+   lv_x_sun_dec_rad = atan2(earth_zz_au,hypot(earth_xx_au,\
+         earth_yy_au));
+   return (0.0);
+}
+define kwsunx_init(jtwok,tz_hr,lon_deg,lat_deg) {
+   # local-use Bc lv_x_loc_transit_tz_day;
+   # local-use Bc lv_x_loc_halfday_day;
+   # local-use Bc lv_x_sun_rad;
+   # local-use Bc lv_x_sun_ra_rad;
+   # local-use Bc lv_x_sun_dec_rad;
+   auto ut_transit_day,lha;
+   jtwok += rad2tur(kwsun_lmst_rad(jtwok,lon_deg)) - tz_hr *\
+         hour / day;
+   bcdummy = lf_x_earth_position(jtwok);
+   ut_transit_day = rad2tur(lv_x_sun_ra_rad - lv_x_sun_rad) -\
+         deg2tur(lon_deg);
+   lv_x_loc_transit_tz_day = frac(ut_transit_day + tz_hr *\
+         hour / day);
+   lha = (sin(-cxsunbelow_rad) - sind(lat_deg) *\
+         sin(lv_x_sun_dec_rad) / (cosd(lat_deg) *\
+         cos(lv_x_sun_dec_rad)));
+   if (lha <= -0.99999) {
+      lv_x_loc_transit_tz_day = 0.5;
+      lv_x_loc_halfday_day = 0.5;
+   } else if (0.99999 <= lha) {
+      lv_x_loc_halfday_day = 0.0;
+   } else {
+      lv_x_loc_halfday_day = costinv(lha) + 110 * second / day;
+   }
+   if (lv_x_loc_transit_tz_day < lv_x_loc_halfday_day) {
+      lv_x_loc_transit_tz_day += 0.5;
+   }
+   return (lv_x_loc_transit_tz_day + lv_x_loc_halfday_day);
+}
+define kwsunx_set_day() {
+   # local-use Bc lv_x_loc_transit_tz_day;
+   # local-use Bc lv_x_loc_halfday_day;
+   return (lv_x_loc_transit_tz_day + lv_x_loc_halfday_day);
+}
+define kwsunx_rise_day() {
+   # local-use Bc lv_x_loc_transit_tz_day;
+   # local-use Bc lv_x_loc_halfday_day;
+   return (lv_x_loc_transit_tz_day - lv_x_loc_halfday_day);
+}
+define kwsunx_transit_day() {
+   # local-use Bc lv_x_loc_transit_tz_day;
+   return (lv_x_loc_transit_tz_day);
+}
+define kwsunx_dist_m() {
+   # local-use Bc lv_x_sun_dist_m;
+   return (lv_x_sun_dist_m);
+}
+define kwsunx_dec_rad() {
+   # local-use Bc lv_x_sun_dec_rad;
+   return (lv_x_sun_dec_rad);
+}
+define kwsunx_ra_rad() {
+   # local-use Bc lv_x_sun_ra_rad;
+   return (lv_x_sun_ra_rad);
+}
+define kwsun_eccentric_anomaly_rad(ma_deg,eccen) {
+   auto ma_rad,xrad,xrad_prev;
+   ma_rad = deg2rad(ma_deg);
+   xrad = ma_rad + eccen * sin(ma_rad);
+   for (;;) {
+      xrad_prev = xrad;
+      xrad -= ((xrad - eccen * sin(xrad) - ma_rad) / (1.0 -\
+            eccen * cos(xrad)));
+      if (iseq(xrad,xrad_prev)) {
+         break; # KQS
+      }
+   }
+   return (xrad);
+}
+lv_sun_ra_rad = 0.0;
+lv_sun_dec_rad = 0.0;
+lv_sun_dist_m = 0.0;
+define kwsun_sun(jtwok) {
+   # local-use Bc lv_sun_ra_rad;
+   # local-use Bc lv_sun_dec_rad;
+   auto mean_longitude_sun_rad,mean_anomaly_sun_rad,\
+         dl_arcsec,sl,xx,yy,zz,rho,obl_rad,ecc,sun_rad;
+   mean_anomaly_sun_rad = kwsun_mean_anomaly_rad(jtwok);
+   ecc = kwsun_eccentricity(jtwok);
+   obl_rad = kwsun_obliquity_rad(jtwok);
+   dl_arcsec = (6893.0 * sin(mean_anomaly_sun_rad) + 72.0 *\
+         sin(2.0 * mean_anomaly_sun_rad));
+   mean_longitude_sun_rad = tur2rad(0.7859453) +\
+         mean_anomaly_sun_rad + sec2rad(0.169505818 * jtwok +\
+         dl_arcsec);
+   sun_rad = (mean_anomaly_sun_rad + ecc *\
+         sin(mean_anomaly_sun_rad) * (1.0 + ecc *\
+         cos(mean_anomaly_sun_rad)));
+   lv_sun_dist_m = astronomicalunit * (1.0 - ecc * cos(sun_rad));
+   sl = sin(mean_longitude_sun_rad);
+   xx = cos(mean_longitude_sun_rad);
+   yy = cos(obl_rad) * sl;
+   zz = sin(obl_rad) * sl;
+   rho = topyh1(zz);
+   lv_sun_dec_rad = atan2(zz,rho);
+   lv_sun_ra_rad = 2.0 * atan2(yy,xx + rho);
+   if (lv_sun_ra_rad < 0.0) {
+      lv_sun_ra_rad += tur2rad(1.0);
+   }
+   return (lv_sun_dist_m);
+}
+define kwsun_dist_m() {
+   # local-use Bc lv_sun_dist_m;
+   return (lv_sun_dist_m);
+}
+define kwsun_dec_rad() {
+   # local-use Bc lv_sun_dec_rad;
+   return (lv_sun_dec_rad);
+}
+define kwsun_ra_rad() {
+   # local-use Bc lv_sun_ra_rad;
+   return (lv_sun_ra_rad);
+}
+define lf_sinalt(jtwok,geo_longitude_deg,cos_geo_latitude,\
+      sin_geo_latitude) {
+   # local-use Bc lv_sun_ra_rad;
+   # local-use Bc lv_sun_dec_rad;
+   auto tau_rads;
+   bcdummy = kwsun_sun(jtwok);
+   tau_rads = (kwsun_lmst_rad(jtwok,geo_longitude_deg) -\
+         lv_sun_ra_rad);
+   return (sin_geo_latitude * sin(lv_sun_dec_rad) +\
+         cos_geo_latitude * cos(lv_sun_dec_rad) * cos(tau_rads));
+}
+define lf_parabola_solve(delta_x,ym,yz,yp) {
+   return (parabola_solve(-delta_x,ym,0.0,yz,delta_x,yp));
+}
+define lf_sun_event(jtwok,time_zone_in_hours,geo_lon_deg,\
+      geo_lat_deg,refraction_rad,want_sunrise) {
+   auto sin_glat,cos_glat,alta_rad,altb_rad,altc_rad,\
+         orig_altc_rad,sa_rad,sb_rad,sc_rad,utrise_fday,\
+         utset_fday,output_fday,hours,ctime_jtwok,\
+         cctime_jtwok,d_fday,dd_fday,rta,rtb,rtc,nrr,\
+         sunrise_count,sunset_count;
+   utrise_fday = 0.0;
+   utset_fday = 0.0;
+   sin_glat = sind(geo_lat_deg);
+   cos_glat = cosd(geo_lat_deg);
+   jtwok -= time_zone_in_hours * hour / day;
+   sunrise_count = 0;
+   sunset_count = 0;
+   d_fday = 1.0 * hour / day;
+   dd_fday = d_fday / 10.0;
+   altc_rad = sininv(lf_sinalt(jtwok - d_fday,geo_lon_deg,\
+         cos_glat,sin_glat)) - refraction_rad;
+   orig_altc_rad = altc_rad;
+   for (hours = 1.0; hours <= day / hour; hours += 2.0) {
+      ctime_jtwok = jtwok + hours * hour / day;
+      alta_rad = altc_rad;
+      altb_rad = sininv(lf_sinalt(ctime_jtwok,geo_lon_deg,\
+            cos_glat,sin_glat)) - refraction_rad;
+      altc_rad = sininv(lf_sinalt(ctime_jtwok + d_fday,\
+            geo_lon_deg,cos_glat,sin_glat)) - refraction_rad;
+      bcdummy = lf_parabola_solve(d_fday,alta_rad,altb_rad,\
+            altc_rad);
+      nrr = 0;
+      rtb = parabola_roots(0);
+      rtc = parabola_roots(1);
+      rta = 0.0;
+      if (abs(rtb) < d_fday) {
+         rta = rtb;
+         nrr += 1;
+      }
+      if (abs(rtc) < d_fday) {
+         rta = rtc;
+         nrr += 1;
+      }
+      if (nrr == 1) {
+         cctime_jtwok = ctime_jtwok + rta;
+         sa_rad = (sininv(lf_sinalt(cctime_jtwok - dd_fday,\
+               geo_lon_deg,cos_glat,sin_glat)) -\
+               refraction_rad);
+         sb_rad = (sininv(lf_sinalt(cctime_jtwok,geo_lon_deg\
+               ,cos_glat,sin_glat)) - refraction_rad);
+         sc_rad = (sininv(lf_sinalt(cctime_jtwok + dd_fday,\
+               geo_lon_deg,cos_glat,sin_glat)) -\
+               refraction_rad);
+         bcdummy = lf_parabola_solve(dd_fday,sa_rad,sb_rad,\
+               sc_rad);
+         rtb = parabola_roots(0);
+         rtc = parabola_roots(1);
+         if (abs(rtb) < dd_fday) {
+            cctime_jtwok += rtb;
+         } else {
+            cctime_jtwok += rtc;
+         }
+         if (sa_rad < sb_rad) {
+            utrise_fday = cctime_jtwok - jtwok;
+            sunrise_count += 1;
+         } else {
+            utset_fday = cctime_jtwok - jtwok;
+            sunset_count += 1;
+         }
+      } else if (nrr == 2) {
+         if (parabola_yextrema() < 0.0) {
+            utrise_fday = hours * hour / day + rtc;
+            utset_fday = hours * hour / day + rtb;
+         } else {
+            utrise_fday = hours * hour / day + rtb;
+            utset_fday = hours * hour / day + rtc;
+         }
+         sunrise_count += 1;
+         sunset_count += 1;
+      }
+      if (0 < sunset_count && 0 < sunrise_count) {
+         break;
+      }
+   }
+   if (0 < sunrise_count || 0 < sunset_count) {
+      output_fday = -1.0;
+      if (0 < want_sunrise) {
+         if (0 < sunrise_count) {
+            output_fday = utrise_fday;
+         }
+      } else if (0 < sunset_count) {
+         output_fday = utset_fday;
+      }
+   } else {
+      if (0.0 < orig_altc_rad) {
+         if (0 < want_sunrise) {
+            output_fday = 0.0;
+         } else {
+            output_fday = 1.0;
+         }
+      } else {
+         output_fday = 0.5;
+      }
+   }
+   return (output_fday);
+}
+define kwsun_sin_altitude_sun(jtwok,time_zone_in_hours,\
+      geo_lon_deg,geo_lat_deg) {
+   auto jtwoktz,salt;
+   jtwoktz = jtwok - time_zone_in_hours * hour / day;
+   salt = lf_sinalt(jtwoktz,geo_lon_deg,cosd(geo_lat_deg),\
+         sind(geo_lat_deg));
+   return (salt);
+}
+define kwsun_rise_day(jtwok,time_zone_in_hours,geo_lon_deg,\
+      geo_lat_deg) {
+   return (lf_sun_event(jtwok,time_zone_in_hours,\
+         geo_lon_deg,geo_lat_deg,- cxsunbelow_rad,1));
+}
+define kwsun_set_day(jtwok,time_zone_in_hours,geo_lon_deg,\
+      geo_lat_deg) {
+   return (lf_sun_event(jtwok,time_zone_in_hours,\
+         geo_lon_deg,geo_lat_deg,- cxsunbelow_rad,0));
+}
+lv_moon_ra_rad = 0.0;
+lv_moon_dec_rad = 0.0;
+define kwsun_moon(jtwok) {
+   auto meanlong_moon,ma_moon_rad,ma_sun_rad,d_rad,\
+         farg_rad,fifi_arcsec,ss_rad,hh_rad,lct_arcsec,\
+         lmoon_rad,bmoon_rad,cb,xx,zz,vv,ww,yy,coseps\
+         ,sineps,rho,obliquity,jcen;
+   jcen = jtwok * day / jc;
+   meanlong_moon = frac(0.606433 + 1336.855225 * jcen);
+   ma_moon_rad = tur2rad(frac(0.374897 + 1325.55241 * jcen));
+   ma_sun_rad = tur2rad(frac(0.993133 + 99.997361 * jcen));
+   d_rad = tur2rad(frac(0.827361 + 1236.853086 * jcen));
+   farg_rad = tur2rad(frac(0.259086 + 1342.227825 * jcen));
+   fifi_arcsec = (0.0 + 22640.0 * sin(ma_moon_rad) - 4586.0 *\
+         sin(ma_moon_rad - 2.0 * d_rad) + 192.0 *\
+         sin(ma_moon_rad + 2.0 * d_rad) - 110.0 *\
+         sin(ma_moon_rad + ma_sun_rad) + 148.0 *\
+         sin(ma_moon_rad - ma_sun_rad) - 206.0 *\
+         sin(ma_moon_rad + ma_sun_rad - 2.0 * d_rad) - 125.0\
+         * sin(d_rad) + 2370.0 * sin(2.0 * d_rad) + 769.0 *\
+         sin(2.0 * ma_moon_rad) - 212.0 * sin(2.0 *\
+         ma_moon_rad - 2.0 * d_rad) - 412.0 * sin(2.0 *\
+         farg_rad) - 55.0 * sin(2.0 * farg_rad - 2.0 * d_rad)\
+         - 668.0 * sin(ma_sun_rad) - 165.0 * sin(ma_sun_rad -\
+         2.0 * d_rad));
+   ss_rad = farg_rad + sec2rad(fifi_arcsec + 412.0 * sin(2.0\
+         * farg_rad) + 541.0 * sin(ma_sun_rad));
+   hh_rad = farg_rad - 2.0 * d_rad;
+   lct_arcsec = (-526.0 * sin(hh_rad) + 44.0 * sin(hh_rad +\
+         ma_moon_rad) - 31.0 * sin(hh_rad - ma_moon_rad) +\
+         11.0 * sin(hh_rad - ma_sun_rad) - 23.0 *\
+         sin(ma_sun_rad + hh_rad) - 25.0 * sin(farg_rad - 2.0\
+         * ma_moon_rad) + 21.0 * sin(farg_rad - ma_moon_rad));
+   lmoon_rad = tur2rad(frac(meanlong_moon +\
+         sec2tur(fifi_arcsec)));
+   bmoon_rad = sec2rad(18520.0 * sin(ss_rad) + lct_arcsec);
+   cb = cos(bmoon_rad);
+   xx = cb * cos(lmoon_rad);
+   vv = cb * sin(lmoon_rad);
+   ww = sin(bmoon_rad);
+   obliquity = kwsun_obliquity_rad(jtwok);
+   coseps = cos(obliquity);
+   sineps = sin(obliquity);
+   yy = coseps * vv - sineps * ww;
+   zz = sineps * vv + coseps * ww;
+   rho = topyh1(zz);
+   lv_moon_dec_rad = atan2(zz,rho);
+   lv_moon_ra_rad = fmodu(2.0 * atan2(yy,xx + rho),\
+         tur2rad(1.0));
+   return (rho * moonorbit);
+}
+define kwsun_moon_dec_rad() {
+   # local-use Bc lv_moon_dec_rad;
+   return (lv_moon_dec_rad);
+}
+define kwsun_moon_ra_rad() {
+   # local-use Bc lv_moon_ra_rad;
+   return (lv_moon_ra_rad);
+}
+define lf_ra_sunmoon_diff_rad(jtwok,frad) {
+   auto moon_ra,sun_ra;
+   bcdummy = kwsun_moon(jtwok);
+   moon_ra = kwsun_moon_ra_rad();
+   bcdummy = kwsun_sun(jtwok);
+   sun_ra = kwsun_ra_rad();
+   return (ddist(moon_ra - sun_ra - frad,tau / 2.0));
+}
+define kwsun_lunation(nn) {
+   auto scvx_xp,scvx_xx,scvx_yp,scvx_yy,scvx_dx,scvx_dy,\
+         scvx_ii,jtwokapp,frad;
+   jtwokapp = 5.00 + nn * moonmonth / jday;
+   frad = tur2rad(frac(nn));
+   scvx_dx = 0.5;
+   scvx_xx = jtwokapp;
+   scvx_yy = lf_ra_sunmoon_diff_rad(scvx_xx,frad);
+   for (scvx_ii = 0; scvx_ii <= 20; scvx_ii += 1) {
+      scvx_xp = scvx_xx;
+      scvx_yp = scvx_yy;
+      scvx_xx += scvx_dx;
+      if (iseq(scvx_xp,scvx_xx)) {
+         break;
+      }
+      scvx_yy = lf_ra_sunmoon_diff_rad(scvx_xx,frad);
+      scvx_dy = (scvx_yy - scvx_yp);
+      if (iszero(scvx_dy)) {
+         break;
+      }
+      scvx_dx *= - scvx_yy / scvx_dy;
+   }
+   return (scvx_xx);
+}
+#   DDDDDDDDDDescription -------------------- kwsun_description #
+define kwsun_description() {
+   print "Usage: bcc [Expression]\n";
+   print "   Kwsun 0-ary Functions: kwsun_dec_rad kwsun_dist_m ";
+   print "kwsun_moon_dec_rad kwsun_moon_ra_rad kwsun_ra_rad kws";
+   print "unx_dec_rad kwsunx_dist_m kwsunx_ra_rad kwsunx_rise_d";
+   print "ay kwsunx_set_day kwsunx_transit_day";
+   print "\n";
+   print "   Kwsun 1-ary Functions: kwsun_eccentricity kwsun_gm";
+   print "st_rad kwsun_lunation kwsun_mean_anomaly_rad kwsun_mo";
+   print "on kwsun_obliquity_rad kwsun_perihelion_rad kwsun_sun";
+   print "\n";
+   print "   Kwsun 2-ary Functions: kwsun_eccentric_anomaly_rad";
+   print " kwsun_lmst_rad";
+   print "\n";
+   print "   Kwsun 4-ary Functions: kwsun_rise_day kwsun_set_da";
+   print "y kwsun_sin_altitude_sun kwsunx_init";
+   print "\n";
+}
+define kwsun_desc() {
+   print "Usage: bcc [Expression]\n";
+   print "   Kwsun 0-ary Functions: kwsun(_(d(ec_rad|ist_m)|moo";
+   print "n_(dec_rad|ra_rad)|ra_rad)|x_(d(ec_rad|ist_m)|r(a_rad";
+   print "|ise_day)|set_day|transit_day))";
+   print "\n";
+   print "   Kwsun 1-ary Functions: kwsun_(eccentricity|gmst_ra";
+   print "d|lunation|m(ean_anomaly_rad|oon)|obliquity_rad|perih";
+   print "elion_rad|sun)";
+   print "\n";
+   print "   Kwsun 2-ary Functions: kwsun_(eccentric_anomaly_ra";
+   print "d|lmst_rad)";
+   print "\n";
+   print "   Kwsun 4-ary Functions: kwsun(_(rise_day|s(et_day|i";
+   print "n_altitude_sun))|x_init)";
+   print "\n";
+}

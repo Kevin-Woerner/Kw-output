@@ -1,0 +1,178 @@
+#    Copyright (C) 2020 by Kevin D. Woerner
+# 2020-07-18 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-18 kdw  Kwplanets:rmed some imports
+##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
+##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
+##-# =KDW= ##### SRC $KWROOT/codekdw/kw-lib/Kwplanets.fwipp #####
+# 2020-07-18 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-06-22 kdw  Kwplanets:local-use mved befroe var decls
+# 2020-06-20 kdw  Macros:comment change
+# 2020-06-12 kdw  Kwplanets:stern-levison and margot rework
+# 2020-06-03 kdw  Kwplanets:writeonly keyword
+# 2020-06-01 kdw  Kwplanets:replace "_D" with "_DT"
+# 2020-05-30 kdw  Kwplanets:CONST syntax change
+# 2020-05-27 kdw  Kwplanets:pl_val func renamd to lf_val
+# 2020-05-18 kdw  Kwplanets:block added
+# 2020-05-17 kdw  Kwplanets:pl_val func
+# 2020-05-13 kdw  Kwplanets:.*_LA[S]T changed to .*_COU[N]T
+# 2020-05-12 kdw  Kwplanets:nul rets changed
+# 2020-05-11 kdw  Kwplanets:REPL[A]CE replaced with
+# 2020-05-05 kdw  Kwplanets:magic check func changed
+# 2020-05-04 kdw  Kwplanets:comments added
+# 2020-04-28 kdw  Kwplanets:tweaks here and there
+# 2020-04-26 kdw  Macros:block indentation
+# 2020-04-23 kdw  Macros:const format change
+# 2020-04-23 kdw  Kwplanets:const format change
+# 2020-04-12 kdw  Macros:comment change
+# 2020-04-12 kdw  Kwplanets:comment change
+# 2020-04-11 kdw  Macros:macro arg format
+# 2020-04-11 kdw  Kwplanets:macro arg format
+# 2020-04-08 kdw  Macros:preprocess sigil change
+# 2020-04-08 kdw  Kwplanets:preprocess sigil change
+# 2020-04-03 kdw  Kwplanets:uniqify returns
+# 2020-03-23 kdw  Kwplanets:added _[a]rr suffix to arrays
+# 2020-03-11 kdw  Kwplanets:RE[P]LACE work
+# 2020-03-09 kdw  Kwplanets:LO[C]AL_.* keywords
+# 2020-03-08 kdw  Kwplanets:PR[I]NTVAL change
+# 2020-03-06 kdw  Macros:RE[P]LACE / IN[D]EX changes
+# 2020-03-06 kdw  Kwplanets:L[A]NG.* names
+# 2020-03-03 kdw  Macros:comment changed:odd chars
+# 2020-03-03 kdw  Kwplanets:macro arg name change
+# 2020-03-02 kdw  Macros:s/_NE[X]T/_E[N]D/g
+# 2020-03-02 kdw  Kwplanets:s/_NE[X]T/_E[N]D/g
+# 2020-02-28 kdw  Kwplanets:poly eval work
+# 2020-02-27 kdw  Kwplanets:ho[r]ner work
+# 2020-02-26 kdw  Macros:HO[R]NER rmed
+# 2020-02-26 kdw  Kwplanets:comment change
+# 2020-02-14 kdw  Macros:incomplete beta work
+# 2020-02-03 kdw  Macros:.*_LOOP changed
+# 2020-02-03 kdw  Kwplanets:.*_LOOP changed
+# 2020-01-28 kdw  Kwplanets:updated w/ new ellips.* funcs
+# 2020-01-08 kdw  Kwplanets:comment location chagned
+# 2019-12-26 kdw  Kwplanets:module name addded to funcs
+# 2019-12-18 kdw  Kwplanets:error checking III
+# 2019-12-17 kdw  Kwplanets:error checking fixed
+# 2019-12-15 kdw  Kwplanets:error checking
+# 2019-12-11 kdw  Kwplanets:debugging -- no net change
+# 2019-11-19 kdw  Macros:format change
+# 2019-11-17 kdw  Kwplanets:include Macros file
+# 2019-10-10 kdw  Kwplanets:replace AIR with AIR_MASS
+# 2019-10-08 kdw  Kwplanets:comment change
+# 2019-10-04 kdw  Macros:comment change
+# 2019-10-04 kdw  Kwplanets:comment removal
+# 2019-10-02 kdw  Macros:macro arg format change
+# 2019-10-02 kdw  Kwplanets:macro arg format change
+# 2019-09-21 kdw  Kwplanets:diff const renam
+# 2019-09-10 kdw  Kwplanets:earth-gravity major refactor
+# 2019-08-30 kdw  Kwplanets:lv_isa_.* vars; ISA block
+# 2019-08-26 kdw  Kwplanets:PRI[N]TS to PR[I]NTSTR
+# 2019-08-24 kdw  Macros:for and count loops have from clause
+# 2019-08-22 kdw  Kwplanets:comment changed
+# 2019-08-17 kdw  Kwplanets:L[O]G to L[N]
+# 2019-08-15 kdw  Kwplanets:tweak in pl_helio.*
+# 2019-08-14 kdw  Macros:comments added
+# 2019-08-14 kdw  Kwplanets:comment change
+# 2019-08-13 kdw  Macros:reorg ho[r]ner
+# 2019-08-13 kdw  Kwplanets:comment shortened
+# 2019-08-11 kdw  Kwplanets:comment cleanup
+# 2019-08-06 kdw  Macros:rmed backslashes, macro arg renam
+# 2019-08-06 kdw  Kwplanets:added "+" to array values
+# 2019-07-05 kdw  Kwplanets:added extra planet defs; pls[e]ttime
+# 2019-07-04 kdw  Kwplanets:rmed extra planet defs
+# 2019-07-03 kdw  Kwplanets:var renm:"s/ind/_ind/;s/__ind/_ind/"
+# 2019-07-02 kdw  Kwplanets:macro renam
+# 2019-06-26 kdw  Kwplanets:".*D" to ".*_DT"
+# 2019-06-04 kdw  Kwplanets:tur2deg funcs
+# 2019-06-02 kdw  Macros:NR_ to RAPHSON_
+# 2019-06-02 kdw  Kwplanets:NR_ to RAPHSON_
+# 2019-05-31 kdw  Macros:NR_DO to RAPHSON_LOOP; et al
+# 2019-05-31 kdw  Kwplanets:NR_DO to RAPHSON_LOOP; et al
+# 2019-05-29 kdw  Macros:comment changed
+# 2019-05-29 kdw  Kwplanets:comment changed
+# 2019-05-28 kdw  Kwplanets:comment changed
+# 2019-05-24 kdw  Kwplanets:s/PL_/LC_/g;
+# 2019-05-22 kdw  Kwplanets:added "get_" to several vin_.* funcs
+# 2019-05-20 kdw  Kwplanets:explicit module for consts
+# 2019-05-17 kdw  Kwplanets:pl.* rmed
+# 2019-05-16 kdw  Macros:loop limit def mved
+# 2019-05-14 kdw  Kwplanets:lf_isa_calc, isa_dens funcs; rework
+# 2019-05-08 kdw  Kwplanets:func descripts
+# 2019-05-07 kdw  Kwplanets:lf_?isa_.* funcs
+# 2019-04-30 kdw  Kwplanets:failed experiment
+# 2019-04-23 kdw  Kwplanets:e.*_air_[p]ressure() function rework
+# 2019-04-22 kdw  Kwplanets:e.*_air_[p]ressure() function
+# 2019-03-19 kdw  Kwplanets:re[t]_val to re[t]valu
+# 2019-03-18 kdw  Macros:macro syntax changed
+# 2019-03-18 kdw  Kwplanets:macro syntax changed
+# 2019-03-15 kdw  Kwplanets:use to[p]yh1
+# 2019-03-08 kdw  Macros:is[e]qual to is[e]q, et al.
+# 2019-03-08 kdw  Kwplanets:is[e]qual to is[e]q, et al.
+# 2019-03-06 kdw  Macros:is.* funcs changed
+# 2019-03-04 kdw  Macros:loop-limit work
+# 2019-03-04 kdw  Kwplanets:loop-limit work
+# 2019-02-28 kdw  Macros:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  Kwplanets:REP?LACE/DEF?INE work
+# 2019-02-19 kdw  Macros:macro syntax
+# 2019-02-19 kdw  Kwplanets:macro syntax
+# 2019-02-13 kdw  Macros:comment work
+# 2019-02-04 kdw  Kwplanets:pmo macro, et al
+# 2019-01-30 kdw  Kwplanets:lv_p[l]_ey var
+# 2019-01-27 kdw  Kwplanets:pl-helioc[e]ntric func
+# 2019-01-23 kdw  Kwplanets:probs with powers
+# 2018-12-20 kdw  Macros:work on module specific functions
+# 2018-12-12 kdw  Macros:created
+# 2018-12-12 kdw  Kwplanets:macros
+# 2018-12-10 kdw  Kwplanets:module specific refs
+# 2018-11-29 kdw  Kwplanets:upper cased fwip defined funcs
+# 2018-11-26 kdw  Kwplanets:PL_ prfxs
+# 2018-11-03 kdw  Kwplanets:comment
+# 2018-10-27 kdw  Kwplanets:comment change
+# 2018-10-04 kdw  Kwplanets:uppercased fwip trig funcs
+# 2018-07-19 kdw  Kwplanets:comments; array reformat
+# 2018-07-17 kdw  Kwplanets:private lf_.* funcs
+# 2018-07-13 kdw  Kwplanets:float number reformt
+# 2018-07-10 kdw  Kwplanets:added "+" to exponents
+# 2018-05-24 kdw  Kwplanets:eccentric anomaly refactor
+# 2018-05-23 kdw  Kwplanets:orbital elements
+# 2018-05-23 kdw  Kwplanets:eccentric anomaly func
+# 2018-05-22 kdw  Kwplanets:comment change
+# 2018-05-17 kdw  Kwplanets:ARR?AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  Kwplanets:AR?RAY syntax
+# 2018-04-19 kdw  Kwplanets:consts rework
+# 2018-04-09 kdw  Kwplanets:[tdr]2[rdt] func renam
+# 2018-04-03 kdw  Kwplanets:rm() from return
+# 2018-03-26 kdw  Kwplanets:macro redef
+# 2018-03-20 kdw  Kwplanets:replaced index w/ "at"replace
+# 2018-03-16 kdw  Kwplanets:constant and index format
+# 2018-03-12 kdw  Kwplanets:made PP statements not need ";"
+# 2018-02-27 kdw  Kwplanets:mass function refactor
+# 2018-02-19 kdw  Kwplanets:secant and macro refactor
+# 2018-02-17 kdw  Kwplanets:expandnow changed
+# 2018-02-14 kdw  Kwplanets:IN[D]EX stuff
+# 2018-02-12 kdw  Kwplanets:stern-levison
+# 2018-02-10 kdw  Kwplanets:*_B calcd from _A and FLAT
+# 2018-02-08 kdw  Kwplanets:*_[ABC] radii
+# 2018-01-15 kdw  Kwplanets:margot comments
+# 2017-11-24 kdw  Kwplanets:print string changed
+# 2017-11-23 kdw  Kwplanets:rm digits from var names
+# 2017-11-22 kdw  Kwplanets:var renam
+# 2017-11-07 kdw  Kwplanets:perihelion, aphelion spelled out
+# 2017-10-23 kdw  Kwplanets:COM[M]ENT syntax
+# 2017-10-22 kdw  Kwplanets:peri and ap
+# 2017-10-21 kdw  Kwplanets:in[s]ert syntax
+# 2017-10-17 kdw  Kwplanets:GM redo; several earth redefd
+# 2017-10-15 kdw  Kwplanets:sun mass
+# 2017-10-10 kdw  Kwplanets:__B <= __C <= __A
+# 2017-10-09 kdw  Kwplanets:suppress units warning with "+-"
+# 2017-10-07 kdw  Kwplanets:__C; __RADIUS calc changed
+# 2017-10-06 kdw  Kwplanets:mucho refactor(lots of consts)
+# 2017-10-04 kdw  Kwplanets:NUS
+# 2017-10-03 kdw  Kwplanets:margot  simplified
+# 2017-10-02 kdw  Kwplanets:pl* funcs
+# 2017-10-02 kdw  Kwplanets:only names
+# 2017-10-01 kdw  Kwplanets:_planet_.* reorg
+# 2017-09-29 kdw  Kwplanets:_planet_.* created
+# 2017-09-29 kdw  Kwplanets:EA?RTHFL?AT
+# 2017-09-28 kdw  Kwplanets:tropical year
+# 2017-09-27 kdw  Kwplanets:EA[R]THGRA[V]ITY[AB]
+# 2017-09-26 kdw  Kwplanets:created

@@ -1,0 +1,45 @@
+#    Copyright (C) 2020 by Kevin D. Woerner
+# 2020-07-18 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-18 kdw  Kwelements:rmed some imports
+##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
+##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
+##-# =KDW= ##### SRC $KWROOT/codekdw/kw-lib/Kwelements.fwipp ####
+# 2020-07-18 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-05-30 kdw  Kwelements:CONST syntax change
+# 2020-05-27 kdw  Kwelements:minor cleanup
+# 2020-04-24 kdw  Kwelements:long lines
+# 2020-04-23 kdw  Kwelements:const format change
+# 2020-04-11 kdw  Kwelements:macro arg format
+# 2020-04-08 kdw  Kwelements:preprocess sigil change
+# 2020-03-03 kdw  Kwelements:comment changed:odd chars
+# 2020-03-02 kdw  Kwelements:s/_NE[X]T/_E[N]D/g
+# 2020-02-28 kdw  Kwelements:exponents should have sign
+# 2019-11-18 kdw  Kwelements:.*MASS and .*_MASS work
+# 2019-10-14 kdw  Kwelements:comment change
+# 2019-10-10 kdw  Kwelements:AIR, WATER, and VMSOW mass
+# 2019-10-08 kdw  Kwelements:.*_Z to .*Z
+# 2019-10-04 kdw  Kwelements:comment change
+# 2019-10-02 kdw  Kwelements:macro arg format change
+# 2019-10-01 kdw  Kwelements:HCO_.* macros
+# 2019-09-26 kdw  Kwelements:const renam
+# 2019-09-25 kdw  Kwelements:C1[234]_RATIO def change
+# 2019-09-19 kdw  Kwelements:use symbols instead of names
+# 2019-09-18 kdw  Kwelements:molar mass defined
+# 2019-09-04 kdw  Kwelements:.*_jpkg suff
+# 2019-09-03 kdw  Kwelements:dalton/isotope work
+# 2019-08-29 kdw  Kwelements:VS[M]OW
+# 2019-08-15 kdw  Kwelements:CON[S]TANT to CON[S]T keyword
+# 2019-08-11 kdw  Kwelements:comment cleanup
+# 2019-08-06 kdw  Kwelements:rm backslashs; macro arg renam
+# 2019-06-26 kdw  Kwelements:"Z" to "_Z"
+# 2019-05-30 kdw  Kwelements:k[w].speci[f]icheat
+# 2019-05-14 kdw  Kwelements:simplified
+# 2019-05-13 kdw  Kwelements:refactor / expanded
+# 2019-05-01 kdw  Kwelements:air II
+# 2019-04-30 kdw  Kwelements:made atomic weight unitless
+# 2019-04-26 kdw  Kwelements:ele macro
+# 2019-04-17 kdw  Kwelements:air added
+# 2018-12-19 kdw  Kwelements:explicit ref to K[w] consts
+# 2018-12-15 kdw  Kwelements:prefix "Z" to suffix "_Z"
+# 2018-11-26 kdw  Kwelements:Z.*
+# 2018-11-25 kdw  Kwelements:created

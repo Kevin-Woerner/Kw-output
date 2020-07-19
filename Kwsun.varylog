@@ -1,0 +1,210 @@
+#    Copyright (C) 2020 by Kevin D. Woerner
+# 2020-07-16 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-16 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
+##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
+##-# =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
+# 2020-06-22 kdw  Kwsun:local-use mved before var decls
+# 2020-06-20 kdw  Macros:comment change
+# 2020-05-30 kdw  Kwsun:CONST syntax change
+# 2020-05-19 kdw  Kwsun:moonorbit is from kwplanets
+# 2020-05-18 kdw  Kwsun:comment rearrange
+# 2020-05-14 kdw  Kwsun:local funcs only in blocks
+# 2020-05-13 kdw  Kwsun:comment trivially changed
+# 2020-05-12 kdw  Kwsun:nul rets changed
+# 2020-05-11 kdw  Kwsun:local-func syntax changed
+# 2020-05-06 kdw  Kwsun:rmed boolean vars
+# 2020-05-04 kdw  Kwsun:comments added
+# 2020-04-26 kdw  Macros:block indentation
+# 2020-04-23 kdw  Macros:const format change
+# 2020-04-23 kdw  Kwsun:const format change
+# 2020-04-12 kdw  Macros:comment change
+# 2020-04-12 kdw  Kwsun:comment change
+# 2020-04-11 kdw  Macros:macro arg format
+# 2020-04-08 kdw  Macros:preprocess sigil change
+# 2020-04-08 kdw  Kwsun:preprocess sigil change
+# 2020-04-03 kdw  Kwsun:comments changed
+# 2020-03-24 kdw  Kwsun:comments changed
+# 2020-03-09 kdw  Kwsun:LO[C]AL_.* keywords
+# 2020-03-06 kdw  Macros:RE[P]LACE / IN[D]EX changes
+# 2020-03-05 kdw  Kwsun:s/TRU[E]VAL/TR[U]E/;s/FALS[E]VAL/FA[L]SE/
+# 2020-03-03 kdw  Macros:comment changed:odd chars
+# 2020-03-02 kdw  Macros:s/_NE[X]T/_E[N]D/g
+# 2020-03-02 kdw  Kwsun:spacing
+# 2020-03-01 kdw  Kwsun:updated
+# 2020-02-28 kdw  Kwsun:poly eval work
+# 2020-02-27 kdw  Kwsun:ho[r]ner work
+# 2020-02-26 kdw  Macros:HO[R]NER rmed
+# 2020-02-26 kdw  Kwsun:comment change
+# 2020-02-25 kdw  Kwsun:comment changed
+# 2020-02-14 kdw  Macros:incomplete beta work
+# 2020-02-03 kdw  Macros:.*_LOOP changed
+# 2020-02-03 kdw  Kwsun:.*_LOOP changed
+# 2020-01-29 kdw  Kwsun:func name change:s/para_/parabola_/
+# 2019-11-19 kdw  Macros:format change
+# 2019-10-04 kdw  Macros:comment change
+# 2019-10-02 kdw  Macros:macro arg format change
+# 2019-09-25 kdw  Kwsun:TT.* name change
+# 2019-09-23 kdw  Kwsun:earth orbit module fixed
+# 2019-09-22 kdw  Kwsun:refraction and below angle combined
+# 2019-09-21 kdw  Kwsun:several const renamd
+# 2019-08-24 kdw  Macros:for and count loops have from clause
+# 2019-08-18 kdw  Kwsun:B[O]OL to B[O]L
+# 2019-08-17 kdw  Kwsun:L[O]G to LN
+# 2019-08-15 kdw  Kwsun:CON[S]TANT to CON[S]T keyword change
+# 2019-08-14 kdw  Macros:comments added
+# 2019-08-14 kdw  Kwsun:kw[s]un_lu[n]ation
+# 2019-08-13 kdw  Macros:reorg ho[r]ner
+# 2019-08-11 kdw  Kwsun:comment cleanup
+# 2019-08-06 kdw  Macros:rmed backslashes, macro arg renam
+# 2019-08-06 kdw  Kwsun:added "+" to array values
+# 2019-07-22 kdw  Kwsun:func descriptions
+# 2019-07-21 kdw  Kwsun:func descriptions
+# 2019-07-04 kdw  Kwsun:sun-radius to sun-a
+# 2019-06-07 kdw  Kwsun:error returns more logical
+# 2019-06-05 kdw  Kwsun:sun refrac and radius issues
+# 2019-06-04 kdw  Kwsun:debugging
+# 2019-06-02 kdw  Macros:NR_ to RAPHSON_
+# 2019-05-31 kdw  Macros:NR_DO to RAPHSON_LOOP; et al
+# 2019-05-29 kdw  Macros:comment changed
+# 2019-05-29 kdw  Kwsun:comment changed
+# 2019-05-24 kdw  Kwsun:local replaced private
+# 2019-05-22 kdw  Kwsun:rmed unneeded()s
+# 2019-05-20 kdw  Kwsun:explicit constants
+# 2019-05-16 kdw  Macros:loop limit def mved
+# 2019-03-26 kdw  Kwsun:K[w].is[e]q explicit
+# 2019-03-18 kdw  Macros:macro syntax changed
+# 2019-03-15 kdw  Kwsun:use to[p]yh1
+# 2019-03-08 kdw  Macros:is[e]qual to is[e]q, et al.
+# 2019-03-08 kdw  Kwsun:is[e]qual to is[e]q, et al.
+# 2019-03-06 kdw  Macros:is.* funcs changed
+# 2019-03-04 kdw  Macros:loop-limit work
+# 2019-02-28 kdw  Macros:REP?LACE/DEF?INE work
+# 2019-02-19 kdw  Macros:macro syntax
+# 2019-02-19 kdw  Kwsun:macro syntax
+# 2019-02-13 kdw  Macros:comment work
+# 2019-02-12 kdw  Kwsun:debugging
+# 2019-02-08 kdw  Kwsun:vb.net compatability
+# 2019-01-23 kdw  Kwsun:tt-ut1-diff constant
+# 2018-12-26 kdw  Kwsun:sun-riseset-rad redefd
+# 2018-12-20 kdw  Macros:work on module specific functions
+# 2018-12-12 kdw  Macros:created
+# 2018-12-10 kdw  Kwsun:module specific refs
+# 2018-10-04 kdw  Kwsun:uppercased fwip trig funcs
+# 2018-07-17 kdw  Kwsun:private lf_.* funcs
+# 2018-07-13 kdw  Kwsun:float number reformt
+# 2018-05-17 kdw  Kwsun:ARR?AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  Kwsun:AR?RAY syntax
+# 2018-04-09 kdw  Kwsun:[tdr]2[rdt] func renam
+# 2018-04-03 kdw  Kwsun:rm() from return
+# 2018-03-26 kdw  Kwsun:macro redef
+# 2018-03-16 kdw  Kwsun:format of constant and index change
+# 2018-03-12 kdw  Kwsun:made PP statements not need semicolon
+# 2018-02-21 kdw  Kwsun:inv trig func renam: s/a(.*)/inv/
+# 2018-01-29 kdw  Kwsun:julian consts renamd
+# 2017-11-26 kdw  Kwsun:FR[O]M and B[Y] keywords
+# 2017-11-23 kdw  Kwsun:rm digits from var names
+# 2017-11-22 kdw  Kwsun:var renam
+# 2017-10-25 kdw  Kwsun:parens
+# 2017-10-24 kdw  Kwsun:moon stuff
+# 2017-10-23 kdw  Kwsun:A[R]RAY syntax
+# 2017-10-21 kdw  Kwsun:macros start with x40x40
+# 2017-10-20 kdw  Kwsun:comment change
+# 2017-09-29 kdw  Kwsun:const rename
+# 2017-09-20 kdw  Kwsun:rmed useless trailing 0s
+# 2017-08-29 kdw  Kwsun:fixed constant multipliers; func renam
+# 2017-08-20 kdw  Kwsun:rmed/renamd .*_P[E]R_.* vars
+# 2017-08-14 kdw  Kwsun:cleanup
+# 2017-08-13 kdw  Kwsun:added unit suffixes to funcs and vars
+# 2017-08-11 kdw  Kwsun:func renam
+# 2017-06-30 kdw  Kwsun:comment reorg
+# 2017-06-21 kdw  Kwsun:comment comment
+# 2017-04-26 kdw  Kwsun:keyword COMMENT.*
+# 2017-04-25 kdw  Kwsun:syntax of import
+# 2017-04-21 kdw  Kwsun:general cleanup; func to function
+# 2017-04-14 kdw  Kwsun:comment changed
+# 2017-03-22 kdw  Kwsun:comment changed
+# 2017-03-20 kdw  Kwsun:comment changed
+# 2017-03-19 kdw  Kwsun:commented out code
+# 2017-03-17 kdw  Kwsun:space-comma adjustment
+# 2017-03-12 kdw  Kwsun:shorten long comments
+# 2017-03-10 kdw  Kwsun:get Fw?ip_Pa?rse to work
+# 2017-03-06 kdw  Kwsun:sigils rmed
+# 2017-03-01 kdw  Kwsun:var?ylog-ad?d space messup
+# 2017-02-28 kdw  Kwsun:REQ?UIRE function()
+# 2017-02-26 kdw  Kwsun:var renam
+# 2017-02-24 kdw  Kwsun:REP?LACE rework, et al
+# 2017-02-20 kdw  Kwsun:array var names
+# 2017-02-14 kdw  Kwsun:FWIP Loop syntax changed
+# 2017-02-13 kdw  Kwsun:IM?PORT changed
+# 2017-02-12 kdw  Kwsun:FWIP language change
+# 2017-01-09 kdw  Kwsun:E for exponents, et al
+# 2017-01-04 kdw  Kwsun:copyright date
+# 2017-01-03 kdw  Kwsun:bool const renam
+# 2016-12-30 kdw  Kwsun:comment change
+# 2016-12-25 kdw  Kwsun:rev to t
+# 2016-12-02 kdw  Kwsun:var renamd
+# 2016-12-01 kdw  Kwsun:added parenthesis
+# 2016-11-25 kdw  Kwsun:constant renam
+# 2016-11-24 kdw  Kwsun:FA?BS to A?BS
+# 2016-11-21 kdw  Kwsun:DE?F to FU?NC
+# 2016-11-20 kdw  Kwsun:uppercase stuff
+# 2016-11-20 kdw  Kwsun:language change
+# 2016-11-19 kdw  Kwsun:"p" to "rev"
+# 2016-11-15 kdw  Kwsun:func name change
+# 2016-11-09 kdw  Kwsun:var name change
+# 2016-11-07 kdw  Kwsun:__LA[N]G* syntax changed
+# 2016-11-06 kdw  Kwsun:refactor(deg to rad)
+# 2016-11-05 kdw  Kwsun:function renam
+# 2016-10-31 kdw  Kwsun:awa?it loop; comment reorg
+# 2016-10-21 kdw  Kwsun:attempt to add sun dist
+# 2016-09-28 kdw  Kwsun:v?kk?cp changed
+# 2016-09-15 kdw  Kwsun:lang change
+# 2016-09-14 kdw  Kwsun:added() to return statements
+# 2016-09-13 kdw  Kwsun:lang change
+# 2016-09-08 kdw  Kwsun:return statement tweaked
+# 2016-09-01 kdw  Kwsun:comment tweak
+# 2016-08-19 kdw  Kwsun:obliquity refactor
+# 2016-08-09 kdw  Kwsun:comment change
+# 2016-08-02 kdw  Kwsun:simplified sun-event
+# 2016-08-01 kdw  Kwsun:tweak
+# 2016-07-30 kdw  Kwsun:sinaltsun error
+# 2016-07-22 kdw  Kwsun:python sytax error
+# 2016-07-21 kdw  Kwsun:debugging
+# 2016-07-20 kdw  Kwsun:use data from NASA
+# 2016-07-19 kdw  Kwsun:long lines
+# 2016-07-18 kdw  Kwsun:more spa_*x functions
+# 2016-07-17 kdw  Kwsun:subroutine names change
+# 2016-07-14 kdw  Kwsun:const change
+# 2016-07-13 kdw  Kwsun:refactor
+# 2016-07-12 kdw  Kwsun:rmed useless comments
+# 2016-07-08 kdw  Kwsun:refactor
+# 2016-06-20 kdw  Kwsun:rmed a cop?yright line
+# 2016-05-24 kdw  Kwsun:long lines
+# 2016-04-11 kdw  Kwsun:variable rename
+# 2015-12-28 kdw  Kwsun:parabola_* stuff
+# 2015-12-11 kdw  Kwsun:parabola_* stuff
+# 2015-12-10 kdw  Kwsun:[] added to array
+# 2015-12-03 kdw  Kwsun:renamed constants
+# 2015-12-02 kdw  Kwsun:requires stuff
+# 2015-11-27 kdw  Kwsun:variable rename
+# 2015-11-26 kdw  Kwsun:variable rename
+# 2015-11-26 kdw  Kwsun:long lines
+# 2015-11-25 kdw  Kwsun:variable rename; comment cleanup
+# 2015-11-19 kdw  Kwsun:variable rename
+# 2015-11-17 kdw  Kwsun:comments changed, LC[_]MJD fixed
+# 2015-11-15 kdw  Kwsun:li[p]c.pl change
+# 2015-11-13 kdw  Kwsun:shorten comments; variable rename
+# 2015-11-12 kdw  Kwsun:minor tweak
+# 2015-11-10 kdw  Kwsun:refactor
+# 2015-11-02 kdw  Kwsun:li[p]c.pl change
+# 2015-11-01 kdw  Kwsun:li[p]c.pl change
+# 2015-10-22 kdw  Kwsun:refactor
+# 2015-10-21 kdw  Kwsun:refactor, functions added
+# 2015-10-20 kdw  Kwsun:obli?quity function
+# 2015-10-19 kdw  Kwsun:missing sigils, et al.
+# 2015-10-18 kdw  Kwsun:missing sigils
+# 2015-10-17 kdw  Kwsun:syntax errors
+# 2015-10-16 kdw  Kwsun:moved d[o]y, et al. to julian
+# 2015-10-15 kdw  Kwsun:d[o]y, et al.
+# 2015-10-14 kdw  Kwsun:created
