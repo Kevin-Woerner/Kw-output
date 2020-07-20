@@ -2,7 +2,7 @@
 //-/ =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 //-/ =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 //-/ =KDW= ##### SRC $KWROOT/codekdw/kw-lib/Kwplanets.fwipp #####
-// 2020-07-18 kdw  For Changelog, See File Kwplanets.varylog
+// 2020-07-20 kdw  For Changelog, See File Kwplanets.varylog
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
