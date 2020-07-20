@@ -1,11 +1,12 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-07-16 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
-# 2020-07-16 kdw  erf:erf_[_]4 work
+# 2020-07-20 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-20 kdw  erf:erf__3 tweak
 ##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ##-# =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
+# 2020-07-20 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-16 kdw  erf:erf_[_]4 work
 # 2020-07-16 kdw  approx:git/comment playing
-# 2020-07-16 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 # 2020-07-15 kdw  erf:erf__[34] work
 # 2020-07-14 kdw  randdist:s/px/pbrx/g
 # 2020-07-14 kdw  approx:cos[m]1 func

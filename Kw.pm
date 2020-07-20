@@ -2,7 +2,7 @@
 ##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ##-# =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-# 2020-07-17 kdw  For Changelog, See File Kw.varylog
+# 2020-07-20 kdw  For Changelog, See File Kw.varylog
 package Kw;
 use Time::HiRes qw();
 use POSIX       qw();
@@ -3353,7 +3353,7 @@ sub sincc($ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 2;
       }
@@ -3389,7 +3389,7 @@ sub versin($ ) {
       $sum_prev = $sum_curr;
       $sum_curr += $term;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += 2;
    }
@@ -3909,7 +3909,7 @@ sub lf_continued_fraction($$ ) {
          $xx = 1.0 / ($xx - $whole);
          $epsilon *= 2.0;
          if (abs($diff) < $epsilon) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       return ($steps);
@@ -4142,7 +4142,7 @@ sub print_base_out($$ ) {
       $dig_count += 1;
       $num = floorl($num / $baset);
       if ($num == 0) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    for ($ii = $dig_count - 1; 0 <= $ii; $ii -= 1) {
@@ -4196,7 +4196,7 @@ sub f21($$$$ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $nn += 1;
       }
@@ -4221,7 +4221,7 @@ sub f11($$$ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $nn += 1;
       }
@@ -4250,11 +4250,11 @@ sub lf_lambert_iter($$ ) {
          $wjj_prev = $wjj;
          $wjj += $delta;
          if (Kw::iseq($wjj, $wjj_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       return ($wjj);
@@ -4351,7 +4351,7 @@ sub sinintegral($ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term / $kk;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $kk += 2;
       }
@@ -4377,7 +4377,7 @@ sub cosintegral($ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term / $kk;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $kk += 2;
       }
@@ -4398,7 +4398,7 @@ sub Ein($ ) {
       $sum_prev = $sum_curr;
       $sum_curr += $term / $kk;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $kk += 1;
    }
@@ -4442,11 +4442,11 @@ sub logintegral($ ) {
          $sum_prev = $sum;
          $sum += $yy / $nn;
          if (Kw::iseq($sum, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $nn += 1;
          if ($limit <= $nn) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = Kw::EULER + log($lnx) + $sum;
@@ -4468,7 +4468,7 @@ sub carlsonRF($$$ ) {
       $yy = ($yy + $lmbd) / 4.0;
       $zz = ($zz + $lmbd) / 4.0;
       if (Kw::iseq($xx, $yy) and Kw::iseq($yy, $zz)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return (1.0 / sqrt($xx));
@@ -4481,7 +4481,7 @@ sub carlsonRC($$ ) {
       $xx = ($xx + $lmbd) / 4.0;
       $yy = ($yy + $lmbd) / 4.0;
       if (Kw::iseq($xx, $yy)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return (1.0 / sqrt($xx));
@@ -4514,7 +4514,7 @@ sub carlsonRJ($$$$ ) {
       $pp = ($pp + $lmbd) / 4.0;
       if (Kw::iseq($xx, $yy) and Kw::iseq($yy, $zz) and
             Kw::iseq($zz, $pp)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return (3.0 * $sigm);
@@ -4545,7 +4545,7 @@ sub carlsonRD($$$ ) {
       $yy = ($yy + $lmbd) / 4.0;
       $zz = ($zz + $lmbd) / 4.0;
       if (Kw::iseq($xx, $yy) and Kw::iseq($yy, $zz)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return (3.0 * $sigm);
@@ -4643,7 +4643,7 @@ sub lcam($$ ) {
    for (;;) {
       $mm = mods($ii, $aa);
       if (- 2 <= $mm and $mm <= 2) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += $bb;
    }
@@ -4667,7 +4667,7 @@ sub lcams($$ ) {
    for (;;) {
       $mm = mods($ii, $aa);
       if (- 2 <= $mm and $mm <= 2) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += $bb;
    }
@@ -4710,7 +4710,7 @@ sub lcantim($$ ) {
          }
          $ii += $bb;
          if ($aa * $bb <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       if ($aa * $bb <= $ii) {
@@ -4751,7 +4751,7 @@ sub factor($\@ ) {
             $nn /= $pp;
          }
          if ($nn < $pp * $pp) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       if (1 < $nn) {
@@ -4840,7 +4840,7 @@ sub pfg($ ) {
       $ff = pfl($mm);
       $mm /= $ff;
       if ($mm == 1) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return ($ff);
@@ -5063,11 +5063,11 @@ sub eta($ ) {
             $sump = $sum;
             $sum += $term;
             if (Kw::iseq($sump, $sum)) {
-               last; # KQS
+               last; # loop AWAIT
             }
             $nn += 1;
             if ($kk <= $nn) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $retvalu = $sum - 0.5 * $term;
@@ -5091,11 +5091,11 @@ sub eta($ ) {
             $sump = $sum;
             $sum = $temp_arr[0];
             if (Kw::iseq($sump, $sum)) {
-               last; # KQS
+               last; # loop AWAIT
             }
             $nn += 1;
             if (400 <= $nn) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $s_ind = floorl($nn / 3);
@@ -5336,7 +5336,7 @@ sub minkowski($ ) {
          $qq = $nn;
       }
       if (Kw::iseq($yy + $dd, $yy)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return ($yy);
@@ -5366,7 +5366,7 @@ sub cantorxx($$$ ) {
          }
          $dd /= 2.0;
          if (Kw::iseq($yy + $dd, $yy) or Kw::iszero($rest)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
    }
@@ -5958,7 +5958,7 @@ sub repetendlen($$ ) {
       $gd = gcd($denm, $basee);
       $denm /= $gd;
       if (1 == $gd) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    if ($denm == 1) {
@@ -5984,7 +5984,7 @@ sub print_kevy($$$ ) {
          $valu = floorl($numer / $den);
          $numer = ($numer % $den) * $basee + $valu;
          if ($numer == $start or $den * $basee < $leny) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       if ($basee <= $start) {
@@ -6012,11 +6012,11 @@ sub znorder__1($$ ) {
       for (;;) {
          $pp = ($pp * $bb) % $mdls;
          if ($pp == 1) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $nn += 1;
          if ($mdls <= $nn) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
    }
@@ -6116,11 +6116,11 @@ sub reimann($ ) {
          $sum += mobius($ii) * lix(Kw::pow($nn, 1.0 / $ii)) /
                $ii;
          if (Kw::iseq($sum, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if ($lim <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $sum;
@@ -6202,7 +6202,7 @@ sub primenth($ ) {
             $pp += $inc;
             $inc = 6 - $inc;
             if (Kw::isprime($pp)) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $ii += 1;
@@ -6234,7 +6234,7 @@ sub bessJv($$ ) {
          $sum_prev = $sum;
          $sum += $term;
          if (Kw::iseq($sum, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $mm += 1;
       }
@@ -6522,7 +6522,7 @@ sub bessJn_ps($$ ) {
       $sum_prev = $sum;
       $sum += $term;
       if (Kw::iseq($sum, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $mm += 1;
    }
@@ -6553,7 +6553,7 @@ sub bessIn_ps($$ ) {
       $sum_prev = $sum;
       $sum += $term;
       if (Kw::iseq($sum, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $mm += 1;
    }
@@ -6973,7 +6973,7 @@ sub lf_bess_ucrecur($$$$ ) {
             $sum_prev = $sum;
             $sum += $term * $hn;
             if (Kw::iseq($sum, $sum_prev)) {
-               last; # KQS
+               last; # loop AWAIT
             }
             $kk += 1;
          }
@@ -7526,11 +7526,11 @@ sub erfcinv($ ) {
          $xx_pr = $xx;
          $xx += $dx;
          if (Kw::iseq($xx_pr, $xx)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       if (1.0 < $yy_orig) {
@@ -7564,11 +7564,11 @@ sub erfcxinv($ ) {
          $xx_pr = $xx;
          $xx += $dx;
          if (Kw::iseq($xx_pr, $xx)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
    }
@@ -7600,11 +7600,11 @@ sub erfinv($ ) {
          $xx_pr = $xx;
          $xx += $dx;
          if (Kw::iseq($xx_pr, $xx)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xx;
@@ -7661,10 +7661,13 @@ sub erf__3($ ) {
       for (;;) {
          $factx *= - $xxsq / $nn;
          $add_arr[$nn] = $factx / (2.0 * $nn + 1.0);
-         if (abs($add_arr[$nn]) < Kw::DBLEPS / 16) {
-            last; # KQS
+         if (abs($add_arr[$nn]) < Kw::DBLEPS) {
+            last; # loop AWAIT
          }
          $nn += 1;
+         if (79 <= $nn) {
+            last; # loop AWAIT
+         }
       }
       $sum_curr = 0;
       for ($kk = $nn; 0 <= $kk; $kk -= 1) {
@@ -7715,7 +7718,7 @@ sub erf__4($ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term;
          if (Kw::iseq($sum_prev, $sum_curr)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $nn += 2;
       }
@@ -8303,7 +8306,7 @@ sub uigamma__1($$ ) {
                $cc *= $xx / $rr;
                $ans += $cc;
                if ($cc / $ans < DBLEPS) {
-                  last; # KQS
+                  last; # loop AWAIT
                }
             }
             $retvalu = 1.0 - $ans * $ax / $aa;
@@ -8341,7 +8344,7 @@ sub uigamma__1($$ ) {
                   $qkma *= DBLEPS;
                }
                if ($tt <= DBLEPS) {
-                  last; # KQS
+                  last; # loop AWAIT
                }
             }
             $retvalu = $ans * $ax;
@@ -8467,7 +8470,7 @@ sub betainc($$$ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $term;
          if (Kw::iseq($sum_curr, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $log_beta = lgamma($aa) + lgamma($bb) - lgamma($aa + $bb);
@@ -8533,11 +8536,11 @@ sub betainc__1($$$ ) {
          $ff *= $cd;
          $jj = 1 - $ii;
          if (abs(1.0 - $cd) < DBLEPS) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (200 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $front * ($ff - 1.0);
@@ -8946,7 +8949,7 @@ sub bellx($ ) {
       $sum_prev = $sum;
       $sum += Kw::pow($kk, $xxn) / $den;
       if (Kw::iseq($sum_prev, $sum)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return ($sum / Kw::E);
@@ -10390,11 +10393,11 @@ sub agmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10427,11 +10430,11 @@ sub ahmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10464,11 +10467,11 @@ sub almean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10501,11 +10504,11 @@ sub aqmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10538,11 +10541,11 @@ sub ghmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10575,11 +10578,11 @@ sub glmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10612,11 +10615,11 @@ sub gqmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10649,11 +10652,11 @@ sub hlmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10686,11 +10689,11 @@ sub hqmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10723,11 +10726,11 @@ sub lqmean($$ ) {
          $cdifff = $xa - $xb;
          if (Kw::iswithin($xa, $xb, 10 * DBLEPS) or $pdifff <
                $cdifff) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xtmp;
@@ -10751,11 +10754,11 @@ sub agmean__1($$ ) {
       $xa = ($xa + $xb) / 2.0;
       $xb = sqrt(abs($xtmp * $xb)) * Kw::sign($xa);
       if (Kw::iswithin($xa, $xb, 10 * DBLEPS)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += 1;
       if (20 <= $ii) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    $retvalu = $xsgn * $xtmp;
@@ -10782,11 +10785,11 @@ sub aghmean($$$ ) {
          $xb = Kw::cuberoot($ta * $tb * $tc);
          $xc = 3.0 / (1.0 / $ta + 1.0 / $tb + 1.0 / $tc);
          if (Kw::iswithin($xa, $xc, 10 * DBLEPS)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $xb;
@@ -11091,7 +11094,7 @@ sub LC_KNUTH_MAX() { 1073741823; }
       for (;;) {
          $rndm = lf_next_ranz();
          if ($rndm < $max_allowed) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = $rndm % $nn;
@@ -11199,7 +11202,7 @@ sub normal_cdf__1($ ) {
          $sum_prev = $sum_curr;
          $sum_curr += $bb;
          if (Kw::iseq($sum_prev, $sum_curr)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
       }
@@ -11231,7 +11234,7 @@ my $lv_rand_gau_magic = 0.0;
             $uub = randd() - 0.5;
             $ww = $uua * $uua + $uub * $uub;
             if (Kw::isbetweenx($ww, 0.0, 0.25)) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $ww = sqrt(-2.0 * log(4.0 * $ww) / $ww);
@@ -11702,7 +11705,7 @@ sub trap_rand($$ ) {
          }
       }
       if (0.0 <= $retvalu) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return ($retvalu);
@@ -11774,7 +11777,7 @@ sub zipf_quantile($$$ ) {
    for (;;) {
       $summ += 1.0 / Kw::pow($ii, $ss);
       if ($target <= $summ) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += 1;
    }
@@ -11899,7 +11902,7 @@ sub gamma_rand($ ) {
                $qq = exp(log($xx) * ($f_shape - 1));
             }
             if (randd() < $qq) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $val += $xx;
@@ -12042,7 +12045,7 @@ sub benford_rand($ ) {
    for (;;) {
       $summ += log(1.0 + 1.0 / $ii) / log($max_kk);
       if ($target <= $summ) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $ii += 1;
    }
@@ -12172,7 +12175,7 @@ sub ks_a_cdf($ ) {
          $sum_prev = $sum;
          $sum += exp($vv * $kk * $kk);
          if (Kw::iseq($sum, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $kk += 2;
       }
@@ -12324,7 +12327,7 @@ sub lf_t_quantile($$ ) {
             $retvalu -= $delta;
             $aa_x = abs($delta) * 10000.0;
             if (Kw::iszero($retvalu) or $aa_x < $retvalu) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
       }
@@ -12486,7 +12489,7 @@ sub lf_subfprob($$$ ) {
          $xx_prev = $xx;
          $xx += (lf_subfprob($nx, $mm, $xx) - $pp) / $zz;
          if (Kw::iswithin($xx, $xx_prev, 0.00001)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       return ($xx);
@@ -13679,7 +13682,7 @@ sub lf_signcrossproduct($$$$$$ ) {
          }
          $poh_ind = $e_ind;
          if ($e_ind == $chi_arr[0]) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $chi_arr[$chisize] = $chi_arr[0];
@@ -13901,7 +13904,7 @@ sub sqrt__1($ ) {
          $yy_prev = $yy_curr;
          $yy_curr = ($yy_curr + $zz / $yy_curr) / 2.0;
          if (Kw::iseq($yy_prev, $yy_curr)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $yy_curr *= $power_of_two;
@@ -13996,7 +13999,7 @@ sub nthroot__1($$ ) {
          }
          $yy_curr = ($yy_curr * ($kk - 1) + $xx / $pp) / $kk;
          if (Kw::iseq($yy_prev, $yy_curr)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
    }
@@ -14188,7 +14191,7 @@ sub ln__2($ ) {
       $sum_prev = $sum_curr;
       $sum_curr += $term / $nn;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 2;
    }
@@ -14210,7 +14213,7 @@ sub euler__1() {
       $twon *= 2.0;
       $exptwon *= $exptwon;
       if (0.1 < Kw::DBLEPS * $exptwon) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -14224,7 +14227,7 @@ sub euler__1() {
       $sum_prev = $sum_curr;
       $sum_curr += $term * $subsum;
       if (Kw::iseq($sum_prev, $sum_curr)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $mm += 1;
    }
@@ -14371,7 +14374,7 @@ sub lf_ka($ ) {
             last;
          }
          if (abs($xx_curr - $xx_prev) < 1.0E-12) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
       }
@@ -14455,7 +14458,7 @@ sub lf_ka($ ) {
                Kw::square($s_sig) - 3.0) * (4.0 *
                $c_twosigm_sq - 3.0)));
          if (Kw::iseq($sig_rad, $sig_rad_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $xd = $s_cap_ua * $c_sig + $c_cap_ua * $s_sig * $c_heading;
@@ -14700,7 +14703,7 @@ sub elliptic1i($$ ) {
             $ggn = $temp;
             $ii += $ii;
             if (abs($cc / $aan) <= DBLEPS) {
-               last; # KQS
+               last; # loop AWAIT
             }
          }
          $temp = (atan2($tt, 1.0) + $modd * Kw::PI) / ($ii *
@@ -14765,11 +14768,11 @@ sub elliptic2($ ) {
          $sum_prev = $sum;
          $sum -= $twon * ($aan * $aan - $ggn * $ggn);
          if (Kw::iseq($sum, $sum_prev)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = Kw::PI * $sum / (2.0 * $aan);
@@ -14936,11 +14939,11 @@ sub elliptic3($$ ) {
          $sum += $qqn;
          if (Kw::iseq($sum, $sum_prev) and Kw::iseq($aan,
                $ggn)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       if (1.0 <= abs($nn)) {
@@ -15034,7 +15037,7 @@ sub jacobiphi($$ ) {
       $twon = 1.0;
       $ii = 0;
       while (DBLEPS < abs($cc_arr[$ii] / $aa_arr[$ii])) {
-         if (8 - 1 < $ii) {
+         if (19 - 1 < $ii) {
             last;
          }
          $ai = $aa_arr[$ii];
@@ -15287,7 +15290,7 @@ sub theta1($$ ) {
       $ang += $ang_inc;
       $sig = -$sig;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15312,7 +15315,7 @@ sub theta2($$ ) {
             cos($ang);
       $ang += $ang_inc;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15336,7 +15339,7 @@ sub theta3($$ ) {
       $sum_curr += Kw::pow($qq, $nn * $nn) * cos($ang);
       $ang += $ang_inc;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15363,7 +15366,7 @@ sub theta4($$ ) {
       $ang += $ang_inc;
       $sig = -$sig;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15389,7 +15392,7 @@ sub nevillethetac($$ ) {
       $sum_curr += Kw::pow($qq, $nn * $nn + $nn) * cos($cos_of);
       $cos_of += $cos_inc;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15415,7 +15418,7 @@ sub nevillethetad($$ ) {
       $sum_curr += Kw::pow($qq, $nn * $nn) * cos($cos_of);
       $cos_of += $cos_inc;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15444,7 +15447,7 @@ sub nevillethetan($$ ) {
       $cos_of += $cos_inc;
       $sig = -$sig;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15475,7 +15478,7 @@ sub nevillethetas($$ ) {
       $sig = -$sig;
       $cos_of += $cos_inc;
       if (Kw::iseq($sum_curr, $sum_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
       $nn += 1;
    }
@@ -15555,11 +15558,11 @@ sub ellipsecir($$ ) {
          $mm += $mm;
          $suma += $mm * Kw::square($xx - $yy);
          if (Kw::iseq($xx, $yy)) {
-            last; # KQS
+            last; # loop AWAIT
          }
          $ii += 1;
          if (20 <= $ii) {
-            last; # KQS
+            last; # loop AWAIT
          }
       }
       $retvalu = PI * (Kw::square($aa + $bb) - $suma) / ($xx

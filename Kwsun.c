@@ -2,7 +2,7 @@
 //-/ =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 //-/ =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 //-/ =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
-// 2020-07-17 kdw  For Changelog, See File Kwsun.varylog
+// 2020-07-20 kdw  For Changelog, See File Kwsun.varylog
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -183,7 +183,7 @@ double kwsun_eccentric_anomaly_rad(double ma_deg
       xrad -= ((xrad - eccen * sin(xrad) - ma_rad) / (1.0 -\
             eccen * cos(xrad)));
       if (iseq(xrad, xrad_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (xrad);

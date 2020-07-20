@@ -2,7 +2,7 @@
 //-/ =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 //-/ =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 //-/ =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-// 2020-07-17 kdw  For Changelog, See File Kw.varylog
+// 2020-07-20 kdw  For Changelog, See File Kw.varylog
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -1598,7 +1598,7 @@ double sincc(double xx_rad)
          sum_prev = sum_curr;
          sum_curr += term;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 2;
       }
@@ -1634,7 +1634,7 @@ double versin(double xx_rad)
       sum_prev = sum_curr;
       sum_curr += term;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 2;
    }
@@ -2155,7 +2155,7 @@ static long lf_continued_fraction(double orig
       xx = 1.0 / (xx - whole);
       epsilon *= 2.0;
       if (fabs(diff) < epsilon) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (steps);
@@ -2387,7 +2387,7 @@ long print_base_out(long num
       dig_count += 1;
       num = floorl(num / baset);
       if (num == 0) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    for (ii = dig_count - 1; 0 <= ii; ii -= 1) {
@@ -2444,7 +2444,7 @@ double f21(double aa
          sum_prev = sum_curr;
          sum_curr += term;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          nn += 1;
       }
@@ -2470,7 +2470,7 @@ double f11(double aa
          sum_prev = sum_curr;
          sum_curr += term;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          nn += 1;
       }
@@ -2499,11 +2499,11 @@ static double lf_lambert_iter(double xx
       wjj_prev = wjj;
       wjj += delta;
       if (iseq(wjj, wjj_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 1;
       if (20 <= ii) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (wjj);
@@ -2598,7 +2598,7 @@ double sinintegral(double xx)
          sum_prev = sum_curr;
          sum_curr += term / kk;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          kk += 2;
       }
@@ -2624,7 +2624,7 @@ double cosintegral(double xx)
          sum_prev = sum_curr;
          sum_curr += term / kk;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          kk += 2;
       }
@@ -2645,7 +2645,7 @@ double Ein(double xx)
       sum_prev = sum_curr;
       sum_curr += term / kk;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       kk += 1;
    }
@@ -2690,11 +2690,11 @@ double logintegral(double xx)
          sum_prev = sum;
          sum += yy / nn;
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          nn += 1;
          if (limit <= nn) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = EULER + log(lnx) + sum;
@@ -2718,7 +2718,7 @@ double carlsonRF(double xx
       yy = (yy + lmbd) / 4.0;
       zz = (zz + lmbd) / 4.0;
       if (iseq(xx, yy) && iseq(yy, zz)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (1.0 / sqrt(xx));
@@ -2732,7 +2732,7 @@ double carlsonRC(double xx
       xx = (xx + lmbd) / 4.0;
       yy = (yy + lmbd) / 4.0;
       if (iseq(xx, yy)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (1.0 / sqrt(xx));
@@ -2767,7 +2767,7 @@ double carlsonRJ(double xx
       zz = (zz + lmbd) / 4.0;
       pp = (pp + lmbd) / 4.0;
       if (iseq(xx, yy) && iseq(yy, zz) && iseq(zz, pp)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (3.0 * sigm);
@@ -2800,7 +2800,7 @@ double carlsonRD(double xx
       yy = (yy + lmbd) / 4.0;
       zz = (zz + lmbd) / 4.0;
       if (iseq(xx, yy) && iseq(yy, zz)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (3.0 * sigm);
@@ -2903,7 +2903,7 @@ long lcam(long aa
    for (;;) {
       mm = mods(ii, aa);
       if (- 2 <= mm && mm <= 2) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += bb;
    }
@@ -2928,7 +2928,7 @@ long lcams(long aa
    for (;;) {
       mm = mods(ii, aa);
       if (- 2 <= mm && mm <= 2) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += bb;
    }
@@ -2972,7 +2972,7 @@ long lcantim(long aa
          }
          ii += bb;
          if (aa * bb <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       if (aa * bb <= ii) {
@@ -3013,7 +3013,7 @@ long factor(long nn
             nn /= pp;
          }
          if (nn < pp * pp) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       if (1 < nn) {
@@ -3097,7 +3097,7 @@ long pfg(long nn)
       ff = pfl(mm);
       mm /= ff;
       if (mm == 1) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (ff);
@@ -3314,11 +3314,11 @@ double eta(double xx)
             sump = sum;
             sum += term;
             if (iseq(sump, sum)) {
-               break; // KQS
+               break; // loop AWAIT
             }
             nn += 1;
             if (kk <= nn) {
-               break; // KQS
+               break; // loop AWAIT
             }
          }
          retvalu = sum - 0.5 * term;
@@ -3346,11 +3346,11 @@ double eta(double xx)
             sump = sum;
             sum = temp_arr[0];
             if (iseq(sump, sum)) {
-               break; // KQS
+               break; // loop AWAIT
             }
             nn += 1;
             if (400 <= nn) {
-               break; // KQS
+               break; // loop AWAIT
             }
          }
          s_ind = floorl(nn / 3);
@@ -3601,7 +3601,7 @@ double minkowski(double xx)
          qq = nn;
       }
       if (iseq(yy + dd, yy)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (yy);
@@ -3633,7 +3633,7 @@ double cantorxx(double bb
          }
          dd /= 2.0;
          if (iseq(yy + dd, yy) || iszero(rest)) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
    }
@@ -4233,7 +4233,7 @@ long repetendlen(long denm
       gd = gcd(denm, basee);
       denm /= gd;
       if (1 == gd) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    if (denm == 1) {
@@ -4260,7 +4260,7 @@ long print_kevy(long den
          valu = floorl(numer / den);
          numer = (numer % den) * basee + valu;
          if (numer == start || den * basee < leny) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       if (basee <= start) {
@@ -4287,11 +4287,11 @@ long znorder__1(long bb
       for (;;) {
          pp = (pp * bb) % mdls;
          if (pp == 1) {
-            break; // KQS
+            break; // loop AWAIT
          }
          nn += 1;
          if (mdls <= nn) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
    }
@@ -4387,11 +4387,11 @@ double reimann(double nn)
          sum_prev = sum;
          sum += mobius(ii) * lix(pow(nn, 1.0 / ii)) / ii;
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (lim <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = sum;
@@ -4475,7 +4475,7 @@ long primenth(long nn)
             pp += inc;
             inc = 6 - inc;
             if (isprime(pp)) {
-               break; // KQS
+               break; // loop AWAIT
             }
          }
          ii += 1;
@@ -4508,7 +4508,7 @@ double bessJv(double vv
          sum_prev = sum;
          sum += term;
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          mm += 1;
       }
@@ -4796,7 +4796,7 @@ double bessJn_ps(long nn
       sum_prev = sum;
       sum += term;
       if (iseq(sum, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       mm += 1;
    }
@@ -4828,7 +4828,7 @@ double bessIn_ps(long nn
       sum_prev = sum;
       sum += term;
       if (iseq(sum, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       mm += 1;
    }
@@ -5253,7 +5253,7 @@ double bessYn_ps(long nn
          sum_prev = sum;
          sum += term * hn;
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          kk += 1;
       }
@@ -5814,11 +5814,11 @@ double erfcinv(double yy_orig)
          xx_pr = xx;
          xx += dx;
          if (iseq(xx_pr, xx)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       if (1.0 < yy_orig) {
@@ -5852,11 +5852,11 @@ double erfcxinv(double yy)
          xx_pr = xx;
          xx += dx;
          if (iseq(xx_pr, xx)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
    }
@@ -5888,11 +5888,11 @@ double erfinv(double yy)
          xx_pr = xx;
          xx += dx;
          if (iseq(xx_pr, xx)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xx;
@@ -5938,7 +5938,7 @@ double erf__3(double xx)
    double sum_curr;
    double factx;
    long nn;
-   double add_arr[200];
+   double add_arr[80];
    long kk;
    axx = fabs(xx);
    xxsq = xx * xx;
@@ -5949,10 +5949,13 @@ double erf__3(double xx)
       for (;;) {
          factx *= - xxsq / nn;
          add_arr[nn] = factx / (2.0 * nn + 1.0);
-         if (fabs(add_arr[nn]) < DBLEPS / 16) {
-            break; // KQS
+         if (fabs(add_arr[nn]) < DBLEPS) {
+            break; // loop AWAIT
          }
          nn += 1;
+         if (79 <= nn) {
+            break; // loop AWAIT
+         }
       }
       sum_curr = 0;
       for (kk = nn; 0 <= kk; kk -= 1) {
@@ -6003,7 +6006,7 @@ double erf__4(double xx)
          sum_prev = sum_curr;
          sum_curr += term;
          if (iseq(sum_prev, sum_curr)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          nn += 2;
       }
@@ -6593,7 +6596,7 @@ double uigamma__1(double aa
                cc *= xx / rr;
                ans += cc;
                if (cc / ans < DBLEPS) {
-                  break; // KQS
+                  break; // loop AWAIT
                }
             }
             retvalu = 1.0 - ans * ax / aa;
@@ -6631,7 +6634,7 @@ double uigamma__1(double aa
                   qkma *= DBLEPS;
                }
                if (tt <= DBLEPS) {
-                  break; // KQS
+                  break; // loop AWAIT
                }
             }
             retvalu = ans * ax;
@@ -6763,7 +6766,7 @@ double betainc(double aa
          sum_prev = sum_curr;
          sum_curr += term;
          if (iseq(sum_curr, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       log_beta = lgamma(aa) + lgamma(bb) - lgamma(aa + bb);
@@ -6830,11 +6833,11 @@ double betainc__1(double aa
          ff *= cd;
          jj = 1 - ii;
          if (fabs(1.0 - cd) < DBLEPS) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (200 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = front * (ff - 1.0);
@@ -7263,7 +7266,7 @@ double bellx(double xxn)
       sum_prev = sum;
       sum += pow(kk, xxn) / den;
       if (iseq(sum_prev, sum)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (sum / E);
@@ -8728,11 +8731,11 @@ double agmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8765,11 +8768,11 @@ double ahmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8802,11 +8805,11 @@ double almean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8839,11 +8842,11 @@ double aqmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8876,11 +8879,11 @@ double ghmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8913,11 +8916,11 @@ double glmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8950,11 +8953,11 @@ double gqmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -8987,11 +8990,11 @@ double hlmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -9024,11 +9027,11 @@ double hqmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -9061,11 +9064,11 @@ double lqmean(double xa
          xb = xtmp;
          cdifff = xa - xb;
          if (iswithin(xa, xb, 10 * DBLEPS) || pdifff < cdifff) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xtmp;
@@ -9090,11 +9093,11 @@ double agmean__1(double xa
       xa = (xa + xb) / 2.0;
       xb = sqrt(fabs(xtmp * xb)) * sign(xa);
       if (iswithin(xa, xb, 10 * DBLEPS)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 1;
       if (20 <= ii) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    retvalu = xsgn * xtmp;
@@ -9123,11 +9126,11 @@ double aghmean(double xa
          xb = cuberoot(ta * tb * tc);
          xc = 3.0 / (1.0 / ta + 1.0 / tb + 1.0 / tc);
          if (iswithin(xa, xc, 10 * DBLEPS)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = xb;
@@ -9430,7 +9433,7 @@ long randl(long nn)
    for (;;) {
       rndm = lf_next_ranz();
       if (rndm < max_allowed) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    retvalu = rndm % nn;
@@ -9540,7 +9543,7 @@ double normal_cdf__1(double xx)
          sum_prev = sum_curr;
          sum_curr += bb;
          if (iseq(sum_prev, sum_curr)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
       }
@@ -9572,7 +9575,7 @@ double normal_rand(void)
          uub = randd() - 0.5;
          ww = uua * uua + uub * uub;
          if (isbetweenx(ww, 0.0, 0.25)) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       ww = sqrt(-2.0 * log(4.0 * ww) / ww);
@@ -10069,7 +10072,7 @@ double trap_rand(double para
          }
       }
       if (0.0 <= retvalu) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (retvalu);
@@ -10160,7 +10163,7 @@ long zipf_quantile(double ss
    for (;;) {
       summ += 1.0 / pow(ii, ss);
       if (target <= summ) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 1;
    }
@@ -10294,7 +10297,7 @@ double gamma_rand(double shap)
                qq = exp(log(xx) * (f_shape - 1));
             }
             if (randd() < qq) {
-               break; // KQS
+               break; // loop AWAIT
             }
          }
          val += xx;
@@ -10446,7 +10449,7 @@ long benford_rand(long max_kk)
    for (;;) {
       summ += log(1.0 + 1.0 / ii) / log(max_kk);
       if (target <= summ) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 1;
    }
@@ -10585,7 +10588,7 @@ double ks_a_cdf(double xx)
          sum_prev = sum;
          sum += exp(vv * kk * kk);
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          kk += 2;
       }
@@ -10736,7 +10739,7 @@ static double lf_t_quantile(long ndfx
          retvalu -= delta;
          aa_x = fabs(delta) * 10000.0;
          if (iszero(retvalu) || aa_x < retvalu) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
    }
@@ -10901,7 +10904,7 @@ static double lf_subf_two(double nx
       xx_prev = xx;
       xx += (lf_subfprob(nx, mm, xx) - pp) / zz;
       if (iswithin(xx, xx_prev, 0.00001)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    return (xx);
@@ -12166,7 +12169,7 @@ double fitx_minmax(long num_points
       }
       poh_ind = e_ind;
       if (e_ind == chi_arr[0]) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    chi_arr[chisize] = chi_arr[0];
@@ -12394,7 +12397,7 @@ double sqrt__1(double xx)
          yy_prev = yy_curr;
          yy_curr = (yy_curr + zz / yy_curr) / 2.0;
          if (iseq(yy_prev, yy_curr)) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       yy_curr *= power_of_two;
@@ -12490,7 +12493,7 @@ double nthroot__1(double xx
          }
          yy_curr = (yy_curr * (kk - 1) + xx / pp) / kk;
          if (iseq(yy_prev, yy_curr)) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
    }
@@ -12681,7 +12684,7 @@ double ln__2(double xx)
       sum_prev = sum_curr;
       sum_curr += term / nn;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 2;
    }
@@ -12704,7 +12707,7 @@ double euler__1(void)
       twon *= 2.0;
       exptwon *= exptwon;
       if (0.1 < DBLEPS * exptwon) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -12718,7 +12721,7 @@ double euler__1(void)
       sum_prev = sum_curr;
       sum_curr += term * subsum;
       if (iseq(sum_prev, sum_curr)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       mm += 1;
    }
@@ -12874,7 +12877,7 @@ double ellipsoid_distance(double flat
          break;
       }
       if (fabs(xx_curr - xx_prev) < 1.0E-12) {
-         break; // KQS
+         break; // loop AWAIT
       }
       ii += 1;
    }
@@ -12958,7 +12961,7 @@ double ellipsoid_destination(double flat
             (cap_b / 6.0) * c_twosigm * (4.0 * square(s_sig)\
             - 3.0) * (4.0 * c_twosigm_sq - 3.0)));
       if (iseq(sig_rad, sig_rad_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
    }
    xd = s_cap_ua * c_sig + c_cap_ua * s_sig * c_heading;
@@ -13202,7 +13205,7 @@ double elliptic1i(double mm
             ggn = temp;
             ii += ii;
             if (fabs(cc / aan) <= DBLEPS) {
-               break; // KQS
+               break; // loop AWAIT
             }
          }
          temp = (atan2(tt, 1.0) + modd * PI) / (ii * aan);
@@ -13267,11 +13270,11 @@ double elliptic2(double mm)
          sum_prev = sum;
          sum -= twon * (aan * aan - ggn * ggn);
          if (iseq(sum, sum_prev)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = PI * sum / (2.0 * aan);
@@ -13439,11 +13442,11 @@ double elliptic3(double nn
          sum_prev = sum;
          sum += qqn;
          if (iseq(sum, sum_prev) && iseq(aan, ggn)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       if (1.0 <= fabs(nn)) {
@@ -13545,7 +13548,7 @@ double jacobiphi(double mm
       twon = 1.0;
       ii = 0;
       while (DBLEPS < fabs(cc_arr[ii] / aa_arr[ii])) {
-         if (8 - 1 < ii) {
+         if (19 - 1 < ii) {
             break;
          }
          ai = aa_arr[ii];
@@ -13811,7 +13814,7 @@ double theta1(double mm
       ang += ang_inc;
       sig = -sig;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13836,7 +13839,7 @@ double theta2(double mm
       sum_curr += pow(qq, square(nn + 0.5)) * cos(ang);
       ang += ang_inc;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13861,7 +13864,7 @@ double theta3(double mm
       sum_curr += pow(qq, nn * nn) * cos(ang);
       ang += ang_inc;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13889,7 +13892,7 @@ double theta4(double mm
       ang += ang_inc;
       sig = -sig;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13916,7 +13919,7 @@ double nevillethetac(double mm
       sum_curr += pow(qq, nn * nn + nn) * cos(cos_of);
       cos_of += cos_inc;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13943,7 +13946,7 @@ double nevillethetad(double mm
       sum_curr += pow(qq, nn * nn) * cos(cos_of);
       cos_of += cos_inc;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -13973,7 +13976,7 @@ double nevillethetan(double mm
       cos_of += cos_inc;
       sig = -sig;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -14004,7 +14007,7 @@ double nevillethetas(double mm
       sig = -sig;
       cos_of += cos_inc;
       if (iseq(sum_curr, sum_prev)) {
-         break; // KQS
+         break; // loop AWAIT
       }
       nn += 1;
    }
@@ -14089,11 +14092,11 @@ double ellipsecir(double aa
          mm += mm;
          suma += mm * square(xx - yy);
          if (iseq(xx, yy)) {
-            break; // KQS
+            break; // loop AWAIT
          }
          ii += 1;
          if (20 <= ii) {
-            break; // KQS
+            break; // loop AWAIT
          }
       }
       retvalu = PI * (square(aa + bb) - suma) / (xx + yy);

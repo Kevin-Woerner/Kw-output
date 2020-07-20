@@ -2,7 +2,7 @@
 ''-' =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ''-' =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ''-' =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
-' 2020-07-17 kdw  For Changelog, See File Kwsun.varylog
+' 2020-07-20 kdw  For Changelog, See File Kwsun.varylog
 Option Explicit On
 Imports System.IO.Filestream
 Public Class KWSUN
@@ -190,7 +190,7 @@ Public Shared Function kwsun_eccentric_anomaly_rad(ByVal _
       xrad = xrad - ((xrad - eccen * Math.Sin(xrad) - ma_rad) _
             / (1.0 - eccen * Math.Cos(xrad)))
       If (Kw.iseq(xrad, xrad_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    kwsun_eccentric_anomaly_rad = (xrad)

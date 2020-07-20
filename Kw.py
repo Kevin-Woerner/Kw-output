@@ -2,7 +2,7 @@
 ##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ##-# =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-# 2020-07-16 kdw  For Changelog, See File varylog
+# 2020-07-20 kdw  For Changelog, See File varylog
 import sys
 import math
 import time
@@ -1802,7 +1802,7 @@ def sincc(xx_rad):
          sum_prev = sum_curr
          sum_curr += term
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          ii += 2
       retvalu = trigsign * sum_curr * xr_rad / xx_rad
    return (retvalu)
@@ -1824,7 +1824,7 @@ def versin(xx_rad):
       sum_prev = sum_curr
       sum_curr += term
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       ii += 2
    sum_curr *= - xr_sqr
    if (trigsign < 0):
@@ -2118,7 +2118,7 @@ def lf_continued_fraction(orig, show_diff):
       xx = 1.0 / (xx - whole)
       epsilon *= 2.0
       if (math.fabs(diff) < epsilon):
-         break# KQS
+         break# loop AWAIT
    return int(steps)
 def print_contfra(orig):
    return int((lf_continued_fraction(orig, -1)))
@@ -2302,7 +2302,7 @@ def print_base_out(num, baset):
       dig_count += 1
       num = floorl(num / baset)
       if (num == 0):
-         break# KQS
+         break# loop AWAIT
    for ii in range(dig_count - 1, -1, -1):
       print_num2char(digits_arr[ii])
    return int(dig_count)
@@ -2337,7 +2337,7 @@ def f21(aa, bb, cc, zz):
          sum_prev = sum_curr
          sum_curr += term
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          nn += 1
    return (sum_curr)
 def f11(aa, bb, zz):
@@ -2352,7 +2352,7 @@ def f11(aa, bb, zz):
          sum_prev = sum_curr
          sum_curr += term
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          nn += 1
    return (sum_curr)
 def lf_lambert_iter(xx, nearw_zero):
@@ -2367,10 +2367,10 @@ def lf_lambert_iter(xx, nearw_zero):
       wjj_prev = wjj
       wjj += delta
       if (iseq(wjj, wjj_prev)):
-         break# KQS
+         break# loop AWAIT
       ii += 1
       if (20 <= ii):
-         break# KQS
+         break# loop AWAIT
    return (wjj)
 def wp(xx):
    if (xx <= - math.exp(-1.0)):
@@ -2433,7 +2433,7 @@ def sinintegral(xx):
          sum_prev = sum_curr
          sum_curr += term / kk
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          kk += 2
    return (sum_curr)
 def cosintegral(xx):
@@ -2449,7 +2449,7 @@ def cosintegral(xx):
          sum_prev = sum_curr
          sum_curr += term / kk
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          kk += 2
    return (sum_curr)
 def Ein(xx):
@@ -2461,7 +2461,7 @@ def Ein(xx):
       sum_prev = sum_curr
       sum_curr += term / kk
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       kk += 1
    return (sum_curr)
 def expintegrali(xx):
@@ -2486,10 +2486,10 @@ def logintegral(xx):
          sum_prev = sum
          sum += yy / nn
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          nn += 1
          if (limit <= nn):
-            break# KQS
+            break# loop AWAIT
       retvalu = EULER + math.log(lnx) + sum
    return (retvalu)
 def carlsonRF(xx, yy, zz):
@@ -2502,7 +2502,7 @@ def carlsonRF(xx, yy, zz):
       yy = (yy + lmbd) / 4.0
       zz = (zz + lmbd) / 4.0
       if (iseq(xx, yy) and iseq(yy, zz)):
-         break# KQS
+         break# loop AWAIT
    return (1.0 / math.sqrt(xx))
 def carlsonRC(xx, yy):
    while True:
@@ -2510,7 +2510,7 @@ def carlsonRC(xx, yy):
       xx = (xx + lmbd) / 4.0
       yy = (yy + lmbd) / 4.0
       if (iseq(xx, yy)):
-         break# KQS
+         break# loop AWAIT
    return (1.0 / math.sqrt(xx))
 def carlsonRJ(xx, yy, zz, pp):
    pfour = 1.0
@@ -2530,7 +2530,7 @@ def carlsonRJ(xx, yy, zz, pp):
       zz = (zz + lmbd) / 4.0
       pp = (pp + lmbd) / 4.0
       if (iseq(xx, yy) and iseq(yy, zz) and iseq(zz, pp)):
-         break# KQS
+         break# loop AWAIT
    return (3.0 * sigm)
 def carlsonRD(xx, yy, zz):
    pfour = 1.0
@@ -2549,7 +2549,7 @@ def carlsonRD(xx, yy, zz):
       yy = (yy + lmbd) / 4.0
       zz = (zz + lmbd) / 4.0
       if (iseq(xx, yy) and iseq(yy, zz)):
-         break# KQS
+         break# loop AWAIT
    return (3.0 * sigm)
 def powi(xx, nn):
    pp = 1
@@ -2606,7 +2606,7 @@ def lcam(aa, bb):
    while True:
       mm = mods(ii, aa)
       if (- 2 <= mm and mm <= 2):
-         break# KQS
+         break# loop AWAIT
       ii += bb
    if (mm == -2):
       ii += 1
@@ -2622,7 +2622,7 @@ def lcams(aa, bb):
    while True:
       mm = mods(ii, aa)
       if (- 2 <= mm and mm <= 2):
-         break# KQS
+         break# loop AWAIT
       ii += bb
    if (mm == -2):
       ii += 1
@@ -2651,7 +2651,7 @@ def lcantim(aa, bb):
             break
          ii += bb
          if (aa * bb <= ii):
-            break# KQS
+            break# loop AWAIT
       if (aa * bb <= ii):
          ii = 0
    else:
@@ -2679,7 +2679,7 @@ def factor(nn, ret_fctr_arr_p):
             fctr_ind += 1
             nn /= pp
          if (nn < pp * pp):
-            break# KQS
+            break# loop AWAIT
       if (1 < nn):
          ret_fctr_arr_p[fctr_ind] = nn
          fctr_ind += 1
@@ -2732,7 +2732,7 @@ def pfg(nn):
       ff = pfl(mm)
       mm /= ff
       if (mm == 1):
-         break# KQS
+         break# loop AWAIT
    return int(ff)
 def isprime(nn):
    ann = math.fabs(nn)
@@ -2881,10 +2881,10 @@ def eta(xx):
             sump = sum
             sum += term
             if (iseq(sump, sum)):
-               break# KQS
+               break# loop AWAIT
             nn += 1
             if (kk <= nn):
-               break# KQS
+               break# loop AWAIT
          retvalu = sum - 0.5 * term
       else:
          sum = 0
@@ -2909,10 +2909,10 @@ def eta(xx):
             sump = sum
             sum = temp_arr[0]
             if (iseq(sump, sum)):
-               break# KQS
+               break# loop AWAIT
             nn += 1
             if (400 <= nn):
-               break# KQS
+               break# loop AWAIT
          s_ind = floorl(nn / 3)
          sum = (4 * temp_arr[s_ind] + 3 * temp_arr[s_ind +\
                1]) / 7
@@ -3060,7 +3060,7 @@ def minkowski(xx):
          pp = mm
          qq = nn
       if (iseq(yy + dd, yy)):
-         break# KQS
+         break# loop AWAIT
    return (yy)
 def cantorxx(bb, ee, xx):
    if (ee < 0.0 or bb < 0.0 or 1.0 < ee + bb):
@@ -3081,7 +3081,7 @@ def cantorxx(bb, ee, xx):
             rest = frac(rest / bb)
          dd /= 2.0
          if (iseq(yy + dd, yy) or iszero(rest)):
-            break# KQS
+            break# loop AWAIT
    return (yy)
 def cantor(xx):
    return (cantorxx(1.0 / 3.0, 1.0 / 3.0, xx))
@@ -3446,7 +3446,7 @@ def repetendlen(denm, basee):
       gd = gcd(denm, basee)
       denm /= gd
       if (1 == gd):
-         break# KQS
+         break# loop AWAIT
    if (denm == 1):
       retvalu = 0
    else:
@@ -3463,7 +3463,7 @@ def print_kevy(den, start, basee):
          valu = floorl(numer / den)
          numer = (numer % den) * basee + valu
          if (numer == start or den * basee < leny):
-            break# KQS
+            break# loop AWAIT
       if (basee <= start):
          print("-", end='')
          print(str(floorl(start / basee)), end='')
@@ -3479,10 +3479,10 @@ def znorder__1(bb, mdls):
       while True:
          pp = (pp * bb) % mdls
          if (pp == 1):
-            break# KQS
+            break# loop AWAIT
          nn += 1
          if (mdls <= nn):
-            break# KQS
+            break# loop AWAIT
    return int(nn)
 def bkn(bb, kk):
    return int((znorder(bb, kk * bb - 1)))
@@ -3537,10 +3537,10 @@ def reimann(nn):
          sum_prev = sum
          sum += mobius(ii) * lix(math.pow(nn, 1.0 / ii)) / ii
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (lim <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = sum
    return (retvalu)
 def primenth(nn):
@@ -3611,7 +3611,7 @@ def primenth(nn):
             pp += inc
             inc = 6 - inc
             if (isprime(pp)):
-               break# KQS
+               break# loop AWAIT
          ii += 1
    return int(pp)
 def bessJv(vv, xx):
@@ -3630,7 +3630,7 @@ def bessJv(vv, xx):
          sum_prev = sum
          sum += term
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          mm += 1
       if (isposint(-vv) and isodd(vv)):
          sum = -sum
@@ -3870,7 +3870,7 @@ def bessJn_ps(nn, xx):
       sum_prev = sum
       sum += term
       if (iseq(sum, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       mm += 1
    if (nn < 0 and isodd(nn)):
       sum = -sum
@@ -3889,7 +3889,7 @@ def bessIn_ps(nn, xx):
       sum_prev = sum
       sum += term
       if (iseq(sum, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       mm += 1
    return (sum)
 def lf_besucjy0_xge5(xx, jfunc):
@@ -4187,7 +4187,7 @@ def bessYn_ps(nn, xx):
          sum_prev = sum
          sum += term * hn
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          kk += 1
       retvalu = 2.0 * sum / PI
    elif (nn == 1):
@@ -4565,10 +4565,10 @@ def erfcinv(yy_orig):
          xx_pr = xx
          xx += dx
          if (iseq(xx_pr, xx)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       if (1.0 < yy_orig):
          retvalu = -xx
       else:
@@ -4588,10 +4588,10 @@ def erfcxinv(yy):
          xx_pr = xx
          xx += dx
          if (iseq(xx_pr, xx)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
    return (xx)
 def erfinv(yy):
    if (iszero(yy)):
@@ -4611,10 +4611,10 @@ def erfinv(yy):
          xx_pr = xx
          xx += dx
          if (iseq(xx_pr, xx)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xx
    return (retvalu)
 def erf__1(xx):
@@ -4638,7 +4638,7 @@ def erf__2(xx):
       ans = -ans
    return (ans)
 def erf__3(xx):
-   add_arr = [0 for ii in range(200)]
+   add_arr = [0 for ii in range(80)]
    axx = math.fabs(xx)
    xxsq = xx * xx
    if (axx < 4.4):
@@ -4648,9 +4648,11 @@ def erf__3(xx):
       while True:
          factx *= - xxsq / nn
          add_arr[nn] = factx / (2.0 * nn + 1.0)
-         if (math.fabs(add_arr[nn]) < DBLEPS / 16):
-            break# KQS
+         if (math.fabs(add_arr[nn]) < DBLEPS):
+            break# loop AWAIT
          nn += 1
+         if (79 <= nn):
+            break# loop AWAIT
       sum_curr = 0
       for kk in range(nn, -1, -1):
          sum_curr += add_arr[kk]
@@ -4683,7 +4685,7 @@ def erf__4(xx):
          sum_prev = sum_curr
          sum_curr += term
          if (iseq(sum_prev, sum_curr)):
-            break# KQS
+            break# loop AWAIT
          nn += 2
       sum_curr += (1.0 - xxsq / 3.0) * factz
    else:
@@ -5072,7 +5074,7 @@ def uigamma__1(aa, xx):
                cc *= xx / rr
                ans += cc
                if (cc / ans < DBLEPS):
-                  break# KQS
+                  break# loop AWAIT
             retvalu = 1.0 - ans * ax / aa
          else:
             yy = 1.0 - aa
@@ -5106,7 +5108,7 @@ def uigamma__1(aa, xx):
                   qkmb *= DBLEPS
                   qkma *= DBLEPS
                if (tt <= DBLEPS):
-                  break# KQS
+                  break# loop AWAIT
             retvalu = ans * ax
    return (retvalu)
 def uigammainv(aa, yy):
@@ -5182,7 +5184,7 @@ def betainc(aa, bb, xx):
          sum_prev = sum_curr
          sum_curr += term
          if (iseq(sum_curr, sum_prev)):
-            break# KQS
+            break# loop AWAIT
       log_beta = lgamma(aa) + lgamma(bb) - lgamma(aa + bb)
       retvalu = sum_curr * math.exp(pp * math.log(new_xx) +\
             (qq - 1.0) * math.log(compx) - log_beta) / pp
@@ -5227,10 +5229,10 @@ def betainc__1(aa, bb, xx):
          ff *= cd
          jj = 1 - ii
          if (math.fabs(1.0 - cd) < DBLEPS):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (200 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = front * (ff - 1.0)
    return (retvalu)
 def lf_digamma_gt_zero(xx):
@@ -5523,7 +5525,7 @@ def bellx(xxn):
       sum_prev = sum
       sum += math.pow(kk, xxn) / den
       if (iseq(sum_prev, sum)):
-         break# KQS
+         break# loop AWAIT
    return (sum / E)
 def fubini(nn):
    if (nn < 0):
@@ -6464,10 +6466,10 @@ def agmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def agmean1(xa):
@@ -6487,10 +6489,10 @@ def ahmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def ahmean1(xa):
@@ -6510,10 +6512,10 @@ def almean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def almean1(xa):
@@ -6533,10 +6535,10 @@ def aqmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def aqmean1(xa):
@@ -6556,10 +6558,10 @@ def ghmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def ghmean1(xa):
@@ -6579,10 +6581,10 @@ def glmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def glmean1(xa):
@@ -6602,10 +6604,10 @@ def gqmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def gqmean1(xa):
@@ -6625,10 +6627,10 @@ def hlmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def hlmean1(xa):
@@ -6648,10 +6650,10 @@ def hqmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def hqmean1(xa):
@@ -6671,10 +6673,10 @@ def lqmean(xa, xb):
          xb = xtmp
          cdifff = xa - xb
          if (iswithin(xa, xb, 10 * DBLEPS) or pdifff < cdifff):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xtmp
    return (retvalu)
 def lqmean1(xa):
@@ -6687,10 +6689,10 @@ def agmean__1(xa, xb):
       xa = (xa + xb) / 2.0
       xb = math.sqrt(math.fabs(xtmp * xb)) * sign(xa)
       if (iswithin(xa, xb, 10 * DBLEPS)):
-         break# KQS
+         break# loop AWAIT
       ii += 1
       if (20 <= ii):
-         break# KQS
+         break# loop AWAIT
    retvalu = xsgn * xtmp
    return (retvalu)
 def aghmean(xa, xb, xc):
@@ -6708,10 +6710,10 @@ def aghmean(xa, xb, xc):
          xb = cuberoot(ta * tb * tc)
          xc = 3.0 / (1.0 / ta + 1.0 / tb + 1.0 / tc)
          if (iswithin(xa, xc, 10 * DBLEPS)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = xb
    return (retvalu)
 def rms(xa, xb):
@@ -6919,7 +6921,7 @@ def randl(nn):
    while True:
       rndm = lf_next_ranz()
       if (rndm < max_allowed):
-         break# KQS
+         break# loop AWAIT
    retvalu = rndm % nn
    return int(retvalu)
 def randd():
@@ -6988,7 +6990,7 @@ def normal_cdf__1(xx):
          sum_prev = sum_curr
          sum_curr += bb
          if (iseq(sum_prev, sum_curr)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
       retvalu = (sum_curr * math.exp(-0.5 * (xx_sqr +\
             math.log(TAU))) + 0.5)
@@ -7009,7 +7011,7 @@ def normal_rand():
          uub = randd() - 0.5
          ww = uua * uua + uub * uub
          if (isbetweenx(ww, 0.0, 0.25)):
-            break# KQS
+            break# loop AWAIT
       ww = math.sqrt(-2.0 * math.log(4.0 * ww) / ww)
       lv_rand_gau_prev = uub * ww
       lv_rand_gau_magic = magicset()
@@ -7315,7 +7317,7 @@ def trap_rand(para, parb):
          if (randd() * (1.0 - parb) < (1.0 - xx)):
             retvalu = xx
       if (0.0 <= retvalu):
-         break# KQS
+         break# loop AWAIT
    return (retvalu)
 def pareto_pdf(shap, scal, xx):
    return (shap * math.pow(scal / xx, shap) / xx)
@@ -7355,7 +7357,7 @@ def zipf_quantile(ss, max_kk, prbx):
    while True:
       summ += 1.0 / math.pow(ii, ss)
       if (target <= summ):
-         break# KQS
+         break# loop AWAIT
       ii += 1
    return int(ii)
 def zipf_rand(ss, max_kk):
@@ -7428,7 +7430,7 @@ def gamma_rand(shap):
                xx = 1.0 - vv
                qq = math.exp(math.log(xx) * (f_shape - 1))
             if (randd() < qq):
-               break# KQS
+               break# loop AWAIT
          val += xx
    else:
       ee = shap - 1.0
@@ -7518,7 +7520,7 @@ def benford_rand(max_kk):
    while True:
       summ += math.log(1.0 + 1.0 / ii) / math.log(max_kk)
       if (target <= summ):
-         break# KQS
+         break# loop AWAIT
       ii += 1
    return int(ii)
 def nbd_pdf(prob, rsuccesses, kfailures):
@@ -7597,7 +7599,7 @@ def ks_a_cdf(xx):
          sum_prev = sum
          sum += math.exp(vv * kk * kk)
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          kk += 2
       retvalu = sum * math.sqrt(TAU) / xx
    return (retvalu)
@@ -7689,7 +7691,7 @@ def lf_t_quantile(ndfx, prbx):
          retvalu -= delta
          aa_x = math.fabs(delta) * 10000.0
          if (iszero(retvalu) or aa_x < retvalu):
-            break# KQS
+            break# loop AWAIT
    return (out_sign * retvalu)
 def t_quantile(dfx, prbx):
    ndfx = floor(math.fabs(dfx))
@@ -7791,7 +7793,7 @@ def lf_subf_two(nx, mm, pp):
       xx_prev = xx
       xx += (lf_subfprob(nx, mm, xx) - pp) / zz
       if (iswithin(xx, xx_prev, 0.00001)):
-         break# KQS
+         break# loop AWAIT
    return (xx)
 def lf_subfx(nx, mm, pp):
    if (iseq(pp, 1.0)):
@@ -8545,7 +8547,7 @@ def fitx_minmax(num_points, pt_arr_pc, ret_arr_p):
          sys.exit(1)
       poh_ind = e_ind
       if (e_ind == chi_arr[0]):
-         break# KQS
+         break# loop AWAIT
    chi_arr[chisize] = chi_arr[0]
    chisize += 1
    for hh in range(0, chisize - 1, 1):
@@ -8688,7 +8690,7 @@ def sqrt__1(xx):
          yy_prev = yy_curr
          yy_curr = (yy_curr + zz / yy_curr) / 2.0
          if (iseq(yy_prev, yy_curr)):
-            break# KQS
+            break# loop AWAIT
       yy_curr *= power_of_two
    return (yy_curr)
 def sqrt__2(xx):
@@ -8745,7 +8747,7 @@ def nthroot__1(xx, kk):
             pp *= yy_curr
          yy_curr = (yy_curr * (kk - 1) + xx / pp) / kk
          if (iseq(yy_prev, yy_curr)):
-            break# KQS
+            break# loop AWAIT
    return (yy_curr)
 LC_EPS = DBLEPS / 16.0
 def cossin_ev(init_ii, xx_rad, addone_mult):
@@ -8863,7 +8865,7 @@ def ln__2(xx):
       sum_prev = sum_curr
       sum_curr += term / nn
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 2
    return (ptwo * LNTWO + sum_curr)
 def euler__1():
@@ -8874,7 +8876,7 @@ def euler__1():
       twon *= 2.0
       exptwon *= exptwon
       if (0.1 < DBLEPS * exptwon):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    term = 1.0 / twon
    subsum = 0.0
@@ -8886,7 +8888,7 @@ def euler__1():
       sum_prev = sum_curr
       sum_curr += term * subsum
       if (iseq(sum_prev, sum_curr)):
-         break# KQS
+         break# loop AWAIT
       mm += 1
    return (twon * sum_curr / exptwon - (nn + 1) * LNTWO)
 def sphere_d(lata_rad, lona_rad, latb_rad, lonb_rad):
@@ -8965,7 +8967,7 @@ def ellipsoid_distance(flat, lata_rad, lona_rad, latb_rad,\
          xx_curr = TAU / 2.0
          break
       if (math.fabs(xx_curr - xx_prev) < 1.0E-12):
-         break# KQS
+         break# loop AWAIT
       ii += 1
    usq = c_alpha_sq * (1.0 / square(iflat) - 1.0)
    cap_a = iflat * lf_cap_a(usq)
@@ -9014,7 +9016,7 @@ def ellipsoid_destination(flat, lata_rad, lona_rad,\
             (cap_b / 6.0) * c_twosigm * (4.0 * square(s_sig)\
             - 3.0) * (4.0 * c_twosigm_sq - 3.0)))
       if (iseq(sig_rad, sig_rad_prev)):
-         break# KQS
+         break# loop AWAIT
    xd = s_cap_ua * c_sig + c_cap_ua * s_sig * c_heading
    xc = iflat * hypot(s_alpha, s_cap_ua * s_sig - c_cap_ua *\
          c_sig * c_heading)
@@ -9206,7 +9208,7 @@ def elliptic1i(mm, circ_rad):
             ggn = temp
             ii += ii
             if (math.fabs(cc / aan) <= DBLEPS):
-               break# KQS
+               break# loop AWAIT
          temp = (math.atan2(tt, 1.0) + modd * PI) / (ii * aan)
       if (signof < 0):
          temp = -temp
@@ -9243,10 +9245,10 @@ def elliptic2(mm):
          sum_prev = sum
          sum -= twon * (aan * aan - ggn * ggn)
          if (iseq(sum, sum_prev)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = PI * sum / (2.0 * aan)
    else:
       retvalu = 1.0
@@ -9349,10 +9351,10 @@ def elliptic3(nn, mm):
          sum_prev = sum
          sum += qqn
          if (iseq(sum, sum_prev) and iseq(aan, ggn)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       if (1.0 <= math.fabs(nn)):
          tn = mm * sum / (mm - nn)
       else:
@@ -9407,7 +9409,7 @@ def jacobiphi(mm, elli_rad):
       twon = 1.0
       ii = 0
       while (DBLEPS < math.fabs(cc_arr[ii] / aa_arr[ii])):
-         if (8 - 1 < ii):
+         if (19 - 1 < ii):
             break
          ai = aa_arr[ii]
          ii += 1
@@ -9577,7 +9579,7 @@ def theta1(mm, zz):
       ang += ang_inc
       sig = -sig
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (2 * sum_curr)
 def theta2(mm, zz):
@@ -9591,7 +9593,7 @@ def theta2(mm, zz):
       sum_curr += math.pow(qq, square(nn + 0.5)) * math.cos(ang)
       ang += ang_inc
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (2 * sum_curr)
 def theta3(mm, zz):
@@ -9605,7 +9607,7 @@ def theta3(mm, zz):
       sum_curr += math.pow(qq, nn * nn) * math.cos(ang)
       ang += ang_inc
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (1 + 2 * sum_curr)
 def theta4(mm, zz):
@@ -9621,7 +9623,7 @@ def theta4(mm, zz):
       ang += ang_inc
       sig = -sig
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (1 + 2 * sum_curr)
 def nevillethetac(mm, zz):
@@ -9636,7 +9638,7 @@ def nevillethetac(mm, zz):
       sum_curr += math.pow(qq, nn * nn + nn) * math.cos(cos_of)
       cos_of += cos_inc
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (sum_curr * math.sqrt(TAU * math.sqrt(qq / mm) / km))
 def nevillethetad(mm, zz):
@@ -9651,7 +9653,7 @@ def nevillethetad(mm, zz):
       sum_curr += math.pow(qq, nn * nn) * math.cos(cos_of)
       cos_of += cos_inc
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return ((1 + 2 * sum_curr) * math.sqrt(TAU / km) / 2.0)
 def nevillethetan(mm, zz):
@@ -9668,7 +9670,7 @@ def nevillethetan(mm, zz):
       cos_of += cos_inc
       sig = -sig
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return ((1 + 2 * sum_curr) * math.sqrt(TAU / (km *\
          math.sqrt(1.0 - mm))) / 2.0)
@@ -9687,7 +9689,7 @@ def nevillethetas(mm, zz):
       sig = -sig
       cos_of += cos_inc
       if (iseq(sum_curr, sum_prev)):
-         break# KQS
+         break# loop AWAIT
       nn += 1
    return (sum_curr * math.sqrt(TAU * math.sqrt(qq / (mm * (1\
          - mm))) / km))
@@ -9734,10 +9736,10 @@ def ellipsecir(aa, bb):
          mm += mm
          suma += mm * square(xx - yy)
          if (iseq(xx, yy)):
-            break# KQS
+            break# loop AWAIT
          ii += 1
          if (20 <= ii):
-            break# KQS
+            break# loop AWAIT
       retvalu = PI * (square(aa + bb) - suma) / (xx + yy)
    return (retvalu)
 def epdf(minvalx, maxvalx, nn, data_arr_pc, mm, ret_pdf_arr_p):

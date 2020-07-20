@@ -2,7 +2,7 @@
 ##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ##-# =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
-# 2020-07-17 kdw  For Changelog, See File Kwsun.varylog
+# 2020-07-20 kdw  For Changelog, See File Kwsun.varylog
 package Kwsun;
 use Time::HiRes qw();
 use POSIX       qw();
@@ -223,7 +223,7 @@ sub kwsun_eccentric_anomaly_rad($$ ) {
       $xrad -= (($xrad - $eccen * sin($xrad) - $ma_rad) /
             (1.0 - $eccen * cos($xrad)));
       if (Kw::iseq($xrad, $xrad_prev)) {
-         last; # KQS
+         last; # loop AWAIT
       }
    }
    return ($xrad);

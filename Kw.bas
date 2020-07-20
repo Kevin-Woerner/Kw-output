@@ -2,7 +2,7 @@
 ''-' =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ''-' =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ''-' =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-' 2020-07-17 kdw  For Changelog, See File Kw.varylog
+' 2020-07-20 kdw  For Changelog, See File Kw.varylog
 Attribute VB_Name = "Kw"
 Option Explicit
 #If VBA7 Then
@@ -3577,7 +3577,7 @@ Public Function sincc(ByVal xx_rad As Double) As Double
          sum_prev = sum_curr
          sum_curr = sum_curr + term
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 2
       Loop
@@ -3612,7 +3612,7 @@ Public Function versin(ByVal xx_rad As Double) As Double
       sum_prev = sum_curr
       sum_curr = sum_curr + term
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 2
    Loop
@@ -4062,7 +4062,7 @@ Private Function lf_continued_fraction(ByVal orig As Double, _
       xx = 1.0 / (xx - whole)
       epsilon = epsilon * 2.0
       If (Math.Abs(diff) < epsilon) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    lf_continued_fraction = (steps)
@@ -4289,7 +4289,7 @@ Public Function print_base_out(ByVal num As Long, ByVal baset _
       dig_count = dig_count + 1
       num = floorl(num / baset)
       If (num = 0) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    For ii = dig_count - 1 To 0 Step - 1
@@ -4342,7 +4342,7 @@ Public Function f21(ByVal aa As Double, ByVal bb As Double, _
          sum_prev = sum_curr
          sum_curr = sum_curr + term
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          nn = nn + 1
       Loop
@@ -4366,7 +4366,7 @@ Public Function f11(ByVal aa As Double, ByVal bb As Double, _
          sum_prev = sum_curr
          sum_curr = sum_curr + term
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          nn = nn + 1
       Loop
@@ -4394,11 +4394,11 @@ Private Function lf_lambert_iter(ByVal xx As Double, ByVal _
       wjj_prev = wjj
       wjj = wjj + delta
       If (Kw.iseq(wjj, wjj_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 1
       If (20 <= ii) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    lf_lambert_iter = (wjj)
@@ -4488,7 +4488,7 @@ Public Function sinintegral(ByVal xx As Double) As Double
          sum_prev = sum_curr
          sum_curr = sum_curr + term / kk
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          kk = kk + 2
       Loop
@@ -4513,7 +4513,7 @@ Public Function cosintegral(ByVal xx As Double) As Double
          sum_prev = sum_curr
          sum_curr = sum_curr + term / kk
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          kk = kk + 2
       Loop
@@ -4533,7 +4533,7 @@ Public Function Ein(ByVal xx As Double) As Double
       sum_prev = sum_curr
       sum_curr = sum_curr + term / kk
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       kk = kk + 1
    Loop
@@ -4574,11 +4574,11 @@ Public Function logintegral(ByVal xx As Double) As Double
          sum_prev = sum
          sum = sum + yy / nn
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          nn = nn + 1
          If (limit <= nn) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = Kw.EULER + Math.Log(lnx) + sum
@@ -4600,7 +4600,7 @@ Public Function carlsonRF(ByVal xx As Double, ByVal yy As _
       yy = (yy + lmbd) / 4.0
       zz = (zz + lmbd) / 4.0
       If (Kw.iseq(xx, yy) And Kw.iseq(yy, zz)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    carlsonRF = ((1.0 / Sqr(xx)))
@@ -4613,7 +4613,7 @@ Public Function carlsonRC(ByVal xx As Double, ByVal yy As _
       xx = (xx + lmbd) / 4.0
       yy = (yy + lmbd) / 4.0
       If (Kw.iseq(xx, yy)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    carlsonRC = ((1.0 / Sqr(xx)))
@@ -4646,7 +4646,7 @@ Public Function carlsonRJ(ByVal xx As Double, ByVal yy As _
       pp = (pp + lmbd) / 4.0
       If (Kw.iseq(xx, yy) And Kw.iseq(yy, zz) And Kw.iseq(zz, _
             pp)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    carlsonRJ = (3.0 * sigm)
@@ -4677,7 +4677,7 @@ Public Function carlsonRD(ByVal xx As Double, ByVal yy As _
       yy = (yy + lmbd) / 4.0
       zz = (zz + lmbd) / 4.0
       If (Kw.iseq(xx, yy) And Kw.iseq(yy, zz)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    carlsonRD = (3.0 * sigm)
@@ -4767,7 +4767,7 @@ Public Function lcam(ByVal aa As Long, ByVal bb As Long) As Long
    Do While (True)
       mm = mods(ii, aa)
       If (- 2 <= mm And mm <= 2) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + bb
    Loop
@@ -4790,7 +4790,7 @@ Public Function lcams(ByVal aa As Long, ByVal bb As Long) As Long
    Do While (True)
       mm = mods(ii, aa)
       If (- 2 <= mm And mm <= 2) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + bb
    Loop
@@ -4833,7 +4833,7 @@ Public Function lcantim(ByVal aa As Long, ByVal bb As Long) _
          End If
          ii = ii + bb
          If (aa * bb <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       If (aa * bb <= ii) Then
@@ -4873,7 +4873,7 @@ Public Function factor(ByVal nn As Long, ByRef _
             nn = nn / pp
          Loop
          If (nn < pp * pp) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       If (1 < nn) Then
@@ -4953,7 +4953,7 @@ Public Function pfg(ByVal nn As Long) As Long
       ff = pfl(mm)
       mm = mm / ff
       If (mm = 1) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    pfg = (ff)
@@ -5160,11 +5160,11 @@ Public Function eta(ByVal xx As Double) As Double
             sump = sum
             sum = sum + term
             If (Kw.iseq(sump, sum)) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
             nn = nn + 1
             If (kk <= nn) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
          Loop
          retvalu = sum - 0.5 * term
@@ -5190,11 +5190,11 @@ Public Function eta(ByVal xx As Double) As Double
             sump = sum
             sum = temp_arr(0)
             If (Kw.iseq(sump, sum)) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
             nn = nn + 1
             If (400 <= nn) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
          Loop
          s_ind = floorl(nn / 3)
@@ -5427,7 +5427,7 @@ Public Function minkowski(ByVal xx As Double) As Double
          qq = nn
       End If
       If (Kw.iseq(yy + dd, yy)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    minkowski = (yy)
@@ -5457,7 +5457,7 @@ Public Function cantorxx(ByVal bb As Double, ByVal ee As _
          End If
          dd = dd / 2.0
          If (Kw.iseq(yy + dd, yy) Or Kw.iszero(rest)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
    End If
@@ -6018,7 +6018,7 @@ Public Function repetendlen(ByVal denm As Long, ByVal basee _
       gd = gcd(denm, basee)
       denm = denm / gd
       If (1 = gd) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    If (denm = 1) Then
@@ -6043,7 +6043,7 @@ Public Function print_kevy(ByVal den As Long, ByVal start As _
          valu = floorl(numer / den)
          numer = (numer Mod den) * basee + valu
          If (numer = start Or den * basee < leny) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       If (basee <= start) Then
@@ -6068,11 +6068,11 @@ Public Function znorder__1(ByVal bb As Long, ByVal mdls As _
       Do While (True)
          pp = (pp * bb) Mod mdls
          If (pp = 1) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          nn = nn + 1
          If (mdls <= nn) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
    End If
@@ -6159,11 +6159,11 @@ Public Function reimann(ByVal nn As Double) As Double
          sum_prev = sum
          sum = sum + mobius(ii) * lix(Pow(nn, 1.0 / ii)) / ii
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (lim <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = sum
@@ -6246,7 +6246,7 @@ Public Function primenth(ByVal nn As Long) As Long
             pp = pp + inc
             inc = 6 - inc
             If (Kw.isprime(pp)) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
          Loop
          ii = ii + 1
@@ -6278,7 +6278,7 @@ Public Function bessJv(ByVal vv As Double, ByVal xx As _
          sum_prev = sum
          sum = sum + term
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          mm = mm + 1
       Loop
@@ -6562,7 +6562,7 @@ Public Function bessJn_ps(ByVal nn As Long, ByVal xx As _
       sum_prev = sum
       sum = sum + term
       If (Kw.iseq(sum, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       mm = mm + 1
    Loop
@@ -6593,7 +6593,7 @@ Public Function bessIn_ps(ByVal nn As Long, ByVal xx As _
       sum_prev = sum
       sum = sum + term
       If (Kw.iseq(sum, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       mm = mm + 1
    Loop
@@ -7003,7 +7003,7 @@ Public Function bessYn_ps(ByVal nn As Long, ByVal xx As _
          sum_prev = sum
          sum = sum + term * hn
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          kk = kk + 1
       Loop
@@ -7525,11 +7525,11 @@ Public Function erfcinv(ByVal yy_orig As Double) As Double
          xx_pr = xx
          xx = xx + dx
          If (Kw.iseq(xx_pr, xx)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       If (1.0 < yy_orig) Then
@@ -7562,11 +7562,11 @@ Public Function erfcxinv(ByVal yy As Double) As Double
          xx_pr = xx
          xx = xx + dx
          If (Kw.iseq(xx_pr, xx)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
    End If
@@ -7597,11 +7597,11 @@ Public Function erfinv(ByVal yy As Double) As Double
          xx_pr = xx
          xx = xx + dx
          If (Kw.iseq(xx_pr, xx)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xx
@@ -7644,7 +7644,7 @@ Public Function erf__3(ByVal xx As Double) As Double
    Dim sum_curr As Double
    Dim factx As Double
    Dim nn As Long
-   Dim add_arr(200) As Double
+   Dim add_arr(80) As Double
    Dim kk As Long
    axx = Math.Abs(xx)
    xxsq = xx * xx
@@ -7655,10 +7655,13 @@ Public Function erf__3(ByVal xx As Double) As Double
       Do While (True)
          factx = factx * - xxsq / nn
          add_arr(nn) = factx / (2.0 * nn + 1.0)
-         If (Math.Abs(add_arr(nn)) < Kw.DBLEPS / 16) Then
-            Exit Do' KQS
+         If (Math.Abs(add_arr(nn)) < Kw.DBLEPS) Then
+            Exit Do' loop AWAIT
          End If
          nn = nn + 1
+         If (79 <= nn) Then
+            Exit Do' loop AWAIT
+         End If
       Loop
       sum_curr = 0
       For kk = nn To 0 Step - 1
@@ -7709,7 +7712,7 @@ Public Function erf__4(ByVal xx As Double) As Double
          sum_prev = sum_curr
          sum_curr = sum_curr + term
          If (Kw.iseq(sum_prev, sum_curr)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          nn = nn + 2
       Loop
@@ -8279,7 +8282,7 @@ Public Function uigamma__1(ByVal aa As Double, ByVal xx As _
                cc = cc * xx / rr
                ans = ans + cc
                If (cc / ans < DBLEPS) Then
-                  Exit Do' KQS
+                  Exit Do' loop AWAIT
                End If
             Loop
             retvalu = 1.0 - ans * ax / aa
@@ -8317,7 +8320,7 @@ Public Function uigamma__1(ByVal aa As Double, ByVal xx As _
                   qkma = qkma * DBLEPS
                End If
                If (tt <= DBLEPS) Then
-                  Exit Do' KQS
+                  Exit Do' loop AWAIT
                End If
             Loop
             retvalu = ans * ax
@@ -8443,7 +8446,7 @@ Public Function betainc(ByVal aa As Double, ByVal bb As _
          sum_prev = sum_curr
          sum_curr = sum_curr + term
          If (Kw.iseq(sum_curr, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       log_beta = lgamma(aa) + lgamma(bb) - lgamma(aa + bb)
@@ -8508,11 +8511,11 @@ Public Function betainc__1(ByVal aa As Double, ByVal bb As _
          ff = ff * cd
          jj = 1 - ii
          If (Math.Abs(1.0 - cd) < DBLEPS) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (200 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = front * (ff - 1.0)
@@ -8896,7 +8899,7 @@ Public Function bellx(ByVal xxn As Double) As Double
       sum_prev = sum
       sum = sum + Pow(kk, xxn) / den
       If (Kw.iseq(sum_prev, sum)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    bellx = (sum / Kw.E)
@@ -10229,11 +10232,11 @@ Public Function agmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10265,11 +10268,11 @@ Public Function ahmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10301,11 +10304,11 @@ Public Function almean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10337,11 +10340,11 @@ Public Function aqmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10373,11 +10376,11 @@ Public Function ghmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10409,11 +10412,11 @@ Public Function glmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10445,11 +10448,11 @@ Public Function gqmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10481,11 +10484,11 @@ Public Function hlmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10517,11 +10520,11 @@ Public Function hqmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10553,11 +10556,11 @@ Public Function lqmean(ByVal xa As Double, ByVal xb As _
          cdifff = xa - xb
          If (Kw.iswithin(xa, xb, 10 * DBLEPS) Or pdifff < _
                cdifff) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xtmp
@@ -10580,11 +10583,11 @@ Public Function agmean__1(ByVal xa As Double, ByVal xb As _
       xa = (xa + xb) / 2.0
       xb = Sqr(Math.Abs(xtmp * xb)) * Kw.sign(xa)
       If (Kw.iswithin(xa, xb, 10 * DBLEPS)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 1
       If (20 <= ii) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    retvalu = xsgn * xtmp
@@ -10611,11 +10614,11 @@ Public Function aghmean(ByVal xa As Double, ByVal xb As _
          xb = Kw.cuberoot(ta * tb * tc)
          xc = 3.0 / (1.0 / ta + 1.0 / tb + 1.0 / tc)
          If (Kw.iswithin(xa, xc, 10 * DBLEPS)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = xb
@@ -10897,7 +10900,7 @@ Public Function randl(ByVal nn As Long) As Long
    Do While (True)
       rndm = lf_next_ranz()
       If (rndm < max_allowed) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    retvalu = rndm Mod nn
@@ -11000,7 +11003,7 @@ Public Function normal_cdf__1(ByVal xx As Double) As Double
          sum_prev = sum_curr
          sum_curr = sum_curr + bb
          If (Kw.iseq(sum_prev, sum_curr)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
       Loop
@@ -11028,7 +11031,7 @@ Public Function normal_rand() As Double
          uub = randd() - 0.5
          ww = uua * uua + uub * uub
          If (Kw.isbetweenx(ww, 0.0, 0.25)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       ww = Sqr(-2.0 * Math.Log(4.0 * ww) / ww)
@@ -11489,7 +11492,7 @@ Public Function trap_rand(ByVal para As Double, ByVal parb As _
          End If
       End If
       If (0.0 <= retvalu) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    trap_rand = (retvalu)
@@ -11563,7 +11566,7 @@ Public Function zipf_quantile(ByVal ss As Double, ByVal _
    Do While (True)
       summ = summ + 1.0 / Pow(ii, ss)
       If (target <= summ) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 1
    Loop
@@ -11688,7 +11691,7 @@ Public Function gamma_rand(ByVal shap As Double) As Double
                qq = Math.Exp(Math.Log(xx) * (f_shape - 1))
             End If
             If (randd() < qq) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
          Loop
          val = val + xx
@@ -11829,7 +11832,7 @@ Public Function benford_rand(ByVal max_kk As Long) As Long
    Do While (True)
       summ = summ + Math.Log(1.0 + 1.0 / ii) / Math.Log(max_kk)
       If (target <= summ) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 1
    Loop
@@ -11962,7 +11965,7 @@ Public Function ks_a_cdf(ByVal xx As Double) As Double
          sum_prev = sum
          sum = sum + Math.Exp(vv * kk * kk)
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          kk = kk + 2
       Loop
@@ -12109,7 +12112,7 @@ Private Function lf_t_quantile(ByVal ndfx As Long, ByVal prbx _
          retvalu = retvalu - delta
          aa_x = Math.Abs(delta) * 10000.0
          If (Kw.iszero(retvalu) Or aa_x < retvalu) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
    End If
@@ -12267,7 +12270,7 @@ Private Function lf_subf_two(ByVal nx As Double, ByVal mm As _
       xx_prev = xx
       xx = xx + (lf_subfprob(nx, mm, xx) - pp) / zz
       If (Kw.iswithin(xx, xx_prev, 0.00001)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    lf_subf_two = (xx)
@@ -13411,7 +13414,7 @@ Public Function fitx_minmax(ByVal num_points As Long, _
       End If
       poh_ind = e_ind
       If (e_ind = chi_arr(0)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    chi_arr(chisize) = chi_arr(0)
@@ -13629,7 +13632,7 @@ Public Function sqrt__1(ByVal xx As Double) As Double
          yy_prev = yy_curr
          yy_curr = (yy_curr + zz / yy_curr) / 2.0
          If (Kw.iseq(yy_prev, yy_curr)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       yy_curr = yy_curr * power_of_two
@@ -13722,7 +13725,7 @@ Public Function nthroot__1(ByVal xx As Double, ByVal kk As _
          Next
          yy_curr = (yy_curr * (kk - 1) + xx / pp) / kk
          If (Kw.iseq(yy_prev, yy_curr)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
    End If
@@ -13903,7 +13906,7 @@ Public Function ln__2(ByVal xx As Double) As Double
       sum_prev = sum_curr
       sum_curr = sum_curr + term / nn
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 2
    Loop
@@ -13925,7 +13928,7 @@ Public Function euler__1() As Double
       twon = twon * 2.0
       exptwon = exptwon * exptwon
       If (0.1 < Kw.DBLEPS * exptwon) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -13939,7 +13942,7 @@ Public Function euler__1() As Double
       sum_prev = sum_curr
       sum_curr = sum_curr + term * subsum
       If (Kw.iseq(sum_prev, sum_curr)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       mm = mm + 1
    Loop
@@ -14085,7 +14088,7 @@ Public Function ellipsoid_distance(ByVal flat As Double, _
          Exit Do
       End If
       If (Math.Abs(xx_curr - xx_prev) < 1.0E-12) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       ii = ii + 1
    Loop
@@ -14167,7 +14170,7 @@ Public Function ellipsoid_destination(ByVal flat As Double, _
             Kw.square(s_sig) - 3.0) * (4.0 * c_twosigm_sq - _
             3.0)))
       If (Kw.iseq(sig_rad, sig_rad_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
    Loop
    xd = s_cap_ua * c_sig + c_cap_ua * s_sig * c_heading
@@ -14401,7 +14404,7 @@ Public Function elliptic1i(ByVal mm As Double, ByVal circ_rad _
             ggn = temp
             ii = ii + ii
             If (Math.Abs(cc / aan) <= DBLEPS) Then
-               Exit Do' KQS
+               Exit Do' loop AWAIT
             End If
          Loop
          temp = (Atan2(tt, 1.0) + modd * Kw.PI) / (ii * aan)
@@ -14465,11 +14468,11 @@ Public Function elliptic2(ByVal mm As Double) As Double
          sum_prev = sum
          sum = sum - twon * (aan * aan - ggn * ggn)
          If (Kw.iseq(sum, sum_prev)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = Kw.PI * sum / (2.0 * aan)
@@ -14635,11 +14638,11 @@ Public Function elliptic3(ByVal nn As Double, ByVal mm As _
          sum_prev = sum
          sum = sum + qqn
          If (Kw.iseq(sum, sum_prev) And Kw.iseq(aan, ggn)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       If (1.0 <= Math.Abs(nn)) Then
@@ -14735,7 +14738,7 @@ Public Function jacobiphi(ByVal mm As Double, ByVal elli_rad _
       twon = 1.0
       ii = 0
       Do While (DBLEPS < Math.Abs(cc_arr(ii) / aa_arr(ii)))
-         If (8 - 1 < ii) Then
+         If (19 - 1 < ii) Then
             Exit Do
          End If
          ai = aa_arr(ii)
@@ -14981,7 +14984,7 @@ Public Function theta1(ByVal mm As Double, ByVal zz As _
       ang = ang + ang_inc
       sig = -sig
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15006,7 +15009,7 @@ Public Function theta2(ByVal mm As Double, ByVal zz As _
             Math.Cos(ang)
       ang = ang + ang_inc
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15030,7 +15033,7 @@ Public Function theta3(ByVal mm As Double, ByVal zz As _
       sum_curr = sum_curr + Pow(qq, nn * nn) * Math.Cos(ang)
       ang = ang + ang_inc
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15058,7 +15061,7 @@ Public Function theta4(ByVal mm As Double, ByVal zz As _
       ang = ang + ang_inc
       sig = -sig
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15085,7 +15088,7 @@ Public Function nevillethetac(ByVal mm As Double, ByVal zz As _
             Math.Cos(cos_of)
       cos_of = cos_of + cos_inc
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15111,7 +15114,7 @@ Public Function nevillethetad(ByVal mm As Double, ByVal zz As _
       sum_curr = sum_curr + Pow(qq, nn * nn) * Math.Cos(cos_of)
       cos_of = cos_of + cos_inc
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15141,7 +15144,7 @@ Public Function nevillethetan(ByVal mm As Double, ByVal zz As _
       cos_of = cos_of + cos_inc
       sig = -sig
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15173,7 +15176,7 @@ Public Function nevillethetas(ByVal mm As Double, ByVal zz As _
       sig = -sig
       cos_of = cos_of + cos_inc
       If (Kw.iseq(sum_curr, sum_prev)) Then
-         Exit Do' KQS
+         Exit Do' loop AWAIT
       End If
       nn = nn + 1
    Loop
@@ -15252,11 +15255,11 @@ Public Function ellipsecir(ByVal aa As Double, ByVal bb As _
          mm = mm + mm
          suma = suma + mm * Kw.square(xx - yy)
          If (Kw.iseq(xx, yy)) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
          ii = ii + 1
          If (20 <= ii) Then
-            Exit Do' KQS
+            Exit Do' loop AWAIT
          End If
       Loop
       retvalu = PI * (Kw.square(aa + bb) - suma) / (xx + yy)

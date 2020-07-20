@@ -1,5 +1,5 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-07-16 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-07-20 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2015-2020 by Kevin D. Woerner
 # 2020-07-14 kdw  Kw:c[o]sm1 func
 # 2020-07-07 kdw  Kw:sq[r]tx func
@@ -8257,6 +8257,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- bits.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- erf.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-20 kdw  erf:erf__3 tweak
 # 2020-07-16 kdw  erf:erf_[_]4 work
 # 2020-07-15 kdw  erf:erf__[34] work
 # 2020-07-10 kdw  erf:polynomial refactor
@@ -8663,7 +8664,7 @@ FUNC DBL erf__3(DBL xx):
    DBL sum_curr;
    DBL factx;
    INT nn;
-   DBL add_arr[200];
+   DBL add_arr[80];
    INT kk;
    axx = ABS(xx);
    xxsq = xx * xx;
@@ -8671,7 +8672,8 @@ FUNC DBL erf__3(DBL xx):
       factx = 1;
       # done this way to avoid catastrophic cancellation
       add_arr[0] = 1;
-      AWAIT ABS(add_arr[nn]) < Kw.DBLEPS / 16 COUNT nn FROM 1:
+      AWAIT ABS(add_arr[nn]) < Kw.DBLEPS COUNT nn FROM 1 TO
+            ARRAYLAST(add_arr[]):
          factx *= - xxsq / nn;
          add_arr[nn] = factx / (2.0 * nn + 1.0);
       AWAIT_END

@@ -2,7 +2,7 @@
 ##-# =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 ##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 ##-# =KDW= ####### SRC $KWROOT/codekdw/kw-lib/Kwsun.fwipp #######
-# 2020-07-16 kdw  For Changelog, See File varylog
+# 2020-07-20 kdw  For Changelog, See File varylog
 import sys
 import math
 import time
@@ -126,7 +126,7 @@ def kwsun_eccentric_anomaly_rad(ma_deg, eccen):
       xrad -= ((xrad - eccen * math.sin(xrad) - ma_rad) /\
             (1.0 - eccen * math.cos(xrad)))
       if (Kw.iseq(xrad, xrad_prev)):
-         break# KQS
+         break# loop AWAIT
    return (xrad)
 lv_sun_ra_rad = 0.0
 lv_sun_dec_rad = 0.0

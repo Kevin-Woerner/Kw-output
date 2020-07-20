@@ -2,7 +2,7 @@
 //-/ =KDW= ########## DO NOT EDIT ######### DO NOT EDIT #########
 //-/ =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
 //-/ =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-// 2020-07-17 kdw  For Changelog, See File Kw.varylog
+// 2020-07-20 kdw  For Changelog, See File Kw.varylog
 #ifndef INCLUDED_Kw_h
 #define INCLUDED_Kw_h
 double cxkilogram(void);
