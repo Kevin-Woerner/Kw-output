@@ -1,6 +1,9 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-07-20 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-08-03 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2015-2020 by Kevin D. Woerner
+# 2020-07-29 kdw  Kw:block-def work
+# 2020-07-27 kdw  Kw:block syntax
+# 2020-07-24 kdw  Kw:comment cleanup
 # 2020-07-14 kdw  Kw:c[o]sm1 func
 # 2020-07-07 kdw  Kw:sq[r]tx func
 # 2020-07-02 kdw  Kw:pend[u]lum func
@@ -22,7 +25,7 @@
 # 2020-05-06 kdw  Kw:rmed boolean vars
 # 2020-05-05 kdw  Kw:magic check func changed
 # 2020-04-28 kdw  Kw:tweaks here and there
-# 2020-04-26 kdw  Kw:BLOCK indentation work
+# 2020-04-26 kdw  Kw:BL[O]CK indentation work
 # 2020-04-24 kdw  Kw:rem[q]uou func
 # 2020-04-23 kdw  Kw:const format change
 # 2020-04-19 kdw  Kw:pri[n]t_nu[m]2char rework
@@ -130,7 +133,7 @@
 # 2018-05-20 kdw  Kw:const work
 # 2018-05-18 kdw  Kw:LAN[G]UAGE syntax change
 # 2018-05-17 kdw  Kw:ARR?AY.* and HOR[N]ER syntax
-# 2018-05-14 kdw  Kw:BLOCK syntax
+# 2018-05-14 kdw  Kw:BL[O]CK syntax
 # 2018-05-13 kdw  Kw:MO?DE.* syntax change
 # 2018-04-24 kdw  Kw:comments
 # 2018-04-19 kdw  Kw:consts rework
@@ -340,7 +343,7 @@
 # 2015-08-17 kdw  Kw:syntax error
 # 2015-08-16 kdw  Kw:added CO[N]STs, stts_*
 # 2015-08-15 kdw  Kw:tweak
-# 2015-08-14 kdw  Kw:rmed() in syntax of WHILE, FOR, IF
+# 2015-08-14 kdw  Kw:rmed() in syntax of WH[I]LE, FO[R], I[F]
 # 2015-08-12 kdw  Kw:tweak
 # 2015-08-11 kdw  Kw:touched
 # 2015-08-10 kdw  Kw:comment changed
@@ -363,7 +366,7 @@
 # 2015-07-15 kdw  Kw:W[0]
 # 2015-07-14 kdw  Kw:gamma
 # 2015-07-13 kdw  Kw:created
-MASTER;
+IMPORT_MASTER;
 # insert master functions before other code
 #TEST:atan2(-1,1)==-PI/4;
 #TEST:atan2(-1,-1)==-3*PI/4;
@@ -383,6 +386,7 @@ MASTER;
 # Start doing things, ..
 #   IIIIIIIIIInsert-Begin ------------------------- Macros.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  Macros:comment cleanup
 # 2020-06-20 kdw  Macros:comment change
 # 2020-04-26 kdw  Macros:block indentation
 # 2020-04-23 kdw  Macros:const format change
@@ -1450,6 +1454,7 @@ CONST MAGNETICINDUCTION MAGNETICFLUX / AREA;#MT-2I-1
 #TEST:EULER==0.57721566490153286060651209008240243104215933594;
 #   IIIIIIIIIInsert-Begin ------------------------- simple.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  simple:comment cleanup
 # 2020-06-18 kdw  simple:comment to ratio
 # 2020-06-16 kdw  simple:D[I]V keyword deprecated
 # 2020-06-15 kdw  simple:ra[t]io func added
@@ -1464,7 +1469,7 @@ CONST MAGNETICINDUCTION MAGNETICFLUX / AREA;#MT-2I-1
 # 2019-10-28 kdw  simple:GF comments
 # 2019-07-08 kdw  simple:sq[i]nv func
 # 2019-06-02 kdw  simple:func desc added
-# 2019-05-22 kdw  simple:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  simple:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  simple:re[t]_val to re[t]valu
 # 2018-09-28 kdw  simple:st[e]p to st[a]ir renam
 # 2018-09-26 kdw  simple:sq, cu funcs
@@ -2116,6 +2121,8 @@ FUNC_END
 #TEST:tempf2tempc(tempc2tempf(3.2))==3.2;
 #   IIIIIIIIIInsert-Begin ----------------------------- is.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  is:comment cleanup
+# 2020-07-23 kdw  is:is[n]eq
 # 2020-06-18 kdw  is:Modulo operator II
 # 2020-06-17 kdw  is:Modulo operator
 # 2020-05-29 kdw  is:keyword trial
@@ -2143,7 +2150,7 @@ FUNC_END
 # 2019-06-04 kdw  is:isfl[o]orsame func
 # 2019-06-02 kdw  is:func desc added
 # 2019-05-29 kdw  is:comment changed
-# 2019-05-22 kdw  is:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  is:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-01 kdw  is:consts explicit module name
 # 2019-03-19 kdw  is:re[t]_val to re[t]valu
 # 2019-03-08 kdw  is:is[e]qual to is[e]q, et al.
@@ -2308,6 +2315,17 @@ FUNC BOL iseq(DBL xx
    IF_END
    RETURN retvalu_bol;
 FUNC_END
+#   FFFFFFFFFFunction ----------------------------------- isneq #
+FUNC BOL isneq(DBL xx
+      , DBL yy):
+   BOL retvalu_bol;
+   IF xx < yy OR yy < xx:
+      retvalu_bol = TRUE;
+   ELSE:
+      retvalu_bol = FALSE;
+   IF_END
+   RETURN retvalu_bol;
+FUNC_END
 #   FFFFFFFFFFunction ----------------------------------- isint #
 FUNC BOL isint(DBL xx):
    # XX is an integer
@@ -2433,9 +2451,10 @@ FUNC_END
 #TEST:isodd(4) - isneg(55);
 #   IIIIIIIIIInsert-End ------------------------------- is.fwip #
 BLOCK:# MAGIC stuff
-   LOCAL_CONST LC_MAGIC_INT 2070108020;
-   LOCAL_CONST LC_MAGIC_INT_NOT 301040105;
-   #   FFFFFFFFFFunction ----------------------------- magicset #
+   BLOCK_DEF CONST LC_MAGIC_INT 2070108020;
+   BLOCK_DEF CONST LC_MAGIC_INT_NOT 301040105;
+         #   FFFFFFFFFFunction -----------------------------
+      #magicset #
    FUNC INT magicset(NUL):
       # return "magic" number
       RETURN LC_MAGIC_INT;
@@ -2453,6 +2472,7 @@ FUNC BOL ismagic(INT xx):
 FUNC_END
 #   IIIIIIIIIInsert-Begin -------------------------- round.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  round:comment cleanup
 # 2020-04-17 kdw  round:comment change
 # 2020-04-12 kdw  round:comment change
 # 2020-02-03 kdw  round:.*_LOOP changed
@@ -2465,7 +2485,7 @@ FUNC_END
 # 2019-06-27 kdw  round:mod.* rework
 # 2019-06-26 kdw  round:roundy rework
 # 2019-05-29 kdw  round:comment changed
-# 2019-05-22 kdw  round:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  round:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  round:re[t]_val changed to re[t]valu
 # 2019-03-08 kdw  round:is[e]qual changed to is[e]q, et al.
 # 2019-03-06 kdw  round:is.* funcs changed
@@ -2741,6 +2761,13 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- round.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- trig.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-03 kdw  trig:explicit module for pi and tau
+# 2020-08-02 kdw  trig:g?d func
+# 2020-07-29 kdw  trig:block-def work
+# 2020-07-27 kdw  trig:block syntax
+# 2020-07-24 kdw  trig:s/LO[C]AL_/BL[O]CK_/
+# 2020-07-23 kdw  trig:minor reorg
+# 2020-07-22 kdw  trig:var rename w/ circ_
 # 2020-06-30 kdw  trig:tests changed
 # 2020-06-12 kdw  trig:uppercased tan function
 # 2020-06-03 kdw  trig:writeonly keyword
@@ -2859,61 +2886,57 @@ FUNC_END
 #; 2.0 * COS(nrvx_xx) - nrvx_xx * SIN(nrvx_xx) ??
 #   RETURN(nrvx_xx);
 #FUNC_END
-BLOCK:# sinc stuff
+#   FFFFFFFFFFunction --------------------------------- sincinv #
+FUNC DBL sincinv(DBL yy):
+   # Solve SINC(XX) = YY for YY in the interval
+   #   (sinc(LC_SINC_MIN_X),1.0) -> (LC_SINC_MIN_X,0)
+   DBL min_yy;
+   DBL min_xx;
+   DBL start_xx;
+   DBL aa;
+   DBL bb;
+   INT nrvx_ii;
+   DBL nrvx_yy;
+   DBL nrvx_xx;
+   DBL nrvx_dy;
+   DBL nrvx_xp;
    # X value where sinc(X) has its minimum
-   LOCAL_CONST LC_SINC_MIN_X
-         4.4934094579090641753079882808139693729311345;
-   # 1
-   #   FFFFFFFFFFunction ------------------------------ sincinv #
-   FUNC DBL sincinv(DBL yy):
-      # Solve SINC(XX) = YY for YY in the interval
-      #   (sinc(LC_SINC_MIN_X),1.0) -> (LC_SINC_MIN_X,0)
-      DBL min_yy;
-      DBL start_xx;
-      DBL aa;
-      DBL bb;
-      INT nrvx_ii;
-      DBL nrvx_yy;
-      DBL nrvx_xx;
-      DBL nrvx_dy;
-      DBL nrvx_xp;
-      min_yy = sinc(LC_SINC_MIN_X);
-      IF yy <= min_yy:
-         # XX such that d(SINC(XX)) / dXX == 0
-         #   i.e.  (XX * COS(XX) - SIN(XX)) / XX**2 == 0
-         nrvx_xx = LC_SINC_MIN_X;
-      ELSIF yy < 1.0:
-         # SINC(XX) = YY implies SIN(XX) - YY * XX = 0
-         aa = yy - min_yy;
-         bb = 1.0 - yy;
-         start_xx = (aa * SQRT(5.0 * bb) + bb * (LC_SINC_MIN_X
-               - SQRT(6 * aa))) / (aa + bb);
-         # return XX where
-         #    SIN(nrvx_xx) - yy * nrvx_xx(XX) == 0
-         # BEG Newton-Raphson Calculation
-         nrvx_xx = start_xx;
-         FOR nrvx_ii FROM 0 TO 20:
-            nrvx_xp = nrvx_xx;
-            nrvx_dy = COS(nrvx_xx) - yy;
-            IF Kw.iszero(nrvx_dy):
-               FOR_EXIT;
-            IF_END
-            nrvx_yy = SIN(nrvx_xx) - yy * nrvx_xx;
-            nrvx_xx -= nrvx_yy / nrvx_dy;
-            IF Kw.iseq(nrvx_xp, nrvx_xx):
-               FOR_EXIT;
-            IF_END
-         FOR_END
-         # END Newton-Raphson Calculation
-      ELSE:
-         # 1.0 <= yy
-         nrvx_xx = 0.0;
-      IF_END
-      RETURN nrvx_xx;
-   FUNC_END
-BLOCK_END
-      #   FFFFFFFFFFunction -----------------------------------
-   #sincc #
+   min_xx = 4.4934094579090641753079882808139693729311345;
+   min_yy = sinc(min_xx);
+   IF yy <= min_yy:
+      # XX such that d(SINC(XX)) / dXX == 0
+      #   i.e.  (XX * COS(XX) - SIN(XX)) / XX**2 == 0
+      nrvx_xx = min_xx;
+   ELSIF yy < 1.0:
+      # SINC(XX) = YY implies SIN(XX) - YY * XX = 0
+      aa = yy - min_yy;
+      bb = 1.0 - yy;
+      start_xx = (aa * SQRT(5.0 * bb) + bb * (min_xx - SQRT(6
+            * aa))) / (1.0 - min_yy);
+      # return XX where
+      #    SIN(nrvx_xx) - yy * nrvx_xx(XX) == 0
+      # BEG Newton-Raphson Calculation
+      nrvx_xx = start_xx;
+      FOR nrvx_ii FROM 0 TO 20:
+         nrvx_xp = nrvx_xx;
+         nrvx_dy = COS(nrvx_xx) - yy;
+         IF Kw.iszero(nrvx_dy):
+            FOR_EXIT;
+         IF_END
+         nrvx_yy = SIN(nrvx_xx) - yy * nrvx_xx;
+         nrvx_xx -= nrvx_yy / nrvx_dy;
+         IF Kw.iseq(nrvx_xp, nrvx_xx):
+            FOR_EXIT;
+         IF_END
+      FOR_END
+      # END Newton-Raphson Calculation
+   ELSE:
+      # 1.0 <= yy
+      nrvx_xx = 0.0;
+   IF_END
+   RETURN nrvx_xx;
+FUNC_END
+#   FFFFFFFFFFunction ----------------------------------- sincc #
 FUNC DBL sincc(DBL xx_rad):
    # YY = SINC(XX) = SIN(XX) / XX via Taylor series
    DBL trigsign;
@@ -2952,7 +2975,7 @@ FUNC DBL sincc(DBL xx_rad):
    RETURN retvalu;
 FUNC_END
 #   FFFFFFFFFFunction ---------------------------------- versin #
-FUNC DBL versin(DBL xx_rad):
+FUNC DBL versin(DBL circ_rad):
    # calculate YY = VERSIN(XX) = 1 - COS(X) via Taylor series
    DBL trigsign;
    DBL xr_rad;
@@ -2961,7 +2984,7 @@ FUNC DBL versin(DBL xx_rad):
    DBL sum_curr;
    DBL term;
    DBL sum_prev;
-   xr_rad = Kw.fmod(xx_rad, Kw.TAU);
+   xr_rad = Kw.fmod(circ_rad, Kw.TAU);
    # now 0 <= XR_RAD  < Kw.TAU
    IF Kw.TAU / 2.0 < xr_rad:
       # cos(x) = cos(Kw.TAU - x)
@@ -2989,70 +3012,70 @@ FUNC DBL versin(DBL xx_rad):
    RETURN sum_curr;
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- haversin #
-FUNC DBL haversin(DBL xx_rad):
+FUNC DBL haversin(DBL circ_rad):
    # YY = VERSINE(XX) / 2 = (1 - COS(XX)) / 2
-   RETURN versin(xx_rad) / 2.0;
+   RETURN versin(circ_rad) / 2.0;
 FUNC_END
 #   Angle-conversion-functions ---- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction --------------------------------- tur2deg #
-FUNC DBL tur2deg(DBL xx_tur):
+FUNC DBL tur2deg(DBL circ_tur):
    # convert turns to degrees
-   RETURN xx_tur * Kw.TURN / Kw.ARCDEG;
+   RETURN circ_tur * Kw.TURN / Kw.ARCDEG;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- deg2tur #
-FUNC DBL deg2tur(DBL xx_deg):
+FUNC DBL deg2tur(DBL circ_deg):
    # convert degrees to turns
-   RETURN xx_deg * Kw.ARCDEG / Kw.TURN;
+   RETURN circ_deg * Kw.ARCDEG / Kw.TURN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- tur2rad #
-FUNC DBL tur2rad(DBL xx_tur):
+FUNC DBL tur2rad(DBL circ_tur):
    # convert turns to radians
-   RETURN xx_tur * Kw.TURN / Kw.RADIAN;
+   RETURN circ_tur * Kw.TURN / Kw.RADIAN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- rad2tur #
-FUNC DBL rad2tur(DBL xx_rad):
+FUNC DBL rad2tur(DBL circ_rad):
    # convert radians to turns
-   RETURN xx_rad * Kw.RADIAN / Kw.TURN;
+   RETURN circ_rad * Kw.RADIAN / Kw.TURN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- tur2sec #
-FUNC DBL tur2sec(DBL xx_tur):
+FUNC DBL tur2sec(DBL circ_tur):
    # convert turns to arcsecs
-   RETURN xx_tur * Kw.TURN / Kw.ARCSEC;
+   RETURN circ_tur * Kw.TURN / Kw.ARCSEC;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sec2tur #
-FUNC DBL sec2tur(DBL xx_sec):
+FUNC DBL sec2tur(DBL circ_sec):
    # convert arcsecs to turns
-   RETURN xx_sec * Kw.ARCSEC / Kw.TURN;
+   RETURN circ_sec * Kw.ARCSEC / Kw.TURN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- rad2deg #
-FUNC DBL rad2deg(DBL xx_rad):
+FUNC DBL rad2deg(DBL circ_rad):
    # convert radians to degrees
-   RETURN xx_rad * Kw.RADIAN / Kw.ARCDEG;
+   RETURN circ_rad * Kw.RADIAN / Kw.ARCDEG;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- deg2rad #
-FUNC DBL deg2rad(DBL xx_deg):
+FUNC DBL deg2rad(DBL circ_deg):
    # convert degrees to radians
-   RETURN xx_deg * Kw.ARCDEG / Kw.RADIAN;
+   RETURN circ_deg * Kw.ARCDEG / Kw.RADIAN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- rad2sec #
-FUNC DBL rad2sec(DBL xx_rad):
+FUNC DBL rad2sec(DBL circ_rad):
    # convert radians to arcsecs
-   RETURN xx_rad * Kw.RADIAN / Kw.ARCSEC;
+   RETURN circ_rad * Kw.RADIAN / Kw.ARCSEC;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sec2rad #
-FUNC DBL sec2rad(DBL xx_sec):
+FUNC DBL sec2rad(DBL circ_sec):
    # convert arcsecs to radians
-   RETURN xx_sec * Kw.ARCSEC / Kw.RADIAN;
+   RETURN circ_sec * Kw.ARCSEC / Kw.RADIAN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- deg2sec #
-FUNC DBL deg2sec(DBL xx_deg):
+FUNC DBL deg2sec(DBL circ_deg):
    # convert degrees to arcsecs
-   RETURN xx_deg * Kw.ARCDEG / Kw.ARCSEC;
+   RETURN circ_deg * Kw.ARCDEG / Kw.ARCSEC;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sec2deg #
-FUNC DBL sec2deg(DBL xx_sec):
+FUNC DBL sec2deg(DBL circ_sec):
    # convert arcsecs to degrees
-   RETURN xx_sec * Kw.ARCSEC / Kw.ARCDEG;
+   RETURN circ_sec * Kw.ARCSEC / Kw.ARCDEG;
 FUNC_END
 #TEST:deg2rad(rad2deg(183))==183;
 #   FFFFFFFFFFunction --------------------------------- rad2dms #
@@ -3069,54 +3092,54 @@ FUNC DBL rad2dms(DBL xx_rads):
    RETURN dd_deg + (mm_min + dg / 100.0) / 100.0;
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- rad2dms2 #
-FUNC DBL rad2dms2(DBL xx_rads):
+FUNC DBL rad2dms2(DBL circ_rads):
    # convert radians to deg.minut-sec
    DBL dg;
    DBL dd_deg_arr[2];
    DBL mm_min_arr[2];
-   dg = rad2deg(xx_rads);
+   dg = rad2deg(circ_rads);
    dg = Kw.modf(dg, dd_deg_arr[]) * Kw.ARCDEG / Kw.ARCMIN;
    dg = Kw.modf(dg, mm_min_arr[]) * Kw.ARCMIN / Kw.ARCSEC;
    RETURN dd_deg_arr[0] + (mm_min_arr[0] + dg / 100.0) / 100.0;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- dms2rad #
-FUNC DBL dms2rad(DBL xx_dms):
+FUNC DBL dms2rad(DBL circ_dms):
    # convert a number of the form DD.MMSS*... to radians
    DBL dd_deg;
    DBL mm_min;
    DBL dg;
-   dd_deg = FLOOR(xx_dms);
-   dg = (xx_dms - dd_deg) * 100.0;
+   dd_deg = FLOOR(circ_dms);
+   dg = (circ_dms - dd_deg) * 100.0;
    mm_min = FLOOR(dg);
    dg = (dg - mm_min) * 100.0;
    RETURN (dg * Kw.ARCSEC + mm_min * Kw.ARCMIN + dd_deg
          * Kw.ARCDEG) / Kw.RADIAN;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- deg2dms #
-FUNC DBL deg2dms(DBL xx_deg):
+FUNC DBL deg2dms(DBL circ_deg):
    # convert degrees to DD.MMSS+ format
-   RETURN rad2dms(deg2rad(xx_deg));
+   RETURN rad2dms(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- dms2deg #
-FUNC DBL dms2deg(DBL xx_dms):
+FUNC DBL dms2deg(DBL circ_dms):
    # convert DD.MMSS+ format to degrees
-   RETURN rad2deg(dms2rad(xx_dms));
+   RETURN rad2deg(dms2rad(circ_dms));
 FUNC_END
 #   Other-Trig-functions ---- ----- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction ------------------------------------- cot #
-FUNC DBL cot(DBL xx_rad):
+FUNC DBL cot(DBL circ_rad):
    # Cotangent Range(-Inf, Inf)
-   RETURN COS(xx_rad) / SIN(xx_rad);
+   RETURN COS(circ_rad) / SIN(circ_rad);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------- sec #
-FUNC DBL sec(DBL xx_rad):
+FUNC DBL sec(DBL circ_rad):
    # Secant Range[1, Inf) or[-1, -Inf)
-   RETURN 1.0 / COS(xx_rad);
+   RETURN 1.0 / COS(circ_rad);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------- csc #
-FUNC DBL csc(DBL xx_rad):
+FUNC DBL csc(DBL circ_rad):
    # Cosecant Range[1, Inf) or[-1, -Inf)
-   RETURN 1.0 / SIN(xx_rad);
+   RETURN 1.0 / SIN(circ_rad);
 FUNC_END
 #   Inverse-trig-functions -- ----- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction ---------------------------------- sininv #
@@ -3153,37 +3176,58 @@ FUNC DBL cscinv(DBL xx):
 FUNC_END
 #   Hyperbolic-Trig-functions ----- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction ------------------------------------ sinh #
-FUNC DBL sinh(DBL xx):
+FUNC DBL sinh(DBL hyp_rad):
    # Hyperbolic Sine(-Inf, Inf) to(-Inf, Inf)
-   RETURN (EXP(xx) - EXP(-xx)) / 2.0;
+   RETURN (EXP(hyp_rad) - EXP(-hyp_rad)) / 2.0;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cosh #
-FUNC DBL cosh(DBL xx):
+FUNC DBL cosh(DBL hyp_rad):
    # Hyperbolic Cosine(-Inf, 0, Inf) to(Inf, 1, Inf)
-   RETURN (EXP(xx) + EXP(-xx)) / 2.0;
+   RETURN (EXP(hyp_rad) + EXP(-hyp_rad)) / 2.0;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ tanh #
-FUNC DBL tanh(DBL xx):
+FUNC DBL tanh(DBL hyp_rad):
    # Hyperbolic Tangent(-Inf, Inf) to(-1, 1)
-   RETURN sinh(xx) / cosh(xx);
+   RETURN sinh(hyp_rad) / cosh(hyp_rad);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ coth #
-FUNC DBL coth(DBL xx):
+FUNC DBL coth(DBL hyp_rad):
    # Hyperbolic Cotangent
    # (-Inf, 0) to(-1, -Inf); (0, Inf) to(Inf, 1);
-   RETURN cosh(xx) / sinh(xx);
+   RETURN cosh(hyp_rad) / sinh(hyp_rad);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ sech #
-FUNC DBL sech(DBL xx):
+FUNC DBL sech(DBL hyp_rad):
    # Hyperbolic Secant
    # (-Inf, 0, Inf) to(0, 1, 0)
-   RETURN 1.0 / cosh(xx);
+   RETURN 1.0 / cosh(hyp_rad);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ csch #
-FUNC DBL csch(DBL xx):
+FUNC DBL csch(DBL hyp_rad):
    # Hyperbolic Cosecant
    # (-Inf, 0) to(-0, -Inf); (0, Inf) to(Inf, 0);
-   RETURN 1.0 / sinh(xx);
+   RETURN 1.0 / sinh(hyp_rad);
+FUNC_END
+#   FFFFFFFFFFunction -------------------------------------- gd #
+FUNC DBL gd(DBL hyp_rad):
+   # convert HYP_RAD into CIRC_RAD
+   #        xx     1
+   # INTEGRATE  ------- dt
+   #         0  COSH(t)
+   #    SIN(GD(X)) = TANH(X)
+   #    TAN(GD(X)) = SINH(X)
+   #    COS(GD(X)) = 1 / COSH(X)
+   RETURN 2.0 * ATAN2(EXP(hyp_rad), 1.0) - Kw.PI / 2.0;
+FUNC_END
+#   FFFFFFFFFFunction ----------------------------------- gdinv #
+FUNC DBL gdinv(DBL xx):
+   # Inverse Gudermannian function
+   #        xx    1
+   # INTEGRATE  ------ dt
+   #         0  COS(t)
+   DBL xxn;
+   xxn = Kw.fmods(xx, Kw.PI);
+   RETURN LN(ABS((1.0 + SIN(xxn)) / COS(xxn)));
 FUNC_END
 #   Inverse-hyperbolic-trig-functions --- ----- ----- ----- -----
 #   FFFFFFFFFFunction --------------------------------- sinhinv #
@@ -3238,9 +3282,9 @@ FUNC DBL atan2u(DBL xx
 FUNC_END
 #   Trig-functions-in-degrees ----- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction ------------------------------------ sind #
-FUNC DBL sind(DBL xx):
-   # The SINE of the angle given in Degrees
-   RETURN SIN(deg2rad(xx));
+FUNC DBL sind(DBL circ_deg):
+   # The SINE of the angle given in CIRC_Degrees
+   RETURN SIN(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sindinv #
 FUNC DBL sindinv(DBL xx):
@@ -3248,9 +3292,9 @@ FUNC DBL sindinv(DBL xx):
    RETURN rad2deg(sininv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cosd #
-FUNC DBL cosd(DBL xx):
-   # The COSINE of the angle given in Degrees
-   RETURN COS(deg2rad(xx));
+FUNC DBL cosd(DBL circ_deg):
+   # The COSINE of the angle given in CIRC_Degrees
+   RETURN COS(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- cosdinv #
 FUNC DBL cosdinv(DBL xx):
@@ -3258,9 +3302,9 @@ FUNC DBL cosdinv(DBL xx):
    RETURN rad2deg(cosinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ tand #
-FUNC DBL tand(DBL xx):
-   # The TANGENT of the angle given in Degrees
-   RETURN TAN(deg2rad(xx));
+FUNC DBL tand(DBL circ_deg):
+   # The TANGENT of the angle given in CIRC_Degrees
+   RETURN TAN(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- tandinv #
 FUNC DBL tandinv(DBL xx):
@@ -3268,9 +3312,9 @@ FUNC DBL tandinv(DBL xx):
    RETURN rad2deg(taninv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cotd #
-FUNC DBL cotd(DBL xx):
-   # The COTANGENT of the angle given in Degrees
-   RETURN cot(deg2rad(xx));
+FUNC DBL cotd(DBL circ_deg):
+   # The COTANGENT of the angle given in CIRC_Degrees
+   RETURN cot(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- cotdinv #
 FUNC DBL cotdinv(DBL xx):
@@ -3278,9 +3322,9 @@ FUNC DBL cotdinv(DBL xx):
    RETURN rad2deg(cotinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ secd #
-FUNC DBL secd(DBL xx):
-   # The SECANT of the angle given in Degrees
-   RETURN sec(deg2rad(xx));
+FUNC DBL secd(DBL circ_deg):
+   # The SECANT of the angle given in CIRC_Degrees
+   RETURN sec(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- secdinv #
 FUNC DBL secdinv(DBL xx):
@@ -3288,9 +3332,9 @@ FUNC DBL secdinv(DBL xx):
    RETURN rad2deg(secinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cscd #
-FUNC DBL cscd(DBL xx):
-   # The COSECANT of the angle given in Degrees
-   RETURN csc(deg2rad(xx));
+FUNC DBL cscd(DBL circ_deg):
+   # The COSECANT of the angle given in CIRC_Degrees
+   RETURN csc(deg2rad(circ_deg));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- cscdinv #
 FUNC DBL cscdinv(DBL xx):
@@ -3308,9 +3352,9 @@ FUNC_END
 #TEST:square(tand(30))==1/3.0;
 #   Trig-functions-in-turns   ----- ----- ----- ----- ----- -----
 #   FFFFFFFFFFunction ------------------------------------ sint #
-FUNC DBL sint(DBL xx):
-   # The SINE of the angle given in Turns
-   RETURN SIN(tur2rad(xx));
+FUNC DBL sint(DBL circ_tur):
+   # The SINE of the angle given in CIRC_Turns
+   RETURN SIN(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sintinv #
 FUNC DBL sintinv(DBL xx):
@@ -3318,9 +3362,9 @@ FUNC DBL sintinv(DBL xx):
    RETURN rad2tur(sininv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cost #
-FUNC DBL cost(DBL xx):
-   # The COSINE of the angle given in Turns
-   RETURN COS(tur2rad(xx));
+FUNC DBL cost(DBL circ_tur):
+   # The COSINE of the angle given in CIRC_Turns
+   RETURN COS(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- costinv #
 FUNC DBL costinv(DBL xx):
@@ -3328,9 +3372,9 @@ FUNC DBL costinv(DBL xx):
    RETURN rad2tur(cosinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ tant #
-FUNC DBL tant(DBL xx):
-   # The TANGENT of the angle given in Turns
-   RETURN TAN(tur2rad(xx));
+FUNC DBL tant(DBL circ_tur):
+   # The TANGENT of the angle given in CIRC_Turns
+   RETURN TAN(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- tantinv #
 FUNC DBL tantinv(DBL xx):
@@ -3338,9 +3382,9 @@ FUNC DBL tantinv(DBL xx):
    RETURN rad2tur(taninv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ cott #
-FUNC DBL cott(DBL xx):
-   # The COTANGENT of the angle given in Turns
-   RETURN cot(tur2rad(xx));
+FUNC DBL cott(DBL circ_tur):
+   # The COTANGENT of the angle given in CIRC_Turns
+   RETURN cot(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- cottinv #
 FUNC DBL cottinv(DBL xx):
@@ -3348,9 +3392,9 @@ FUNC DBL cottinv(DBL xx):
    RETURN rad2tur(cotinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ sect #
-FUNC DBL sect(DBL xx):
-   # The SECANT of the angle given in Turns
-   RETURN sec(tur2rad(xx));
+FUNC DBL sect(DBL circ_tur):
+   # The SECANT of the angle given in CIRC_Turns
+   RETURN sec(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sectinv #
 FUNC DBL sectinv(DBL xx):
@@ -3358,9 +3402,9 @@ FUNC DBL sectinv(DBL xx):
    RETURN rad2tur(secinv(xx));
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ csct #
-FUNC DBL csct(DBL xx):
-   # The COSECANT of the angle given in Turns
-   RETURN csc(tur2rad(xx));
+FUNC DBL csct(DBL circ_tur):
+   # The COSECANT of the angle given in CIRC_Turns
+   RETURN csc(tur2rad(circ_tur));
 FUNC_END
 #   FFFFFFFFFFunction --------------------------------- csctinv #
 FUNC DBL csctinv(DBL xx):
@@ -3487,8 +3531,8 @@ FUNC DBL trip(DBL xx):
 FUNC_END
 BLOCK:# cube root
    #   FFFFFFFFFFunction --------------------- lf_cbrtx_gt_zero #
-   LOCAL_FUNC DBL lf_cbrtx_gt_zero(DBL xx):
-      # power of 2 closest to cuberoot of ABS(XX)
+   BLOCK_DEF FUNC DBL lf_cbrtx_gt_zero(DBL xx):
+         # power of 2 closest to cuberoot of ABS(XX)
       # only call this with a positive 0 argument
       # if XX in[27/64,64/27) then
       #    ZZ in[1,8) and YY == 1
@@ -3564,7 +3608,7 @@ FUNC DBL squareroot(DBL xx):
 FUNC_END
 BLOCK:# continued fraction
    #   FFFFFFFFFFunction ---------------- lf_continued_fraction #
-   LOCAL_FUNC INT lf_continued_fraction(DBL orig
+   BLOCK_DEF FUNC INT lf_continued_fraction(DBL orig
          , INT show_diff):
       INT whole;
       DBL xx;
@@ -3895,6 +3939,7 @@ FUNC INT print_base_outf(DBL num
 FUNC_END
 #   IIIIIIIIIInsert-Begin -------------------------- hyper.fwip #
 #    COPYRIGHT C 2016-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  hyper:comment cleanup
 # 2020-04-12 kdw  hyper:comment change
 # 2020-03-03 kdw  hyper:comment changed:odd chars
 # 2020-03-02 kdw  hyper:s/_N[E]XT/_E[N]D/
@@ -3905,7 +3950,7 @@ FUNC_END
 # 2019-08-11 kdw  hyper:comment change
 # 2019-08-06 kdw  hyper:rmed backslashes, macro arg renam
 # 2019-05-29 kdw  hyper:comment changed
-# 2019-05-22 kdw  hyper:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  hyper:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-08 kdw  hyper:is[e]qual to is[e]q, et al.
 # 2019-03-06 kdw  hyper:is.* funcs changed
 # 2019-01-13 kdw  hyper:comment changed; varname change
@@ -3976,6 +4021,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- hyper.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------ lambert.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  lambert:block syntax
+# 2020-07-24 kdw  lambert:comment cleanup
 # 2020-05-14 kdw  lambert:local funcs only in blocks
 # 2020-05-13 kdw  lambert:comment trivially changed
 # 2020-05-11 kdw  lambert:local-func syntax changed
@@ -3997,7 +4044,7 @@ FUNC_END
 # 2019-08-06 kdw  lambert:array format issues
 # 2019-05-29 kdw  lambert:comment changed
 # 2019-05-24 kdw  lambert:local replaced private
-# 2019-05-22 kdw  lambert:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  lambert:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-16 kdw  lambert:loop limit def mved
 # 2019-05-01 kdw  lambert:consts explicit module name
 # 2019-03-19 kdw  lambert:re[t]_val to re[t]valu
@@ -4063,9 +4110,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ----------------------
    #lf_lambert_iter #
-   LOCAL_FUNC DBL lf_lambert_iter(DBL xx
-         , DBL nearw_zero):
-      ## Lamberts W0(x) function, defined by x=y*exp(y)
+   BLOCK_DEF FUNC DBL lf_lambert_iter(DBL xx, DBL nearw_zero):#
+      ## Lamberts W0(x) function defined by x=y*exp(y)
       INT ii;
       DBL eww;
       DBL tnn;
@@ -4446,6 +4492,11 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- integral.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- number.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-02 kdw  number:var renam g?d
+# 2020-07-29 kdw  number:block-def work
+# 2020-07-27 kdw  number:block syntax
+# 2020-07-25 kdw  number:s/BITWISE/BIT/
+# 2020-07-24 kdw  number:s/LO[C]AL_/BL[O]CK_/
 # 2020-07-10 kdw  number:prim[e]nth__1 func
 # 2020-07-08 kdw  number:practical number check
 # 2020-07-02 kdw  number:test modified
@@ -4719,7 +4770,7 @@ FUNC INT ctz(INT nn):
    #    or number of 2s in factorization of NN
    INT ii;
    ii = 0;
-   WHILE 0 == BITWISEAND(nn, 1):
+   WHILE 0 == BITAND(nn, 1):
       ii += 1;
       nn = BITSHIFTR(nn, 1);
    WHILE_END
@@ -5096,14 +5147,15 @@ FUNC INT primenext(INT pp):
 FUNC_END
 #TEST:primenext(24)-29;
 BLOCK:# Prime count
-   LOCAL_INT lv_pcf_end = 0;
-   LOCAL_DBL lv_pcf_arr[0];
-   #   FFFFFFFFFFunction --------------------------- primecount #
+   BLOCK_DEF INT lv_pcf_end = 0;
+   BLOCK_DEF DBL lv_pcf_arr[0];
+         #   FFFFFFFFFFunction ---------------------------
+      #primecount #
    FUNC INT primecount(DBL xx):
       # Prime Counting Function == number of primes <= XX
       # using memoization
-      LOCAL_USE lv_pcf_arr[];
-      LOCAL_USE lv_pcf_end;
+      BLOCK_USE lv_pcf_arr[];
+      BLOCK_USE lv_pcf_end;
       INT retvalu;
       INT poss_prime;
       INT s_ind;
@@ -5731,16 +5783,17 @@ FUNC INT dlog1(INT aa
    RETURN dlog(aa, 1, nn);
 FUNC_END
 BLOCK:# Mertens function
-   LOCAL_INT lv_mertens_end = 0;
-   LOCAL_INT lv_mertens_arr[0];
-   #   FFFFFFFFFFunction ------------------------------ mertens #
+   BLOCK_DEF INT lv_mertens_end = 0;
+   BLOCK_DEF INT lv_mertens_arr[0];
+         #   FFFFFFFFFFunction ------------------------------
+      #mertens #
    FUNC INT mertens(INT nn):
       # sum of mobius function from 0 to NN
       # I.E. count of square-free integers up to NN
       #    that have an even number of prime factors,
       #    minus count of those that have an odd number
-      LOCAL_USE lv_mertens_arr[];
-      LOCAL_USE lv_mertens_end;
+      BLOCK_USE lv_mertens_arr[];
+      BLOCK_USE lv_mertens_end;
       INT retvalu;
       INT kk;
       IF nn < 0:
@@ -5994,8 +6047,7 @@ FUNC INT prime0_f(INT nf
    RETURN retvalu;
 FUNC_END
 BLOCK:# Prime factors
-   LOCAL_CONST LC_MAX_FACTORS 65;
-   # 1
+   BLOCK_DEF CONST LC_MAX_FACTORS 65;# 1
    #   FFFFFFFFFFunction ------------------------- print_factor #
    FUNC INT print_factor(INT nn):
       # Print out all prime factors of number NN
@@ -6330,11 +6382,11 @@ BLOCK_END
 FUNC INT repetendlen(INT denm
       , INT basee):
    # return the repetend length of 1 / DENM in base BASEE
-   INT gd;
+   INT gdn;
    INT retvalu;
-   AWAIT 1 == gd:
-      gd = gcd(denm, basee);
-      denm /= gd;
+   AWAIT 1 == gdn:
+      gdn = gcd(denm, basee);
+      denm /= gdn;
    AWAIT_END
    IF denm == 1:
       retvalu = 0;
@@ -6421,12 +6473,12 @@ FUNC INT bkbn(INT bb
    RETURN znorder(bb, mdls);
 FUNC_END
 BLOCK:# Li, Lix variables
-   LOCAL_DBL lv_li_two = 0;
-   #   FFFFFFFFFFunction ---------------------------------- lix #
+   BLOCK_DEF DBL lv_li_two = 0;
+         #   FFFFFFFFFFunction
+      #---------------------------------- lix #
    FUNC DBL lix(DBL xx):
       # logintegral(XX) - logintegral(2)
-      LOCAL_USE lv_li_two;
-      # if LV_LI_TWO is not defd, def it
+      BLOCK_USE lv_li_two;# if LV_LI_TWO is not defd, def it
       IF lv_li_two <= 0:
          lv_li_two = Kw.logintegral(2.0);
       IF_END
@@ -6605,6 +6657,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- number.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- bessel.fwip #
 #    COPYRIGHT C 2017-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  bessel:block syntax
+# 2020-07-24 kdw  bessel:comment cleanup
 # 2020-07-12 kdw  bessel:sqrttwo const
 # 2020-07-10 kdw  bessel:polynomial refactor
 # 2020-07-01 kdw  bessel:tests modified
@@ -6646,7 +6700,7 @@ FUNC_END
 # 2019-08-11 kdw  bessel:comment cleanup
 # 2019-08-06 kdw  bessel:rmed backslashes, macro arg renam
 # 2019-05-29 kdw  bessel:comment changed
-# 2019-05-22 kdw  bessel:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  bessel:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-01 kdw  bessel:consts explicit module name
 # 2019-04-09 kdw  bessel:comment improvement
 # 2019-03-19 kdw  bessel:re[t]_val to re[t]valu
@@ -7042,8 +7096,7 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ---------------------
    #lf_besucjy0_xge5 #
-   LOCAL_FUNC DBL lf_besucjy0_xge5(DBL xx
-         , INT jfunc):
+   BLOCK_DEF FUNC DBL lf_besucjy0_xge5(DBL xx, INT jfunc):
       DBL ww;
       DBL pp;
       DBL qq;
@@ -7094,8 +7147,7 @@ BLOCK:
       RETURN pp * Kw.SQRTTWO / SQRT(Kw.PI * xx);
    FUNC_END
    #   FFFFFFFFFFunction --------------------- lf_besucjy1_xge5 #
-   LOCAL_FUNC DBL lf_besucjy1_xge5(DBL xx
-         , INT jfunc):
+   BLOCK_DEF FUNC DBL lf_besucjy1_xge5(DBL xx, INT jfunc):
       DBL ww;
       DBL pp;
       DBL qq;
@@ -7295,11 +7347,8 @@ BLOCK:
 BLOCK_END
 BLOCK:# define bessel ucrecur
    #   FFFFFFFFFFunction ---------------------- lf_bess_ucrecur #
-   LOCAL_FUNC DBL lf_bess_ucrecur(INT nn
-         , DBL xx
-         , DBL fzero
-         , DBL fone):
-      # Let Zn be any of bessYn, bessJn
+   BLOCK_DEF FUNC DBL lf_bess_ucrecur(INT nn, DBL xx, DBL fzero
+         , DBL fone):# Let Zn be either bessYn or bessJn
       # Zn(NN+1, XX) = 2*NN*Zn(NN, XX) / XX - Zn(NN-1, XX)
       DBL av;
       DBL bv;
@@ -7323,12 +7372,11 @@ BLOCK:# define bessel ucrecur
       RETURN cv;
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ lf_limi #
-   LOCAL_FUNC INT lf_limi(INT nn):
+   BLOCK_DEF FUNC INT lf_limi(INT nn):
       RETURN nn + FLOOR(SQRT(40.0 * nn));
    FUNC_END
    #   FFFFFFFFFFunction --------------------- lf_bess_ucrecur2 #
-   LOCAL_FUNC DBL lf_bess_ucrecur2(INT nn
-         , DBL xx):
+   BLOCK_DEF FUNC DBL lf_bess_ucrecur2(INT nn, DBL xx):
       DBL tox;
       DBL bzp;
       DBL bzc;
@@ -7540,11 +7588,8 @@ FUNC DBL bessY1__1(DBL xx):
 FUNC_END
 BLOCK:# define bessel lcrecur
    #   FFFFFFFFFFunction ---------------------- lf_bess_lcrecur #
-   LOCAL_FUNC DBL lf_bess_lcrecur(INT nn
-         , DBL xx
-         , DBL fzero
-         , DBL fone):
-      # Let zn be any of bess_jn, bess_yn
+   BLOCK_DEF FUNC DBL lf_bess_lcrecur(INT nn, DBL xx, DBL fzero
+         , DBL fone):# Let zn be either bess_jn or bess_yn
       # jn(NN+1, XX) = (2*NN+1) * jn(NN, XX) / XX  - jn(NN-1, XX)
       DBL av;
       DBL bv;
@@ -7651,6 +7696,8 @@ BLOCK_END# define bessel lcrecur
 #   IIIIIIIIIInsert-End --------------------------- bessel.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------- partition.fwip #
 #    COPYRIGHT C 2017-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  partition:block syntax
+# 2020-07-24 kdw  partition:comment cleanup
 # 2020-06-22 kdw  partition:local-use mved before var decls
 # 2020-06-03 kdw  partition:writeonly keyword
 # 2020-05-11 kdw  partition:local-decl syntx change
@@ -7666,7 +7713,7 @@ BLOCK_END# define bessel lcrecur
 # 2019-08-06 kdw  partition:rmed backslashes, macro arg renam
 # 2019-05-28 kdw  partition:comment changed
 # 2019-05-24 kdw  partition:local replaced private
-# 2019-05-22 kdw  partition:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  partition:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  partition:re[t]_val to re[t]valu
 # 2018-05-14 kdw  partition:BLO?CK syntax change
 # 2018-04-26 kdw  partition:comment change
@@ -7678,9 +7725,10 @@ BLOCK_END# define bessel lcrecur
 # 2017-04-30 kdw  partition:func to function
 # 2017-04-11 kdw  partition:created
 BLOCK:# partition function
-   LOCAL_DBL lv_partitionr_arr[0];
-   LOCAL_INT lv_partitionr_end = 0;
-   #   FFFFFFFFFFunction ---------------------------- partition #
+   BLOCK_DEF DBL lv_partitionr_arr[0];
+   BLOCK_DEF INT lv_partitionr_end = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #partition #
    FUNC DBL partition(INT nn):
       # number of partitions of NN
       # E.g. partition(5) = 7 since 5 ==
@@ -7696,8 +7744,8 @@ BLOCK:# partition function
       # where 1,5,12,22,35 comes from(3*kk*kk-kk) / 2
       #       1, 2, 5, 7, 12, 15, 22, 26, 35, 40, 51, 57
       #        +1 +3 +2 +5  +3  +7  +4  +9  +5  +11 +6
-      LOCAL_USE lv_partitionr_arr[];
-      LOCAL_USE lv_partitionr_end;
+      BLOCK_USE lv_partitionr_arr[];
+      BLOCK_USE lv_partitionr_end;
       DBL retvalu;
       INT jj;
       INT mm;
@@ -7748,9 +7796,10 @@ BLOCK:# partition function
 BLOCK_END# partition function
 #TEST:partition(30)-5604
 BLOCK:# partitionq function
-   LOCAL_DBL lv_partitionq_arr[0];
-   LOCAL_INT lv_partitionq_end = 0;
-   #   FFFFFFFFFFunction --------------------------- partitionq #
+   BLOCK_DEF DBL lv_partitionq_arr[0];
+   BLOCK_DEF INT lv_partitionq_end = 0;
+         #   FFFFFFFFFFunction ---------------------------
+      #partitionq #
    FUNC DBL partitionq(INT nn):
       # number of partitions of NN into distinct parts
       # == number of partitions of NN into odd parts
@@ -7760,8 +7809,8 @@ BLOCK:# partitionq function
       #    and one can partition 8 into odd parts 6 ways:
       #       1+1+1+1+1+1+1+1, 1+1+1+1+1+3,
       #       1+1+3+3, 1+1+1+5, 1+7, 3+5
-      LOCAL_USE lv_partitionq_arr[];
-      LOCAL_USE lv_partitionq_end;
+      BLOCK_USE lv_partitionq_arr[];
+      BLOCK_USE lv_partitionq_end;
       DBL retvalu;
       INT jj;
       INT mm;
@@ -7824,6 +7873,8 @@ BLOCK_END# partitionq function
 #   IIIIIIIIIInsert-End ------------------------ partition.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- bits.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-25 kdw  bits:s/BITWISE/BIT/
+# 2020-07-24 kdw  bits:comment cleanup
 # 2020-06-17 kdw  bits:Modulo operator
 # 2020-05-18 kdw  bits:while conditios redo
 # 2020-05-13 kdw  bits:lang_.* vars
@@ -7848,7 +7899,7 @@ BLOCK_END# partitionq function
 # 2019-08-06 kdw  bits:rmed backshlashes, macro arg renam
 # 2019-07-31 kdw  bits:bit to bitwise func nams
 # 2019-06-02 kdw  bits:func desc added
-# 2019-05-22 kdw  bits:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  bits:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  bits:re[t]_val to re[t]valu
 # 2019-03-08 kdw  bits:rmed ampersand
 # 2018-06-09 kdw  bits:mved tests
@@ -7910,7 +7961,7 @@ LANGUAGE_NOT LANG_BC:# define bitwise functions
       # bitwise logical Not of XX
       INT retvalu;
       MODE_INTEGER:
-         retvalu = BITWISENOT(xx);
+         retvalu = BITNOT(xx);
       MODE_INTEGER_END
       RETURN retvalu;
    FUNC_END
@@ -7920,7 +7971,7 @@ LANGUAGE_NOT LANG_BC:# define bitwise functions
       # bitwise logical And of XX and YY
       INT retvalu;
       MODE_INTEGER:
-         retvalu = BITWISEAND(xx, yy);
+         retvalu = BITAND(xx, yy);
       MODE_INTEGER_END
       RETURN retvalu;
    FUNC_END
@@ -7930,7 +7981,7 @@ LANGUAGE_NOT LANG_BC:# define bitwise functions
       # bitwise logical Or of XX and YY
       INT retvalu;
       MODE_INTEGER:
-         retvalu = BITWISEOR(xx, yy);
+         retvalu = BITOR(xx, yy);
       MODE_INTEGER_END
       RETURN retvalu;
    FUNC_END
@@ -7940,7 +7991,7 @@ LANGUAGE_NOT LANG_BC:# define bitwise functions
       # bitwise logical Xor of XX and YY
       INT retvalu;
       MODE_INTEGER:
-         retvalu = BITWISEXOR(xx, yy);
+         retvalu = BITXOR(xx, yy);
       MODE_INTEGER_END
       RETURN retvalu;
    FUNC_END
@@ -8151,7 +8202,7 @@ FUNC INT bits_ls1b(INT orig):
       retvalu = 0;
    ELSE:
       divisor = 1;
-      WHILE 0 == BITWISEAND(divisor, orig):
+      WHILE 0 == BITAND(divisor, orig):
          divisor *= 2;
       WHILE_END
       retvalu = divisor;
@@ -8169,7 +8220,7 @@ FUNC INT bits_ms1b(INT orig):
       retvalu = 0;
    ELSE:
       divisor = -2;
-      WHILE 0 <> BITWISEAND(divisor, orig):
+      WHILE 0 <> BITAND(divisor, orig):
          divisor *= 2;
       WHILE_END
       retvalu = -divisor / 2;
@@ -8188,7 +8239,7 @@ FUNC INT bits_ls1bpos(INT orig):
    ELSE:
       divisor = 1;
       bit_count = 0;
-      WHILE 0 == BITWISEAND(divisor, orig):
+      WHILE 0 == BITAND(divisor, orig):
          divisor *= 2;
          bit_count += 1;
       WHILE_END
@@ -8210,7 +8261,7 @@ FUNC INT bits_ms1bpos(INT orig):
    ELSE:
       divisor = -2;
       bit_count = 0;
-      WHILE 0 <> BITWISEAND(divisor, orig):
+      WHILE 0 <> BITAND(divisor, orig):
          divisor *= 2;
          bit_count += 1;
       WHILE_END
@@ -8232,10 +8283,10 @@ FUNC INT bits_assign(INT orig
    ELSE:
       divisor = bits_ls1bpos(which_mask);
       # first, clear target bits in ORIG:
-      tempo = BITWISEAND(orig, BITWISENOT(which_mask));
+      tempo = BITAND(orig, BITNOT(which_mask));
       # second, set the appropriate bit s in TEMPV
       tempv = BITSHIFTL(value_to_set, divisor);
-      retvalu = BITWISEOR(tempo, BITWISEAND(tempv, which_mask));
+      retvalu = BITOR(tempo, BITAND(tempv, which_mask));
    IF_END
    RETURN retvalu;
 FUNC_END
@@ -8244,19 +8295,21 @@ FUNC_END
 FUNC INT bits_get(INT vall
       , INT mask):
    # value of VALL And MASK right justified
-   RETURN BITWISEAND(vall, mask) / bits_ls1b(mask);
+   RETURN BITAND(vall, mask) / bits_ls1b(mask);
 FUNC_END
 #TEST:bits_get(436940,992)-22;
 #   FFFFFFFFFFunction -------------------------------- bits_set #
 FUNC INT bits_set(INT vall
       , INT mask):
    # value of VALL shifted left into MASK
-   RETURN BITWISEAND(vall * bits_ls1b(mask), mask);
+   RETURN BITAND(vall * bits_ls1b(mask), mask);
 FUNC_END
 #TEST:bits_set(5,112)-80;
 #   IIIIIIIIIInsert-End ----------------------------- bits.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- erf.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  erf:block syntax
+# 2020-07-24 kdw  erf:comment cleanup
 # 2020-07-20 kdw  erf:erf__3 tweak
 # 2020-07-16 kdw  erf:erf_[_]4 work
 # 2020-07-15 kdw  erf:erf__[34] work
@@ -8292,7 +8345,7 @@ FUNC_END
 # 2019-07-03 kdw  erf:rmed commented out code
 # 2019-05-29 kdw  erf:comment changed
 # 2019-05-24 kdw  erf:local replaced private
-# 2019-05-22 kdw  erf:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  erf:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-16 kdw  erf:loop limit def mved
 # 2019-05-01 kdw  erf:consts explicit module name
 # 2019-03-19 kdw  erf:re[t]_val to re[t]valu
@@ -8369,9 +8422,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ----------------------------
    #lf_calerf #
-   LOCAL_FUNC DBL lf_calerf(DBL xx
-         , INT jint):
-      # Internal support function for erf functions.
+   BLOCK_DEF FUNC DBL lf_calerf(DBL xx, INT jint):
+         # Support function for erf funcs.
       # This routine was cannibalized from code written
       # by Peter John Acklam(email pjacklamonline.no),
       # and retrieved from http://cpansearch.perl.org/src/REID
@@ -8772,6 +8824,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ erf.fwip #
 #   IIIIIIIIIInsert-Begin -------------------------- gamma.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-03 kdw  gamma:explicit module for pi and tau
+# 2020-07-27 kdw  gamma:block syntax
+# 2020-07-24 kdw  gamma:comment cleanup
 # 2020-07-10 kdw  gamma:stirling tgamma work
 # 2020-06-17 kdw  gamma:Modulo operator
 # 2020-06-12 kdw  gamma:regularized ul-gamma function work
@@ -8810,7 +8865,7 @@ FUNC_END
 # 2019-05-31 kdw  gamma:NR_DO to RAPHSON_LOOP; et al
 # 2019-05-29 kdw  gamma:comment changed
 # 2019-05-24 kdw  gamma:local replaced private
-# 2019-05-22 kdw  gamma:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  gamma:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-16 kdw  gamma:loop limit def mved
 # 2019-05-01 kdw  gamma:consts explicit module name
 # 2019-03-19 kdw  gamma:re[t]_val to re[t]valu
@@ -9013,8 +9068,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction --------------------
    #lf_lgamma_gt_zero #
-   LOCAL_FUNC DBL lf_lgamma_gt_zero(DBL xx):
-      # compute LN(TGAMMA(XX))
+   BLOCK_DEF FUNC DBL lf_lgamma_gt_zero(DBL xx):
+         # compute LN(TGAMMA(XX))
       DBL retvalu;
       DBL zz;
       DBL pp;
@@ -9059,7 +9114,7 @@ BLOCK:
             retvalu = LN(zz) + xx * numer / denom;
          IF_END
       ELSE:
-         uu = (xx - 0.5) * LN(xx) - xx + LN(SQRT(TAU));
+         uu = (xx - 0.5) * LN(xx) - xx + LN(SQRT(Kw.TAU));
          IF 1E+8 < xx:
             retvalu = uu;
          ELSE:
@@ -9102,10 +9157,9 @@ BLOCK_END
 BLOCK:
       #   FFFFFFFFFFunction -------------------------
    #lf_eval_cont #
-   LOCAL_FUNC DBL lf_eval_cont(DBL xx
-         , INT deg
+   BLOCK_DEF FUNC DBL lf_eval_cont(DBL xx, INT deg
          , READONLY DBL coeff_arr_pc[]):
-      # evaluate XX+C0/(XX+C1/(XX+C2/...+CN/XX)..)
+         # evaluate XX+C0/(XX+C1/(XX+C2/...+CN/XX)..)
       DBL sum;
       INT ii;
       sum = xx;
@@ -9304,9 +9358,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction -----------------------
    #lf_gamma_shift #
-   LOCAL_FUNC DBL lf_gamma_shift(DBL xx
-         , DBL yy):
-      # use this property of gamma function
+   BLOCK_DEF FUNC DBL lf_gamma_shift(DBL xx, DBL yy):
+         # use this property of gamma function
       # to calculate values outside of[1,2)
       #    tgamma_2(x + 1) = x * tgamma_2(x);
       DBL prod;
@@ -9329,8 +9382,8 @@ BLOCK:
       RETURN prod;
    FUNC_END
    #   FFFFFFFFFFunction -------------------- lf_tgamma_gt_half #
-   LOCAL_FUNC DBL lf_tgamma_gt_half(DBL xx):
-      # compute GAMMA(XX) for 0.5 < XX
+   BLOCK_DEF FUNC DBL lf_tgamma_gt_half(DBL xx):
+         # compute GAMMA(XX) for 0.5 < XX
       # https://rosettacode.org/wiki/Gamma_function
       INT ii;
       DBL sum;
@@ -9436,9 +9489,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction --------------------
    #lf_ligamma_xxleaa #
-   LOCAL_FUNC DBL lf_ligamma_xxleaa(DBL aa
-         , DBL xx):
-      # Lower Incomplete Gamma function
+   BLOCK_DEF FUNC DBL lf_ligamma_xxleaa(DBL aa, DBL xx):
+         # Lower Incomplete Gamma function
       # useful if XX <= MAX(1.1, AA)
       # ONLY CALL THIS WITH 0.0 < XX
       INT kk;
@@ -9458,9 +9510,8 @@ BLOCK:
       RETURN sum_curr;
    FUNC_END
    #   FFFFFFFFFFunction -------------------- lf_uigamma_aalexx #
-   LOCAL_FUNC DBL lf_uigamma_aalexx(DBL aa
-         , DBL xx):
-      # Upper Incomplete Gamma function
+   BLOCK_DEF FUNC DBL lf_uigamma_aalexx(DBL aa, DBL xx):
+         # Upper Incomplete Gamma function
       # useful if MAX(1.1, AA) <= XX
       # ONLY CALL THIS WITH 0.75 < XX
       INT jj;
@@ -9847,9 +9898,8 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction -------------------
    #lf_digamma_gt_zero #
-   LOCAL_FUNC DBL lf_digamma_gt_zero(DBL xx):
-      # derivative of LN(TGAMMA(XX))
-      #   FOR ONLY POSITIVE ARGUMENTS XX
+   BLOCK_DEF FUNC DBL lf_digamma_gt_zero(DBL xx):
+         # derivative of LN(TGAMMA(XX)) for 0 < XX ONLY
       DBL rec_xx_sqr;
       DBL shift;
       DBL sxx;
@@ -9930,7 +9980,7 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ----------------
    #lf_digamma_gt_zero__1 #
-   LOCAL_FUNC DBL lf_digamma_gt_zero__1(DBL xx):
+   BLOCK_DEF FUNC DBL lf_digamma_gt_zero__1(DBL xx):
       DBL gg;
       DBL aa_arr[10];
       DBL sxx;
@@ -10049,6 +10099,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- gamma.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- combin.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-02 kdw  combin:var renam g?d
+# 2020-07-27 kdw  combin:block syntax
+# 2020-07-24 kdw  combin:s/LO[C]AL_/BL[O]CK_/
 # 2020-07-12 kdw  combin:sqrttwo const
 # 2020-06-22 kdw  combin:local-use mved before var decls
 # 2020-06-19 kdw  combin:comments added
@@ -10205,14 +10258,15 @@ FUNC_END
 # 2015-09-21 kdw  combin:fixed int division problem in comb
 # 2015-09-20 kdw  combin:created
 BLOCK:# factorial
-   LOCAL_DBL lv_factorial_arr[0];
-   LOCAL_INT lv_factorial_end = 0;
-   #   FFFFFFFFFFunction ---------------------------- factorial #
+   BLOCK_DEF DBL lv_factorial_arr[0];
+   BLOCK_DEF INT lv_factorial_end = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #factorial #
    FUNC DBL factorial(INT nn):
       # factorial(NN) = 1*2*3*...*NN
       # EGF(factorial();x) = 1 / (1 - x)
-      LOCAL_USE lv_factorial_end;
-      LOCAL_USE lv_factorial_arr[];
+      BLOCK_USE lv_factorial_end;
+      BLOCK_USE lv_factorial_arr[];
       INT mm;
       DBL retvalu;
       IF nn < 0:
@@ -10246,17 +10300,18 @@ BLOCK:# factorial
    FUNC_END
 BLOCK_END#TEST:factorial(7)-5040;
 BLOCK:# factorialdouble
-   LOCAL_DBL lv_factorial_b_arr[0];
-   LOCAL_INT lv_factorial_b_end = 0;
-   #   FFFFFFFFFFunction ---------------------- factorialdouble #
+   BLOCK_DEF DBL lv_factorial_b_arr[0];
+   BLOCK_DEF INT lv_factorial_b_end = 0;
+         #   FFFFFFFFFFunction ----------------------
+      #factorialdouble #
    FUNC DBL factorialdouble(INT nn):
       # The double factorial
       # If NN = 2*kk then
       #    2**kk * factorial(kk) = 2*4*6*8...*NN
       # if NN = 2*kk-1 then
       #    factorial(2*kk) / (2**kk * factorial(kk)) = 1*3*...*NN
-      LOCAL_USE lv_factorial_b_end;
-      LOCAL_USE lv_factorial_b_arr[];
+      BLOCK_USE lv_factorial_b_end;
+      BLOCK_USE lv_factorial_b_arr[];
       DBL retvalu;
       INT mm;
       IF nn < 0:
@@ -10353,9 +10408,10 @@ FUNC DBL permutation(INT n_things
    RETURN Kw.perm(n_things, r_each);
 FUNC_END
 BLOCK:# Catalan numbers
-   LOCAL_DBL lv_catalan_arr[0];
-   LOCAL_INT lv_catalan_end = 0;
-   #   FFFFFFFFFFunction ------------------------------ catalan #
+   BLOCK_DEF DBL lv_catalan_arr[0];
+   BLOCK_DEF INT lv_catalan_end = 0;
+         #   FFFFFFFFFFunction ------------------------------
+      #catalan #
    FUNC DBL catalan(INT nn):
       # factorial(2 * NN) / (factorial(NN + 1) * factorial(NN))
       #   *) # of properly nested NN pairs of parenthesises
@@ -10364,8 +10420,8 @@ BLOCK:# Catalan numbers
       #   *) # of ways to tile a stairsep shape of height NN
       #            with NN rectangles
       # OGF(catalan();x) = (1 - SQRT(1 - 4 * x)) / (2 * x)
-      LOCAL_USE lv_catalan_end;
-      LOCAL_USE lv_catalan_arr[];
+      BLOCK_USE lv_catalan_end;
+      BLOCK_USE lv_catalan_arr[];
       INT kk;
       DBL retvalu;
       IF nn < 0:
@@ -10392,9 +10448,10 @@ BLOCK:# Catalan numbers
    FUNC_END
 BLOCK_END
 BLOCK:# Supercatalan numbers
-   LOCAL_DBL lv_supercatalan_arr[0];
-   LOCAL_INT lv_supercatalan_end = 0;
-   #   FFFFFFFFFFunction ------------------------- supercatalan #
+   BLOCK_DEF DBL lv_supercatalan_arr[0];
+   BLOCK_DEF INT lv_supercatalan_end = 0;
+         #   FFFFFFFFFFunction -------------------------
+      #supercatalan #
    FUNC DBL supercatalan(INT nn):
       # factorial(2 * NN) / (factorial(NN + 1) * factorial(NN))
       #   *) # of lattice paths with diagonal steps from
@@ -10408,8 +10465,8 @@ BLOCK:# Supercatalan numbers
       #        (abc)d(a(bc))d a(bcd) a(b(cd))
       #        ab(cd)
       #        Hence supercatalan(4) = 11
-      LOCAL_USE lv_supercatalan_end;
-      LOCAL_USE lv_supercatalan_arr[];
+      BLOCK_USE lv_supercatalan_end;
+      BLOCK_USE lv_supercatalan_arr[];
       INT kk;
       DBL retvalu;
       IF nn < 0:
@@ -10439,19 +10496,20 @@ BLOCK:# Supercatalan numbers
    FUNC_END
 BLOCK_END#TEST:supercatalan(10)-103049
 BLOCK:# Bell numbers
-   LOCAL_DBL lv_bell_arr[0];
-   LOCAL_DBL lv_bell_x_arr[0];
-   LOCAL_INT lv_bell_end = 0;
-   #   FFFFFFFFFFunction --------------------------------- bell #
+   BLOCK_DEF DBL lv_bell_arr[0];
+   BLOCK_DEF DBL lv_bell_x_arr[0];
+   BLOCK_DEF INT lv_bell_end = 0;
+         #   FFFFFFFFFFunction
+      #--------------------------------- bell #
    FUNC DBL bell(INT nn):
       # bell(NN) equals the number of
       #   1) possible rhyming schemes for NN lines.
       #   2) partitions of a set of NN elements
       #   3) ways NN distinct balls can be placed in NN boxes
       # EGF(bell();x) = EXP(EXP(x) - 1)
-      LOCAL_USE lv_bell_end;
-      LOCAL_USE lv_bell_arr[];
-      LOCAL_USE lv_bell_x_arr[];
+      BLOCK_USE lv_bell_end;
+      BLOCK_USE lv_bell_arr[];
+      BLOCK_USE lv_bell_x_arr[];
       INT jj;
       INT kk;
       DBL retvalu;
@@ -10870,17 +10928,18 @@ FUNC DBL binomialx(DBL xnn
          * Kw.tgamma(xnn + 1 - xkk));
 FUNC_END
 BLOCK:# binomial numbers
-   LOCAL_DBL lv_binom_arr[0];
-   LOCAL_INT lv_binom_end = 0;
-   LOCAL_INT lv_binom_max = 0;
-   #   FFFFFFFFFFunction ----------------------------- binomial #
+   BLOCK_DEF DBL lv_binom_arr[0];
+   BLOCK_DEF INT lv_binom_end = 0;
+   BLOCK_DEF INT lv_binom_max = 0;
+         #   FFFFFFFFFFunction -----------------------------
+      #binomial #
    FUNC INT binomial(INT nn
          , INT kk):
       # factorial(NN) / (factorial(KK) * factorial(NN - KK))
       #   == Binomial(NN - 1, KK - 1) + Binomial(NN - 1, KK)
-      LOCAL_USE lv_binom_arr[];
-      LOCAL_USE lv_binom_end;
-      LOCAL_USE lv_binom_max;
+      BLOCK_USE lv_binom_arr[];
+      BLOCK_USE lv_binom_end;
+      BLOCK_USE lv_binom_max;
       INT rz_ind;
       INT lz_ind;
       INT rr;
@@ -10926,10 +10985,11 @@ BLOCK_END# binomial numbers
 #TEST:binomial(9,4)-126;
 #TEST:binomial(10,4)-210;
 BLOCK:# eulerian numbers
-   LOCAL_DBL lv_euler_arr[0];
-   LOCAL_INT lv_euler_end = 0;
-   LOCAL_INT lv_euler_max = 0;
-   #   FFFFFFFFFFunction ----------------------------- eulerian #
+   BLOCK_DEF DBL lv_euler_arr[0];
+   BLOCK_DEF INT lv_euler_end = 0;
+   BLOCK_DEF INT lv_euler_max = 0;
+         #   FFFFFFFFFFunction -----------------------------
+      #eulerian #
    FUNC DBL eulerian(INT nn
          , INT mm):
       # EULERIAN(NN, MM) == # of permutations of 0,1,2,...NN-1
@@ -10948,9 +11008,9 @@ BLOCK:# eulerian numbers
       #    duu 1023,2013,3012
       # eulerian(4,3) == 1
       #    uuu 0123
-      LOCAL_USE lv_euler_arr[];
-      LOCAL_USE lv_euler_end;
-      LOCAL_USE lv_euler_max;
+      BLOCK_USE lv_euler_arr[];
+      BLOCK_USE lv_euler_end;
+      BLOCK_USE lv_euler_max;
       INT cr;
       INT rr;
       INT lz_ind;
@@ -11005,10 +11065,11 @@ BLOCK_END# eulerian numbers
 #TEST:eulerian(8,5)-4293;
 #TEST:eulerian(9,5)-88234;
 BLOCK:# Entringer numbers
-   LOCAL_DBL lv_entringer_arr[0];
-   LOCAL_INT lv_entringer_end = 0;
-   LOCAL_INT lv_entringer_max = 0;
-   #   FFFFFFFFFFunction ---------------------------- entringer #
+   BLOCK_DEF DBL lv_entringer_arr[0];
+   BLOCK_DEF INT lv_entringer_end = 0;
+   BLOCK_DEF INT lv_entringer_max = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #entringer #
    FUNC DBL entringer(INT nn
          , INT kk):
       # Entringer number
@@ -11019,9 +11080,9 @@ BLOCK:# Entringer numbers
       #      hence entringer(4,2) == 4
       # E.G. entringer(4,4): 42301 41203 41302 40312 40213
       #      hence entringer(4,4) == 5
-      LOCAL_USE lv_entringer_arr[];
-      LOCAL_USE lv_entringer_max;
-      LOCAL_USE lv_entringer_end;
+      BLOCK_USE lv_entringer_arr[];
+      BLOCK_USE lv_entringer_max;
+      BLOCK_USE lv_entringer_end;
       INT cz;
       INT inda;
       INT rr;
@@ -11129,10 +11190,11 @@ FUNC DBL ballots(DBL xmm
    RETURN retvalu;
 FUNC_END
 BLOCK:# Stirling numbers of the 1th kind
-   LOCAL_DBL lv_stir_a_arr[0];
-   LOCAL_INT lv_stir_a_end = 0;
-   LOCAL_INT lv_stir_a_max = 0;
-   #   FFFFFFFFFFunction ---------------------------- stirling1 #
+   BLOCK_DEF DBL lv_stir_a_arr[0];
+   BLOCK_DEF INT lv_stir_a_end = 0;
+   BLOCK_DEF INT lv_stir_a_max = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #stirling1 #
    FUNC DBL stirling1(INT nn
          , INT kk):
       # Stirling numbers of the 1th kind
@@ -11140,9 +11202,9 @@ BLOCK:# Stirling numbers of the 1th kind
       #    of NN objects with exactly KK cycles.
       # Let ff(x,n) == x(x-1)(x-2)(x-3)...(x-n+1).
       #    ff(x,n) = SUM k = 0 TO N OF stirling1(n,k) * x**k
-      LOCAL_USE lv_stir_a_arr[];
-      LOCAL_USE lv_stir_a_end;
-      LOCAL_USE lv_stir_a_max;
+      BLOCK_USE lv_stir_a_arr[];
+      BLOCK_USE lv_stir_a_end;
+      BLOCK_USE lv_stir_a_max;
       INT col_k;
       INT ul_ind;
       INT cz_ind;
@@ -11191,10 +11253,11 @@ BLOCK:# Stirling numbers of the 1th kind
    FUNC_END
 BLOCK_END#TEST:stirling1(9,6)+4536;
 BLOCK:# Stirling numbers of the 2th kind
-   LOCAL_DBL lv_stir_b_arr[0];
-   LOCAL_INT lv_stir_b_end = 0;
-   LOCAL_INT lv_stir_b_max = 0;
-   #   FFFFFFFFFFunction ---------------------------- stirling2 #
+   BLOCK_DEF DBL lv_stir_b_arr[0];
+   BLOCK_DEF INT lv_stir_b_end = 0;
+   BLOCK_DEF INT lv_stir_b_max = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #stirling2 #
    FUNC DBL stirling2(INT nn
          , INT kk):
       # Stirling numbers of the 2th kind
@@ -11204,9 +11267,9 @@ BLOCK:# Stirling numbers of the 2th kind
       #    x**n = SUM k = 0 TO NN OF stirling2(n,k) * ff(x,n)
       # E. G. for a poem of 4 lines, there are:
       # bell(N) = SUM[k = 0 to N](stirling2(N, k))
-      LOCAL_USE lv_stir_b_arr[];
-      LOCAL_USE lv_stir_b_end;
-      LOCAL_USE lv_stir_b_max;
+      BLOCK_USE lv_stir_b_arr[];
+      BLOCK_USE lv_stir_b_end;
+      BLOCK_USE lv_stir_b_max;
       INT col_k;
       INT ul_ind;
       INT cz_ind;
@@ -11255,17 +11318,18 @@ BLOCK:# Stirling numbers of the 2th kind
    FUNC_END
 BLOCK_END#TEST:stirling2(9,6)-2646;
 BLOCK:# Bernoullis numbers
-   LOCAL_DBL lv_bern_n_arr[0];
-   LOCAL_DBL lv_bern_d_arr[0];
-   LOCAL_INT lv_bern_end = 0;
-   #   FFFFFFFFFFunction ---------------------------- bernoulli #
+   BLOCK_DEF DBL lv_bern_n_arr[0];
+   BLOCK_DEF DBL lv_bern_d_arr[0];
+   BLOCK_DEF INT lv_bern_end = 0;
+         #   FFFFFFFFFFunction ----------------------------
+      #bernoulli #
    FUNC DBL bernoulli(INT nn):
       # the NNth Bernoulli number
       # if 1 < NN is odd, then bernoulli(NN) = 0
       # EGF(bernoulli();x) = x / (EXP(x) - 1)
-      LOCAL_USE lv_bern_n_arr[];
-      LOCAL_USE lv_bern_d_arr[];
-      LOCAL_USE lv_bern_end;
+      BLOCK_USE lv_bern_n_arr[];
+      BLOCK_USE lv_bern_d_arr[];
+      BLOCK_USE lv_bern_end;
       DBL retvalu;
       INT sz_ind;
       DBL coeff;
@@ -11273,7 +11337,7 @@ BLOCK:# Bernoullis numbers
       DBL sumd;
       INT jj;
       INT mm;
-      DBL gd;
+      DBL gdn;
       DBL nsumn;
       DBL nsumd;
       DBL xkk;
@@ -11312,18 +11376,18 @@ BLOCK:# Bernoullis numbers
                   nsumn = Kw.round(sumn * lv_bern_d_arr[jj]
                         + sumd * coeff * lv_bern_n_arr[jj]);
                   nsumd = Kw.round(sumd * lv_bern_d_arr[jj]);
-                  gd = gcd(nsumn, nsumd);
-                  sumn = nsumn / gd;
-                  sumd = nsumd / gd;
+                  gdn = gcd(nsumn, nsumd);
+                  sumn = nsumn / gdn;
+                  sumd = nsumd / gdn;
                   xkk = 2 * jj;
                   coeff *= (sz_ind - xkk + 1.0) / (xkk + 1.0);
                   coeff *= (sz_ind - xkk) / (xkk + 2.0);
                   coeff = Kw.round(coeff);
                FOR_END
                sumd *= (sz_ind + 1);
-               gd = Kw.gcd(sumn, sumd);
-               lv_bern_n_arr[mm] = -sumn / gd;
-               lv_bern_d_arr[mm] = sumd / gd;
+               gdn = Kw.gcd(sumn, sumd);
+               lv_bern_n_arr[mm] = -sumn / gdn;
+               lv_bern_d_arr[mm] = sumd / gdn;
                mm += 1;
             WHILE_END
          IF_END
@@ -11334,8 +11398,8 @@ BLOCK:# Bernoullis numbers
    #   FFFFFFFFFFunction --------------------------- bernoullin #
    FUNC INT bernoullin(INT nn):
       # the numerator of the NNth bernoulli number
-      LOCAL_USE lv_bern_n_arr[];
-      LOCAL_USE lv_bern_d_arr[];
+      BLOCK_USE lv_bern_n_arr[];
+      BLOCK_USE lv_bern_d_arr[];
       INT retvalu;
       IF nn == 1:
          # the first Bernoulli number is weird
@@ -11351,8 +11415,8 @@ BLOCK:# Bernoullis numbers
    #   FFFFFFFFFFunction --------------------------- bernoullid #
    FUNC INT bernoullid(INT nn):
       # the denominator of the NNth Bernoulli number
-      LOCAL_USE lv_bern_n_arr[];
-      LOCAL_USE lv_bern_d_arr[];
+      BLOCK_USE lv_bern_n_arr[];
+      BLOCK_USE lv_bern_d_arr[];
       INT retvalu;
       IF nn == 1:
          # the first Bernoulli number is weird
@@ -11466,6 +11530,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- combin.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- julian.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-29 kdw  julian:block-def work
+# 2020-07-27 kdw  julian:block syntax
+# 2020-07-24 kdw  julian:comment cleanup
 # 2020-06-29 kdw  julian:halaqim def local
 # 2020-06-22 kdw  julian:local-use mved before var decls
 # 2020-06-17 kdw  julian:modulo parens
@@ -11477,7 +11544,7 @@ FUNC_END
 # 2020-05-07 kdw  julian:more boolean variable work
 # 2020-05-06 kdw  julian:boolean variable work
 # 2020-04-28 kdw  julian:tweaks here and there
-# 2020-04-26 kdw  julian:BLOCK indentation work
+# 2020-04-26 kdw  julian:BL[O]CK indentation work
 # 2020-04-24 kdw  julian:sec[2]dhms
 # 2020-04-23 kdw  julian:const format change
 # 2020-04-17 kdw  julian:comments changed; minor rearrange
@@ -11923,24 +11990,25 @@ FUNC INT doomsday(INT g_year):
 FUNC_END
 #TEST:doomsday(2018)-3;
 BLOCK:# Julian specific defines
-   LOCAL_CONST LC_GD_YEAR 0;
-   LOCAL_CONST LC_GD_MONTH 1;
-   LOCAL_CONST LC_GD_DAY 2;
-   LOCAL_CONST LC_GD_HOUR 3;
-   LOCAL_CONST LC_GD_MIN 4;
-   LOCAL_CONST LC_GD_SEC 5;
-   LOCAL_CONST LC_GD_DOW 6;
-   LOCAL_CONST LC_GD_NUM 7;
-   LOCAL_CONST LC_GD_JD 8;
-   LOCAL_CONST LC_GD_COUNT 9;
-   LOCAL_DBL lv_ymdhms_arr[20];
-   #   FFFFFFFFFFunction ---------------------------- jd2ymdhms #
+   BLOCK_DEF CONST LC_GD_YEAR 0;
+   BLOCK_DEF CONST LC_GD_MONTH 1;
+   BLOCK_DEF CONST LC_GD_DAY 2;
+   BLOCK_DEF CONST LC_GD_HOUR 3;
+   BLOCK_DEF CONST LC_GD_MIN 4;
+   BLOCK_DEF CONST LC_GD_SEC 5;
+   BLOCK_DEF CONST LC_GD_DOW 6;
+   BLOCK_DEF CONST LC_GD_NUM 7;
+   BLOCK_DEF CONST LC_GD_JD 8;
+   BLOCK_DEF CONST LC_GD_COUNT 9;
+   BLOCK_DEF DBL lv_ymdhms_arr[20];
+         #   FFFFFFFFFFunction ----------------------------
+      #jd2ymdhms #
    FUNC DBL jd2ymdhms(DBL jjulid):
       # convert a julian date to a
       # year-mon-day-hour-min-sec array
       # use in conjunction with ymdhms_get()
       # returns a number YYYYMMDD.hhmmss
-      LOCAL_USE lv_ymdhms_arr[];
+      BLOCK_USE lv_ymdhms_arr[];
       INT jcent;
       INT bbdays;
       INT bdiff;
@@ -12020,7 +12088,7 @@ BLOCK:# Julian specific defines
       #    6    day-of-week
       #    7    YYYMMDD.hhmmss
       #    8    Julian day
-      LOCAL_USE lv_ymdhms_arr[];
+      BLOCK_USE lv_ymdhms_arr[];
       DBL retvalu;
       IF LC_GD_YEAR <= indexp AND indexp < LC_GD_COUNT:
          retvalu = lv_ymdhms_arr[indexp];
@@ -12034,7 +12102,7 @@ BLOCK:# Julian specific defines
       # given previously fillled
       # year-mon-day-hour-min-sec array
       # return the Julian day
-      LOCAL_USE lv_ymdhms_arr[];
+      BLOCK_USE lv_ymdhms_arr[];
       RETURN ymd2jd(lv_ymdhms_arr[LC_GD_YEAR]
             , lv_ymdhms_arr[LC_GD_MONTH]
             , lv_ymdhms_arr[LC_GD_DAY])
@@ -12166,8 +12234,13 @@ FUNC INT date_easter(INT g_year):
    RETURN ii - jj + 28;
 FUNC_END
 BLOCK:# Halaqim
-   LOCAL_CONST HQPHR 1080;#T
-   LOCAL_CONST HALAQIM Kw.HOUR / HQPHR;#T
+   BLOCK_DEF CONST HALAQIM_PER_HOUR 1080;#T
+   BLOCK_DEF CONST HALAQIM Kw.HOUR / HALAQIM_PER_HOUR;#T
+   #   BLOCK_DEF INT lv_hqphr = 2;
+   #   FFFFFFFFFFunction ----------------------------- lf_hqphr #
+   #   BLOCK_DEF FUNC INT lf_hqphr(NUL):
+   #      RETURN HALAQIM_PER_HOUR;
+   #   FUNC_END
    #   FFFFFFFFFFunction ------------------- date_rosh_hashanah #
    FUNC DBL date_rosh_hashanah(INT g_year):
       # which day of *September* is Rosh HaShanah in
@@ -12202,15 +12275,11 @@ BLOCK:# Halaqim
             day_of_september += 1;
             # Adu
          ELSIF doww == 1 AND 11 < aa AND 23269 <= parts:
-            # doww is a Monday
-            #   and year is a leap year
-            #   and the time is after 21:32:43.3333333
+            # Monday, leap year, and time after 21:32:43.3333333
             day_of_september += 1;
             # Batu Thakpad
          ELSIF doww == 2 AND 6 < aa AND 16404 <= parts:
-            # doww is a Tuesday
-            #   and year is a common year(?)
-            #   and time is after 15:11:20
+            # Tuesday, common year, and time after 15:11:20
             day_of_september += 2;
             # Gatarad
          IF_END
@@ -12236,10 +12305,11 @@ BLOCK:# Halaqim
                * (hebyear_mone % 19) + 1) / 19));
          # MOONMONTH = 29 * DAY + 12 * HOUR
             #+ 792.84046752 HALAQIM
-         halaqims_el = 204 + (793 * (months_el % HQPHR));
+         halaqims_el = 204 + (793
+               * (months_el % HALAQIM_PER_HOUR));
          hour_el = (5 + (12 * months_el) + 793
-               * FLOOR(months_el / HQPHR) + FLOOR(halaqims_el
-               / HQPHR));
+               * FLOOR(months_el / HALAQIM_PER_HOUR)
+               + FLOOR(halaqims_el / HALAQIM_PER_HOUR));
          days_left = 1 + 29 * months_el + FLOOR(hour_el
                / (Kw.DAY / Kw.HOUR));
          # 347996.25 = Julian day of the zeroth day of the
@@ -12247,7 +12317,7 @@ BLOCK:# Halaqim
          #    = Gregorian date -3760-09-06
          alt_days = days_left + 347996;
          alt_dow = (alt_days % Kw.iround(Kw.WEEK / Kw.DAY));
-         hq_left = (halaqims_el % HQPHR);
+         hq_left = (halaqims_el % HALAQIM_PER_HOUR);
       MODE_INTEGER_END
       hq_left += Kw.DAY * Kw.frac(hour_el * Kw.HOUR / Kw.DAY)
             / Kw.HALAQIM;
@@ -13183,6 +13253,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- mean.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- random.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  random:block syntax
+# 2020-07-25 kdw  random:s/BITWISE/BIT/
+# 2020-07-24 kdw  random:comment cleanup
 # 2020-06-22 kdw  random:local-use mved befroe var decls
 # 2020-06-17 kdw  random:mode integer added to several funcs
 # 2020-05-30 kdw  random:CONST syntax change
@@ -13192,7 +13265,7 @@ FUNC_END
 # 2020-05-11 kdw  random:REPL[A]CE replaced with LO[C]AL_CO[N]ST
 # 2020-05-05 kdw  random:magic check func changed
 # 2020-04-28 kdw  random:tweaks here and there
-# 2020-04-26 kdw  random:BLOCK indentation work
+# 2020-04-26 kdw  random:BL[O]CK indentation work
 # 2020-04-23 kdw  random:const format change
 # 2020-04-14 kdw  random:minor tweak to init array
 # 2020-04-12 kdw  random:comment change
@@ -13217,14 +13290,14 @@ FUNC_END
 # 2019-07-03 kdw  random:var renam: "s/ind/_ind/;s/__ind/_ind/"
 # 2019-05-29 kdw  random:comment changed
 # 2019-05-24 kdw  random:local replaced private
-# 2019-05-22 kdw  random:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  random:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-17 kdw  random:explicit module for intmax
 # 2019-03-08 kdw  random:is[e]qual to is[e]q, et al.
 # 2019-02-28 kdw  random:REP?LACE/DEF?INE work
 # 2018-07-17 kdw  random:private lf_.* funcs
 # 2018-06-19 kdw  random:die keyword
 # 2018-05-15 kdw  random:DIE.* change
-# 2018-05-14 kdw  random:BLOCK syntax
+# 2018-05-14 kdw  random:BL[O]CK syntax
 # 2018-05-13 kdw  random:MO?DE.* syntax change
 # 2018-04-03 kdw  random:rm() from return
 # 2018-04-02 kdw  random:Pro?totype, et al.
@@ -13302,28 +13375,27 @@ FUNC_END
 # 2015-09-22 kdw  random:_[_]* format changed
 # 2015-09-20 kdw  random:created
 BLOCK:# Random numbers
-   LOCAL_CONST LC_KNUTH_MAX 1073741823;
-   # 2**30-1 MUST BE ODD
-   LOCAL_CONST LC_KNUTH_QUALITY_COUNT 1009;
-   LOCAL_CONST LC_KNUTH_KK_COUNT 100;
-   LOCAL_CONST LC_KNUTH_LL 37;
-   LOCAL_CONST LC_KNUTH_TT 70;
-   # array size must be greater than LC_KNUTH_QUALITY_COUNT
+   BLOCK_DEF CONST LC_KNUTH_MAX 1073741823;# 2**30-1 MUST BE ODD
+   BLOCK_DEF CONST LC_KNUTH_QUALITY_COUNT 1009;
+   BLOCK_DEF CONST LC_KNUTH_KK_COUNT 100;
+   BLOCK_DEF CONST LC_KNUTH_LL 37;
+   BLOCK_DEF CONST LC_KNUTH_TT 70;
+         # array size must be greater than LC_KNUTH_QUALITY_COUNT
    #  AND greater than 2 * LC_KNUTH_KK_COUNT - 1
-   LOCAL_CONST LC_KNUTH_ARRAY_COUNT 1100;
-   LOCAL_INT lv_ranz_ind = -3;
-   LOCAL_DBL lv_ranz_magic = 0.0;
-   LOCAL_INT lv_ranz_arr[LC_KNUTH_QUALITY_COUNT];
-   LOCAL_INT lv_ran_a_arr[LC_KNUTH_ARRAY_COUNT];
-   # generator state
-   LOCAL_INT lv_ran_x_arr[LC_KNUTH_KK_COUNT];
-   # cannabalized from D. E. Knuth: "The Art of
+   BLOCK_DEF CONST LC_KNUTH_ARRAY_COUNT 1100;
+   BLOCK_DEF INT lv_ranz_ind = -3;
+   BLOCK_DEF DBL lv_ranz_magic = 0.0;
+   BLOCK_DEF INT lv_ranz_arr[LC_KNUTH_QUALITY_COUNT];
+   BLOCK_DEF INT lv_ran_a_arr[LC_KNUTH_ARRAY_COUNT];
+         # generator state
+   BLOCK_DEF INT lv_ran_x_arr[LC_KNUTH_KK_COUNT];
+         # cannabalized from D. E. Knuth: "The Art of
    # Computer Programming" Vol 2, Ed 3, pg 186
    ## Random Number Generation
    #   FFFFFFFFFFunction ------------------------- lf_ran_cycle #
-   LOCAL_FUNC INT lf_ran_cycle(INT nn):
-      LOCAL_USE lv_ran_x_arr[];
-      LOCAL_USE lv_ran_a_arr[];
+   BLOCK_DEF FUNC INT lf_ran_cycle(INT nn):
+      BLOCK_USE lv_ran_x_arr[];
+      BLOCK_USE lv_ran_a_arr[];
       INT aa;
       INT bb;
       INT cc;
@@ -13343,7 +13415,7 @@ BLOCK:# Random numbers
          #   aa - cc == LC_KNUTH_LL       mod nn
          WHILE aa < nn:
             mody = lv_ran_a_arr[bb] - lv_ran_a_arr[cc];
-            lv_ran_a_arr[aa] = BITWISEAND(LC_KNUTH_MAX, mody);
+            lv_ran_a_arr[aa] = BITAND(LC_KNUTH_MAX, mody);
             aa += 1;
             #[KK   ..nn)
             bb += 1;
@@ -13354,7 +13426,7 @@ BLOCK:# Random numbers
          aa = 0;
          WHILE aa < LC_KNUTH_LL:
             mody = lv_ran_a_arr[bb] - lv_ran_a_arr[cc];
-            lv_ran_x_arr[aa] = BITWISEAND(LC_KNUTH_MAX, mody);
+            lv_ran_x_arr[aa] = BITAND(LC_KNUTH_MAX, mody);
             aa += 1;
             #[0    ..LL)
             bb += 1;
@@ -13365,7 +13437,7 @@ BLOCK:# Random numbers
          cc = 0;
          WHILE aa < LC_KNUTH_KK_COUNT:
             mody = lv_ran_a_arr[bb] - lv_ran_x_arr[cc];
-            lv_ran_x_arr[aa] = BITWISEAND(LC_KNUTH_MAX, mody);
+            lv_ran_x_arr[aa] = BITAND(LC_KNUTH_MAX, mody);
             aa += 1;
             #[LL      ..KK)
             bb += 1;
@@ -13377,11 +13449,11 @@ BLOCK:# Random numbers
       RETURN bb;
    FUNC_END
    #   FFFFFFFFFFunction ------------------------- lf_fill_ranz #
-   LOCAL_FUNC INT lf_fill_ranz(NUL):
-      LOCAL_USE lv_ranz_magic;
-      LOCAL_USE lv_ranz_ind;
-      LOCAL_USE lv_ranz_arr[];
-      LOCAL_USE lv_ran_a_arr[];
+   BLOCK_DEF FUNC INT lf_fill_ranz(NUL):
+      BLOCK_USE lv_ranz_magic;
+      BLOCK_USE lv_ranz_ind;
+      BLOCK_USE lv_ranz_arr[];
+      BLOCK_USE lv_ran_a_arr[];
       INT jj;
       CALL lf_ran_cycle(LC_KNUTH_QUALITY_COUNT);
       FOR jj FROM 0 TO LC_KNUTH_QUALITY_COUNT - 1:
@@ -13393,11 +13465,10 @@ BLOCK:# Random numbers
       RETURN lv_ranz_arr[0];
    FUNC_END
    #   FFFFFFFFFFunction ------------------------- lf_next_ranz #
-   LOCAL_FUNC INT lf_next_ranz(NUL):
-      LOCAL_USE lv_ranz_magic;
-      LOCAL_USE lv_ranz_ind;
-      LOCAL_USE lv_ranz_arr[];
-      # if not initialized: initialize;
+   BLOCK_DEF FUNC INT lf_next_ranz(NUL):
+      BLOCK_USE lv_ranz_magic;
+      BLOCK_USE lv_ranz_ind;
+      BLOCK_USE lv_ranz_arr[];# if not initialized: initialize;
       # else if buffer empty: create more
       IF NOT Kw.ismagic(lv_ranz_magic):
          CALL rand_init(Kw.timee());
@@ -13413,7 +13484,7 @@ BLOCK:# Random numbers
       # Initialize Random Number generator
       # with an array of SEED_SIZE longs
       # (at most LC_KNUTH_KK_COUNT are used)
-      LOCAL_USE lv_ran_x_arr[];
+      BLOCK_USE lv_ran_x_arr[];
       INT tt;
       INT jj;
       INT kk;
@@ -13425,7 +13496,7 @@ BLOCK:# Random numbers
       INT seed_ind;
       INT bitmask;
       MODE_INTEGER:
-         rndss = BITWISEAND((seed_arr_pc[0] + 2), (LC_KNUTH_MAX
+         rndss = BITAND((seed_arr_pc[0] + 2), (LC_KNUTH_MAX
                - 1));
          # rndss is now even
          FOR jj FROM 0 TO LC_KNUTH_KK_COUNT - 1:
@@ -13448,9 +13519,9 @@ BLOCK:# Random numbers
                rndff = seed_arr_pc[seed_ind];
                bitmask = BITSHIFTL(1, 30);
             IF_END
-            IF BITWISEAND(rndff, bitmask) <> 0:
+            IF BITAND(rndff, bitmask) <> 0:
                # bitmask, rnd_arr[ii] are even, hence so is xor
-               rnd_arr[jj] = BITWISEXOR(bitmask, rnd_arr[jj]);
+               rnd_arr[jj] = BITXOR(bitmask, rnd_arr[jj]);
             IF_END
             bitmask = BITSHIFTR(bitmask, 1);
          FOR_END
@@ -13458,7 +13529,7 @@ BLOCK:# Random numbers
          # All numbers in rnd_arr[] are even
          rnd_arr[1] += 1;
          # All numbers rnd_arr[] are even EXCEPT rnd_arr[1]
-         rndss = BITWISEAND(seed_arr_pc[0], LC_KNUTH_MAX);
+         rndss = BITAND(seed_arr_pc[0], LC_KNUTH_MAX);
          tt = LC_KNUTH_TT - 1;
          WHILE 0 < tt:
             FOR jj FROM LC_KNUTH_KK_COUNT - 1 TO 1 BY - 1:
@@ -13470,9 +13541,9 @@ BLOCK:# Random numbers
             kk = LC_KNUTH_KK_COUNT - 2;
             WHILE 0 <= kk:
                rndx = rnd_arr[dd] - rnd_arr[jj];
-               rnd_arr[dd] = BITWISEAND(rndx, LC_KNUTH_MAX);
+               rnd_arr[dd] = BITAND(rndx, LC_KNUTH_MAX);
                rndx = rnd_arr[kk] - rnd_arr[jj];
-               rnd_arr[kk] = BITWISEAND(rndx, LC_KNUTH_MAX);
+               rnd_arr[kk] = BITAND(rndx, LC_KNUTH_MAX);
                dd -= 1;
                kk -= 1;
                jj -= 1;
@@ -13483,8 +13554,7 @@ BLOCK:# Random numbers
                FOR_END
                rnd_arr[0] = rnd_arr[LC_KNUTH_KK_COUNT];
                jj = rnd_arr[LC_KNUTH_LL] - rnd_arr[0];
-               rnd_arr[LC_KNUTH_LL] = BITWISEAND(LC_KNUTH_MAX
-                     , jj);
+               rnd_arr[LC_KNUTH_LL] = BITAND(LC_KNUTH_MAX, jj);
                rndss = BITSHIFTR(rndss, 1);
             ELSIF rndss == 0:
                tt -= 1;
@@ -13551,6 +13621,8 @@ BLOCK_END# Random numbers
 #   IIIIIIIIIInsert-End --------------------------- random.fwip #
 #   IIIIIIIIIInsert-Begin ----------------------- randdist.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  randdist:block syntax
+# 2020-07-24 kdw  randdist:s/LO[C]AL_/BL[O]CK_/
 # 2020-07-14 kdw  randdist:s/px/pbrx/g
 # 2020-07-12 kdw  randdist:sqrttwo const
 # 2020-07-10 kdw  randdist:normal cdf approx func
@@ -13851,13 +13923,14 @@ FUNC DBL normal_quantile(DBL prbx):
    RETURN Kw.SQRTTWO * Kw.erfinv(2.0 * prbx - 1.0);
 FUNC_END
 BLOCK:# normal distributed nunmbers
-   LOCAL_DBL lv_rand_gau_magic = 0.0;
-   LOCAL_DBL lv_rand_gau_prev = 0.0;
-   #   FFFFFFFFFFunction -------------------------- normal_rand #
+   BLOCK_DEF DBL lv_rand_gau_magic = 0.0;
+   BLOCK_DEF DBL lv_rand_gau_prev = 0.0;
+         #   FFFFFFFFFFunction --------------------------
+      #normal_rand #
    FUNC DBL normal_rand(NUL):
       # Random Normal Variable
-      LOCAL_USE lv_rand_gau_magic;
-      LOCAL_USE lv_rand_gau_prev;
+      BLOCK_USE lv_rand_gau_magic;
+      BLOCK_USE lv_rand_gau_prev;
       DBL retvalu;
       DBL uua;
       DBL uub;
@@ -15196,8 +15269,7 @@ FUNC DBL t_pdf(DBL dfn
 FUNC_END
 BLOCK:# define t_cdf
    #   FFFFFFFFFFunction -------------------------- lf_subtprob #
-   LOCAL_FUNC DBL lf_subtprob(DBL nnx
-         , DBL xx):
+   BLOCK_DEF FUNC DBL lf_subtprob(DBL nnx, DBL xx):
       DBL aa;
       DBL bb;
       DBL ww;
@@ -15242,9 +15314,8 @@ BLOCK_END# define t_cdf
 BLOCK:
       #   FFFFFFFFFFunction ------------------------
    #lf_t_quantile #
-   LOCAL_FUNC DBL lf_t_quantile(INT ndfx
-         , DBL prbx):
-      # Quantile Students T distribution
+   BLOCK_DEF FUNC DBL lf_t_quantile(INT ndfx, DBL prbx):
+         # Quantile Students T distribution
       DBL ux;
       DBL uxsq;
       DBL aa_x;
@@ -15382,9 +15453,7 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction --------------------------
    #lf_subfprob #
-   LOCAL_FUNC DBL lf_subfprob(INT dfn_a
-         , INT dfn_b
-         , DBL xx):
+   BLOCK_DEF FUNC DBL lf_subfprob(INT dfn_a, INT dfn_b, DBL xx):
       DBL retvalu;
       DBL zx;
       DBL ax;
@@ -15442,9 +15511,7 @@ BLOCK:
       RETURN retvalu;
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- lf_subf_two #
-   LOCAL_FUNC DBL lf_subf_two(DBL nx
-         , DBL mm
-         , DBL pp):
+   BLOCK_DEF FUNC DBL lf_subf_two(DBL nx, DBL mm, DBL pp):
       DBL uu;
       DBL nx_sub_two;
       DBL xx_prev;
@@ -15472,9 +15539,7 @@ BLOCK:
       RETURN xx;
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- lf_subfx #
-   LOCAL_FUNC DBL lf_subfx(INT nx
-         , INT mm
-         , DBL pp):
+   BLOCK_DEF FUNC DBL lf_subfx(INT nx, INT mm, DBL pp):
       DBL retvalu;
       DBL uu;
       DBL aa;
@@ -15685,9 +15750,11 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- randdist.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- stat.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  stat:block syntax
+# 2020-07-24 kdw  stat:comment cleanup
 # 2020-06-03 kdw  stat:writeonly keyword
 # 2020-05-11 kdw  stat:local-func syntax changed
-# 2020-04-26 kdw  stat:BLOCK indentation work
+# 2020-04-26 kdw  stat:BL[O]CK indentation work
 # 2020-04-12 kdw  stat:comment change
 # 2020-03-09 kdw  stat:LO[C]AL_.* keywords
 # 2020-03-03 kdw  stat:comment change
@@ -15701,7 +15768,7 @@ FUNC_END
 # 2019-08-06 kdw  stat:rmed backshlashes, macro arg renam
 # 2019-07-22 kdw  stat:minor cosmetic tweak
 # 2019-05-24 kdw  stat:local replaced private
-# 2019-05-22 kdw  stat:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  stat:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  stat:re[t]_val to re[t]valu
 # 2018-07-17 kdw  stat:private lf_.* funcs
 # 2018-04-19 kdw  stat:consts rework
@@ -15745,7 +15812,7 @@ FUNC_END
 # 2015-09-20 kdw  stat:created
 BLOCK:# num to norm
    #   FFFFFFFFFFunction -------------------------- lf_num2norm #
-   LOCAL_FUNC DBL lf_num2norm(DBL numm):
+   BLOCK_DEF FUNC DBL lf_num2norm(DBL numm):
       DBL retvalu;
       IF numm <= 1:
          retvalu = 0.0;
@@ -16001,6 +16068,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- stat.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- stts.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  stts:block syntax
+# 2020-07-24 kdw  stts:comment cleanup
 # 2020-06-25 kdw  stts:var renam
 # 2020-06-22 kdw  stts:local-use mved before var decls
 # 2020-05-30 kdw  stts:CONST syntax change
@@ -16011,7 +16080,7 @@ FUNC_END
 # 2020-05-08 kdw  stts:lf[_]stt[s]_init func
 # 2020-05-06 kdw  stts:rmed boolean vars
 # 2020-05-05 kdw  stts:magic check func changed
-# 2020-04-26 kdw  stts:BLOCK indentation work
+# 2020-04-26 kdw  stts:BL[O]CK indentation work
 # 2020-04-23 kdw  stts:const format change
 # 2020-04-12 kdw  stts:comment change
 # 2020-04-11 kdw  stts:macro arg format
@@ -16039,7 +16108,7 @@ FUNC_END
 # 2019-06-04 kdw  stts:func comments
 # 2019-05-29 kdw  stts:comment changed
 # 2019-05-24 kdw  stts:local replaced private
-# 2019-05-22 kdw  stts:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  stts:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  stts:re[t]_val to re[t]valu
 # 2019-03-18 kdw  stts:macro syntax changed
 # 2019-03-08 kdw  stts:is[e]qual to is[e]q, et al.
@@ -16121,18 +16190,19 @@ FUNC_END
 # 2015-09-22 kdw  stts:_[_]* format changed
 # 2015-09-20 kdw  stts:created
 BLOCK:# Statistics block
-   LOCAL_CONST LC_STTS_NUM 0;
-   LOCAL_CONST LC_STTS_MEAN 1;
-   LOCAL_CONST LC_STTS_MSQ 2;
-   LOCAL_CONST LC_STTS_MAX 3;
-   LOCAL_CONST LC_STTS_MIN 4;
-   LOCAL_CONST LC_STTS_MAGIC 5;
-   LOCAL_CONST LC_STTS_COUNT 6;
-   LOCAL_CONST LC_STTS_MAX_KEY 100;
-   LOCAL_DBL lv_sttx_arr[LC_STTS_MAX_KEY][LC_STTS_COUNT];
-   #   FFFFFFFFFFunction -------------------- lf_stts_is_inited #
-   LOCAL_FUNC BOL lf_stts_is_inited(INT ix_hndl):
-      LOCAL_USE lv_sttx_arr[];
+   BLOCK_DEF CONST LC_STTS_NUM 0;
+   BLOCK_DEF CONST LC_STTS_MEAN 1;
+   BLOCK_DEF CONST LC_STTS_MSQ 2;
+   BLOCK_DEF CONST LC_STTS_MAX 3;
+   BLOCK_DEF CONST LC_STTS_MIN 4;
+   BLOCK_DEF CONST LC_STTS_MAGIC 5;
+   BLOCK_DEF CONST LC_STTS_COUNT 6;
+   BLOCK_DEF CONST LC_STTS_MAX_KEY 100;
+   BLOCK_DEF DBL lv_sttx_arr[LC_STTS_MAX_KEY][LC_STTS_COUNT];
+         #   FFFFFFFFFFunction --------------------
+      #lf_stts_is_inited #
+   BLOCK_DEF FUNC BOL lf_stts_is_inited(INT ix_hndl):
+      BLOCK_USE lv_sttx_arr[];
       INT vll;
       INT ii;
       INT jj;
@@ -16155,7 +16225,7 @@ BLOCK:# Statistics block
       RETURN retvalu_bol;
    FUNC_END
    #   FFFFFFFFFFunction ------------------- lf_stts_find_empty #
-   LOCAL_FUNC INT lf_stts_find_empty(NUL):
+   BLOCK_DEF FUNC INT lf_stts_find_empty(NUL):
       INT ix_hndl;
       ix_hndl = 0;
       WHILE lf_stts_is_inited(ix_hndl):
@@ -16174,7 +16244,7 @@ BLOCK:# Statistics block
          , DBL minim
          , DBL maxim):
       # init STTS LC_HNDL w/ given parameters; return handle
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       lv_sttx_arr[ix_hndl][LC_STTS_NUM] = n_count;
       lv_sttx_arr[ix_hndl][LC_STTS_MEAN] = meanx;
       lv_sttx_arr[ix_hndl][LC_STTS_MSQ] = var * (n_count - 1.0);
@@ -16191,7 +16261,7 @@ BLOCK:# Statistics block
          , DBL minim
          , DBL maxim):
       # init STTS LC_HNDL w/ given parameters; return handle
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       lv_sttx_arr[ix_hndl][LC_STTS_NUM] = num_count;
       lv_sttx_arr[ix_hndl][LC_STTS_MEAN] = meanx;
       lv_sttx_arr[ix_hndl][LC_STTS_MSQ] = msq;
@@ -16214,44 +16284,44 @@ BLOCK:# Statistics block
    #   FFFFFFFFFFunction -------------------------- stts_delete #
    FUNC INT stts_delete(INT ix_hndl):
       # delete STTS w/ given handle
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       lv_sttx_arr[ix_hndl][LC_STTS_MAGIC] = Kw.magicnot();
       RETURN ix_hndl;
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- sttscount #
    FUNC DBL sttscount(INT ix_hndl):
       # count of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_NUM];
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- sttsmean #
    FUNC DBL sttsmean(INT ix_hndl):
       # mean of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_MEAN];
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ sttsmsq #
    FUNC DBL sttsmsq(INT ix_hndl):
       # msq of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_MSQ];
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ sttsmax #
    FUNC DBL sttsmax(INT ix_hndl):
       # max of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_MAX];
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ sttsmin #
    FUNC DBL sttsmin(INT ix_hndl):
       # min of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_MIN];
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- sttsmagic #
    FUNC DBL sttsmagic(INT ix_hndl):
       # magic of LC_HNDLth stts calc
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       RETURN lv_sttx_arr[ix_hndl][LC_STTS_MAGIC];
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ sttssum #
@@ -16305,7 +16375,7 @@ BLOCK:# Statistics block
          , DBL new_data):
       # add NEW_DATA to STTS w/ handle LC_HNDL
       # return difference between NEW_DATA and OLD mean
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       DBL delta;
       DBL numy;
       IF NOT lf_stts_is_inited(ix_hndl):
@@ -16388,7 +16458,7 @@ BLOCK:# Statistics block
    FUNC INT stts_shift(INT ix_hndl
          , DBL data_shift):
       # "shift" STTS w/ handle LC_HNDL by DATA_SHIFT
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       lv_sttx_arr[ix_hndl][LC_STTS_MAX] += data_shift;
       lv_sttx_arr[ix_hndl][LC_STTS_MIN] += data_shift;
       lv_sttx_arr[ix_hndl][LC_STTS_MEAN] += data_shift;
@@ -16398,7 +16468,7 @@ BLOCK:# Statistics block
    FUNC INT stts_scale(INT ix_hndl
          , DBL xfactor):
       # "scale" STTS w/ handle LC_HNDL by XFACTOR
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       DBL newmax;
       DBL newmin;
       IF 0 < xfactor:
@@ -16418,7 +16488,7 @@ BLOCK:# Statistics block
    FUNC INT stts_copy(INT hto
          , INT hfrom):
       # copy STTS w/ handle HFROM to STTS w/ handle HTO
-      LOCAL_USE lv_sttx_arr[];
+      BLOCK_USE lv_sttx_arr[];
       INT ii;
       FOR ii FROM 0 TO LC_STTS_COUNT - 1:
          lv_sttx_arr[hto][ii] = lv_sttx_arr[hfrom][ii];
@@ -16478,15 +16548,17 @@ BLOCK:# Statistics block
       RETURN ix_hnda;
    FUNC_END
    BLOCK:# Correlation Statistics block
-      LOCAL_CONST LC_STTSC_XX 0;
-      LOCAL_CONST LC_STTSC_YY 1;
-      LOCAL_CONST LC_STTSC_COVAR 2;
-      LOCAL_CONST LC_STTSC_MAGIC 3;
-      LOCAL_CONST LC_STTSC_COUNT 4;
-      LOCAL_DBL lv_corx_arr[LC_STTS_MAX_KEY][LC_STTSC_COUNT];
-      #   FFFFFFFFFFunction ------------------- lf_corr_is_init #
-      LOCAL_FUNC BOL lf_corr_is_init(INT ix_chnd):
-         LOCAL_USE lv_corx_arr[];
+      BLOCK_DEF CONST LC_STTSC_XX 0;
+      BLOCK_DEF CONST LC_STTSC_YY 1;
+      BLOCK_DEF CONST LC_STTSC_COVAR 2;
+      BLOCK_DEF CONST LC_STTSC_MAGIC 3;
+      BLOCK_DEF CONST LC_STTSC_COUNT 4;
+      BLOCK_DEF DBL
+            lv_corx_arr[LC_STTS_MAX_KEY][LC_STTSC_COUNT];
+            #   FFFFFFFFFFunction -------------------
+         #lf_corr_is_init #
+      BLOCK_DEF FUNC BOL lf_corr_is_init(INT ix_chnd):
+         BLOCK_USE lv_corx_arr[];
          BOL retvalu_bol;
          DBL vll;
          IF LC_STTS_MAX_KEY <= ix_chnd:
@@ -16498,7 +16570,7 @@ BLOCK:# Statistics block
          RETURN retvalu_bol;
       FUNC_END
       #   FFFFFFFFFFunction ---------------- lf_corr_find_empty #
-      LOCAL_FUNC INT lf_corr_find_empty(NUL):
+      BLOCK_DEF FUNC INT lf_corr_find_empty(NUL):
          INT ix_chnd;
          ix_chnd = 0;
          WHILE lf_corr_is_init(ix_chnd):
@@ -16512,7 +16584,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction -------------------------- corr_new #
       FUNC INT corr_new(NUL):
          # handle for a new correlation calc
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          INT ix_chnd;
          ix_chnd = lf_corr_find_empty();
          lv_corx_arr[ix_chnd][LC_STTSC_XX] = stts_new();
@@ -16524,7 +16596,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction ----------------------- corr_delete #
       FUNC INT corr_delete(INT ix_chnd):
          # delete data of LC_CHNDth correlation calc
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          lv_corx_arr[ix_chnd][LC_STTSC_MAGIC] = Kw.magicnot();
          CALL stts_delete(lv_corx_arr[ix_chnd][LC_STTSC_XX]);
          CALL stts_delete(lv_corx_arr[ix_chnd][LC_STTSC_YY]);
@@ -16532,12 +16604,12 @@ BLOCK:# Statistics block
       FUNC_END
       #   FFFFFFFFFFunction ---------------------- corr_handlex #
       FUNC INT corr_handlex(INT ix_chnd):
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          RETURN lv_corx_arr[ix_chnd][LC_STTSC_XX];
       FUNC_END
       #   FFFFFFFFFFunction ---------------------- corr_handley #
       FUNC INT corr_handley(INT ix_chnd):
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          RETURN lv_corx_arr[ix_chnd][LC_STTSC_YY];
       FUNC_END
       #   FFFFFFFFFFunction ----------------------- corr_update #
@@ -16545,7 +16617,7 @@ BLOCK:# Statistics block
             , DBL xx
             , DBL yy):
          # update LC_CHNDth corr calc with point(XX,YY)
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          INT num;
          DBL ddxx;
          DBL ddyy;
@@ -16563,7 +16635,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction ------------------------- corrslope #
       FUNC DBL corrslope(INT ix_chnd):
          # slope of least squares line of LC_CHNDth corr calc
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          DBL den;
          DBL retvalu;
          INT xxhnd;
@@ -16579,7 +16651,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction ---------------------------- corry0 #
       FUNC DBL corry0(INT ix_chnd):
          # y-intercept of least squares line of LC_CHNDth corr
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          DBL retvalu;
          INT yyhnd;
          INT xxhnd;
@@ -16592,7 +16664,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction -------------------------- corrcorr #
       FUNC DBL corrcorr(INT ix_chnd):
          # Correlation Coefficient[-1,1] of LC_CHNDth corr calc
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          DBL retvalu;
          DBL xxmsq;
          DBL yymsq;
@@ -16611,7 +16683,7 @@ BLOCK:# Statistics block
       #   FFFFFFFFFFunction ------------------------ corrstderr #
       FUNC DBL corrstderr(INT ix_chnd):
          # stderr of least squares line of LC_CHNDth corr calc
-         LOCAL_USE lv_corx_arr[];
+         BLOCK_USE lv_corx_arr[];
          INT yyhnd;
          DBL diff;
          DBL retvalu;
@@ -16630,6 +16702,8 @@ BLOCK_END# Statistics block
 #   IIIIIIIIIInsert-End ----------------------------- stts.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- fit.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  fit:block syntax
+# 2020-07-24 kdw  fit:comment cleanup
 # 2020-06-22 kdw  fit:local-use mved before var decls
 # 2020-06-03 kdw  fit:writeonly keyword
 # 2020-05-30 kdw  fit:CONST syntax change
@@ -16668,7 +16742,7 @@ BLOCK_END# Statistics block
 # 2019-07-21 kdw  fit:func descriptions
 # 2019-07-03 kdw  fit:i[n]d vars renamd
 # 2019-05-24 kdw  fit:local replaced private
-# 2019-05-22 kdw  fit:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  fit:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-01 kdw  fit:consts explicit module name
 # 2019-03-28 kdw  fit:x-product work
 # 2019-03-19 kdw  fit:re[t]_val to re[t]valu
@@ -16771,16 +16845,17 @@ FUNC DBL fit_poly(INT num_points
    RETURN num_points;
 FUNC_END
 BLOCK:# parabola info
-   LOCAL_CONST LC_PARABOLA_X_AXIS 0;
-   LOCAL_CONST LC_PARABOLA_Y_EXTREMA 1;
-   LOCAL_CONST LC_PARABOLA_REAL_ROOTS 2;
-   LOCAL_CONST LC_PARABOLA_ROOT_A 3;
-   LOCAL_CONST LC_PARABOLA_ROOT_B 4;
-   LOCAL_CONST LC_PARABOLA_COEFF_C 5;
-   LOCAL_CONST LC_PARABOLA_COEFF_B 6;
-   LOCAL_CONST LC_PARABOLA_COEFF_A 7;
-   LOCAL_DBL lv_parabola_arr[8];
-   #   FFFFFFFFFFunction ----------------------- parabola_solve #
+   BLOCK_DEF CONST LC_PARABOLA_X_AXIS 0;
+   BLOCK_DEF CONST LC_PARABOLA_Y_EXTREMA 1;
+   BLOCK_DEF CONST LC_PARABOLA_REAL_ROOTS 2;
+   BLOCK_DEF CONST LC_PARABOLA_ROOT_A 3;
+   BLOCK_DEF CONST LC_PARABOLA_ROOT_B 4;
+   BLOCK_DEF CONST LC_PARABOLA_COEFF_C 5;
+   BLOCK_DEF CONST LC_PARABOLA_COEFF_B 6;
+   BLOCK_DEF CONST LC_PARABOLA_COEFF_A 7;
+   BLOCK_DEF DBL lv_parabola_arr[8];
+         #   FFFFFFFFFFunction -----------------------
+      #parabola_solve #
    FUNC DBL parabola_solve(DBL xx_a
          , DBL yy_a
          , DBL xx_b
@@ -16792,7 +16867,7 @@ BLOCK:# parabola info
       #      (xx_a,yy_a) (xx_b,yy_b) and(xx_c,yy_c)
       # subsequently use parabola_get(IND) to recieve other
       #   information about said parabola
-      LOCAL_USE lv_parabola_arr[];
+      BLOCK_USE lv_parabola_arr[];
       DBL pts_arr[8];
       DBL cc_arr[4];
       DBL disc;
@@ -16858,7 +16933,7 @@ BLOCK:# parabola info
       #    5  Coeff C
       #    6  Coeff B
       #    7  Coeff A
-      LOCAL_USE lv_parabola_arr[];
+      BLOCK_USE lv_parabola_arr[];
       DBL retvalu;
       IF 0 <= ii_ind AND ii_ind <= 7:
          retvalu = lv_parabola_arr[ii_ind];
@@ -16899,11 +16974,12 @@ BLOCK:# parabola info
    FUNC_END
 BLOCK_END# parabola info
 BLOCK:# circle info
-   LOCAL_CONST LC_CIRCLE_X 0;
-   LOCAL_CONST LC_CIRCLE_Y 1;
-   LOCAL_CONST LC_CIRCLE_RADIUS 2;
-   LOCAL_DBL lv_circle_arr[3];
-   #   FFFFFFFFFFunction ------------------------- circle_solve #
+   BLOCK_DEF CONST LC_CIRCLE_X 0;
+   BLOCK_DEF CONST LC_CIRCLE_Y 1;
+   BLOCK_DEF CONST LC_CIRCLE_RADIUS 2;
+   BLOCK_DEF DBL lv_circle_arr[3];
+         #   FFFFFFFFFFunction -------------------------
+      #circle_solve #
    FUNC DBL circle_solve(DBL aa_x
          , DBL aa_y
          , DBL bb_x
@@ -16915,7 +16991,7 @@ BLOCK:# circle info
       # subsequently use with
       #   circle_get(0) to get the x-coordinate of the center and
       #   circle_get(1) to get the y-coordinate of the center
-      LOCAL_USE lv_circle_arr[];
+      BLOCK_USE lv_circle_arr[];
       DBL ca_a;
       DBL cb_a;
       DBL ca_b;
@@ -16953,7 +17029,7 @@ BLOCK:# circle info
       #    0  x-center
       #    1  y-canter
       #    2  radius
-      LOCAL_USE lv_circle_arr[];
+      BLOCK_USE lv_circle_arr[];
       DBL retvalu;
       IF 0 <= ii_ind AND ii_ind <= 2:
          retvalu = lv_circle_arr[ii_ind];
@@ -17075,13 +17151,9 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ------------------
    #lf_signcrossproduct #
-   LOCAL_FUNC DBL lf_signcrossproduct(DBL aa_x
-         , DBL aa_y
-         , DBL bb_x
-         , DBL bb_y
-         , DBL cc_x
-         , DBL cc_y):
-      # the z-component of the cross product of the vectors
+   BLOCK_DEF FUNC DBL lf_signcrossproduct(DBL aa_x, DBL aa_y
+         , DBL bb_x, DBL bb_y, DBL cc_x, DBL cc_y):
+         # the z-component of the cross product of the vectors
       #   (bb_x - aa_x, bb_y - aa_y, 0), and
       #   (cc_x - aa_x, cc_y - aa_y, 0)
       DBL cr;
@@ -17128,14 +17200,14 @@ BLOCK:
       #    REPEAT
       #       P_arr[P_ind] = pntH
       #       pntX = S_arr[0]
-      #       FOR S_ind FROM 1 TO LEN(S_arr[])
-      #          IF (pntX == pntH) OR
-      #             (pntX IS CCW_of(S_arr[S_ind],P_arr[P_ind]):
-      #             pntX = S_arr[S_ind]
+      #       foreach S_pnt IN S_arr[1..len(S_arr[])]:
+      #          if(pntX == pntH) OR
+      #                (pntX IS CCW_of(S_pnt,P_arr[P_ind]):
+      #             pntX = S_pnt
       #       P_ind++;
       #       pntH = pntX
       #    UNTIL pntX == P_arr[0]
-      #    RETURN P_arr[] # the convex hull of S_arr
+      #    return P_arr[] # the convex hull of S_arr
       DBL xxp_arr[];
       DBL yyp_arr[];
       INT chi_arr[];
@@ -17451,6 +17523,8 @@ FUNC_END
 #   IIIIIIIIIInsert-Begin ------------------------- approx.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
 # HI goes AFTER copyright
+# 2020-07-27 kdw  approx:block syntax
+# 2020-07-24 kdw  approx:comment cleanup
 # 2020-07-16 kdw  approx:git/comment playing
 # 2020-07-14 kdw  approx:cos[m]1 func
 # 2020-07-12 kdw  approx:sqrttwo const
@@ -17489,7 +17563,7 @@ FUNC_END
 # 2019-06-02 kdw  approx:NR_ to RAPHSON_
 # 2019-05-31 kdw  approx:NR_DO to RAPHSON_LOOP; et al
 # 2019-05-29 kdw  approx:comment changed
-# 2019-05-22 kdw  approx:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  approx:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-01 kdw  approx:consts explicit module name
 # 2019-04-22 kdw  approx:F[U]NC keyword
 # 2019-03-28 kdw  approx:tg[a]mma approximation
@@ -17733,8 +17807,9 @@ FUNC DBL nthroot__1(DBL xx
    RETURN yy_curr;
 FUNC_END
 BLOCK:
-   LOCAL_CONST LC_EPS Kw.DBLEPS / 16.0;
-   #   FFFFFFFFFFunction ---------------------------- cossin_ev #
+   BLOCK_DEF CONST LC_EPS Kw.DBLEPS / 16.0;
+         #   FFFFFFFFFFunction ----------------------------
+      #cossin_ev #
    FUNC DBL cossin_ev(INT init_ii
          , DBL xx_rad
          , BOL addone_mult):
@@ -17994,6 +18069,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- approx.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- sphere.fwip #
 #    COPYRIGHT C 2016-2020 by Kevin D. Woerner
+# 2020-08-03 kdw  sphere:explicit module for pi and tau
+# 2020-07-27 kdw  sphere:block syntax
+# 2020-07-24 kdw  sphere:comment cleanup
 # 2020-06-03 kdw  sphere:writeonly keyword
 # 2020-05-11 kdw  sphere:local-func syntax changed
 # 2020-05-08 kdw  sphere:local function block
@@ -18015,7 +18093,7 @@ FUNC_END
 # 2019-06-04 kdw  sphere:func comments added
 # 2019-05-29 kdw  sphere:comment changed
 # 2019-05-24 kdw  sphere:local replaced private
-# 2019-05-22 kdw  sphere:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  sphere:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-01 kdw  sphere:consts explicit module name
 # 2019-03-19 kdw  sphere:re[t]_val to re[t]valu
 # 2019-03-08 kdw  sphere:is[e]qual to is[e]q, et al.
@@ -18131,19 +18209,19 @@ FUNC DBL sphere_distance(DBL lata_rad
 FUNC_END
 BLOCK:# ellipsiod funcitons
    #   FFFFFFFFFFunction -------------------------------- lf_ka #
-   LOCAL_FUNC DBL lf_ka(DBL usq):
+   BLOCK_DEF FUNC DBL lf_ka(DBL usq):
       DBL hyp;
       hyp = SQRT(1.0 + usq);
       RETURN (hyp - 1.0) / (hyp + 1.0);
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- lf_cap_a #
-   LOCAL_FUNC DBL lf_cap_a(DBL usq):
+   BLOCK_DEF FUNC DBL lf_cap_a(DBL usq):
       DBL ka;
       ka = lf_ka(usq);
       RETURN (1.0 + Kw.square(ka / 2.0)) / (1.0 - ka);
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- lf_cap_b #
-   LOCAL_FUNC DBL lf_cap_b(DBL usq):
+   BLOCK_DEF FUNC DBL lf_cap_b(DBL usq):
       DBL ka;
       ka = lf_ka(usq);
       RETURN ka * (1.0 - 3.0 * Kw.square(ka) / 8.0);
@@ -18214,8 +18292,8 @@ BLOCK:# ellipsiod funcitons
          xx_curr = (lon_diff + (1.0 - cap_c) * flat * s_alpha
                * (sig + cap_c * s_sig * (cbsigm + cap_c * c_sig
                * (2.0 * Kw.square(cbsigm) - 1.0))));
-         IF 10 < ii AND Kw.iseq(ABS(xx_prev + xx_curr), TAU):
-            xx_curr = TAU / 2.0;
+         IF 10 < ii AND Kw.iseq(ABS(xx_prev + xx_curr), Kw.TAU):
+            xx_curr = Kw.TAU / 2.0;
             AWAIT_EXIT;
          IF_END
       AWAIT_END
@@ -18330,13 +18408,14 @@ BLOCK_END# ellipsiod funcitons
 #   IIIIIIIIIInsert-End --------------------------- sphere.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- shc.fwip #
 #    COPYRIGHT C 2017-2020 by Kevin D. Woerner
+# 2020-07-24 kdw  shc:comment cleanup
 # 2020-04-12 kdw  shc:comment change
 # 2020-03-01 kdw  shc:reorg
 # 2020-02-26 kdw  shc:comment change
 # 2020-02-03 kdw  shc:single return statment
 # 2019-12-27 kdw  shc:eplicit K[w] module
 # 2019-08-11 kdw  shc:comment cleanup
-# 2019-05-22 kdw  shc:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  shc:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-03-19 kdw  shc:re[t]_val to re[t]valu
 # 2019-03-11 kdw  shc:comments to array dcls
 # 2018-10-08 kdw  shc:vbdotnet stuff
@@ -18489,6 +18568,10 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ shc.fwip #
 #   IIIIIIIIIInsert-Begin ----------------------- elliptic.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-08-03 kdw  elliptic:explicit module for pi and tau
+# 2020-07-27 kdw  elliptic:block syntax
+# 2020-07-24 kdw  elliptic:comment cleanup
+# 2020-07-23 kdw  elliptic:minor reorg
 # 2020-07-07 kdw  elliptic:extend to m<0 and 1<m II
 # 2020-07-05 kdw  elliptic:extend to m<0 and 1<m
 # 2020-07-03 kdw  elliptic:cir[2]ell and ell[2]cir funcs
@@ -18522,7 +18605,7 @@ FUNC_END
 # 2019-08-06 kdw  elliptic:rmed backslahses;macro arg renam
 # 2019-06-02 kdw  elliptic:elliptic1 wtf?; no net change
 # 2019-05-29 kdw  elliptic:comment changed
-# 2019-05-22 kdw  elliptic:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  elliptic:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-16 kdw  elliptic:loop limit def mved
 # 2019-05-01 kdw  elliptic:consts explicit module name
 # 2019-03-15 kdw  elliptic:use to[p]yh1
@@ -18577,6 +18660,22 @@ FUNC DBL elliptic1__1(DBL mm):
    # Complete Elliptic Integral of the 1th kind
    #   == RF(0, 1-MM, 1)
    RETURN Kw.carlsonRF(0.0, 1.0 - mm, 1.0);
+FUNC_END
+#   FFFFFFFFFFunction ---------------------------- elliptic1__2 #
+FUNC DBL elliptic1__2(DBL mm):
+   # Complete Elliptic Integral of the 1th kind
+   DBL term;
+   DBL sum_curr;
+   DBL sum_prev;
+   INT ii;
+   term = Kw.TAU / 4.0;
+   sum_curr = 0;
+   AWAIT Kw.iseq(sum_curr, sum_prev) COUNT ii FROM 1 BY 2:
+      term *= Kw.square(mm * ii / (ii + 1));
+      sum_prev = sum_curr;
+      sum_curr += term;
+   AWAIT_END
+   RETURN sum_curr;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------ elliptic1i #
 FUNC DBL elliptic1i(DBL mm
@@ -19017,6 +19116,8 @@ FUNC_END
 FUNC DBL jacobiphi(DBL mm
       , DBL elli_rad):
    # convert ELLI_RAD into CIRC_RAD
+   #    SIN(jacobiphi(M,ELLI_RAD)) = sn(M,ELLI_RAD)
+   #    COS(jacobiphi(M,ELLI_RAD)) = cn(M,ELLI_RAD)
    DBL ai;
    DBL bb;
    DBL circ_rad;
@@ -19218,15 +19319,20 @@ FUNC DBL ns(DBL mm
    RETURN 1.0 / sn(mm, elli_rad);
 FUNC_END
 BLOCK:# Jacobi elliptic functions
-   #   FFFFFFFFFFunction ----------------------------- lv_ellpj #
-   LOCAL_FUNC INT lv_ellpj(DBL mm
-         , DBL elli_rad
+   BLOCK_DEF DBL lv_mm = -10.0;
+   BLOCK_DEF DBL lv_elli_rad = -10.0;
+   BLOCK_DEF DBL lv_arr_arr[4];
+         #   FFFFFFFFFFunction -----------------------------
+      #lv_ellpj #
+   BLOCK_DEF FUNC INT lv_ellpj(DBL mm, DBL elli_rad
          , WRITEONLY DBL ret_arr_p[]):
-      # compute the Jacobian function sn, cn, dn and ph
+         # compute the Jacobian function sn, cn, dn and ph
       # sn = RET_ARR_P[0]
       # cn = RET_ARR_P[1]
       # dn = RET_ARR_P[2]
       # ph = RET_ARR_P[3]
+      BLOCK_USE lv_mm;
+      BLOCK_USE lv_elli_rad;
       DBL ai;
       DBL csx;
       DBL snx;
@@ -19277,33 +19383,48 @@ BLOCK:# Jacobi elliptic functions
          ret_arr_p[2] = junk_arr[1];
          ret_arr_p[3] = junk_arr[3];
       IF_END
+      lv_mm = mm;
+      lv_elli_rad = elli_rad;
       RETURN 0;
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- sn__1 #
    FUNC DBL sn__1(DBL mm
          , DBL elli_rad):
-      DBL arr_arr[4];
-      CALL lv_ellpj(mm, elli_rad, arr_arr[]);
-      RETURN arr_arr[0];
+      BLOCK_USE lv_mm;
+      BLOCK_USE lv_elli_rad;
+      BLOCK_USE lv_arr_arr[];
+      IF Kw.isneq(mm, lv_mm) OR Kw.isneq(elli_rad, lv_elli_rad):
+         CALL lv_ellpj(mm, elli_rad, lv_arr_arr[]);
+      IF_END
+      RETURN lv_arr_arr[0];
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- cn__1 #
    FUNC DBL cn__1(DBL mm
          , DBL elli_rad):
-      DBL arr_arr[4];
-      CALL lv_ellpj(mm, elli_rad, arr_arr[]);
-      RETURN arr_arr[1];
+      BLOCK_USE lv_mm;
+      BLOCK_USE lv_elli_rad;
+      BLOCK_USE lv_arr_arr[];
+      IF Kw.isneq(mm, lv_mm) OR Kw.isneq(elli_rad, lv_elli_rad):
+         CALL lv_ellpj(mm, elli_rad, lv_arr_arr[]);
+      IF_END
+      RETURN lv_arr_arr[1];
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- dn__1 #
    FUNC DBL dn__1(DBL mm
          , DBL elli_rad):
-      DBL arr_arr[4];
-      CALL lv_ellpj(mm, elli_rad, arr_arr[]);
-      RETURN arr_arr[2];
+      BLOCK_USE lv_mm;
+      BLOCK_USE lv_elli_rad;
+      BLOCK_USE lv_arr_arr[];
+      IF Kw.isneq(mm, lv_mm) OR Kw.isneq(elli_rad, lv_elli_rad):
+         CALL lv_ellpj(mm, elli_rad, lv_arr_arr[]);
+      IF_END
+      RETURN lv_arr_arr[2];
    FUNC_END
 BLOCK_END# Jacobi elliptic functions
 #   FFFFFFFFFFunction ------------------------------------- nom #
 FUNC DBL nom(DBL mm):
-   RETURN EXP(-PI * Kw.elliptic1(1.0 - mm) / Kw.elliptic1(mm));
+   RETURN EXP(-Kw.PI * Kw.elliptic1(1.0 - mm)
+         / Kw.elliptic1(mm));
 FUNC_END
 #   FFFFFFFFFFunction ---------------------------------- theta1 #
 FUNC DBL theta1(DBL mm
@@ -19406,16 +19527,16 @@ FUNC DBL nevillethetac(DBL mm
    DBL cos_of;
    DBL cos_inc;
    km = Kw.elliptic1(mm);
-   qq = EXP(-PI * Kw.elliptic1(1.0 - mm) / km);
+   qq = EXP(-Kw.PI * Kw.elliptic1(1.0 - mm) / km);
    sum_curr = 0;
-   cos_inc = PI * zz / km;
-   cos_of = PI * zz / (2 * km);
+   cos_inc = Kw.PI * zz / km;
+   cos_of = Kw.PI * zz / (2 * km);
    AWAIT Kw.iseq(sum_curr, sum_prev) COUNT nn FROM 0:
       sum_prev = sum_curr;
       sum_curr += POW(qq, nn * nn + nn) * COS(cos_of);
       cos_of += cos_inc;
    AWAIT_END
-   RETURN sum_curr * SQRT(TAU * SQRT(qq / mm) / km);
+   RETURN sum_curr * SQRT(Kw.TAU * SQRT(qq / mm) / km);
 FUNC_END
 #   FFFFFFFFFFunction --------------------------- nevillethetad #
 FUNC DBL nevillethetad(DBL mm
@@ -19428,16 +19549,16 @@ FUNC DBL nevillethetad(DBL mm
    DBL cos_of;
    DBL cos_inc;
    km = Kw.elliptic1(mm);
-   qq = EXP(-PI * Kw.elliptic1(1.0 - mm) / km);
+   qq = EXP(-Kw.PI * Kw.elliptic1(1.0 - mm) / km);
    sum_curr = 0;
-   cos_inc = PI * zz / km;
-   cos_of = PI * zz / km;
+   cos_inc = Kw.PI * zz / km;
+   cos_of = Kw.PI * zz / km;
    AWAIT Kw.iseq(sum_curr, sum_prev) COUNT nn FROM 1:
       sum_prev = sum_curr;
       sum_curr += POW(qq, nn * nn) * COS(cos_of);
       cos_of += cos_inc;
    AWAIT_END
-   RETURN (1 + 2 * sum_curr) * SQRT(TAU / km) / 2.0;
+   RETURN (1 + 2 * sum_curr) * SQRT(Kw.TAU / km) / 2.0;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------- nevillethetan #
 FUNC DBL nevillethetan(DBL mm
@@ -19451,18 +19572,18 @@ FUNC DBL nevillethetan(DBL mm
    DBL cos_of;
    DBL cos_inc;
    km = Kw.elliptic1(mm);
-   qq = EXP(-PI * Kw.elliptic1(1.0 - mm) / km);
+   qq = EXP(-Kw.PI * Kw.elliptic1(1.0 - mm) / km);
    sum_curr = 0;
    sig = -1;
-   cos_inc = PI * zz / km;
-   cos_of = PI * zz / km;
+   cos_inc = Kw.PI * zz / km;
+   cos_of = Kw.PI * zz / km;
    AWAIT Kw.iseq(sum_curr, sum_prev) COUNT nn FROM 1:
       sum_prev = sum_curr;
       sum_curr += sig * POW(qq, nn * nn) * COS(cos_of);
       cos_of += cos_inc;
       sig = -sig;
    AWAIT_END
-   RETURN (1 + 2 * sum_curr) * SQRT(TAU / (km * SQRT(1.0
+   RETURN (1 + 2 * sum_curr) * SQRT(Kw.TAU / (km * SQRT(1.0
          - mm))) / 2.0;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------- nevillethetas #
@@ -19477,18 +19598,19 @@ FUNC DBL nevillethetas(DBL mm
    DBL cos_of;
    DBL cos_inc;
    km = Kw.elliptic1(mm);
-   qq = EXP(-PI * Kw.elliptic1(1.0 - mm) / km);
+   qq = EXP(-Kw.PI * Kw.elliptic1(1.0 - mm) / km);
    sum_curr = 0;
    sig = 1;
-   cos_inc = PI * zz / km;
-   cos_of = PI * zz / (2 * km);
+   cos_inc = Kw.PI * zz / km;
+   cos_of = Kw.PI * zz / (2 * km);
    AWAIT Kw.iseq(sum_curr, sum_prev) COUNT nn FROM 0:
       sum_prev = sum_curr;
       sum_curr += sig * POW(qq, nn * nn + nn) * SIN(cos_of);
       sig = -sig;
       cos_of += cos_inc;
    AWAIT_END
-   RETURN sum_curr * SQRT(TAU * SQRT(qq / (mm * (1 - mm))) / km);
+   RETURN sum_curr * SQRT(Kw.TAU * SQRT(qq / (mm * (1 - mm)))
+         / km);
 FUNC_END
 # In general:
 #   pq qr = pr
@@ -19496,6 +19618,7 @@ FUNC_END
 #   elliptic1i(m,jacobiphi(m,elli_rad)) == elli_rad
 #         in[0,elliptic1(m)]
 #   jacobiphi(m,elliptic1i(m,circ_rad)) == circ_rad in[0,PI/2]
+#   cx**2 + sx**2 = nx**2 for x in s,d,c,n
 #   sn(m,elliptic1i(m,circ_rad)) == SIN(circ_rad)
 #   cn(m,elliptic1i(m,circ_rad)) == COS(circ_rad)
 #   sc(m,elliptic1i(m,circ_rad)) == TAN(circ_rad)
@@ -19508,6 +19631,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- elliptic.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------ ellipse.fwip #
 #    COPYRIGHT C 2020 by Kevin D. Woerner
+# 2020-08-03 kdw  ellipse:explicit module for pi and tau
 # 2020-07-02 kdw  ellipse:more tests; circ computed
 # 2020-06-25 kdw  ellipse:func renam
 # 2020-06-15 kdw  ellipse:ell[i]psem func
@@ -19599,7 +19723,7 @@ FUNC DBL ellipsecir(DBL aa
          mm += mm;
          suma += mm * Kw.square(xx - yy);
       AWAIT_END
-      retvalu = PI * (Kw.square(aa + bb) - suma) / (xx + yy);
+      retvalu = Kw.PI * (Kw.square(aa + bb) - suma) / (xx + yy);
    IF_END
    RETURN retvalu;
 FUNC_END
@@ -19694,9 +19818,11 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ cdf.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- search.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-07-27 kdw  search:block syntax
+# 2020-07-24 kdw  search:comment cleanup
 # 2020-06-22 kdw  search:local-use mved before var decls
 # 2020-05-11 kdw  search:local-decl syntx change
-# 2020-04-26 kdw  search:BLOCK indentation work
+# 2020-04-26 kdw  search:BL[O]CK indentation work
 # 2020-04-12 kdw  search:comment change
 # 2020-03-09 kdw  search:LO[C]AL_.* keywords
 # 2020-03-05 kdw  search:minor tweak
@@ -19708,13 +19834,14 @@ FUNC_END
 # 2019-08-24 kdw  search:for and count loops have from clause
 # 2019-08-18 kdw  search:B[O]OL to B[O]L
 # 2019-05-24 kdw  search:local replaced private
-# 2019-05-22 kdw  search:s/FU[N]CT[I]ON/FUNC/g
+# 2019-05-22 kdw  search:s/FU[N]CT[I]ON/FU[N]C/g
 # 2018-12-17 kdw  search:created
 BLOCK:# search
-   LOCAL_INT lv_search_target = 0;
-   #   FFFFFFFFFFunction ------------------------- search_check #
+   BLOCK_DEF INT lv_search_target = 0;
+         #   FFFFFFFFFFunction -------------------------
+      #search_check #
    FUNC INT search_check(INT gg):
-      LOCAL_USE lv_search_target;
+      BLOCK_USE lv_search_target;
       INT retvalu;
       IF gg < lv_search_target:
          retvalu = -1;
@@ -19727,7 +19854,7 @@ BLOCK:# search
    FUNC_END
    #   FFFFFFFFFFunction ------------------------ search_search #
    FUNC INT search_search(INT gg):
-      LOCAL_USE lv_search_target;
+      BLOCK_USE lv_search_target;
       INT curr;
       INT delta;
       INT result;
