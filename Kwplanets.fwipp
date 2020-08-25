@@ -1,10 +1,13 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-07-31 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-08-24 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2017-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  Kwplanets:boolean checks changed
+# 2020-08-19 kdw  Kwplanets:comment change
+# 2020-08-17 kdw  Kwplanets:macro syntax changed
 # 2020-07-27 kdw  Kwplanets:block syntax
 # 2020-07-24 kdw  Kwplanets:comment cleanup
 # 2020-07-18 kdw  Kwplanets:rmed some imports
-# 2020-06-22 kdw  Kwplanets:local-use mved befroe var decls
+# 2020-06-22 kdw  Kwplanets:local-use mved before var decls
 # 2020-06-12 kdw  Kwplanets:stern-levison and margot rework
 # 2020-06-03 kdw  Kwplanets:writeonly keyword
 # 2020-06-01 kdw  Kwplanets:replace "_D" with "_DT"
@@ -83,7 +86,7 @@
 # 2019-03-15 kdw  Kwplanets:use to[p]yh1
 # 2019-03-08 kdw  Kwplanets:is[e]qual to is[e]q, et al.
 # 2019-03-04 kdw  Kwplanets:loop-limit work
-# 2019-02-28 kdw  Kwplanets:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  Kwplanets:REP[L]ACE/DE[F]INE work
 # 2019-02-19 kdw  Kwplanets:macro syntax
 # 2019-02-04 kdw  Kwplanets:pmo macro, et al
 # 2019-01-30 kdw  Kwplanets:lv_p[l]_ey var
@@ -104,8 +107,8 @@
 # 2018-05-23 kdw  Kwplanets:orbital elements
 # 2018-05-23 kdw  Kwplanets:eccentric anomaly func
 # 2018-05-22 kdw  Kwplanets:comment change
-# 2018-05-17 kdw  Kwplanets:ARR?AY.* and HOR[N]ER syntax
-# 2018-05-16 kdw  Kwplanets:AR?RAY syntax
+# 2018-05-17 kdw  Kwplanets:AR[R]AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  Kwplanets:AR[R]AY syntax
 # 2018-04-19 kdw  Kwplanets:consts rework
 # 2018-04-09 kdw  Kwplanets:[tdr]2[rdt] func renam
 # 2018-04-03 kdw  Kwplanets:rm() from return
@@ -140,12 +143,13 @@
 # 2017-10-02 kdw  Kwplanets:only names
 # 2017-10-01 kdw  Kwplanets:_planet_.* reorg
 # 2017-09-29 kdw  Kwplanets:_planet_.* created
-# 2017-09-29 kdw  Kwplanets:EA?RTHFL?AT
+# 2017-09-29 kdw  Kwplanets:EA[R]THFLAT
 # 2017-09-28 kdw  Kwplanets:tropical year
 # 2017-09-27 kdw  Kwplanets:EA[R]THGRA[V]ITY[AB]
 # 2017-09-26 kdw  Kwplanets:created
 #   IIIIIIIIIInsert-Begin ------------------------- Macros.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  Macros:macro syntax changed
 # 2020-07-24 kdw  Macros:comment cleanup
 # 2020-06-20 kdw  Macros:comment change
 # 2020-04-26 kdw  Macros:block indentation
@@ -174,7 +178,7 @@
 # 2019-03-08 kdw  Macros:is[e]qual to is[e]q, et al.
 # 2019-03-06 kdw  Macros:is.* funcs changed
 # 2019-03-04 kdw  Macros:loop-limit work
-# 2019-02-28 kdw  Macros:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  Macros:REP[L]ACE/DE[F]INE work
 # 2019-02-19 kdw  Macros:macro syntax
 # 2019-02-13 kdw  Macros:comment work
 # 2018-12-20 kdw  Macros:work on module specific functions
@@ -743,29 +747,46 @@ FUNC DBL sternlevison(DBL pmass
    RETURN retvalu;
 FUNC_END
 BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
-   BLOCK_DEF CONST LC_P1_PREV_PL - 1;# 1
-   BLOCK_DEF CONST LC_P1_SUN 0;# 1
-   BLOCK_DEF CONST LC_P1_MERCURY 1;# 1
-   BLOCK_DEF CONST LC_P1_VENUS 2;# 1
-   BLOCK_DEF CONST LC_P1_EARTH 3;# 1
-   BLOCK_DEF CONST LC_P1_MARS 4;# 1
-   BLOCK_DEF CONST LC_P1_JUPITER 5;# 1
-   BLOCK_DEF CONST LC_P1_SATURN 6;# 1
-   BLOCK_DEF CONST LC_P1_URANUS 7;# 1
-   BLOCK_DEF CONST LC_P1_NEPTUNE 8;# 1
-   BLOCK_DEF CONST LC_P1_PLUTO 9;# 1
-   BLOCK_DEF CONST LC_P1_CERES 10;# 1
-   BLOCK_DEF CONST LC_P1_ERIS 11;# 1
-   BLOCK_DEF CONST LC_P1_MAKEMAKE 12;# 1
-   BLOCK_DEF CONST LC_P1_HAUMEA 13;# 1
-   BLOCK_DEF CONST LC_P1_COUNT LC_P1_HAUMEA + 1;# 1
-   BLOCK_DEF CONST LC_P1_ERR - 1;# 1
+   BLOCK_DEF CONST LC_P1_PREV_PL - 1;
+   # 1
+   BLOCK_DEF CONST LC_P1_SUN 0;
+   # 1
+   BLOCK_DEF CONST LC_P1_MERCURY 1;
+   # 1
+   BLOCK_DEF CONST LC_P1_VENUS 2;
+   # 1
+   BLOCK_DEF CONST LC_P1_EARTH 3;
+   # 1
+   BLOCK_DEF CONST LC_P1_MARS 4;
+   # 1
+   BLOCK_DEF CONST LC_P1_JUPITER 5;
+   # 1
+   BLOCK_DEF CONST LC_P1_SATURN 6;
+   # 1
+   BLOCK_DEF CONST LC_P1_URANUS 7;
+   # 1
+   BLOCK_DEF CONST LC_P1_NEPTUNE 8;
+   # 1
+   BLOCK_DEF CONST LC_P1_PLUTO 9;
+   # 1
+   BLOCK_DEF CONST LC_P1_CERES 10;
+   # 1
+   BLOCK_DEF CONST LC_P1_ERIS 11;
+   # 1
+   BLOCK_DEF CONST LC_P1_MAKEMAKE 12;
+   # 1
+   BLOCK_DEF CONST LC_P1_HAUMEA 13;
+   # 1
+   BLOCK_DEF CONST LC_P1_COUNT LC_P1_HAUMEA + 1;
+   # 1
+   BLOCK_DEF CONST LC_P1_ERR - 1;
+   # 1
    BLOCK_DEF CONST LC_P2_GM 0;
-   BLOCK_DEF CONST LC_P2_YEAR 1;
-   BLOCK_DEF CONST LC_P2_DAY 2;
-   BLOCK_DEF CONST LC_P2_FLATNESS 3;
-   BLOCK_DEF CONST LC_P2_A 4;
-   BLOCK_DEF CONST LC_P2_C 5;
+   BLOCK_DEF CONST LC_P2_DAY 1;
+   BLOCK_DEF CONST LC_P2_FLATNESS 2;
+   BLOCK_DEF CONST LC_P2_A 3;
+   BLOCK_DEF CONST LC_P2_C 4;
+   BLOCK_DEF CONST LC_P2_YEAR 5;
    BLOCK_DEF CONST LC_P2_ORB 6;
    BLOCK_DEF CONST LC_P2_ECC 7;
    BLOCK_DEF CONST LC_P2_INC 8;
@@ -784,18 +805,19 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    BLOCK_DEF INT lv_pl_ind = LC_P1_PREV_PL;
    BLOCK_DEF DBL lv_pl_arr[LC_P1_COUNT][LC_P2_COUNT];
    BLOCK_DEF DBL lv_pl_earth_year = EARTHYEAR;
-   BLOCK_DEF DBL lv_pl_jtwoktime = 1.0 / 64.0;# setup macro
+   BLOCK_DEF DBL lv_pl_jtwoktime = 1.0 / 64.0;
+   # setup macro
    #   FFFFFFFFFFunction --------------------------- lf_pl_init #
    BLOCK_DEF FUNC INT lf_pl_init(INT plnt):
       BLOCK_USE lv_pl_ind;
       BLOCK_USE lv_pl_arr[];
       IF lv_pl_ind < 0:
          lv_pl_arr[LC_P1_SUN][LC_P2_GM] = SUNGM;
-         lv_pl_arr[LC_P1_SUN][LC_P2_YEAR] = SUNYEAR;
          lv_pl_arr[LC_P1_SUN][LC_P2_DAY] = SUNDAY;
          lv_pl_arr[LC_P1_SUN][LC_P2_FLATNESS] = SUNFLATNESS;
          lv_pl_arr[LC_P1_SUN][LC_P2_A] = SUN_A;
          lv_pl_arr[LC_P1_SUN][LC_P2_C] = SUN_C;
+         lv_pl_arr[LC_P1_SUN][LC_P2_YEAR] = SUNYEAR;
          lv_pl_arr[LC_P1_SUN][LC_P2_ORB] = SUNORBIT;
          lv_pl_arr[LC_P1_SUN][LC_P2_ECC] = SUNECCENTRICITY;
          lv_pl_arr[LC_P1_SUN][LC_P2_INC] = SUNINCLINATION;
@@ -809,12 +831,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_SUN][LC_P2_PER_DT] = SUNPERIAPSIS_DT;
          lv_pl_arr[LC_P1_SUN][LC_P2_ASC_DT] = SUNASCENDING_DT;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_GM] = MERCURYGM;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_YEAR] = MERCURYYEAR;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_DAY] = MERCURYDAY;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_FLATNESS]
                = MERCURYFLATNESS;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_A] = MERCURY_A;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_C] = MERCURY_C;
+         lv_pl_arr[LC_P1_MERCURY][LC_P2_YEAR] = MERCURYYEAR;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_ORB] = MERCURYORBIT;
          lv_pl_arr[LC_P1_MERCURY][LC_P2_ECC]
                = MERCURYECCENTRICITY;
@@ -836,11 +858,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_MERCURY][LC_P2_ASC_DT]
                = MERCURYASCENDING_DT;
          lv_pl_arr[LC_P1_VENUS][LC_P2_GM] = VENUSGM;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_YEAR] = VENUSYEAR;
          lv_pl_arr[LC_P1_VENUS][LC_P2_DAY] = VENUSDAY;
          lv_pl_arr[LC_P1_VENUS][LC_P2_FLATNESS] = VENUSFLATNESS;
          lv_pl_arr[LC_P1_VENUS][LC_P2_A] = VENUS_A;
          lv_pl_arr[LC_P1_VENUS][LC_P2_C] = VENUS_C;
+         lv_pl_arr[LC_P1_VENUS][LC_P2_YEAR] = VENUSYEAR;
          lv_pl_arr[LC_P1_VENUS][LC_P2_ORB] = VENUSORBIT;
          lv_pl_arr[LC_P1_VENUS][LC_P2_ECC] = VENUSECCENTRICITY;
          lv_pl_arr[LC_P1_VENUS][LC_P2_INC] = VENUSINCLINATION;
@@ -859,11 +881,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_VENUS][LC_P2_ASC_DT]
                = VENUSASCENDING_DT;
          lv_pl_arr[LC_P1_EARTH][LC_P2_GM] = EARTHGM;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_YEAR] = EARTHYEAR;
          lv_pl_arr[LC_P1_EARTH][LC_P2_DAY] = EARTHDAY;
          lv_pl_arr[LC_P1_EARTH][LC_P2_FLATNESS] = EARTHFLATNESS;
          lv_pl_arr[LC_P1_EARTH][LC_P2_A] = EARTH_A;
          lv_pl_arr[LC_P1_EARTH][LC_P2_C] = EARTH_C;
+         lv_pl_arr[LC_P1_EARTH][LC_P2_YEAR] = EARTHYEAR;
          lv_pl_arr[LC_P1_EARTH][LC_P2_ORB] = EARTHORBIT;
          lv_pl_arr[LC_P1_EARTH][LC_P2_ECC] = EARTHECCENTRICITY;
          lv_pl_arr[LC_P1_EARTH][LC_P2_INC] = EARTHINCLINATION;
@@ -882,11 +904,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_EARTH][LC_P2_ASC_DT]
                = EARTHASCENDING_DT;
          lv_pl_arr[LC_P1_MARS][LC_P2_GM] = MARSGM;
-         lv_pl_arr[LC_P1_MARS][LC_P2_YEAR] = MARSYEAR;
          lv_pl_arr[LC_P1_MARS][LC_P2_DAY] = MARSDAY;
          lv_pl_arr[LC_P1_MARS][LC_P2_FLATNESS] = MARSFLATNESS;
          lv_pl_arr[LC_P1_MARS][LC_P2_A] = MARS_A;
          lv_pl_arr[LC_P1_MARS][LC_P2_C] = MARS_C;
+         lv_pl_arr[LC_P1_MARS][LC_P2_YEAR] = MARSYEAR;
          lv_pl_arr[LC_P1_MARS][LC_P2_ORB] = MARSORBIT;
          lv_pl_arr[LC_P1_MARS][LC_P2_ECC] = MARSECCENTRICITY;
          lv_pl_arr[LC_P1_MARS][LC_P2_INC] = MARSINCLINATION;
@@ -902,12 +924,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_MARS][LC_P2_PER_DT] = MARSPERIAPSIS_DT;
          lv_pl_arr[LC_P1_MARS][LC_P2_ASC_DT] = MARSASCENDING_DT;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_GM] = JUPITERGM;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_YEAR] = JUPITERYEAR;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_DAY] = JUPITERDAY;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_FLATNESS]
                = JUPITERFLATNESS;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_A] = JUPITER_A;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_C] = JUPITER_C;
+         lv_pl_arr[LC_P1_JUPITER][LC_P2_YEAR] = JUPITERYEAR;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_ORB] = JUPITERORBIT;
          lv_pl_arr[LC_P1_JUPITER][LC_P2_ECC]
                = JUPITERECCENTRICITY;
@@ -929,12 +951,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_JUPITER][LC_P2_ASC_DT]
                = JUPITERASCENDING_DT;
          lv_pl_arr[LC_P1_SATURN][LC_P2_GM] = SATURNGM;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_YEAR] = SATURNYEAR;
          lv_pl_arr[LC_P1_SATURN][LC_P2_DAY] = SATURNDAY;
          lv_pl_arr[LC_P1_SATURN][LC_P2_FLATNESS]
                = SATURNFLATNESS;
          lv_pl_arr[LC_P1_SATURN][LC_P2_A] = SATURN_A;
          lv_pl_arr[LC_P1_SATURN][LC_P2_C] = SATURN_C;
+         lv_pl_arr[LC_P1_SATURN][LC_P2_YEAR] = SATURNYEAR;
          lv_pl_arr[LC_P1_SATURN][LC_P2_ORB] = SATURNORBIT;
          lv_pl_arr[LC_P1_SATURN][LC_P2_ECC] = SATURNECCENTRICITY;
          lv_pl_arr[LC_P1_SATURN][LC_P2_INC] = SATURNINCLINATION;
@@ -953,12 +975,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_SATURN][LC_P2_ASC_DT]
                = SATURNASCENDING_DT;
          lv_pl_arr[LC_P1_URANUS][LC_P2_GM] = URANUSGM;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_YEAR] = URANUSYEAR;
          lv_pl_arr[LC_P1_URANUS][LC_P2_DAY] = URANUSDAY;
          lv_pl_arr[LC_P1_URANUS][LC_P2_FLATNESS]
                = URANUSFLATNESS;
          lv_pl_arr[LC_P1_URANUS][LC_P2_A] = URANUS_A;
          lv_pl_arr[LC_P1_URANUS][LC_P2_C] = URANUS_C;
+         lv_pl_arr[LC_P1_URANUS][LC_P2_YEAR] = URANUSYEAR;
          lv_pl_arr[LC_P1_URANUS][LC_P2_ORB] = URANUSORBIT;
          lv_pl_arr[LC_P1_URANUS][LC_P2_ECC] = URANUSECCENTRICITY;
          lv_pl_arr[LC_P1_URANUS][LC_P2_INC] = URANUSINCLINATION;
@@ -977,12 +999,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_URANUS][LC_P2_ASC_DT]
                = URANUSASCENDING_DT;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_GM] = NEPTUNEGM;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_YEAR] = NEPTUNEYEAR;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_DAY] = NEPTUNEDAY;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_FLATNESS]
                = NEPTUNEFLATNESS;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_A] = NEPTUNE_A;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_C] = NEPTUNE_C;
+         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_YEAR] = NEPTUNEYEAR;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ORB] = NEPTUNEORBIT;
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ECC]
                = NEPTUNEECCENTRICITY;
@@ -1004,11 +1026,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ASC_DT]
                = NEPTUNEASCENDING_DT;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_GM] = PLUTOGM;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_YEAR] = PLUTOYEAR;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_DAY] = PLUTODAY;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_FLATNESS] = PLUTOFLATNESS;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_A] = PLUTO_A;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_C] = PLUTO_C;
+         lv_pl_arr[LC_P1_PLUTO][LC_P2_YEAR] = PLUTOYEAR;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_ORB] = PLUTOORBIT;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_ECC] = PLUTOECCENTRICITY;
          lv_pl_arr[LC_P1_PLUTO][LC_P2_INC] = PLUTOINCLINATION;
@@ -1027,11 +1049,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_PLUTO][LC_P2_ASC_DT]
                = PLUTOASCENDING_DT;
          lv_pl_arr[LC_P1_CERES][LC_P2_GM] = CERESGM;
-         lv_pl_arr[LC_P1_CERES][LC_P2_YEAR] = CERESYEAR;
          lv_pl_arr[LC_P1_CERES][LC_P2_DAY] = CERESDAY;
          lv_pl_arr[LC_P1_CERES][LC_P2_FLATNESS] = CERESFLATNESS;
          lv_pl_arr[LC_P1_CERES][LC_P2_A] = CERES_A;
          lv_pl_arr[LC_P1_CERES][LC_P2_C] = CERES_C;
+         lv_pl_arr[LC_P1_CERES][LC_P2_YEAR] = CERESYEAR;
          lv_pl_arr[LC_P1_CERES][LC_P2_ORB] = CERESORBIT;
          lv_pl_arr[LC_P1_CERES][LC_P2_ECC] = CERESECCENTRICITY;
          lv_pl_arr[LC_P1_CERES][LC_P2_INC] = CERESINCLINATION;
@@ -1050,11 +1072,11 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_CERES][LC_P2_ASC_DT]
                = CERESASCENDING_DT;
          lv_pl_arr[LC_P1_ERIS][LC_P2_GM] = ERISGM;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_YEAR] = ERISYEAR;
          lv_pl_arr[LC_P1_ERIS][LC_P2_DAY] = ERISDAY;
          lv_pl_arr[LC_P1_ERIS][LC_P2_FLATNESS] = ERISFLATNESS;
          lv_pl_arr[LC_P1_ERIS][LC_P2_A] = ERIS_A;
          lv_pl_arr[LC_P1_ERIS][LC_P2_C] = ERIS_C;
+         lv_pl_arr[LC_P1_ERIS][LC_P2_YEAR] = ERISYEAR;
          lv_pl_arr[LC_P1_ERIS][LC_P2_ORB] = ERISORBIT;
          lv_pl_arr[LC_P1_ERIS][LC_P2_ECC] = ERISECCENTRICITY;
          lv_pl_arr[LC_P1_ERIS][LC_P2_INC] = ERISINCLINATION;
@@ -1070,12 +1092,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_ERIS][LC_P2_PER_DT] = ERISPERIAPSIS_DT;
          lv_pl_arr[LC_P1_ERIS][LC_P2_ASC_DT] = ERISASCENDING_DT;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_GM] = MAKEMAKEGM;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_YEAR] = MAKEMAKEYEAR;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_DAY] = MAKEMAKEDAY;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_FLATNESS]
                = MAKEMAKEFLATNESS;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_A] = MAKEMAKE_A;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_C] = MAKEMAKE_C;
+         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_YEAR] = MAKEMAKEYEAR;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ORB] = MAKEMAKEORBIT;
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ECC]
                = MAKEMAKEECCENTRICITY;
@@ -1100,12 +1122,12 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ASC_DT]
                = MAKEMAKEASCENDING_DT;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_GM] = HAUMEAGM;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_YEAR] = HAUMEAYEAR;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_DAY] = HAUMEADAY;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_FLATNESS]
                = HAUMEAFLATNESS;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_A] = HAUMEA_A;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_C] = HAUMEA_C;
+         lv_pl_arr[LC_P1_HAUMEA][LC_P2_YEAR] = HAUMEAYEAR;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_ORB] = HAUMEAORBIT;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_ECC] = HAUMEAECCENTRICITY;
          lv_pl_arr[LC_P1_HAUMEA][LC_P2_INC] = HAUMEAINCLINATION;
@@ -1902,8 +1924,7 @@ BLOCK:# ISA atmosphere
    BLOCK_DEF CONST LC_ISA_XDENSITY 4;
    BLOCK_DEF DBL lv_isa_arr[7][5];
    BLOCK_DEF DBL lv_isa_magic = 0.0;
-         #   FFFFFFFFFFunction --------------------------
-      #lf_isa_calc #
+   #   FFFFFFFFFFunction -------------------------- lf_isa_calc #
    BLOCK_DEF FUNC DBL lf_isa_calc(DBL height_m, INT state_x):
       BLOCK_USE lv_isa_arr[];
       BLOCK_USE lv_isa_magic;

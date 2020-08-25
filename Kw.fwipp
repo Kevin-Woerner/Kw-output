@@ -1,6 +1,9 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-08-12 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-08-25 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  Kw:boolean checks changed
+# 2020-08-19 kdw  Kw:comment change
+# 2020-08-17 kdw  Kw:macro syntax changed
 # 2020-07-29 kdw  Kw:block-def work
 # 2020-07-27 kdw  Kw:block syntax
 # 2020-07-24 kdw  Kw:comment cleanup
@@ -39,7 +42,7 @@
 # 2020-04-01 kdw  Kw:t[a]n to TA[N]
 # 2020-03-30 kdw  Kw:bla[c]kbo[d]y work
 # 2020-03-29 kdw  Kw:comment change
-# 2020-03-16 kdw  Kw:sigm[o]id3d?
+# 2020-03-16 kdw  Kw:sigm[o]id3d
 # 2020-03-09 kdw  Kw:LO[C]AL_.* keywords
 # 2020-03-08 kdw  Kw:PR[I]NTVAL change
 # 2020-03-06 kdw  Kw:L[A]NG.* names
@@ -96,10 +99,10 @@
 # 2019-03-09 kdw  Kw:.*mean() func renam
 # 2019-03-08 kdw  Kw:is[e]qual changed to is[e]q, et al.
 # 2019-03-04 kdw  Kw:loop-limit work
-# 2019-02-28 kdw  Kw:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  Kw:REP[L]ACE/DE[F]INE work
 # 2019-02-04 kdw  Kw:topy[h] abs changed to ABS
 # 2019-01-31 kdw  Kw:topy[h]; iime.hires
-# 2019-01-27 kdw  Kw:topy[h]1?
+# 2019-01-27 kdw  Kw:topy[h]1
 # 2019-01-23 kdw  Kw:added call keyword to base-out
 # 2019-01-13 kdw  Kw:var rena; reorg
 # 2018-12-18 kdw  Kw:kwelements separated
@@ -132,13 +135,13 @@
 # 2018-05-22 kdw  Kw:comment change
 # 2018-05-20 kdw  Kw:const work
 # 2018-05-18 kdw  Kw:LAN[G]UAGE syntax change
-# 2018-05-17 kdw  Kw:ARR?AY.* and HOR[N]ER syntax
+# 2018-05-17 kdw  Kw:ARRAY.* and HOR[N]ER syntax
 # 2018-05-14 kdw  Kw:BL[O]CK syntax
-# 2018-05-13 kdw  Kw:MO?DE.* syntax change
+# 2018-05-13 kdw  Kw:MODE.* syntax change
 # 2018-04-24 kdw  Kw:comments
 # 2018-04-19 kdw  Kw:consts rework
 # 2018-04-03 kdw  Kw:rm() from return
-# 2018-04-02 kdw  Kw:Pro?totype, et al.
+# 2018-04-02 kdw  Kw:Prototype, et al.
 # 2018-04-01 kdw  Kw:LAN[G]UAGE_E[N]D
 # 2018-03-26 kdw  Kw:macro redef
 # 2018-03-17 kdw  Kw:comment change
@@ -163,7 +166,7 @@
 # 2017-10-06 kdw  Kw:rm astro and earth stuff
 # 2017-10-02 kdw  Kw:astro work
 # 2017-09-29 kdw  Kw:added squareroot, cuberoot functions
-# 2017-09-28 kdw  Kw:co?nst-as?tro.f?wip
+# 2017-09-28 kdw  Kw:const-astro.fwip
 # 2017-09-26 kdw  Kw:mved some func to earth
 # 2017-09-22 kdw  Kw:comment change
 # 2017-09-20 kdw  Kw:number format change
@@ -178,13 +181,13 @@
 # 2017-08-18 kdw  Kw:lower case constants
 # 2017-08-11 kdw  Kw:var renam
 # 2017-07-06 kdw  Kw:minor comment change
-# 2017-06-23 kdw  Kw:REPL?ACE redo
+# 2017-06-23 kdw  Kw:REPLACE redo
 # 2017-06-21 kdw  Kw:LANG_.* AND MASTER.* change
 # 2017-06-13 kdw  Kw:comment update
 # 2017-06-08 kdw  Kw:magic stuff
-# 2017-06-03 kdw  Kw:PRI?NT.* changed
+# 2017-06-03 kdw  Kw:PRINT.* changed
 # 2017-06-01 kdw  Kw:line.fwip added and deleted
-# 2017-05-03 kdw  Kw:PROT?OTYPE format changed
+# 2017-05-03 kdw  Kw:PROTOTYPE format changed
 # 2017-05-02 kdw  Kw:var renam app changed to appr
 # 2017-04-20 kdw  Kw:func changed to function
 # 2017-04-18 kdw  Kw:bessel
@@ -197,43 +200,43 @@
 # 2017-03-17 kdw  Kw:space after comma
 # 2017-03-13 kdw  Kw:VB: pow function
 # 2017-03-12 kdw  Kw:shorten long comments
-# 2017-03-10 kdw  Kw:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  Kw:get Fw[i]p_Pa[r]se to work
 # 2017-03-07 kdw  Kw:futile experiment
 # 2017-03-06 kdw  Kw:sigils rmed
-# 2017-03-01 kdw  Kw:var?ylog-ad?d space messup
-# 2017-02-28 kdw  Kw:REQ?UIRE function()
-# 2017-02-24 kdw  Kw:REP?LACE rework, et al
+# 2017-03-01 kdw  Kw:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  Kw:REQ[U]IRE function()
+# 2017-02-24 kdw  Kw:REP[L]ACE rework, et al
 # 2017-02-23 kdw  Kw:var array nam change
 # 2017-02-14 kdw  Kw:FWIP Loop syntax changed
 # 2017-02-13 kdw  Kw:FWIP language change
 # 2017-02-12 kdw  Kw:FWIP language change
-# 2017-02-08 kdw  Kw:?[?]PRO?TOT?YPE
+# 2017-02-08 kdw  Kw:.PRO[T]OTYPE
 # 2017-01-08 kdw  Kw:INSERT syntax change
-# 2017-01-06 kdw  Kw:?[?]LAN[G]UAGE_[I]S.* stuff
+# 2017-01-06 kdw  Kw:..LAN[G]UAGE_[I]S.* stuff
 # 2017-01-05 kdw  Kw:log1[pm]
 # 2016-12-28 kdw  Kw:rearrangement
 # 2016-12-27 kdw  Kw:mved earth* to sphere*, et al.
 # 2016-12-26 kdw  Kw:mved *_distance funcs to new earth.fwip
 # 2016-12-20 kdw  Kw:failed experiment w/ powers
-# 2016-12-02 kdw  Kw:?[?]INS?ERT changed
+# 2016-12-02 kdw  Kw:..INS[E]RT changed
 # 2016-11-28 kdw  Kw:file suffix change
-# 2016-11-27 kdw  Kw:squ?are, c?ube
+# 2016-11-27 kdw  Kw:square, cube
 # 2016-11-25 kdw  Kw:constant renam
 # 2016-11-24 kdw  Kw:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
-# 2016-11-23 kdw  Kw:CN?ST changed to REA?DON?LY
-# 2016-11-22 kdw  Kw:high-precision EU?LER calc experiment
-# 2016-11-21 kdw  Kw:DE?F changed to FU?NC
+# 2016-11-23 kdw  Kw:CNST changed to REA[D]ONLY
+# 2016-11-22 kdw  Kw:high-precision EU[L]ER calc experiment
+# 2016-11-21 kdw  Kw:DE[F] changed to FU[N]C
 # 2016-11-20 kdw  Kw:language change
 # 2016-11-19 kdw  Kw:minor rearrangement
 # 2016-11-17 kdw  Kw:sinx rmed; cbrtx renamd
-# 2016-11-16 kdw  Kw:ma?gic stuff
+# 2016-11-16 kdw  Kw:magic stuff
 # 2016-11-15 kdw  Kw:MOD/BIT* syntax change
-# 2016-11-14 kdw  Kw:modu?lo
+# 2016-11-14 kdw  Kw:mod[u]lo
 # 2016-11-11 kdw  Kw:minor refactor
-# 2016-11-09 kdw  Kw:FO?RE?VER loop rmed
-# 2016-11-08 kdw  Kw:AW?AIT.*COU?NT syntax
+# 2016-11-09 kdw  Kw:FO[R]EVER loop rmed
+# 2016-11-08 kdw  Kw:AW[A]IT.*COU[N]T syntax
 # 2016-11-07 kdw  Kw:__LANG_* syntax changed
-# 2016-11-06 kdw  Kw:isz?ero changed to ise?qual
+# 2016-11-06 kdw  Kw:isz[e]ro changed to ise[q]ual
 # 2016-11-01 kdw  Kw:hyper
 # 2016-10-30 kdw  Kw:comment in fmod
 # 2016-10-28 kdw  Kw:comment reorg
@@ -241,8 +244,8 @@
 # 2016-10-10 kdw  Kw:BC:moved var decls in un and tn
 # 2016-10-08 kdw  Kw:lowercased Tn for BC
 # 2016-10-07 kdw  Kw:Tn
-# 2016-09-28 kdw  Kw:change in v?kk?cp.?sh
-# 2016-09-19 kdw  Kw:not magic; _[_]IN?SERT[_]_
+# 2016-09-28 kdw  Kw:change in vk[k]cp.sh
+# 2016-09-19 kdw  Kw:not magic; _[_]INSERT[_]_
 # 2016-09-14 kdw  Kw:added() to return statements
 # 2016-09-14 kdw  Kw:lang change
 # 2016-09-13 kdw  Kw:lang change
@@ -254,20 +257,20 @@
 # 2016-05-25 kdw  Kw:debugging compiler
 # 2016-05-24 kdw  Kw:long lines
 # 2016-05-18 kdw  Kw:comment change
-# 2016-05-12 kdw  Kw:VIS?UALB?ASIC6 rename
+# 2016-05-12 kdw  Kw:VIS[U]ALBA[S]IC6 rename
 # 2016-05-04 kdw  Kw:deprecated P[R]INT
-# 2016-05-02 kdw  Kw:debugging on dar?win
+# 2016-05-02 kdw  Kw:debugging on darw[i]n
 # 2016-04-27 kdw  Kw:comment tweak
 # 2016-03-12 kdw  Kw:cbrt debugging
 # 2016-02-29 kdw  Kw:comment tweak
 # 2016-01-22 kdw  Kw:long lines
 # 2016-01-05 kdw  Kw:minor comment change
 # 2015-12-31 kdw  Kw:bounded possible infinite loops
-# 2015-12-30 kdw  Kw:_?_DEC?LARE_?_
+# 2015-12-30 kdw  Kw:__DECLARE__
 # 2015-12-28 kdw  Kw:rearranged includes
-# 2015-12-28 kdw  Kw:_?_I?F_X_?_ changed to _?_IF_NONE_?_
-# 2015-12-21 kdw  Kw:nested _?_I?Fs
-# 2015-12-11 kdw  Kw:_?_END?IF_?_ renamed
+# 2015-12-28 kdw  Kw:__IF_X__ changed to __IF_NONE__
+# 2015-12-21 kdw  Kw:nested __IFs
+# 2015-12-11 kdw  Kw:__ENDIF__ renamed
 # 2015-12-10 kdw  Kw:i[s]zero stuff
 # 2015-12-09 kdw  Kw:debugging
 # 2015-12-04 kdw  Kw:end-cr
@@ -291,7 +294,7 @@
 # 2015-10-14 kdw  Kw:su[n].fwip
 # 2015-10-13 kdw  Kw:_[_]DEFI[N]E_[_]
 # 2015-10-10 kdw  Kw:is* functions moved
-# 2015-10-09 kdw  Kw:[agh]+m1? improvements
+# 2015-10-09 kdw  Kw:[agh]+m1 improvements
 # 2015-10-08 kdw  Kw:i[n]va[g]m1()
 # 2015-10-07 kdw  Kw:L[N]G_MA[X]IMUM
 # 2015-10-05 kdw  Kw:i[s]alm[o]stequal
@@ -339,7 +342,7 @@
 # 2015-08-21 kdw  Kw:kw[2].pl change(C stuff)
 # 2015-08-20 kdw  Kw:kw[2].pl change
 # 2015-08-19 kdw  Kw:stts_* stuff
-# 2015-08-18 kdw  Kw:redid some sta?t stuff
+# 2015-08-18 kdw  Kw:redid some stat stuff
 # 2015-08-17 kdw  Kw:syntax error
 # 2015-08-16 kdw  Kw:added CO[N]STs, stts_*
 # 2015-08-15 kdw  Kw:tweak
@@ -386,6 +389,7 @@ IMPORT_MASTER;
 # Start doing things, ..
 #   IIIIIIIIIInsert-Begin ------------------------- Macros.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  Macros:macro syntax changed
 # 2020-07-24 kdw  Macros:comment cleanup
 # 2020-06-20 kdw  Macros:comment change
 # 2020-04-26 kdw  Macros:block indentation
@@ -414,7 +418,7 @@ IMPORT_MASTER;
 # 2019-03-08 kdw  Macros:is[e]qual to is[e]q, et al.
 # 2019-03-06 kdw  Macros:is.* funcs changed
 # 2019-03-04 kdw  Macros:loop-limit work
-# 2019-02-28 kdw  Macros:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  Macros:REP[L]ACE/DE[F]INE work
 # 2019-02-19 kdw  Macros:macro syntax
 # 2019-02-13 kdw  Macros:comment work
 # 2018-12-20 kdw  Macros:work on module specific functions
@@ -423,6 +427,9 @@ IMPORT_MASTER;
 #   IIIIIIIIIInsert-End --------------------------- Macros.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------- constants.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-19 kdw  constants:comment change
+# 2020-08-18 kdw  constants:minor tweaks
+# 2020-08-17 kdw  constants:macro syntax changed
 # 2020-07-09 kdw  constants:sqrttwo constant
 # 2020-06-30 kdw  constants:black hole stuff
 # 2020-06-29 kdw  constants:hal[a]qim def mved
@@ -528,7 +535,7 @@ IMPORT_MASTER;
 # 2019-03-08 kdw  constants:rmed defines
 # 2019-03-05 kdw  constants:mved unitgm
 # 2019-03-01 kdw  constants:added "+" after "E"
-# 2019-02-28 kdw  constants:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  constants:REP[L]ACE/DE[F]INE work
 # 2019-02-04 kdw  constants:kwt epoch changed
 # 2019-01-23 kdw  constants:fourth macro; refactor
 # 2019-01-14 kdw  constants:iso binary prefxes
@@ -557,10 +564,10 @@ IMPORT_MASTER;
 # 2018-04-28 kdw  constants:updated values
 # 2018-04-25 kdw  constants:50 deci places on constants
 # 2018-04-24 kdw  constants:feingenbaum, apery constants
-# 2018-04-23 kdw  constants:mp?ss
-# 2018-04-15 kdw  constants:k?wt work
-# 2018-04-14 kdw  constants:epo?chx renamd to k?wt
-# 2018-04-10 kdw  constants:ep?ochx-un?ix-diff
+# 2018-04-23 kdw  constants:m(ps)s
+# 2018-04-15 kdw  constants:kwt work
+# 2018-04-14 kdw  constants:ep(oc)hx renamd to kwt
+# 2018-04-10 kdw  constants:e(po)chx-u(ni)x-diff
 # 2018-04-01 kdw  constants:LAN[G]UAGE_E[N]D
 # 2018-03-26 kdw  constants:jpkg = joule / kg = light**2
 # 2018-03-20 kdw  constants:minor debugging
@@ -574,7 +581,7 @@ IMPORT_MASTER;
 # 2018-03-08 kdw  constants:constify
 # 2018-03-06 kdw  constants:rpm redefd
 # 2018-03-05 kdw  constants:cube renam
-# 2018-02-22 kdw  constants:epo?chx refactor
+# 2018-02-22 kdw  constants:ep(oc)hx refactor
 # 2018-02-20 kdw  constants:comments changed
 # 2018-02-19 kdw  constants:secant and macro refactor
 # 2018-02-17 kdw  constants:expandnow changed
@@ -605,10 +612,10 @@ IMPORT_MASTER;
 # 2017-10-02 kdw  constants:several consts from const-astro
 # 2017-10-01 kdw  constants:ATM
 # 2017-09-29 kdw  constants:PARSEC, AU moved to here
-# 2017-09-28 kdw  constants:co?nst-ast?ro.fw?ip
+# 2017-09-28 kdw  constants:c(on)st-as(tr)o.f(wi)p
 # 2017-09-27 kdw  constants:EA[R]THGR[A]VITY[AB]
-# 2017-09-26 kdw  constants:VONKL?ITZING and JO?SEPHSON
-# 2017-09-25 kdw  constants:EPO?CHX redefd
+# 2017-09-26 kdw  constants:VONK(LI)TZING and J(OS)EPHSON
+# 2017-09-25 kdw  constants:EP(OC)HX redefd
 # 2017-09-22 kdw  constants:comment change
 # 2017-09-21 kdw  constants:comment change
 # 2017-09-20 kdw  constants:julian date work
@@ -640,10 +647,10 @@ IMPORT_MASTER;
 # 2017-03-28 kdw  constants:comments on language
 # 2017-03-27 kdw  constants:double max
 # 2017-03-21 kdw  constants:long line error vs pytho
-# 2017-03-10 kdw  constants:get Fw?ip_Pa?rse to work
-# 2017-03-07 kdw  constants:CO?NST?ANT format changed
+# 2017-03-10 kdw  constants:get Fw[i]p_Pa[r]se to work
+# 2017-03-07 kdw  constants:C(ON)S(TA)NT format changed
 # 2017-03-06 kdw  constants:sigils rmed, et al.
-# 2017-03-01 kdw  constants:var?ylog-ad?d space messup
+# 2017-03-01 kdw  constants:var[y]log-a[d]d space messup
 # 2017-02-24 kdw  constants:LAN[G]UAGE change
 # 2017-02-14 kdw  constants:cnv_dbl2* renam
 # 2017-02-13 kdw  constants:FWIP language change
@@ -665,9 +672,9 @@ IMPORT_MASTER;
 # 2016-11-30 kdw  constants:minus sign problems
 # 2016-11-25 kdw  constants:renamd consts
 # 2016-11-24 kdw constants:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
-# 2016-11-23 kdw  constants:CO?NST to CO?NST?ANT
-# 2016-11-22 kdw  constants:high-precision eul?er experiment
-# 2016-11-21 kdw  constants:DE?F to FU?NC
+# 2016-11-23 kdw  constants:C(ON)ST to C(ON)S(TA)NT
+# 2016-11-22 kdw  constants:high-precision eu(le)r experiment
+# 2016-11-21 kdw  constants:D(EF) to F(UN)C
 # 2016-11-20 kdw  constants:language change
 # 2016-11-19 kdw  constants:angle stuff
 # 2016-11-14 kdw  constants:LANG_ stuff
@@ -678,7 +685,7 @@ IMPORT_MASTER;
 # 2016-10-27 kdw  constants:comment typo
 # 2016-09-13 kdw  constants:lang change
 # 2016-09-07 kdw  constants:rmed unused code
-# 2016-09-01 kdw  constants:LI?2; comment tweak
+# 2016-09-01 kdw  constants:L(I2); comment tweak
 # 2016-08-26 kdw  constants:comments
 # 2016-08-23 kdw  constants:one-letter vars
 # 2016-08-19 kdw  constants:ARC*
@@ -691,20 +698,20 @@ IMPORT_MASTER;
 # 2016-08-05 kdw  constants:VB6 VBDOTNET: "in" is a keyword
 # 2016-08-04 kdw  constants:OUNCE, KILOGRAM, METER
 # 2016-08-02 kdw  constants:SECOND, et al.; Julian stuff
-# 2016-07-28 kdw  constants:DA?YE / Y?AR renamed
-# 2016-07-26 kdw  constants:DA?Y_PER*
+# 2016-07-28 kdw  constants:D(AY)E / YAR renamed
+# 2016-07-26 kdw  constants:D(AY)_PER*
 # 2016-07-18 kdw  constants:astronomical constants
 # 2016-07-14 kdw  constants:more time constants
 # 2016-07-13 kdw  constants:time and rev constants
 # 2016-05-26 kdw  constants:rmed unused const
 # 2016-05-24 kdw  constants:long lines
-# 2016-05-18 kdw  constants:indent vs Pyt?hon problems
+# 2016-05-18 kdw  constants:indent vs Py(th)on problems
 # 2016-05-16 kdw  constants:temperature consts changed
-# 2016-05-12 kdw  constants:VIS?UALB?ASIC6 rename
+# 2016-05-12 kdw  constants:VI(SU)AL(BA)SIC6 rename
 # 2016-03-12 kdw  constants:BC: scale increased
 # 2016-02-29 kdw  constants:comment tweak
-# 2015-12-30 kdw  constants:OM?EGA definition problems
-# 2015-12-21 kdw  constants:nested _?_I?F.*s
+# 2015-12-30 kdw  constants:O(ME)GA definition problems
+# 2015-12-21 kdw  constants:nested __(IF).*s
 # 2015-12-11 kdw  constants:_[_]DE[F]INE_[_] refactor
 # 2015-12-11 kdw  constants:_[_]EN[D]IF_[_] obsoleted
 # 2015-12-10 kdw  constants:epsilons redefined
@@ -2121,6 +2128,8 @@ FUNC_END
 #TEST:tempf2tempc(tempc2tempf(3.2))==3.2;
 #   IIIIIIIIIInsert-Begin ----------------------------- is.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  is:boolean checks changed
+# 2020-08-17 kdw  is:macro syntax changed
 # 2020-07-24 kdw  is:comment cleanup
 # 2020-07-23 kdw  is:is[n]eq
 # 2020-06-18 kdw  is:Modulo operator II
@@ -2173,11 +2182,11 @@ FUNC_END
 # 2017-06-08 kdw  is:mved magic stuff out
 # 2017-05-03 kdw  is:PROT?OTYPE format changed
 # 2017-04-21 kdw  is:func to function; var renam
-# 2017-03-10 kdw  is:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  is:get Fw[i]p_Pa[r]se to work
 # 2017-03-07 kdw  is:INS?ERT etal
 # 2017-03-06 kdw  is:sigils rmed
 # 2017-03-01 kdw  is:space after RET?URN
-# 2017-02-28 kdw  is:REQ?UIRE function()
+# 2017-02-28 kdw  is:REQ[U]IRE function()
 # 2017-02-24 kdw  is:LAN[G]UAGE change
 # 2017-02-14 kdw  is:cnv_dbl2* renam
 # 2017-02-12 kdw  is:FWIP language change
@@ -2453,8 +2462,7 @@ FUNC_END
 BLOCK:# MAGIC stuff
    BLOCK_DEF CONST LC_MAGIC_INT 2070108020;
    BLOCK_DEF CONST LC_MAGIC_INT_NOT 301040105;
-         #   FFFFFFFFFFunction -----------------------------
-      #magicset #
+   #   FFFFFFFFFFunction ----------------------------- magicset #
    FUNC INT magicset(NUL):
       # return "magic" number
       RETURN LC_MAGIC_INT;
@@ -2467,11 +2475,12 @@ BLOCK:# MAGIC stuff
 BLOCK_END# MAGIC stuff
 #   FFFFFFFFFFunction --------------------------------- ismagic #
 FUNC BOL ismagic(INT xx):
-   # does XX equal magic number?
+   # does XX equal magic number
    RETURN iseq(xx, magicset());
 FUNC_END
 #   IIIIIIIIIInsert-Begin -------------------------- round.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  round:comment change
 # 2020-07-24 kdw  round:comment cleanup
 # 2020-04-17 kdw  round:comment change
 # 2020-04-12 kdw  round:comment change
@@ -2501,10 +2510,10 @@ FUNC_END
 # 2017-04-21 kdw  round:func changed to function
 # 2017-03-24 kdw  round:comment tweak
 # 2017-03-17 kdw  round:space after comma
-# 2017-03-10 kdw  round:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  round:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  round:sigils rmed
-# 2017-03-01 kdw  round:var?ylog-ad?d space messup
-# 2017-02-28 kdw  round:REQ?UIRE function()
+# 2017-03-01 kdw  round:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  round:REQ[U]IRE function()
 # 2017-02-14 kdw  round:cnv_dbl2* renam
 # 2017-02-13 kdw  round:FWIP language change
 # 2017-02-12 kdw  round:FWIP language change
@@ -2761,8 +2770,10 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- round.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- trig.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-19 kdw  trig:comment change
+# 2020-08-17 kdw  trig:macro syntax changed
 # 2020-08-03 kdw  trig:explicit module for pi and tau
-# 2020-08-02 kdw  trig:g?d func
+# 2020-08-02 kdw  trig:g[d] func
 # 2020-07-29 kdw  trig:block-def work
 # 2020-07-27 kdw  trig:block syntax
 # 2020-07-24 kdw  trig:s/LO[C]AL_/BL[O]CK_/
@@ -2803,7 +2814,7 @@ FUNC_END
 # 2019-03-16 kdw  trig:use to[p]yh1
 # 2019-03-08 kdw  trig:rmed defines
 # 2019-03-06 kdw  trig:is.* funcs changed
-# 2019-02-28 kdw  trig:DEF?INE playing
+# 2019-02-28 kdw  trig:DE[F]INE playing
 # 2019-02-19 kdw  trig:se[c]inv fixed
 # 2019-02-12 kdw  trig:deg[2]ra func rmed
 # 2019-02-08 kdw  trig:comment
@@ -2830,8 +2841,8 @@ FUNC_END
 # 2017-08-20 kdw  trig:rmed/renamd .*_P[E]R_.* vars
 # 2017-04-21 kdw  trig:unneeded plus signs rmed
 # 2017-04-20 kdw  trig:func to function
-# 2017-03-10 kdw  trig:get Fw?ip_Pa?rse to work
-# 2017-03-07 kdw  trig:INS?ERT etal
+# 2017-03-10 kdw  trig:get Fw[i]p_Pa[r]se to work
+# 2017-03-07 kdw  trig:INS[E]RT etal
 # 2017-03-06 kdw  trig:sigils rmed
 # 2017-03-01 kdw  trig:space after RET?URN
 # 2017-02-13 kdw  trig:FWIP language change
@@ -2840,7 +2851,7 @@ FUNC_END
 # 2016-12-25 kdw  trig:"rev" to "t"
 # 2016-12-25 kdw  trig:atan2h
 # 2016-11-24 kdw  trig:spaces around operator
-# 2016-11-21 kdw  trig:DE?F to FU?NC
+# 2016-11-21 kdw  trig:DE[F] to FU[N]C
 # 2016-11-20 kdw  trig:language change
 # 2016-11-20 kdw  trig:comment cleanup
 # 2016-11-19 kdw  trig:"p" to "rev"
@@ -2848,7 +2859,7 @@ FUNC_END
 # 2016-11-15 kdw  trig:*inv functions added
 # 2016-09-15 kdw  trig:lang change
 # 2016-09-13 kdw  trig:lang change
-# 2016-05-12 kdw  trig:Co?pyri?ght comment changed
+# 2016-05-12 kdw  trig:Co[p]yright comment changed
 # 2016-04-27 kdw  trig:forced double division in places
 # 2016-01-15 kdw  trig:tweak
 # 2015-12-03 kdw  trig:renamed constants
@@ -2877,15 +2888,6 @@ FUNC DBL sinc(DBL xx_rad):
    IF_END
    RETURN retvalu;
 FUNC_END
-# Used to calculate constants for subsequent function
-#   FFFFFFFFFFunction ---------------------------------- sinccc #
-#FUNC DBL sinccc(NUL):
-#   ? ? RAPHSON_DECLARATIONS??
-#   ? ? RAPHSON_LOOP 4.48
-#; nrvx_xx * COS(nrvx_xx) - SIN(nrvx_xx)
-#; 2.0 * COS(nrvx_xx) - nrvx_xx * SIN(nrvx_xx) ??
-#   RETURN(nrvx_xx);
-#FUNC_END
 #   FFFFFFFFFFunction --------------------------------- sincinv #
 FUNC DBL sincinv(DBL yy):
    # Solve SINC(XX) = YY for YY in the interval
@@ -3532,7 +3534,7 @@ FUNC_END
 BLOCK:# cube root
    #   FFFFFFFFFFunction --------------------- lf_cbrtx_gt_zero #
    BLOCK_DEF FUNC DBL lf_cbrtx_gt_zero(DBL xx):
-         # power of 2 closest to cuberoot of ABS(XX)
+      # power of 2 closest to cuberoot of ABS(XX)
       # only call this with a positive 0 argument
       # if XX in[27/64,64/27) then
       #    ZZ in[1,8) and YY == 1
@@ -3928,7 +3930,7 @@ FUNC INT print_base_outf(DBL num
    lim = CEILL(-lg(DBLEPS) / lg(baset));
    frc = frac(num) * baset;
    ii = 1;
-   WHILE NOT Kw.iszero(frc) AND ii <= lim:
+   WHILE ii <= lim AND NOT Kw.iszero(frc):
       dig = FLOORL(frc);
       CALL print_num2char(dig);
       frc -= dig;
@@ -4022,6 +4024,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- hyper.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------ lambert.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-19 kdw  lambert:comment change
+# 2020-08-17 kdw  lambert:macro syntax changed
 # 2020-07-27 kdw  lambert:block syntax
 # 2020-07-24 kdw  lambert:comment cleanup
 # 2020-05-14 kdw  lambert:local funcs only in blocks
@@ -4057,8 +4061,8 @@ FUNC_END
 # 2018-07-19 kdw  lambert:comments; array reformat
 # 2018-07-17 kdw  lambert:private lf_.* funcs
 # 2018-07-13 kdw  lambert:float number reformt
-# 2018-05-17 kdw  lambert:ARR?AY.* and HOR[N]ER syntax
-# 2018-05-16 kdw  lambert:AR?RAY syntax
+# 2018-05-17 kdw  lambert:AR(R)AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  lambert:A(R)RAY syntax
 # 2018-04-03 kdw  lambert:rm() from return
 # 2018-02-16 kdw  lambert:minor refactor
 # 2018-01-08 kdw  lambert:w[mp] and inv
@@ -4068,25 +4072,25 @@ FUNC_END
 # 2017-05-31 kdw  lambert:fvar rename; comments
 # 2017-04-30 kdw  lambert:func to function
 # 2017-03-19 kdw  lambert:comment changed
-# 2017-03-10 kdw  lambert:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  lambert:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  lambert:sigils rmed
-# 2017-03-01 kdw  lambert:var?ylog-ad?d space messup
-# 2017-02-28 kdw  lambert:REQ?UIRE function()
-# 2017-02-27 kdw  lambert:lf_la?mbert_iter
+# 2017-03-01 kdw  lambert:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  lambert:REQ[U]IRE function()
+# 2017-02-27 kdw  lambert:lf_l(a)mbert_iter
 # 2017-02-20 kdw  lambert:vars renamd
-# 2017-02-14 kdw  lambert:FWIP Loop syntax changed; L?NG to I?NT
+# 2017-02-14 kdw  lambert:FWIP Loop syntax changed; LNG to INT
 # 2017-02-12 kdw  lambert:FWIP language change
 # 2016-11-23 kdw  lambert:int to lng
-# 2016-11-21 kdw  lambert:DE?F to FU?NC
+# 2016-11-21 kdw  lambert:D(E)F to F(U)NC
 # 2016-11-20 kdw  lambert:language change
 # 2016-11-16 kdw  lambert:comments
-# 2016-11-15 kdw  lambert:M?OD/B?IT* syntax change
-# 2016-11-14 kdw  lambert:Hal?ley algorithm correction
-# 2016-11-11 kdw  lambert:seca?nt algorithm refactor
-# 2016-11-08 kdw  lambert:AW?AIT.*COU?NT syntax
+# 2016-11-15 kdw  lambert:MOD/BIT* syntax change
+# 2016-11-14 kdw  lambert:Ha(l)ley algorithm correction
+# 2016-11-11 kdw  lambert:sec(a)nt algorithm refactor
+# 2016-11-08 kdw  lambert:A(W)AIT.*CO(U)NT syntax
 # 2016-11-07 kdw  lambert:refactor lf_lambertwx
 # 2016-11-07 kdw  lambert:__LA[N]G* syntax change
-# 2016-10-31 kdw  lambert:EX?ITLO?OP
+# 2016-10-31 kdw  lambert:E(X)ITL(O)OP
 # 2016-09-15 kdw  lambert:lang change
 # 2016-09-13 kdw  lambert:lang change
 # 2016-05-18 kdw  lambert:comment change
@@ -4111,7 +4115,7 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ----------------------
    #lf_lambert_iter #
-   BLOCK_DEF FUNC DBL lf_lambert_iter(DBL xx, DBL nearw_zero):#
+   BLOCK_DEF FUNC DBL lf_lambert_iter(DBL xx, DBL nearw_zero):
       ## Lamberts W0(x) function defined by x=y*exp(y)
       INT ii;
       DBL eww;
@@ -4493,8 +4497,11 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- integral.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- number.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  number:boolean checks changed
+# 2020-08-19 kdw  number:comment change
+# 2020-08-17 kdw  number:macro syntax changed
 # 2020-08-12 kdw  number:allow args <0 in znorder
-# 2020-08-02 kdw  number:var renam g?d
+# 2020-08-02 kdw  number:var renam g[d]
 # 2020-07-29 kdw  number:block-def work
 # 2020-07-27 kdw  number:block syntax
 # 2020-07-25 kdw  number:s/BITWISE/BIT/
@@ -4557,7 +4564,7 @@ FUNC_END
 # 2020-01-20 kdw  number:isprime work
 # 2020-01-18 kdw  number:.*prim[e]nth() work
 # 2020-01-14 kdw  number:dlog.* funcs
-# 2020-01-09 kdw  number:bkb?n funcs
+# 2020-01-09 kdw  number:bk(bn) funcs
 # 2020-01-08 kdw  number:cantorial work II
 # 2020-01-07 kdw  number:cantorial work
 # 2020-01-04 kdw  number:cantorx ternary funciton
@@ -4611,7 +4618,7 @@ FUNC_END
 # 2018-07-28 kdw  number:l[c]antim func
 # 2018-07-26 kdw  number:lc[a]ntim func
 # 2018-07-17 kdw  number:private lf_.* funcs
-# 2018-07-16 kdw  number:lc?am funcfibo
+# 2018-07-16 kdw  number:l[c]am funcfibo
 # 2018-06-13 kdw  number:mved tests
 # 2018-06-09 kdw  number:mved tests
 # 2018-06-08 kdw  number:more test values
@@ -4621,8 +4628,8 @@ FUNC_END
 # 2018-05-28 kdw  number:.*_() functions
 # 2018-05-26 kdw  number:Mertens function
 # 2018-05-22 kdw  number:trivial syntax error
-# 2018-05-18 kdw  number:l?i function loop limit
-# 2018-05-14 kdw  number:BLO?CK syntax change
+# 2018-05-18 kdw  number:l[i] function loop limit
+# 2018-05-14 kdw  number:BL[O]CK syntax change
 # 2018-04-03 kdw  number:rm() from return
 # 2018-04-01 kdw  number:LAN[G]UAGE_E[N]D
 # 2018-03-26 kdw  number:macro redef
@@ -4639,8 +4646,8 @@ FUNC_END
 # 2017-08-22 kdw  number:comment change
 # 2017-08-20 kdw  number:rmed/renamd .*_P[E]R_.* vars
 # 2017-06-21 kdw  number:LAN[G].* AND MA[S]TER.* change
-# 2017-05-30 kdw  number:approx?pn
-# 2017-05-15 kdw  number:polycnum, tetrac?num
+# 2017-05-30 kdw  number:appro[x]pn
+# 2017-05-15 kdw  number:polycnum, tetra[c]num
 # 2017-05-13 kdw  number:polynum, tri
 # 2017-04-21 kdw  number:func to function
 # 2017-04-11 kdw  number:long lines
@@ -4648,11 +4655,11 @@ FUNC_END
 # 2017-03-30 kdw  number:comment cleanup
 # 2017-03-17 kdw  number:space after comma
 # 2017-03-12 kdw  number:shorten long comments
-# 2017-03-10 kdw  number:get Fw?ip_Pa?rse to work
-# 2017-03-07 kdw  number:INS?ERT etal
+# 2017-03-10 kdw  number:get Fw[i]p_Pa[r]se to work
+# 2017-03-07 kdw  number:INS[E]RT etal
 # 2017-03-06 kdw  number:sigils rmed
-# 2017-03-01 kdw  number:var?ylog-ad?d space messup
-# 2017-02-28 kdw  number:REQ?UIRE function()
+# 2017-03-01 kdw  number:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  number:REQ[U]IRE function()
 # 2017-02-24 kdw  number:array var renam
 # 2017-02-20 kdw  number:var renam
 # 2017-02-19 kdw  number:Li redef
@@ -4661,41 +4668,41 @@ FUNC_END
 # 2017-02-12 kdw  number:FWIP language change
 # 2017-02-08 kdw  number:SE[C]ANT stuff; syntax error in Li
 # 2017-02-07 kdw  number:SE[C]ANT stuff
-# 2017-02-06 kdw  number:SE[C]ANT / CO?UNT syntax
+# 2017-02-06 kdw  number:SE[C]ANT / CO[U]NT syntax
 # 2017-02-03 kdw  number:SE[C]ANT stuff
 # 2017-01-06 kdw  number:..LAN[G]_[U]AGE_[I]F deprecated
 # 2016-12-30 kdw  number:ipow to powi
-# 2016-12-28 kdw  number:handle uppercase funcs in fw?ipp
-# 2016-12-20 kdw  number:indent "??" lines
-# 2016-12-01 kdw  number:rmed LI?2
+# 2016-12-28 kdw  number:handle uppercase funcs in fw[i]pp
+# 2016-12-20 kdw  number:indent "?" lines
+# 2016-12-01 kdw  number:rmed L[I]2
 # 2016-11-27 kdw  number:long lines
-# 2016-11-23 kdw  number:CN?ST to REA?DON?LY
-# 2016-11-22 kdw  number:fixed l?i
-# 2016-11-21 kdw  number:DE?F to FU?NC
-# 2016-11-20 kdw  number:language change
-# 2016-11-19 kdw  number:isp?rime
-# 2016-11-15 kdw  number:M?OD/B?IT* syntax change
+# 2016-11-23 kdw  number:C[N]ST to REA[D]ONLY
+# 2016-11-22 kdw  number:fixed[l]i
+# 2016-11-21 kdw  number:D[F]to FU[N]C
+# 2016-11-20 kdw  number:laanguage change
+# 2016-11-19 kdw  number:isp[r]ime
+# 2016-11-15 kdw  number:M[O]D/B[I]T* syntax change
 # 2016-11-14 kdw  number:comment cleanup
-# 2016-11-11 kdw  number:seca?nt algorithm refactor
-# 2016-11-09 kdw  number:more AW?AIT loops
-# 2016-10-31 kdw  number:AWA?IT
-# 2016-10-30 kdw  number:EX?ITLO?OP
+# 2016-11-11 kdw  number:sec[a]nt algorithm refactor
+# 2016-11-09 kdw  number:more AW[A]IT loops
+# 2016-10-31 kdw  number:AW[A]IT
+# 2016-10-30 kdw  number:EX[I]TL[O]OP
 # 2016-10-28 kdw  number:comment reorder
 # 2016-10-14 kdw  number:_p
-# 2016-10-03 kdw  number:ispr?ime algorithm
-# 2016-09-27 kdw  number:pc?f new algorithm
-# 2016-09-26 kdw  number:pc?f debugged
-# 2016-09-25 kdw  number:pc?f
-# 2016-09-22 kdw  number:eule?rph?i
+# 2016-10-03 kdw  number:isp[r]ime algorithm
+# 2016-09-27 kdw  number:pcf new algorithm
+# 2016-09-26 kdw  number:pcf debugged
+# 2016-09-25 kdw  number:pcf
+# 2016-09-22 kdw  number:eulerphi
 # 2016-09-21 kdw  number:comment change
 # 2016-09-15 kdw  number:comment change
 # 2016-09-14 kdw  number:lang change
 # 2016-09-08 kdw  number:eta tweak
 # 2016-09-06 kdw  number:eta tweak
 # 2016-09-02 kdw  number:tweak
-# 2016-09-01 kdw  number:li, Lix?
-# 2016-04-27 kdw  number:_[_]BL?OCK* change
-# 2016-03-03 kdw  number:fixed problem in fa?ctor; get_factor
+# 2016-09-01 kdw  number:li, Lix
+# 2016-04-27 kdw  number:_[_]BL[O]CK* change
+# 2016-03-03 kdw  number:fixed problem in fa[c]tor; get_factor
 # 2015-12-31 kdw  number:bounded possible infinite loops
 # 2015-12-30 kdw  number:isdblequal renamed
 # 2015-12-28 kdw  number:variable renamed; requires tweaked
@@ -5164,8 +5171,7 @@ FUNC_END
 BLOCK:# Prime count
    BLOCK_DEF INT lv_pcf_end = 0;
    BLOCK_DEF DBL lv_pcf_arr[0];
-         #   FFFFFFFFFFunction ---------------------------
-      #primecount #
+   #   FFFFFFFFFFunction --------------------------- primecount #
    FUNC INT primecount(DBL xx):
       # Prime Counting Function == number of primes <= XX
       # using memoization
@@ -5753,7 +5759,7 @@ FUNC INT dlog(INT aa
          retvalu = 1;
       ELSIF aa <= 0 OR bb <= 0 OR nn <= 0:
          retvalu = -1;
-      ELSIF 1 < gcd(aa, nn) OR NOT isprimitiveroot(aa, nn):
+      ELSIF 1 < gcd(aa, nn) OR (NOT isprimitiveroot(aa, nn)):
          retvalu = dlogx(aa, bb, nn);
       ELSE:
          sqnn = CEILL(SQRT(nn));
@@ -5800,8 +5806,7 @@ FUNC_END
 BLOCK:# Mertens function
    BLOCK_DEF INT lv_mertens_end = 0;
    BLOCK_DEF INT lv_mertens_arr[0];
-         #   FFFFFFFFFFunction ------------------------------
-      #mertens #
+   #   FFFFFFFFFFunction ------------------------------ mertens #
    FUNC INT mertens(INT nn):
       # sum of mobius function from 0 to NN
       # I.E. count of square-free integers up to NN
@@ -6062,7 +6067,8 @@ FUNC INT prime0_f(INT nf
    RETURN retvalu;
 FUNC_END
 BLOCK:# Prime factors
-   BLOCK_DEF CONST LC_MAX_FACTORS 65;# 1
+   BLOCK_DEF CONST LC_MAX_FACTORS 65;
+   # 1
    #   FFFFFFFFFFunction ------------------------- print_factor #
    FUNC INT print_factor(INT nn):
       # Print out all prime factors of number NN
@@ -6501,11 +6507,11 @@ FUNC INT bkbn(INT bb
 FUNC_END
 BLOCK:# Li, Lix variables
    BLOCK_DEF DBL lv_li_two = 0;
-         #   FFFFFFFFFFunction
-      #---------------------------------- lix #
+   #   FFFFFFFFFFunction ---------------------------------- lix #
    FUNC DBL lix(DBL xx):
       # logintegral(XX) - logintegral(2)
-      BLOCK_USE lv_li_two;# if LV_LI_TWO is not defd, def it
+      BLOCK_USE lv_li_two;
+      # if LV_LI_TWO is not defd, def it
       IF lv_li_two <= 0:
          lv_li_two = Kw.logintegral(2.0);
       IF_END
@@ -6684,6 +6690,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- number.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- bessel.fwip #
 #    COPYRIGHT C 2017-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  bessel:macro syntax changed
 # 2020-07-27 kdw  bessel:block syntax
 # 2020-07-24 kdw  bessel:comment cleanup
 # 2020-07-12 kdw  bessel:sqrttwo const
@@ -7375,7 +7382,8 @@ BLOCK_END
 BLOCK:# define bessel ucrecur
    #   FFFFFFFFFFunction ---------------------- lf_bess_ucrecur #
    BLOCK_DEF FUNC DBL lf_bess_ucrecur(INT nn, DBL xx, DBL fzero
-         , DBL fone):# Let Zn be either bessYn or bessJn
+         , DBL fone):
+      # Let Zn be either bessYn or bessJn
       # Zn(NN+1, XX) = 2*NN*Zn(NN, XX) / XX - Zn(NN-1, XX)
       DBL av;
       DBL bv;
@@ -7616,7 +7624,8 @@ FUNC_END
 BLOCK:# define bessel lcrecur
    #   FFFFFFFFFFunction ---------------------- lf_bess_lcrecur #
    BLOCK_DEF FUNC DBL lf_bess_lcrecur(INT nn, DBL xx, DBL fzero
-         , DBL fone):# Let zn be either bess_jn or bess_yn
+         , DBL fone):
+      # Let zn be either bess_jn or bess_yn
       # jn(NN+1, XX) = (2*NN+1) * jn(NN, XX) / XX  - jn(NN-1, XX)
       DBL av;
       DBL bv;
@@ -7754,8 +7763,7 @@ BLOCK_END# define bessel lcrecur
 BLOCK:# partition function
    BLOCK_DEF DBL lv_partitionr_arr[0];
    BLOCK_DEF INT lv_partitionr_end = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #partition #
+   #   FFFFFFFFFFunction ---------------------------- partition #
    FUNC DBL partition(INT nn):
       # number of partitions of NN
       # E.g. partition(5) = 7 since 5 ==
@@ -7825,8 +7833,7 @@ BLOCK_END# partition function
 BLOCK:# partitionq function
    BLOCK_DEF DBL lv_partitionq_arr[0];
    BLOCK_DEF INT lv_partitionq_end = 0;
-         #   FFFFFFFFFFunction ---------------------------
-      #partitionq #
+   #   FFFFFFFFFFunction --------------------------- partitionq #
    FUNC DBL partitionq(INT nn):
       # number of partitions of NN into distinct parts
       # == number of partitions of NN into odd parts
@@ -7900,6 +7907,8 @@ BLOCK_END# partitionq function
 #   IIIIIIIIIInsert-End ------------------------ partition.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- bits.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  bits:boolean checks changed
+# 2020-08-17 kdw  bits:macro syntax changed
 # 2020-07-25 kdw  bits:s/BITWISE/BIT/
 # 2020-07-24 kdw  bits:comment cleanup
 # 2020-06-17 kdw  bits:Modulo operator
@@ -7944,19 +7953,19 @@ BLOCK_END# partitionq function
 # 2017-05-03 kdw  bits:PROT?OTYPE format changed
 # 2017-04-21 kdw  bits:func to function
 # 2017-03-13 kdw  bits:forgotten ";" in bitor, binand
-# 2017-03-10 kdw  bits:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  bits:get Fw[i]p_Pa[r]se to work
 # 2017-03-07 kdw  bits:INS?ERT etal
 # 2017-03-06 kdw  bits:sigils rmed
-# 2017-03-01 kdw  bits:var?ylog-ad?d space messup
-# 2017-02-28 kdw  bits:REQ?UIRE function()
+# 2017-03-01 kdw  bits:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  bits:REQ[U]IRE function()
 # 2017-02-24 kdw  bits:LAN[G]UAGE change
 # 2017-02-14 kdw  bits:FWIP Loop syntax changed
 # 2017-02-13 kdw  bits:FWIP language change
 # 2017-02-12 kdw  bits:FWIP language change
-# 2017-02-08 kdw  bits:"??"PRO?TOT?YPE
+# 2017-02-08 kdw  bits:"?"PRO?TOT?YPE
 # 2017-02-07 kdw  bits:comment change
 # 2017-01-19 kdw  bits:var name change
-# 2017-01-06 kdw  bits:"??"LAN[G]UAGE_I[F] deprecated
+# 2017-01-06 kdw  bits:"?"LAN[G]UAGE_I[F] deprecated
 # 2016-12-08 kdw  bits:comment change
 # 2016-11-23 kdw  bits:comment cleanup
 # 2016-11-21 kdw  bits:DE?F to FU?NC
@@ -8247,7 +8256,7 @@ FUNC INT bits_ms1b(INT orig):
       retvalu = 0;
    ELSE:
       divisor = -2;
-      WHILE 0 <> BITAND(divisor, orig):
+      WHILE BITAND(divisor, orig) <> 0:
          divisor *= 2;
       WHILE_END
       retvalu = -divisor / 2;
@@ -8288,7 +8297,7 @@ FUNC INT bits_ms1bpos(INT orig):
    ELSE:
       divisor = -2;
       bit_count = 0;
-      WHILE 0 <> BITAND(divisor, orig):
+      WHILE BITAND(divisor, orig) <> 0:
          divisor *= 2;
          bit_count += 1;
       WHILE_END
@@ -8335,6 +8344,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- bits.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- erf.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  erf:macro syntax changed
 # 2020-07-27 kdw  erf:block syntax
 # 2020-07-24 kdw  erf:comment cleanup
 # 2020-07-20 kdw  erf:erf__3 tweak
@@ -8407,10 +8417,10 @@ FUNC_END
 # 2017-04-26 kdw  erf:keyword COM[M]ENT.*
 # 2017-04-21 kdw  erf:comment change
 # 2017-04-20 kdw  erf:func to function
-# 2017-03-10 kdw  erf:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  erf:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  erf:sigils rmed
 # 2017-02-26 kdw  erf:var renam
-# 2017-02-24 kdw  erf:REP?LACE rework, et al
+# 2017-02-24 kdw  erf:REP[L]ACE rework, et al
 # 2017-02-20 kdw  erf:array var names
 # 2017-02-14 kdw  erf:FWIP Loop syntax changed
 # 2017-02-12 kdw  erf:FWIP language change
@@ -8450,7 +8460,7 @@ BLOCK:
       #   FFFFFFFFFFunction ----------------------------
    #lf_calerf #
    BLOCK_DEF FUNC DBL lf_calerf(DBL xx, INT jint):
-         # Support function for erf funcs.
+      # Support function for erf funcs.
       # This routine was cannibalized from code written
       # by Peter John Acklam(email pjacklamonline.no),
       # and retrieved from http://cpansearch.perl.org/src/REID
@@ -8851,6 +8861,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ erf.fwip #
 #   IIIIIIIIIInsert-Begin -------------------------- gamma.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-19 kdw  gamma:comment change
+# 2020-08-17 kdw  gamma:macro syntax changed
 # 2020-08-03 kdw  gamma:explicit module for pi and tau
 # 2020-07-27 kdw  gamma:block syntax
 # 2020-07-24 kdw  gamma:comment cleanup
@@ -8911,10 +8923,10 @@ FUNC_END
 # 2018-07-18 kdw  gamma:gamma work
 # 2018-07-17 kdw  gamma:private lf_.* funcs
 # 2018-07-13 kdw  gamma:float number reformt
-# 2018-05-22 kdw  gamma:tgam?ma2 description
+# 2018-05-22 kdw  gamma:tga(m)ma2 description
 # 2018-05-20 kdw  gamma:hnm()
-# 2018-05-17 kdw  gamma:ARR?AY.* and HOR[N]ER syntax
-# 2018-05-16 kdw  gamma:AR?RAY syntax
+# 2018-05-17 kdw  gamma:AR(R)AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  gamma:A(R)RAY syntax
 # 2018-04-03 kdw  gamma:rm() from return
 # 2018-03-26 kdw  gamma:macro redef
 # 2018-02-19 kdw  gamma:secant and macro refactor
@@ -8946,11 +8958,11 @@ FUNC_END
 # 2017-03-21 kdw  gamma:lgammainv vs BC debugging
 # 2017-03-19 kdw  gamma:comments
 # 2017-03-12 kdw  gamma:shorten long comments
-# 2017-03-10 kdw  gamma:get Fw?ip_Pa?rse to work
-# 2017-03-07 kdw  gamma:INS?ERT etal
+# 2017-03-10 kdw  gamma:get Fw[i]p_Pa[r]se to work
+# 2017-03-07 kdw  gamma:IN(S)ERT etal
 # 2017-03-06 kdw  gamma:sigils rmed
-# 2017-03-01 kdw  gamma:var?ylog-ad?d space messup
-# 2017-02-28 kdw  gamma:REQ?UIRE function()
+# 2017-03-01 kdw  gamma:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  gamma:REQ[U]IRE function()
 # 2017-02-20 kdw  gamma:array var names
 # 2017-02-14 kdw  gamma:FWIP Loop syntax changed
 # 2017-02-13 kdw  gamma:FWIP language change
@@ -8960,30 +8972,30 @@ FUNC_END
 # 2017-02-07 kdw  gamma:comment rearrangement; SE[C]ANT stuff
 # 2017-02-06 kdw  gamma:SE[C]ANT syntax
 # 2017-02-05 kdw  gamma:SE[C]ANT stuff
-# 2017-02-03 kdw  gamma:bet?ai?nc error return value
-# 2017-02-01 kdw  gamma:bet?ai?nc work
-# 2017-01-31 kdw  gamma:bet?ai?nc
+# 2017-02-03 kdw  gamma:be(t)a(i)nc error return value
+# 2017-02-01 kdw  gamma:be(t)a(i)nc work
+# 2017-01-31 kdw  gamma:be(t)a(i)nc
 # 2017-01-06 kdw  gamma:?[?]USE.* to ?[?].*_MODE; ?[?]DIGR.*
 # 2016-12-25 kdw  gamma:rev to t
 # 2016-12-02 kdw  gamma:BC debugging(dbl_epi* == 0)
-# 2016-11-23 kdw  gamma:CN?ST to RE?ADO?NLY
-# 2016-11-21 kdw  gamma:DE?F to FU?NC
+# 2016-11-23 kdw  gamma:C(N)ST to R(E)AD(O)NLY
+# 2016-11-21 kdw  gamma:D(E)F to F(U)NC
 # 2016-11-20 kdw  gamma:language change
-# 2016-11-18 kdw  gamma:tgamma refactor; _?_PO?D_?_
+# 2016-11-18 kdw  gamma:tgamma refactor; __P(O)D(_)_
 # 2016-11-17 kdw  gamma:tgamma problem w/ args < 0.5
 # 2016-11-15 kdw  gamma:1 to 1.0 for python
-# 2016-11-14 kdw  gamma:seca?nt algorithm refactor
-# 2016-11-11 kdw  gamma:seca?nt algorithm refactor
+# 2016-11-14 kdw  gamma:sec(a)nt algorithm refactor
+# 2016-11-11 kdw  gamma:sec(a)nt algorithm refactor
 # 2016-11-08 kdw  gamma:bound loops
-# 2016-11-06 kdw  gamma:lnga?mma1
-# 2016-10-31 kdw  gamma:EX?ITL?OOP
+# 2016-11-06 kdw  gamma:lng(a)mma1
+# 2016-10-31 kdw  gamma:E(X)IT(L)OOP
 # 2016-10-28 kdw  gamma:comment reorg
 # 2016-09-15 kdw  gamma:lang change
 # 2016-09-13 kdw  gamma:lang change
 # 2016-05-18 kdw  gamma:comment change
-# 2016-01-11 kdw  gamma:corrected comment; rmed gam?maln
+# 2016-01-11 kdw  gamma:corrected comment; rmed ga(m)maln
 # 2015-12-31 kdw  gamma:bounded possible infinite loops
-# 2015-12-30 kdw  gamma:i?sdb?leq?ual to i?seq?ual
+# 2015-12-30 kdw  gamma:isd(b)le(q)ual to ise(q)ual
 # 2015-12-28 kdw  gamma:.*2() functions exsized
 # 2015-12-16 kdw  gamma:long comments
 # 2015-12-14 kdw  gamma:bad sigils
@@ -8996,8 +9008,8 @@ FUNC_END
 # 2015-11-12 kdw  gamma:rmed tga[m]ma2; et al.
 # 2015-10-19 kdw  gamma:ga[m]ma to tg[a]mma
 # 2015-10-13 kdw  gamma:function rename
-# 2015-10-12 kdw  gamma:gam?main?v improved; lg?ammai?nv
-# 2015-10-11 kdw  gamma:seca?nt algorithm changed
+# 2015-10-12 kdw  gamma:ga(m)mai(n)v improved; l(g)amma(i)nv
+# 2015-10-11 kdw  gamma:sec(a)nt algorithm changed
 # 2015-10-10 kdw  gamma:fac(torial)?inv created
 # 2015-10-09 kdw  gamma:di[g]ammai[n]v created
 # 2015-10-01 kdw  gamma:float equality checks to is.*
@@ -9096,7 +9108,7 @@ BLOCK:
       #   FFFFFFFFFFunction --------------------
    #lf_lgamma_gt_zero #
    BLOCK_DEF FUNC DBL lf_lgamma_gt_zero(DBL xx):
-         # compute LN(TGAMMA(XX))
+      # compute LN(TGAMMA(XX))
       DBL retvalu;
       DBL zz;
       DBL pp;
@@ -9186,7 +9198,7 @@ BLOCK:
    #lf_eval_cont #
    BLOCK_DEF FUNC DBL lf_eval_cont(DBL xx, INT deg
          , READONLY DBL coeff_arr_pc[]):
-         # evaluate XX+C0/(XX+C1/(XX+C2/...+CN/XX)..)
+      # evaluate XX+C0/(XX+C1/(XX+C2/...+CN/XX)..)
       DBL sum;
       INT ii;
       sum = xx;
@@ -9386,7 +9398,7 @@ BLOCK:
       #   FFFFFFFFFFunction -----------------------
    #lf_gamma_shift #
    BLOCK_DEF FUNC DBL lf_gamma_shift(DBL xx, DBL yy):
-         # use this property of gamma function
+      # use this property of gamma function
       # to calculate values outside of[1,2)
       #    tgamma_2(x + 1) = x * tgamma_2(x);
       DBL prod;
@@ -9410,7 +9422,7 @@ BLOCK:
    FUNC_END
    #   FFFFFFFFFFunction -------------------- lf_tgamma_gt_half #
    BLOCK_DEF FUNC DBL lf_tgamma_gt_half(DBL xx):
-         # compute GAMMA(XX) for 0.5 < XX
+      # compute GAMMA(XX) for 0.5 < XX
       # https://rosettacode.org/wiki/Gamma_function
       INT ii;
       DBL sum;
@@ -9517,7 +9529,7 @@ BLOCK:
       #   FFFFFFFFFFunction --------------------
    #lf_ligamma_xxleaa #
    BLOCK_DEF FUNC DBL lf_ligamma_xxleaa(DBL aa, DBL xx):
-         # Lower Incomplete Gamma function
+      # Lower Incomplete Gamma function
       # useful if XX <= MAX(1.1, AA)
       # ONLY CALL THIS WITH 0.0 < XX
       INT kk;
@@ -9538,7 +9550,7 @@ BLOCK:
    FUNC_END
    #   FFFFFFFFFFunction -------------------- lf_uigamma_aalexx #
    BLOCK_DEF FUNC DBL lf_uigamma_aalexx(DBL aa, DBL xx):
-         # Upper Incomplete Gamma function
+      # Upper Incomplete Gamma function
       # useful if MAX(1.1, AA) <= XX
       # ONLY CALL THIS WITH 0.75 < XX
       INT jj;
@@ -9926,7 +9938,7 @@ BLOCK:
       #   FFFFFFFFFFunction -------------------
    #lf_digamma_gt_zero #
    BLOCK_DEF FUNC DBL lf_digamma_gt_zero(DBL xx):
-         # derivative of LN(TGAMMA(XX)) for 0 < XX ONLY
+      # derivative of LN(TGAMMA(XX)) for 0 < XX ONLY
       DBL rec_xx_sqr;
       DBL shift;
       DBL sxx;
@@ -10126,6 +10138,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- gamma.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- combin.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  combin:boolean checks changed
+# 2020-08-17 kdw  combin:comment change
 # 2020-08-05 kdw  combin:pcoh[h]ammer func
 # 2020-08-02 kdw  combin:var renam g?d
 # 2020-07-27 kdw  combin:block syntax
@@ -10231,7 +10245,7 @@ FUNC_END
 # 2017-03-17 kdw  combin:space after comma
 # 2017-03-13 kdw  combin:continue not supported
 # 2017-03-12 kdw  combin:shorten long comments
-# 2017-03-10 kdw  combin:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  combin:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  combin:sigils rmed
 # 2017-02-27 kdw  combin:PA?SS deprecated
 # 2017-02-24 kdw  combin:array var names
@@ -10288,8 +10302,7 @@ FUNC_END
 BLOCK:# factorial
    BLOCK_DEF DBL lv_factorial_arr[0];
    BLOCK_DEF INT lv_factorial_end = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #factorial #
+   #   FFFFFFFFFFunction ---------------------------- factorial #
    FUNC DBL factorial(INT nn):
       # factorial(NN) = 1*2*3*...*NN
       # EGF(factorial();x) = 1 / (1 - x)
@@ -10330,8 +10343,7 @@ BLOCK_END#TEST:factorial(7)-5040;
 BLOCK:# factorialdouble
    BLOCK_DEF DBL lv_factorial_b_arr[0];
    BLOCK_DEF INT lv_factorial_b_end = 0;
-         #   FFFFFFFFFFunction ----------------------
-      #factorialdouble #
+   #   FFFFFFFFFFunction ---------------------- factorialdouble #
    FUNC DBL factorialdouble(INT nn):
       # The double factorial
       # If NN = 2*kk then
@@ -10438,8 +10450,7 @@ FUNC_END
 BLOCK:# Catalan numbers
    BLOCK_DEF DBL lv_catalan_arr[0];
    BLOCK_DEF INT lv_catalan_end = 0;
-         #   FFFFFFFFFFunction ------------------------------
-      #catalan #
+   #   FFFFFFFFFFunction ------------------------------ catalan #
    FUNC DBL catalan(INT nn):
       # factorial(2 * NN) / (factorial(NN + 1) * factorial(NN))
       #   *) # of properly nested NN pairs of parenthesises
@@ -10478,8 +10489,7 @@ BLOCK_END
 BLOCK:# Supercatalan numbers
    BLOCK_DEF DBL lv_supercatalan_arr[0];
    BLOCK_DEF INT lv_supercatalan_end = 0;
-         #   FFFFFFFFFFunction -------------------------
-      #supercatalan #
+   #   FFFFFFFFFFunction ------------------------- supercatalan #
    FUNC DBL supercatalan(INT nn):
       # factorial(2 * NN) / (factorial(NN + 1) * factorial(NN))
       #   *) # of lattice paths with diagonal steps from
@@ -10527,8 +10537,7 @@ BLOCK:# Bell numbers
    BLOCK_DEF DBL lv_bell_arr[0];
    BLOCK_DEF DBL lv_bell_x_arr[0];
    BLOCK_DEF INT lv_bell_end = 0;
-         #   FFFFFFFFFFunction
-      #--------------------------------- bell #
+   #   FFFFFFFFFFunction --------------------------------- bell #
    FUNC DBL bell(INT nn):
       # bell(NN) equals the number of
       #   1) possible rhyming schemes for NN lines.
@@ -10637,7 +10646,7 @@ FUNC_END
 FUNC INT d2lt_d1(INT xx
       , INT yy):
    # Convert a 2D triangular coordinates into 1D coordinate
-   # If NOT 0 <= YY <= XX, return -1
+   # If YY < 0 OR XX < YY: return -1
    # r/c   -1  0  1  2  3  4  5 ...
    #   --------------------------
    #   .    .  .  .  .  .  .  . ...
@@ -10660,7 +10669,7 @@ FUNC_END
 FUNC INT d1lt_d2(INT nn
       , WRITEONLY INT ret_arr_p[]):
    # Convert a 1D triangular coordinates into 2D coordinate
-   # If NOT 0 <= YY <= XX, return -1
+   # If YY < 0 OR XX < YY: return -1
    # r/c   -1  0  1  2  3  4  5 ...
    #   --------------------------
    #   .    .  .  .  .  .  .  . ...
@@ -10898,7 +10907,7 @@ FUNC_END
 FUNC INT d2hypot_d1(INT xx
       , INT yy):
    # Convert a 2D triangular coordinates into 1D coordinate
-   # If NOT 0 <= YY <= XX, return -1
+   # If YY < 0 OR XX < YY: return -1
    # == number of lattice points(a,b) such that
    #      1) 0 <= b <= a
    #      2) a*a+b*b < XX*XX+YY*YY OR
@@ -10959,8 +10968,7 @@ BLOCK:# binomial numbers
    BLOCK_DEF DBL lv_binom_arr[0];
    BLOCK_DEF INT lv_binom_end = 0;
    BLOCK_DEF INT lv_binom_max = 0;
-         #   FFFFFFFFFFunction -----------------------------
-      #binomial #
+   #   FFFFFFFFFFunction ----------------------------- binomial #
    FUNC INT binomial(INT nn
          , INT kk):
       # factorial(NN) / (factorial(KK) * factorial(NN - KK))
@@ -11016,8 +11024,7 @@ BLOCK:# eulerian numbers
    BLOCK_DEF DBL lv_euler_arr[0];
    BLOCK_DEF INT lv_euler_end = 0;
    BLOCK_DEF INT lv_euler_max = 0;
-         #   FFFFFFFFFFunction -----------------------------
-      #eulerian #
+   #   FFFFFFFFFFunction ----------------------------- eulerian #
    FUNC DBL eulerian(INT nn
          , INT mm):
       # EULERIAN(NN, MM) == # of permutations of 0,1,2,...NN-1
@@ -11096,8 +11103,7 @@ BLOCK:# Entringer numbers
    BLOCK_DEF DBL lv_entringer_arr[0];
    BLOCK_DEF INT lv_entringer_end = 0;
    BLOCK_DEF INT lv_entringer_max = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #entringer #
+   #   FFFFFFFFFFunction ---------------------------- entringer #
    FUNC DBL entringer(INT nn
          , INT kk):
       # Entringer number
@@ -11221,8 +11227,7 @@ BLOCK:# Stirling numbers of the 1th kind
    BLOCK_DEF DBL lv_stir_a_arr[0];
    BLOCK_DEF INT lv_stir_a_end = 0;
    BLOCK_DEF INT lv_stir_a_max = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #stirling1 #
+   #   FFFFFFFFFFunction ---------------------------- stirling1 #
    FUNC DBL stirling1(INT nn
          , INT kk):
       # Stirling numbers of the 1th kind
@@ -11284,8 +11289,7 @@ BLOCK:# Stirling numbers of the 2th kind
    BLOCK_DEF DBL lv_stir_b_arr[0];
    BLOCK_DEF INT lv_stir_b_end = 0;
    BLOCK_DEF INT lv_stir_b_max = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #stirling2 #
+   #   FFFFFFFFFFunction ---------------------------- stirling2 #
    FUNC DBL stirling2(INT nn
          , INT kk):
       # Stirling numbers of the 2th kind
@@ -11349,8 +11353,7 @@ BLOCK:# Bernoullis numbers
    BLOCK_DEF DBL lv_bern_n_arr[0];
    BLOCK_DEF DBL lv_bern_d_arr[0];
    BLOCK_DEF INT lv_bern_end = 0;
-         #   FFFFFFFFFFunction ----------------------------
-      #bernoulli #
+   #   FFFFFFFFFFunction ---------------------------- bernoulli #
    FUNC DBL bernoulli(INT nn):
       # the NNth Bernoulli number
       # if 1 < NN is odd, then bernoulli(NN) = 0
@@ -11584,6 +11587,9 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- combin.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- julian.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-20 kdw  julian:boolean checks changed
+# 2020-08-19 kdw  julian:comment change
+# 2020-08-17 kdw  julian:comment change
 # 2020-07-29 kdw  julian:block-def work
 # 2020-07-27 kdw  julian:block syntax
 # 2020-07-24 kdw  julian:comment cleanup
@@ -11642,7 +11648,7 @@ FUNC_END
 # 2019-03-19 kdw  julian:re[t]_val to re[t]valu
 # 2019-03-08 kdw  julian:is[e]qual to is[e]q, et al.
 # 2019-03-01 kdw  julian:ymd[h]ms2j2k created
-# 2019-02-28 kdw  julian:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  julian:REP[L]ACE/DE[F]INE work
 # 2019-02-03 kdw  julian:day2hms.* funcs
 # 2019-01-31 kdw  julian:conversion func rework
 # 2018-12-08 kdw  julian:comment change
@@ -11653,11 +11659,11 @@ FUNC_END
 # 2018-07-19 kdw  julian:comments; array reformat
 # 2018-06-14 kdw  julian:const changed
 # 2018-05-22 kdw  julian:comment change
-# 2018-05-14 kdw  julian:BLO?CK syntax change
+# 2018-05-14 kdw  julian:BL(O)CK syntax change
 # 2018-05-06 kdw  julian:comment change
 # 2018-04-16 kdw  julian:.*_diff work
-# 2018-04-15 kdw  julian:k?wt work
-# 2018-04-14 kdw  julian:epo?chx renamd to k?wt
+# 2018-04-15 kdw  julian:kwt work
+# 2018-04-14 kdw  julian:ep(o)chx renamd to kwt
 # 2018-04-10 kdw  julian:reorder conversion funcs
 # 2018-04-03 kdw  julian:rm() from return
 # 2018-03-20 kdw  julian:replaced index w/ "at"replace
@@ -11680,47 +11686,47 @@ FUNC_END
 # 2017-10-20 kdw  julian:REP[L]ACE syntax changed
 # 2017-09-27 kdw  julian:var nam changed
 # 2017-09-26 kdw  julian:jewish elapsed days work
-# 2017-09-22 kdw  julian:jd2ym?dhms rework
-# 2017-09-20 kdw  julian:nasty bug in jd2ym?dhms; rmed ymd?2j2k
-# 2017-09-18 kdw  julian:ymdh?ms2jd work
-# 2017-09-17 kdw  julian:ymdh?ms2jd
+# 2017-09-22 kdw  julian:jd2y(m)dhms rework
+# 2017-09-20 kdw  julian:nasty bug in jd2y(m)dhms; rmed ym(d)2j2k
+# 2017-09-18 kdw  julian:ymd(h)ms2jd work
+# 2017-09-17 kdw  julian:ymd(h)ms2jd
 # 2017-09-14 kdw  julian:units work
 # 2017-09-12 kdw  julian:day2h[m]s function
-# 2017-09-11 kdw  julian:consts renamed, refactor ymd?2j2k
+# 2017-09-11 kdw  julian:consts renamed, refactor ym(d)2j2k
 # 2017-09-06 kdw  julian:UNITS support
-# 2017-08-25 kdw  julian:da?y2hms bug
+# 2017-08-25 kdw  julian:d(a)y2hms bug
 # 2017-08-20 kdw  julian:rmed/renamd .*_P[E]R_.* vars
-# 2017-07-12 kdw  julian:mo?dulo to MO?D
-# 2017-06-23 kdw  julian:REPL?ACE redo
+# 2017-07-12 kdw  julian:m(o)dulo to M(O)D
+# 2017-06-23 kdw  julian:REP(L)ACE redo
 # 2017-04-21 kdw  julian:func to function
 # 2017-03-19 kdw  julian:comments
 # 2017-03-17 kdw  julian:python stuff in jd2ym.*
 # 2017-03-12 kdw  julian:shorten long comments
-# 2017-03-10 kdw  julian:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  julian:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  julian:sigils rmed
-# 2017-03-01 kdw  julian:var?ylog-ad?d space messup
-# 2017-02-28 kdw  julian:REQ?UIRE function()
-# 2017-02-24 kdw  julian:REP?LACE rework, et al
+# 2017-03-01 kdw  julian:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  julian:REQ[U]IRE function()
+# 2017-02-24 kdw  julian:REP[L]ACE rework, et al
 # 2017-02-23 kdw  julian:var renam
 # 2017-02-20 kdw  julian:var renam
 # 2017-02-14 kdw  julian:FWIP Loop syntax changed
 # 2017-02-12 kdw  julian:FWIP language change
 # 2017-02-07 kdw  julian:comment rearrangement
 # 2017-01-31 kdw  julian:long lines
-# 2016-12-18 kdw  julian:j?ewish_* refactor
-# 2016-12-16 kdw  julian:j?ewish_* refactor
+# 2016-12-18 kdw  julian:jewish_* refactor
+# 2016-12-16 kdw  julian:jewish_* refactor
 # 2016-12-12 kdw  julian:var name change; comment changed
 # 2016-12-05 kdw  julian:comment change
 # 2016-12-04 kdw  julian:comment reorg
 # 2016-12-02 kdw  julian:rmed unused hour-per-degree
 # 2016-11-28 kdw  julian:file suffix changed
-# 2016-11-21 kdw  julian:DE?F to FU?NC
+# 2016-11-21 kdw  julian:D(E)F to F(U)NC
 # 2016-11-20 kdw  julian:language change
 # 2016-11-19 kdw  julian:is leap tyear refactor
-# 2016-11-18 kdw  julian:_?_P?OD_?_
+# 2016-11-18 kdw  julian:__(P)OD(_)_
 # 2016-11-16 kdw  julian:function renam
 # 2016-11-15 kdw  julian:function descriptions
-# 2016-11-14 kdw  julian:hol?id.fwip consolidation
+# 2016-11-14 kdw  julian:ho(l)id.fwip consolidation
 # 2016-11-11 kdw  julian:var name change
 # 2016-09-14 kdw  julian:lang change
 # 2016-08-08 kdw  julian:corrected comment
@@ -11733,9 +11739,9 @@ FUNC_END
 # 2016-07-27 kdw  julian:unix funcs
 # 2016-07-26 kdw  julian:ymdhms functions
 # 2016-07-19 kdw  julian:renamed / refactor things
-# 2016-07-18 kdw  julian:.*do?w functions
+# 2016-07-18 kdw  julian:.*d(o)w functions
 # 2016-07-14 kdw  julian:const name changed
-# 2016-07-13 kdw  julian:y?md2j2?000 epoch correction
+# 2016-07-13 kdw  julian:ymd2j(2)000 epoch correction
 # 2016-04-11 kdw  julian:variables renamed
 # 2015-12-14 kdw  julian:long line
 # 2015-11-18 kdw  julian:long line changed
@@ -12055,8 +12061,7 @@ BLOCK:# Julian specific defines
    BLOCK_DEF CONST LC_GD_JD 8;
    BLOCK_DEF CONST LC_GD_COUNT 9;
    BLOCK_DEF DBL lv_ymdhms_arr[20];
-         #   FFFFFFFFFFunction ----------------------------
-      #jd2ymdhms #
+   #   FFFFFFFFFFunction ---------------------------- jd2ymdhms #
    FUNC DBL jd2ymdhms(DBL jjulid):
       # convert a julian date to a
       # year-mon-day-hour-min-sec array
@@ -12288,8 +12293,10 @@ FUNC INT date_easter(INT g_year):
    RETURN ii - jj + 28;
 FUNC_END
 BLOCK:# Halaqim
-   BLOCK_DEF CONST HALAQIM_PER_HOUR 1080;#T
-   BLOCK_DEF CONST HALAQIM Kw.HOUR / HALAQIM_PER_HOUR;#T
+   BLOCK_DEF CONST HALAQIM_PER_HOUR 1080;
+   #T
+   BLOCK_DEF CONST HALAQIM Kw.HOUR / HALAQIM_PER_HOUR;
+   #T
    #   BLOCK_DEF INT lv_hqphr = 2;
    #   FFFFFFFFFFunction ----------------------------- lf_hqphr #
    #   BLOCK_DEF FUNC INT lf_hqphr(NUL):
@@ -12382,7 +12389,7 @@ BLOCK:# Halaqim
             alt_days += 1;
          IF_END
       ELSIF 0 == alt_dow:
-         IF 9924 <= hq_left AND NOT isjewishleap(hebyear):
+         IF 9924 <= hq_left AND (NOT isjewishleap(hebyear)):
             alt_days += 2;
          IF_END
       ELSIF 6 == alt_dow:
@@ -12576,6 +12583,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- julian.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- mean.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  mean:macro syntax changed
 # 2020-08-11 kdw  mean:agc[m]ean added
 # 2020-07-07 kdw  mean:attempt to extend agmean to < 0
 # 2020-07-06 kdw  mean:p[m]ean works w/ pp == 0
@@ -12633,7 +12641,7 @@ FUNC_END
 # 2017-08-20 kdw  mean:rmed/renamd .*_P[E]R_.* vars
 # 2017-04-21 kdw  mean:func to function
 # 2017-03-12 kdw  mean:shorten long comments
-# 2017-03-10 kdw  mean:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  mean:get Fw[i]p_Pa[r]se to work
 # 2017-03-07 kdw  mean:INS?ERT etal
 # 2017-03-06 kdw  mean:sigils rmed
 # 2017-02-23 kdw  mean:array var names
@@ -13344,6 +13352,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- mean.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- random.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  random:comment change
 # 2020-07-27 kdw  random:block syntax
 # 2020-07-25 kdw  random:s/BITWISE/BIT/
 # 2020-07-24 kdw  random:comment cleanup
@@ -13384,7 +13393,7 @@ FUNC_END
 # 2019-05-22 kdw  random:s/FU[N]CT[I]ON/FU[N]C/g
 # 2019-05-17 kdw  random:explicit module for intmax
 # 2019-03-08 kdw  random:is[e]qual to is[e]q, et al.
-# 2019-02-28 kdw  random:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  random:REP[L]ACE/DE[F]INE work
 # 2018-07-17 kdw  random:private lf_.* funcs
 # 2018-06-19 kdw  random:die keyword
 # 2018-05-15 kdw  random:DIE.* change
@@ -13406,11 +13415,11 @@ FUNC_END
 # 2017-04-30 kdw  random:func to function
 # 2017-04-04 kdw  random:comments deleted
 # 2017-03-12 kdw  random:shorten long comments
-# 2017-03-10 kdw  random:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  random:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  random:sigils rmed
-# 2017-03-01 kdw  random:var?ylog-ad?d space messup
-# 2017-02-28 kdw  random:REQ?UIRE function()
-# 2017-02-24 kdw  random:REP?LACE rework, et al
+# 2017-03-01 kdw  random:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  random:REQ[U]IRE function()
+# 2017-02-24 kdw  random:REP[L]ACE rework, et al
 # 2017-02-21 kdw  random:var renam
 # 2017-02-20 kdw  random:array var names
 # 2017-02-14 kdw  random:FWIP Loop syntax changed
@@ -13466,21 +13475,22 @@ FUNC_END
 # 2015-09-22 kdw  random:_[_]* format changed
 # 2015-09-20 kdw  random:created
 BLOCK:# Random numbers
-   BLOCK_DEF CONST LC_KNUTH_MAX 1073741823;# 2**30-1 MUST BE ODD
+   BLOCK_DEF CONST LC_KNUTH_MAX 1073741823;
+   # 2**30-1 MUST BE ODD
    BLOCK_DEF CONST LC_KNUTH_QUALITY_COUNT 1009;
    BLOCK_DEF CONST LC_KNUTH_KK_COUNT 100;
    BLOCK_DEF CONST LC_KNUTH_LL 37;
    BLOCK_DEF CONST LC_KNUTH_TT 70;
-         # array size must be greater than LC_KNUTH_QUALITY_COUNT
+   # array size must be greater than LC_KNUTH_QUALITY_COUNT
    #  AND greater than 2 * LC_KNUTH_KK_COUNT - 1
    BLOCK_DEF CONST LC_KNUTH_ARRAY_COUNT 1100;
    BLOCK_DEF INT lv_ranz_ind = -3;
    BLOCK_DEF DBL lv_ranz_magic = 0.0;
    BLOCK_DEF INT lv_ranz_arr[LC_KNUTH_QUALITY_COUNT];
    BLOCK_DEF INT lv_ran_a_arr[LC_KNUTH_ARRAY_COUNT];
-         # generator state
+   # generator state
    BLOCK_DEF INT lv_ran_x_arr[LC_KNUTH_KK_COUNT];
-         # cannabalized from D. E. Knuth: "The Art of
+   # cannabalized from D. E. Knuth: "The Art of
    # Computer Programming" Vol 2, Ed 3, pg 186
    ## Random Number Generation
    #   FFFFFFFFFFunction ------------------------- lf_ran_cycle #
@@ -13559,7 +13569,8 @@ BLOCK:# Random numbers
    BLOCK_DEF FUNC INT lf_next_ranz(NUL):
       BLOCK_USE lv_ranz_magic;
       BLOCK_USE lv_ranz_ind;
-      BLOCK_USE lv_ranz_arr[];# if not initialized: initialize;
+      BLOCK_USE lv_ranz_arr[];
+      # if not initialized: initialize;
       # else if buffer empty: create more
       IF NOT Kw.ismagic(lv_ranz_magic):
          CALL rand_init(Kw.timee());
@@ -13712,6 +13723,10 @@ BLOCK_END# Random numbers
 #   IIIIIIIIIInsert-End --------------------------- random.fwip #
 #   IIIIIIIIIInsert-Begin ----------------------- randdist.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-24 kdw  randdist:var renam
+# 2020-08-20 kdw  randdist:boolean checks changed
+# 2020-08-19 kdw  randdist:comment change
+# 2020-08-17 kdw  randdist:macro syntax changed
 # 2020-07-27 kdw  randdist:block syntax
 # 2020-07-24 kdw  randdist:s/LO[C]AL_/BL[O]CK_/
 # 2020-07-14 kdw  randdist:s/px/pbrx/g
@@ -13799,8 +13814,8 @@ BLOCK_END# Random numbers
 # 2018-07-11 kdw  randdist:var nam change
 # 2018-06-09 kdw  randdist:mved tests
 # 2018-06-08 kdw  randdist:tests
-# 2018-05-17 kdw  randdist:ARR?AY.* and HOR[N]ER syntax
-# 2018-05-16 kdw  randdist:AR?RAY syntax
+# 2018-05-17 kdw  randdist:AR[R]AY.* and HOR[N]ER syntax
+# 2018-05-16 kdw  randdist:AR[R]AY syntax
 # 2018-04-19 kdw  randdist:comments added
 # 2018-04-03 kdw  randdist:rm() from return
 # 2018-03-26 kdw  randdist:macro redef
@@ -13815,7 +13830,7 @@ BLOCK_END# Random numbers
 # 2017-08-31 kdw  randdist:[pc]dftri,[pc]dfgeo,[pc]dfpoi added
 # 2017-08-30 kdw  randdist:s/DBL_/DBL/;s/FLT_/FLT/
 # 2017-08-20 kdw  randdist:rmed/renamd .*_P[E]R_.* vars
-# 2017-06-21 kdw  randdist:added ";" to COM?MENT lines
+# 2017-06-21 kdw  randdist:added ";" to COM[M]ENT lines
 # 2017-05-25 kdw  randdist:line wrap problem wrt python
 # 2017-05-16 kdw  randdist:chisqr work
 # 2017-04-26 kdw  randdist:keyword COMMENT.*
@@ -13823,12 +13838,12 @@ BLOCK_END# Random numbers
 # 2017-04-21 kdw  randdist:var renam
 # 2017-04-20 kdw  randdist:func to function
 # 2017-03-12 kdw  randdist:shorten long comments
-# 2017-03-10 kdw  randdist:get Fw?ip_Pa?rse to work
-# 2017-03-07 kdw  randdist:INS?ERT etal
+# 2017-03-10 kdw  randdist:get Fw[i]p_Pa[r]se to work
+# 2017-03-07 kdw  randdist:INS[E]RT etal
 # 2017-03-06 kdw  randdist:sigils rmed
-# 2017-03-01 kdw  randdist:RE?TURN syntax more finicky
-# 2017-02-28 kdw  randdist:REQ?UIRE function()
-# 2017-02-24 kdw  randdist:REP?LACE rework, et al
+# 2017-03-01 kdw  randdist:RE[T]URN syntax more finicky
+# 2017-02-28 kdw  randdist:REQ[U]IRE function()
+# 2017-02-24 kdw  randdist:REP[L]ACE rework, et al
 # 2017-02-20 kdw  randdist:made die more uniform
 # 2017-02-14 kdw  randdist:FWIP Loop syntax changed
 # 2017-02-13 kdw  randdist:FWIP language change
@@ -13836,26 +13851,27 @@ BLOCK_END# Random numbers
 # 2017-02-08 kdw  randdist:SE[C]ANT syntax
 # 2017-02-07 kdw  randdist:var renam
 # 2017-02-06 kdw  randdist:SE[C]ANT syntax
-# 2017-02-03 kdw  randdist:cdfb?etainv
+# 2017-02-03 kdw  randdist:cdfb[e]tainv
 # 2017-01-31 kdw  randdist:beta dist
-# 2017-01-06 kdw  randdist:?[?]USE.* to ?[?].*_MODE; ?[?]DIGR.*
+# 2017-01-06 kdw  randdist:..USE.* to ...*_MODE; ..DIGR.*
 # 2017-01-03 kdw  randdist:var renam
 # 2017-01-02 kdw  randdist:Pareto
 # 2016-12-23 kdw  randdist:die change
 # 2016-12-03 kdw  randdist:comment change
 # 2016-11-27 kdw  randdist:long lines
 # 2016-11-24 kdw  randdist:reformatting of await loops
-# 2016-11-22 kdw  randdist:moved cdfno?rmal2 to ap?prox and renam
-# 2016-11-21 kdw  randdist:DE?F to FU?NC
+# 2016-11-22 kdw  randdist:moved cdfno[r]mal2 to ap[p]rox and
+   #renam
+# 2016-11-21 kdw  randdist:D[E]F to FU[N]C
 # 2016-11-20 kdw  randdist:language change
-# 2016-11-18 kdw  randdist:_?_P?OD_?_
+# 2016-11-18 kdw  randdist:__POD__
 # 2016-11-16 kdw  randdist:comments
 # 2016-11-15 kdw  randdist:MOD/BIT* syntax change
-# 2016-11-14 kdw  randdist:seca?nt algorithm refactor
-# 2016-11-11 kdw  randdist:seca?nt algorithm refactor
+# 2016-11-14 kdw  randdist:sec[a]nt algorithm refactor
+# 2016-11-11 kdw  randdist:sec[a]nt algorithm refactor
 # 2016-11-06 kdw  randdist:while loop replaced with await
 # 2016-11-01 kdw  randdist:debugging t-distribution
-# 2016-10-31 kdw  randdist:EX?ITL?OOP
+# 2016-10-31 kdw  randdist:EX[I]TL[O]OP
 # 2016-10-30 kdw  randdist:lang change
 # 2016-09-15 kdw  randdist:lang change
 # 2016-09-13 kdw  randdist:lang change
@@ -13863,8 +13879,8 @@ BLOCK_END# Random numbers
 # 2016-07-19 kdw  randdist:float numbers(added ".0")
 # 2016-05-18 kdw  randdist:comment change
 # 2015-12-28 kdw  randdist:.*2() functions rmed
-# 2015-12-28 kdw  randdist:_?_I?F_X_?_ to _?_IF_NONE_?_
-# 2015-12-26 kdw  randdist:commented out _cdf?ks_?1
+# 2015-12-28 kdw  randdist:__IF_X__ to __IF_NONE_ _
+# 2015-12-26 kdw  randdist:commented out _cdf[k]s_1
 # 2015-12-16 kdw  randdist:long comments
 # 2015-12-14 kdw  randdist:long lines
 # 2015-12-11 kdw  randdist:s/LC_// from some consts
@@ -13894,7 +13910,7 @@ FUNC DBL int_pdf(DBL nn
    # Support: 0..NN-1
    DBL retvalu;
    DBL mm;
-   IF xx < 0.0 OR nn < xx OR NOT isint(xx):
+   IF xx < 0.0 OR nn < xx OR (NOT Kw.isint(xx)):
       retvalu = 0.0;
    ELSE:
       # XX is an integer in[0,NN)
@@ -14016,8 +14032,7 @@ FUNC_END
 BLOCK:# normal distributed nunmbers
    BLOCK_DEF DBL lv_rand_gau_magic = 0.0;
    BLOCK_DEF DBL lv_rand_gau_prev = 0.0;
-         #   FFFFFFFFFFunction --------------------------
-      #normal_rand #
+   #   FFFFFFFFFFunction -------------------------- normal_rand #
    FUNC DBL normal_rand(NUL):
       # Random Normal Variable
       BLOCK_USE lv_rand_gau_magic;
@@ -14914,7 +14929,7 @@ FUNC DBL gamma_rand(DBL shap):
    # Random Gamma Variable w/ shape SHAP
    DBL i_shape;
    DBL f_shape;
-   DBL val;
+   DBL rval;
    DBL jj;
    DBL ee;
    DBL gg;
@@ -14925,12 +14940,12 @@ FUNC DBL gamma_rand(DBL shap):
    DBL qq;
    DBL pp;
    i_shape = FLOOR(shap);
-   val = 1.0;
+   rval = 1.0;
    IF shap < 5:
       FOR jj FROM 1 TO i_shape:
-         val *= randd();
+         rval *= randd();
       FOR_END
-      val = -LN(val);
+      rval = -LN(rval);
       f_shape = shap - i_shape;
       IF 0.00001 < f_shape:
          # from "The Art of Computer Programming"
@@ -14946,7 +14961,7 @@ FUNC DBL gamma_rand(DBL shap):
                qq = EXP(LN(xx) * (f_shape - 1));
             IF_END
          AWAIT_END
-         val += xx;
+         rval += xx;
       IF_END
    ELSE:
       # from "The Art of Computer Programming"
@@ -14955,15 +14970,15 @@ FUNC DBL gamma_rand(DBL shap):
       gg = SQRT(shap + ee);
       yy = 0.0;
       ff = 0.0;
-      WHILE val <= 0.0 OR (1.0 + yy * yy) * EXP(ee * LN(val
+      WHILE rval <= 0.0 OR (1.0 + yy * yy) * EXP(ee * LN(rval
             / ee) - ff) < randd():
          xx = Kw.PI * randd();
          yy = SIN(xx) / COS(xx);
          ff = gg * yy;
-         val = ff + ee;
+         rval = ff + ee;
       WHILE_END
    IF_END
-   RETURN val;
+   RETURN rval;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------ chisqr_pdf #
 FUNC DBL chisqr_pdf(DBL df
@@ -15406,7 +15421,7 @@ BLOCK:
       #   FFFFFFFFFFunction ------------------------
    #lf_t_quantile #
    BLOCK_DEF FUNC DBL lf_t_quantile(INT ndfx, DBL prbx):
-         # Quantile Students T distribution
+      # Quantile Students T distribution
       DBL ux;
       DBL uxsq;
       DBL aa_x;
@@ -15711,6 +15726,7 @@ FUNC_END
 FUNC DBL mb_pdf(DBL aa
       , DBL xx):
    # PDF Maxwell-Boltzmann distribution
+   # distribution of particle speeds in an idealized gas
    RETURN SQRT(4 / Kw.TAU) * xx * xx * EXP(-xx * xx / (2 * aa
          * aa)) / (aa * aa * aa);
 FUNC_END
@@ -15731,6 +15747,7 @@ FUNC DBL maxwell_boltzmann_pdf(DBL temperature
       , DBL molecular_mass
       , DBL velocity):
    # PDF Maxwell-Boltzmann distribution
+   # distribution of particle speeds in an idealized gas
    DBL aa;
    aa = SQRT(Kw.BOLTZMANN * temperature / molecular_mass);
    RETURN mb_pdf(aa, velocity);
@@ -15740,6 +15757,7 @@ FUNC DBL maxwell_boltzmann_cdf(DBL temperature
       , DBL molecular_mass
       , DBL velocity):
    # CDF Maxwell-Boltzmann distribution
+   # distribution of particle speeds in an idealized gas
    # Lat AA = sqrt(BOLTZMANN * TEMPERATURE / MASS)
    # MEAN     = 4 * AA / SQRT(TAU)
    # MODE     = AA * SQRT(2)
@@ -15753,6 +15771,8 @@ FUNC DBL maxwell_juttner_pdf(DBL temperature
       , DBL molecular_mass
       , DBL velocity):
    # PDF Maxwell-Juttner distribution
+   # distribution of speeds of particles in a hypothetical
+   #    gas of relativistic particles.
    DBL gmm;
    DBL bt;
    DBL rtht;
@@ -15841,6 +15861,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- randdist.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- stat.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  stat:comment change
 # 2020-07-27 kdw  stat:block syntax
 # 2020-07-24 kdw  stat:comment cleanup
 # 2020-06-03 kdw  stat:writeonly keyword
@@ -15869,9 +15890,9 @@ FUNC_END
 # 2017-11-22 kdw  stat:var renam
 # 2017-06-13 kdw  stat:C now handle return arrays
 # 2017-04-30 kdw  stat:func to function
-# 2017-03-10 kdw  stat:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  stat:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  stat:sigils rmed
-# 2017-03-01 kdw  stat:var?ylog-ad?d space messup
+# 2017-03-01 kdw  stat:var[y]log-a[d]d space messup
 # 2017-02-24 kdw  stat:LAN[G]UAGE change
 # 2017-02-20 kdw  stat:array var names
 # 2017-02-14 kdw  stat:FWIP Loop syntax changed
@@ -16159,6 +16180,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ----------------------------- stat.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- stts.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  stts:macro syntax changed
 # 2020-07-27 kdw  stts:block syntax
 # 2020-07-24 kdw  stts:comment cleanup
 # 2020-06-25 kdw  stts:var renam
@@ -16204,7 +16226,7 @@ FUNC_END
 # 2019-03-18 kdw  stts:macro syntax changed
 # 2019-03-08 kdw  stts:is[e]qual to is[e]q, et al.
 # 2019-03-05 kdw  stts:comment on st[d]ev
-# 2019-02-28 kdw  stts:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  stts:REP[L]ACE/DE[F]INE work
 # 2019-02-19 kdw  stts:macro syntax
 # 2018-07-17 kdw  stts:private lf_.* funcs
 # 2018-07-14 kdw  stts:float num format
@@ -16234,11 +16256,11 @@ FUNC_END
 # 2017-04-20 kdw  stts:func to function
 # 2017-03-27 kdw  stts:rm useless ";"
 # 2017-03-12 kdw  stts:shorten long comments
-# 2017-03-10 kdw  stts:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  stts:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  stts:sigils rmed
-# 2017-03-01 kdw  stts:var?ylog-ad?d space messup
-# 2017-02-28 kdw  stts:REQ?UIRE function()
-# 2017-02-24 kdw  stts:REP?LACE rework, et al
+# 2017-03-01 kdw  stts:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  stts:REQ[U]IRE function()
+# 2017-02-24 kdw  stts:REP[L]ACE rework, et al
 # 2017-02-20 kdw  stts:var renam
 # 2017-02-14 kdw  stts:FWIP Loop syntax changed
 # 2017-02-13 kdw  stts:FWIP language change
@@ -16290,8 +16312,7 @@ BLOCK:# Statistics block
    BLOCK_DEF CONST LC_STTS_COUNT 6;
    BLOCK_DEF CONST LC_STTS_MAX_KEY 100;
    BLOCK_DEF DBL lv_sttx_arr[LC_STTS_MAX_KEY][LC_STTS_COUNT];
-         #   FFFFFFFFFFunction --------------------
-      #lf_stts_is_inited #
+   #   FFFFFFFFFFunction -------------------- lf_stts_is_inited #
    BLOCK_DEF FUNC BOL lf_stts_is_inited(INT ix_hndl):
       BLOCK_USE lv_sttx_arr[];
       INT vll;
@@ -16644,10 +16665,8 @@ BLOCK:# Statistics block
       BLOCK_DEF CONST LC_STTSC_COVAR 2;
       BLOCK_DEF CONST LC_STTSC_MAGIC 3;
       BLOCK_DEF CONST LC_STTSC_COUNT 4;
-      BLOCK_DEF DBL
-            lv_corx_arr[LC_STTS_MAX_KEY][LC_STTSC_COUNT];
-            #   FFFFFFFFFFunction -------------------
-         #lf_corr_is_init #
+      BLOCK_DEF DBL lv_corx_arr[LC_STTS_MAX_KEY][LC_STTSC_COUNT];
+      #   FFFFFFFFFFunction ------------------- lf_corr_is_init #
       BLOCK_DEF FUNC BOL lf_corr_is_init(INT ix_chnd):
          BLOCK_USE lv_corx_arr[];
          BOL retvalu_bol;
@@ -16945,8 +16964,7 @@ BLOCK:# parabola info
    BLOCK_DEF CONST LC_PARABOLA_COEFF_B 6;
    BLOCK_DEF CONST LC_PARABOLA_COEFF_A 7;
    BLOCK_DEF DBL lv_parabola_arr[8];
-         #   FFFFFFFFFFunction -----------------------
-      #parabola_solve #
+   #   FFFFFFFFFFunction ----------------------- parabola_solve #
    FUNC DBL parabola_solve(DBL xx_a
          , DBL yy_a
          , DBL xx_b
@@ -17069,8 +17087,7 @@ BLOCK:# circle info
    BLOCK_DEF CONST LC_CIRCLE_Y 1;
    BLOCK_DEF CONST LC_CIRCLE_RADIUS 2;
    BLOCK_DEF DBL lv_circle_arr[3];
-         #   FFFFFFFFFFunction -------------------------
-      #circle_solve #
+   #   FFFFFFFFFFunction ------------------------- circle_solve #
    FUNC DBL circle_solve(DBL aa_x
          , DBL aa_y
          , DBL bb_x
@@ -17244,7 +17261,7 @@ BLOCK:
    #lf_signcrossproduct #
    BLOCK_DEF FUNC DBL lf_signcrossproduct(DBL aa_x, DBL aa_y
          , DBL bb_x, DBL bb_y, DBL cc_x, DBL cc_y):
-         # the z-component of the cross product of the vectors
+      # the z-component of the cross product of the vectors
       #   (bb_x - aa_x, bb_y - aa_y, 0), and
       #   (cc_x - aa_x, cc_y - aa_y, 0)
       DBL cr;
@@ -17613,7 +17630,9 @@ FUNC_END
 # must come after stts
 #   IIIIIIIIIInsert-Begin ------------------------- approx.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
-# HI goes AFTER copyright
+# 2020-08-25 kdw  approx:var renam II
+# 2020-08-24 kdw  approx:var renam
+# 2020-08-17 kdw  approx:macro syntax changed
 # 2020-07-27 kdw  approx:block syntax
 # 2020-07-24 kdw  approx:comment cleanup
 # 2020-07-16 kdw  approx:git/comment playing
@@ -17694,11 +17713,11 @@ FUNC_END
 # 2017-04-21 kdw  approx:var rename
 # 2017-04-20 kdw  approx:func to function
 # 2017-03-17 kdw  approx:space after comma
-# 2017-03-10 kdw  approx:get Fw?ip_Pa?rse to work
+# 2017-03-10 kdw  approx:get Fw[i]p_Pa[r]se to work
 # 2017-03-06 kdw  approx:sigils rmed
-# 2017-03-01 kdw  approx:var?ylog-ad?d space messup
-# 2017-02-28 kdw  approx:REQ?UIRE function()
-# 2017-02-24 kdw  approx:REP?LACE rework, et al
+# 2017-03-01 kdw  approx:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  approx:REQ[U]IRE function()
+# 2017-02-24 kdw  approx:REP[L]ACE rework, et al
 # 2017-02-14 kdw  approx:FWIP Loop syntax changed
 # 2017-02-13 kdw  approx:FWIP language change
 # 2017-02-12 kdw  approx:FWIP language change
@@ -17899,15 +17918,14 @@ FUNC DBL nthroot__1(DBL xx
 FUNC_END
 BLOCK:
    BLOCK_DEF CONST LC_EPS Kw.DBLEPS / 16.0;
-         #   FFFFFFFFFFunction ----------------------------
-      #cossin_ev #
+   #   FFFFFFFFFFunction ---------------------------- cossin_ev #
    FUNC DBL cossin_ev(INT init_ii
          , DBL xx_rad
          , BOL addone_mult):
       #         +INF(-1)**N * XX_RAD**(2*N+INIT_II)
       #          SUM ---------------------------------
       # N=init_ii+1      factorial(2*N+INIT_II)
-      DBL val;
+      DBL cval;
       INT ii;
       DBL trig_sum;
       DBL xr_rad;
@@ -17917,11 +17935,11 @@ BLOCK:
       ELSE:
          xr_rad = Kw.fmods(xx_rad, Kw.TAU);
          xr_sqr = -xr_rad * xr_rad;
-         val = 1;
+         cval = 1;
          ii = init_ii;
-         WHILE LC_EPS < ABS(val):
+         WHILE LC_EPS < ABS(cval):
             ii += 2;
-            val *= xr_sqr / (ii * (ii - 1));
+            cval *= xr_sqr / (ii * (ii - 1));
          WHILE_END
          # use Horners method
          trig_sum = 1.0 / (ii * (ii + 1.0));
@@ -17974,7 +17992,7 @@ BLOCK_END
 FUNC DBL exp__1(DBL xx):
    # calculate the YY=EXP(XX) via Taylor series
    INT ii;
-   DBL val;
+   DBL vale;
    DBL axx;
    DBL exp_sum;
    DBL retvalu;
@@ -17994,11 +18012,11 @@ FUNC DBL exp__1(DBL xx):
    WHILE_END
    # figure out how many term of the Taylor series of exp(axx)
    # we need to get the desired precision
-   val = 1.0;
+   vale = 1.0;
    ii = 1;
-   WHILE Kw.DBLEPS / 10.0 < val:
+   WHILE Kw.DBLEPS / 10.0 < vale:
       ii += 1;
-      val *= axx / ii;
+      vale *= axx / ii;
    WHILE_END
    # use Horners method to evaluate the Taylor series at AXX
    exp_sum = 1.0 / (ii + 1.0);
@@ -18027,7 +18045,7 @@ FUNC DBL exp__2(DBL xx):
    DBL expmo_sum;
    DBL retvalu;
    INT squarings;
-   DBL val;
+   DBL vale;
    IF xx < 0:
       axx = -xx;
    ELSE:
@@ -18041,11 +18059,11 @@ FUNC DBL exp__2(DBL xx):
    # Now 0 <= AXX < 1
    # figure out how many term of the Taylor series of exp(axx)
    # we need to get the desired precision
-   val = 1.0;
+   vale = 1.0;
    ii = 1;
-   WHILE Kw.DBLEPS / 4.0 < val:
+   WHILE Kw.DBLEPS / 4.0 < vale:
       ii += 1;
-      val *= axx / ii;
+      vale *= axx / ii;
    WHILE_END
    expmo_sum = 0;
    WHILE 0 < ii:
@@ -18160,6 +18178,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- approx.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- sphere.fwip #
 #    COPYRIGHT C 2016-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  sphere:comment change
 # 2020-08-03 kdw  sphere:explicit module for pi and tau
 # 2020-07-27 kdw  sphere:block syntax
 # 2020-07-24 kdw  sphere:comment cleanup
@@ -18189,7 +18208,7 @@ FUNC_END
 # 2019-03-19 kdw  sphere:re[t]_val to re[t]valu
 # 2019-03-08 kdw  sphere:is[e]qual to is[e]q, et al.
 # 2019-03-06 kdw  sphere:is.* funcs changed
-# 2019-02-28 kdw  sphere:REP?LACE/DEF?INE work
+# 2019-02-28 kdw  sphere:REP[L]ACE/DE[F]INE work
 # 2019-01-13 kdw  sphere:var rena; reorg
 # 2018-12-29 kdw  sphere:backslash reposition
 # 2018-12-16 kdw  sphere:BC: func args starting with " -"
@@ -18212,8 +18231,8 @@ FUNC_END
 # 2017-04-21 kdw  sphere:func to function
 # 2017-03-12 kdw  sphere:shorten long comments
 # 2017-03-06 kdw  sphere:sigils rmed
-# 2017-03-01 kdw  sphere:var?ylog-ad?d space messup
-# 2017-02-28 kdw  sphere:REQ?UIRE function()
+# 2017-03-01 kdw  sphere:var[y]log-a[d]d space messup
+# 2017-02-28 kdw  sphere:REQ[U]IRE function()
 # 2017-02-14 kdw  sphere:FWIP Loop syntax changed
 # 2017-02-13 kdw  sphere:FWIP language change
 # 2017-02-12 kdw  sphere:FWIP language change
@@ -18659,6 +18678,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ shc.fwip #
 #   IIIIIIIIIInsert-Begin ----------------------- elliptic.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-08-17 kdw  elliptic:macro syntax changed
 # 2020-08-12 kdw  elliptic:peak value for elliptic1
 # 2020-08-11 kdw elliptic:botched extending elliptic1 to 1 < m II
 # 2020-08-10 kdw  elliptic:k,a parameter funcs
@@ -19521,11 +19541,10 @@ BLOCK:# Jacobi elliptic functions
    BLOCK_DEF DBL lv_mm = -10.0;
    BLOCK_DEF DBL lv_elli_rad = -10.0;
    BLOCK_DEF DBL lv_arr_arr[4];
-         #   FFFFFFFFFFunction -----------------------------
-      #lv_ellpj #
+   #   FFFFFFFFFFunction ----------------------------- lv_ellpj #
    BLOCK_DEF FUNC INT lv_ellpj(DBL mm, DBL elli_rad
          , WRITEONLY DBL ret_arr_p[]):
-         # compute the Jacobian function sn, cn, dn and ph
+      # compute the Jacobian function sn, cn, dn and ph
       # sn = RET_ARR_P[0]
       # cn = RET_ARR_P[1]
       # dn = RET_ARR_P[2]
@@ -20038,8 +20057,7 @@ FUNC_END
 # 2018-12-17 kdw  search:created
 BLOCK:# search
    BLOCK_DEF INT lv_search_target = 0;
-         #   FFFFFFFFFFunction -------------------------
-      #search_check #
+   #   FFFFFFFFFFunction ------------------------- search_check #
    FUNC INT search_check(INT gg):
       BLOCK_USE lv_search_target;
       INT retvalu;
