@@ -1,6 +1,7 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-08-24 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-08-31 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2017-2020 by Kevin D. Woerner
+# 2020-08-29 kdw  Kwplanets:_a[r]r changed to _mt[r]x
 # 2020-08-20 kdw  Kwplanets:boolean checks changed
 # 2020-08-19 kdw  Kwplanets:comment change
 # 2020-08-17 kdw  Kwplanets:macro syntax changed
@@ -803,347 +804,351 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    BLOCK_DEF DBL lv_pl_helio_arr[3];
    BLOCK_DEF DBL lv_pl_geo_arr[3];
    BLOCK_DEF INT lv_pl_ind = LC_P1_PREV_PL;
-   BLOCK_DEF DBL lv_pl_arr[LC_P1_COUNT][LC_P2_COUNT];
+   BLOCK_DEF DBL lv_pl_mtrx[LC_P1_COUNT][LC_P2_COUNT];
    BLOCK_DEF DBL lv_pl_earth_year = EARTHYEAR;
    BLOCK_DEF DBL lv_pl_jtwoktime = 1.0 / 64.0;
    # setup macro
    #   FFFFFFFFFFunction --------------------------- lf_pl_init #
    BLOCK_DEF FUNC INT lf_pl_init(INT plnt):
       BLOCK_USE lv_pl_ind;
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       IF lv_pl_ind < 0:
-         lv_pl_arr[LC_P1_SUN][LC_P2_GM] = SUNGM;
-         lv_pl_arr[LC_P1_SUN][LC_P2_DAY] = SUNDAY;
-         lv_pl_arr[LC_P1_SUN][LC_P2_FLATNESS] = SUNFLATNESS;
-         lv_pl_arr[LC_P1_SUN][LC_P2_A] = SUN_A;
-         lv_pl_arr[LC_P1_SUN][LC_P2_C] = SUN_C;
-         lv_pl_arr[LC_P1_SUN][LC_P2_YEAR] = SUNYEAR;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ORB] = SUNORBIT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ECC] = SUNECCENTRICITY;
-         lv_pl_arr[LC_P1_SUN][LC_P2_INC] = SUNINCLINATION;
-         lv_pl_arr[LC_P1_SUN][LC_P2_LON] = SUNLONGITUDE;
-         lv_pl_arr[LC_P1_SUN][LC_P2_PER] = SUNPERIAPSIS;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ASC] = SUNASCENDING;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ORB_DT] = SUNORBIT_DT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ECC_DT] = SUNECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_INC_DT] = SUNINCLINATION_DT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_LON_DT] = SUNLONGITUDE_DT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_PER_DT] = SUNPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_SUN][LC_P2_ASC_DT] = SUNASCENDING_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_GM] = MERCURYGM;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_DAY] = MERCURYDAY;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_GM] = SUNGM;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_DAY] = SUNDAY;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_FLATNESS] = SUNFLATNESS;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_A] = SUN_A;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_C] = SUN_C;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_YEAR] = SUNYEAR;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ORB] = SUNORBIT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ECC] = SUNECCENTRICITY;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_INC] = SUNINCLINATION;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_LON] = SUNLONGITUDE;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_PER] = SUNPERIAPSIS;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ASC] = SUNASCENDING;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ORB_DT] = SUNORBIT_DT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ECC_DT]
+               = SUNECCENTRICITY_DT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_INC_DT] = SUNINCLINATION_DT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_LON_DT] = SUNLONGITUDE_DT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_PER_DT] = SUNPERIAPSIS_DT;
+         lv_pl_mtrx[LC_P1_SUN][LC_P2_ASC_DT] = SUNASCENDING_DT;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_GM] = MERCURYGM;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_DAY] = MERCURYDAY;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_FLATNESS]
                = MERCURYFLATNESS;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_A] = MERCURY_A;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_C] = MERCURY_C;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_YEAR] = MERCURYYEAR;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ORB] = MERCURYORBIT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ECC]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_A] = MERCURY_A;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_C] = MERCURY_C;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_YEAR] = MERCURYYEAR;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ORB] = MERCURYORBIT;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ECC]
                = MERCURYECCENTRICITY;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_INC]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_INC]
                = MERCURYINCLINATION;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_LON] = MERCURYLONGITUDE;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_PER] = MERCURYPERIAPSIS;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ASC] = MERCURYASCENDING;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ORB_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_LON] = MERCURYLONGITUDE;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_PER] = MERCURYPERIAPSIS;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ASC] = MERCURYASCENDING;
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ORB_DT]
                = MERCURYORBIT_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ECC_DT]
                = MERCURYECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_INC_DT]
                = MERCURYINCLINATION_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_LON_DT]
                = MERCURYLONGITUDE_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_PER_DT]
                = MERCURYPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_MERCURY][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_MERCURY][LC_P2_ASC_DT]
                = MERCURYASCENDING_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_GM] = VENUSGM;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_DAY] = VENUSDAY;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_FLATNESS] = VENUSFLATNESS;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_A] = VENUS_A;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_C] = VENUS_C;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_YEAR] = VENUSYEAR;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ORB] = VENUSORBIT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ECC] = VENUSECCENTRICITY;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_INC] = VENUSINCLINATION;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_LON] = VENUSLONGITUDE;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_PER] = VENUSPERIAPSIS;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ASC] = VENUSASCENDING;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ORB_DT] = VENUSORBIT_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_GM] = VENUSGM;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_DAY] = VENUSDAY;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_FLATNESS] = VENUSFLATNESS;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_A] = VENUS_A;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_C] = VENUS_C;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_YEAR] = VENUSYEAR;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ORB] = VENUSORBIT;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ECC] = VENUSECCENTRICITY;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_INC] = VENUSINCLINATION;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_LON] = VENUSLONGITUDE;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_PER] = VENUSPERIAPSIS;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ASC] = VENUSASCENDING;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ORB_DT] = VENUSORBIT_DT;
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ECC_DT]
                = VENUSECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_INC_DT]
                = VENUSINCLINATION_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_LON_DT]
                = VENUSLONGITUDE_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_PER_DT]
                = VENUSPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_VENUS][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_VENUS][LC_P2_ASC_DT]
                = VENUSASCENDING_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_GM] = EARTHGM;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_DAY] = EARTHDAY;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_FLATNESS] = EARTHFLATNESS;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_A] = EARTH_A;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_C] = EARTH_C;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_YEAR] = EARTHYEAR;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ORB] = EARTHORBIT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ECC] = EARTHECCENTRICITY;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_INC] = EARTHINCLINATION;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_LON] = EARTHLONGITUDE;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_PER] = EARTHPERIAPSIS;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ASC] = EARTHASCENDING;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ORB_DT] = EARTHORBIT_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_GM] = EARTHGM;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_DAY] = EARTHDAY;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_FLATNESS] = EARTHFLATNESS;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_A] = EARTH_A;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_C] = EARTH_C;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_YEAR] = EARTHYEAR;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ORB] = EARTHORBIT;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ECC] = EARTHECCENTRICITY;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_INC] = EARTHINCLINATION;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_LON] = EARTHLONGITUDE;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_PER] = EARTHPERIAPSIS;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ASC] = EARTHASCENDING;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ORB_DT] = EARTHORBIT_DT;
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ECC_DT]
                = EARTHECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_INC_DT]
                = EARTHINCLINATION_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_LON_DT]
                = EARTHLONGITUDE_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_PER_DT]
                = EARTHPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_EARTH][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_EARTH][LC_P2_ASC_DT]
                = EARTHASCENDING_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_GM] = MARSGM;
-         lv_pl_arr[LC_P1_MARS][LC_P2_DAY] = MARSDAY;
-         lv_pl_arr[LC_P1_MARS][LC_P2_FLATNESS] = MARSFLATNESS;
-         lv_pl_arr[LC_P1_MARS][LC_P2_A] = MARS_A;
-         lv_pl_arr[LC_P1_MARS][LC_P2_C] = MARS_C;
-         lv_pl_arr[LC_P1_MARS][LC_P2_YEAR] = MARSYEAR;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ORB] = MARSORBIT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ECC] = MARSECCENTRICITY;
-         lv_pl_arr[LC_P1_MARS][LC_P2_INC] = MARSINCLINATION;
-         lv_pl_arr[LC_P1_MARS][LC_P2_LON] = MARSLONGITUDE;
-         lv_pl_arr[LC_P1_MARS][LC_P2_PER] = MARSPERIAPSIS;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ASC] = MARSASCENDING;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ORB_DT] = MARSORBIT_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_GM] = MARSGM;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_DAY] = MARSDAY;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_FLATNESS] = MARSFLATNESS;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_A] = MARS_A;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_C] = MARS_C;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_YEAR] = MARSYEAR;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ORB] = MARSORBIT;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ECC] = MARSECCENTRICITY;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_INC] = MARSINCLINATION;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_LON] = MARSLONGITUDE;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_PER] = MARSPERIAPSIS;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ASC] = MARSASCENDING;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ORB_DT] = MARSORBIT_DT;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ECC_DT]
                = MARSECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_INC_DT]
                = MARSINCLINATION_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_LON_DT] = MARSLONGITUDE_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_PER_DT] = MARSPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_MARS][LC_P2_ASC_DT] = MARSASCENDING_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_GM] = JUPITERGM;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_DAY] = JUPITERDAY;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_LON_DT] = MARSLONGITUDE_DT;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_PER_DT] = MARSPERIAPSIS_DT;
+         lv_pl_mtrx[LC_P1_MARS][LC_P2_ASC_DT] = MARSASCENDING_DT;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_GM] = JUPITERGM;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_DAY] = JUPITERDAY;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_FLATNESS]
                = JUPITERFLATNESS;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_A] = JUPITER_A;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_C] = JUPITER_C;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_YEAR] = JUPITERYEAR;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ORB] = JUPITERORBIT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ECC]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_A] = JUPITER_A;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_C] = JUPITER_C;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_YEAR] = JUPITERYEAR;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ORB] = JUPITERORBIT;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ECC]
                = JUPITERECCENTRICITY;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_INC]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_INC]
                = JUPITERINCLINATION;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_LON] = JUPITERLONGITUDE;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_PER] = JUPITERPERIAPSIS;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ASC] = JUPITERASCENDING;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ORB_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_LON] = JUPITERLONGITUDE;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_PER] = JUPITERPERIAPSIS;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ASC] = JUPITERASCENDING;
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ORB_DT]
                = JUPITERORBIT_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ECC_DT]
                = JUPITERECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_INC_DT]
                = JUPITERINCLINATION_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_LON_DT]
                = JUPITERLONGITUDE_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_PER_DT]
                = JUPITERPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_JUPITER][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_JUPITER][LC_P2_ASC_DT]
                = JUPITERASCENDING_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_GM] = SATURNGM;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_DAY] = SATURNDAY;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_GM] = SATURNGM;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_DAY] = SATURNDAY;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_FLATNESS]
                = SATURNFLATNESS;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_A] = SATURN_A;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_C] = SATURN_C;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_YEAR] = SATURNYEAR;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ORB] = SATURNORBIT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ECC] = SATURNECCENTRICITY;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_INC] = SATURNINCLINATION;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_LON] = SATURNLONGITUDE;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_PER] = SATURNPERIAPSIS;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ASC] = SATURNASCENDING;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ORB_DT] = SATURNORBIT_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_A] = SATURN_A;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_C] = SATURN_C;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_YEAR] = SATURNYEAR;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ORB] = SATURNORBIT;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ECC]
+               = SATURNECCENTRICITY;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_INC] = SATURNINCLINATION;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_LON] = SATURNLONGITUDE;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_PER] = SATURNPERIAPSIS;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ASC] = SATURNASCENDING;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ORB_DT] = SATURNORBIT_DT;
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ECC_DT]
                = SATURNECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_INC_DT]
                = SATURNINCLINATION_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_LON_DT]
                = SATURNLONGITUDE_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_PER_DT]
                = SATURNPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_SATURN][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_SATURN][LC_P2_ASC_DT]
                = SATURNASCENDING_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_GM] = URANUSGM;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_DAY] = URANUSDAY;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_GM] = URANUSGM;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_DAY] = URANUSDAY;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_FLATNESS]
                = URANUSFLATNESS;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_A] = URANUS_A;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_C] = URANUS_C;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_YEAR] = URANUSYEAR;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ORB] = URANUSORBIT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ECC] = URANUSECCENTRICITY;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_INC] = URANUSINCLINATION;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_LON] = URANUSLONGITUDE;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_PER] = URANUSPERIAPSIS;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ASC] = URANUSASCENDING;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ORB_DT] = URANUSORBIT_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_A] = URANUS_A;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_C] = URANUS_C;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_YEAR] = URANUSYEAR;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ORB] = URANUSORBIT;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ECC]
+               = URANUSECCENTRICITY;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_INC] = URANUSINCLINATION;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_LON] = URANUSLONGITUDE;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_PER] = URANUSPERIAPSIS;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ASC] = URANUSASCENDING;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ORB_DT] = URANUSORBIT_DT;
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ECC_DT]
                = URANUSECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_INC_DT]
                = URANUSINCLINATION_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_LON_DT]
                = URANUSLONGITUDE_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_PER_DT]
                = URANUSPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_URANUS][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_URANUS][LC_P2_ASC_DT]
                = URANUSASCENDING_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_GM] = NEPTUNEGM;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_DAY] = NEPTUNEDAY;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_GM] = NEPTUNEGM;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_DAY] = NEPTUNEDAY;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_FLATNESS]
                = NEPTUNEFLATNESS;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_A] = NEPTUNE_A;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_C] = NEPTUNE_C;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_YEAR] = NEPTUNEYEAR;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ORB] = NEPTUNEORBIT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ECC]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_A] = NEPTUNE_A;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_C] = NEPTUNE_C;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_YEAR] = NEPTUNEYEAR;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ORB] = NEPTUNEORBIT;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ECC]
                = NEPTUNEECCENTRICITY;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_INC]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_INC]
                = NEPTUNEINCLINATION;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_LON] = NEPTUNELONGITUDE;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_PER] = NEPTUNEPERIAPSIS;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ASC] = NEPTUNEASCENDING;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ORB_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_LON] = NEPTUNELONGITUDE;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_PER] = NEPTUNEPERIAPSIS;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ASC] = NEPTUNEASCENDING;
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ORB_DT]
                = NEPTUNEORBIT_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ECC_DT]
                = NEPTUNEECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_INC_DT]
                = NEPTUNEINCLINATION_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_LON_DT]
                = NEPTUNELONGITUDE_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_PER_DT]
                = NEPTUNEPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_NEPTUNE][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_NEPTUNE][LC_P2_ASC_DT]
                = NEPTUNEASCENDING_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_GM] = PLUTOGM;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_DAY] = PLUTODAY;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_FLATNESS] = PLUTOFLATNESS;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_A] = PLUTO_A;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_C] = PLUTO_C;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_YEAR] = PLUTOYEAR;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ORB] = PLUTOORBIT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ECC] = PLUTOECCENTRICITY;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_INC] = PLUTOINCLINATION;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_LON] = PLUTOLONGITUDE;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_PER] = PLUTOPERIAPSIS;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ASC] = PLUTOASCENDING;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ORB_DT] = PLUTOORBIT_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_GM] = PLUTOGM;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_DAY] = PLUTODAY;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_FLATNESS] = PLUTOFLATNESS;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_A] = PLUTO_A;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_C] = PLUTO_C;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_YEAR] = PLUTOYEAR;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ORB] = PLUTOORBIT;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ECC] = PLUTOECCENTRICITY;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_INC] = PLUTOINCLINATION;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_LON] = PLUTOLONGITUDE;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_PER] = PLUTOPERIAPSIS;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ASC] = PLUTOASCENDING;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ORB_DT] = PLUTOORBIT_DT;
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ECC_DT]
                = PLUTOECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_INC_DT]
                = PLUTOINCLINATION_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_LON_DT]
                = PLUTOLONGITUDE_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_PER_DT]
                = PLUTOPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_PLUTO][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_PLUTO][LC_P2_ASC_DT]
                = PLUTOASCENDING_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_GM] = CERESGM;
-         lv_pl_arr[LC_P1_CERES][LC_P2_DAY] = CERESDAY;
-         lv_pl_arr[LC_P1_CERES][LC_P2_FLATNESS] = CERESFLATNESS;
-         lv_pl_arr[LC_P1_CERES][LC_P2_A] = CERES_A;
-         lv_pl_arr[LC_P1_CERES][LC_P2_C] = CERES_C;
-         lv_pl_arr[LC_P1_CERES][LC_P2_YEAR] = CERESYEAR;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ORB] = CERESORBIT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ECC] = CERESECCENTRICITY;
-         lv_pl_arr[LC_P1_CERES][LC_P2_INC] = CERESINCLINATION;
-         lv_pl_arr[LC_P1_CERES][LC_P2_LON] = CERESLONGITUDE;
-         lv_pl_arr[LC_P1_CERES][LC_P2_PER] = CERESPERIAPSIS;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ASC] = CERESASCENDING;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ORB_DT] = CERESORBIT_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_GM] = CERESGM;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_DAY] = CERESDAY;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_FLATNESS] = CERESFLATNESS;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_A] = CERES_A;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_C] = CERES_C;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_YEAR] = CERESYEAR;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ORB] = CERESORBIT;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ECC] = CERESECCENTRICITY;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_INC] = CERESINCLINATION;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_LON] = CERESLONGITUDE;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_PER] = CERESPERIAPSIS;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ASC] = CERESASCENDING;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ORB_DT] = CERESORBIT_DT;
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ECC_DT]
                = CERESECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_INC_DT]
                = CERESINCLINATION_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_LON_DT]
                = CERESLONGITUDE_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_PER_DT]
                = CERESPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_CERES][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_CERES][LC_P2_ASC_DT]
                = CERESASCENDING_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_GM] = ERISGM;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_DAY] = ERISDAY;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_FLATNESS] = ERISFLATNESS;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_A] = ERIS_A;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_C] = ERIS_C;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_YEAR] = ERISYEAR;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ORB] = ERISORBIT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ECC] = ERISECCENTRICITY;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_INC] = ERISINCLINATION;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_LON] = ERISLONGITUDE;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_PER] = ERISPERIAPSIS;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ASC] = ERISASCENDING;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ORB_DT] = ERISORBIT_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_GM] = ERISGM;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_DAY] = ERISDAY;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_FLATNESS] = ERISFLATNESS;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_A] = ERIS_A;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_C] = ERIS_C;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_YEAR] = ERISYEAR;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ORB] = ERISORBIT;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ECC] = ERISECCENTRICITY;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_INC] = ERISINCLINATION;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_LON] = ERISLONGITUDE;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_PER] = ERISPERIAPSIS;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ASC] = ERISASCENDING;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ORB_DT] = ERISORBIT_DT;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ECC_DT]
                = ERISECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_INC_DT]
                = ERISINCLINATION_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_LON_DT] = ERISLONGITUDE_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_PER_DT] = ERISPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_ERIS][LC_P2_ASC_DT] = ERISASCENDING_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_GM] = MAKEMAKEGM;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_DAY] = MAKEMAKEDAY;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_LON_DT] = ERISLONGITUDE_DT;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_PER_DT] = ERISPERIAPSIS_DT;
+         lv_pl_mtrx[LC_P1_ERIS][LC_P2_ASC_DT] = ERISASCENDING_DT;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_GM] = MAKEMAKEGM;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_DAY] = MAKEMAKEDAY;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_FLATNESS]
                = MAKEMAKEFLATNESS;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_A] = MAKEMAKE_A;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_C] = MAKEMAKE_C;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_YEAR] = MAKEMAKEYEAR;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ORB] = MAKEMAKEORBIT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ECC]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_A] = MAKEMAKE_A;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_C] = MAKEMAKE_C;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_YEAR] = MAKEMAKEYEAR;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ORB] = MAKEMAKEORBIT;
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ECC]
                = MAKEMAKEECCENTRICITY;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_INC]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_INC]
                = MAKEMAKEINCLINATION;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_LON]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_LON]
                = MAKEMAKELONGITUDE;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_PER]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_PER]
                = MAKEMAKEPERIAPSIS;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ASC]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ASC]
                = MAKEMAKEASCENDING;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ORB_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ORB_DT]
                = MAKEMAKEORBIT_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ECC_DT]
                = MAKEMAKEECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_INC_DT]
                = MAKEMAKEINCLINATION_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_LON_DT]
                = MAKEMAKELONGITUDE_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_PER_DT]
                = MAKEMAKEPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_MAKEMAKE][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_MAKEMAKE][LC_P2_ASC_DT]
                = MAKEMAKEASCENDING_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_GM] = HAUMEAGM;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_DAY] = HAUMEADAY;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_FLATNESS]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_GM] = HAUMEAGM;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_DAY] = HAUMEADAY;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_FLATNESS]
                = HAUMEAFLATNESS;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_A] = HAUMEA_A;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_C] = HAUMEA_C;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_YEAR] = HAUMEAYEAR;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ORB] = HAUMEAORBIT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ECC] = HAUMEAECCENTRICITY;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_INC] = HAUMEAINCLINATION;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_LON] = HAUMEALONGITUDE;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_PER] = HAUMEAPERIAPSIS;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ASC] = HAUMEAASCENDING;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ORB_DT] = HAUMEAORBIT_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ECC_DT]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_A] = HAUMEA_A;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_C] = HAUMEA_C;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_YEAR] = HAUMEAYEAR;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ORB] = HAUMEAORBIT;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ECC]
+               = HAUMEAECCENTRICITY;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_INC] = HAUMEAINCLINATION;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_LON] = HAUMEALONGITUDE;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_PER] = HAUMEAPERIAPSIS;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ASC] = HAUMEAASCENDING;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ORB_DT] = HAUMEAORBIT_DT;
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ECC_DT]
                = HAUMEAECCENTRICITY_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_INC_DT]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_INC_DT]
                = HAUMEAINCLINATION_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_LON_DT]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_LON_DT]
                = HAUMEALONGITUDE_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_PER_DT]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_PER_DT]
                = HAUMEAPERIAPSIS_DT;
-         lv_pl_arr[LC_P1_HAUMEA][LC_P2_ASC_DT]
+         lv_pl_mtrx[LC_P1_HAUMEA][LC_P2_ASC_DT]
                = HAUMEAASCENDING_DT;
          IF 0 < lv_pl_jtwoktime AND lv_pl_jtwoktime < 1.0 / 32.0:
             CALL plsettime(Kw.uet2j2k(Kw.timee()));
@@ -1169,8 +1174,8 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          retvalu = LC_P1_ERR;
       ELSE:
          pl_ind = pl(pa_ind);
-         retvalu = (lv_pl_arr[pl_ind][pb_bb] + lv_pl_jtwoktime
-               * lv_pl_arr[pl_ind][pb_bbd]);
+         retvalu = (lv_pl_mtrx[pl_ind][pb_bb] + lv_pl_jtwoktime
+               * lv_pl_mtrx[pl_ind][pb_bbd]);
       IF_END
       RETURN retvalu;
    FUNC_END
@@ -1188,14 +1193,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction -------------------------------- pl_gm #
    FUNC DBL pl_gm(INT plnt):
       # the gm of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_GM];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_GM];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_GM];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_GM];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1210,14 +1215,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction ------------------------------ pl_year #
    FUNC DBL pl_year(INT plnt):
       # the year of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_YEAR];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_YEAR];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_YEAR];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_YEAR];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1232,14 +1237,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction ------------------------------- pl_day #
    FUNC DBL pl_day(INT plnt):
       # the day of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_DAY];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_DAY];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_DAY];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_DAY];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1254,14 +1259,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction -------------------------- pl_flatness #
    FUNC DBL pl_flatness(INT plnt):
       # the flatness of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_FLATNESS];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_FLATNESS];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_FLATNESS];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_FLATNESS];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1276,14 +1281,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction --------------------------------- pl_a #
    FUNC DBL pl_a(INT plnt):
       # the a of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_A];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_A];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_A];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_A];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1298,14 +1303,14 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    #   FFFFFFFFFFunction --------------------------------- pl_c #
    FUNC DBL pl_c(INT plnt):
       # the c of planet PLNT
-      BLOCK_USE lv_pl_arr[];
+      BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
       CALL lf_pl_init(plnt);
       IF LC_P1_SUN <= plnt AND plnt < LC_P1_COUNT:
-         retvalu = lv_pl_arr[plnt][LC_P2_C];
+         retvalu = lv_pl_mtrx[plnt][LC_P2_C];
       ELSIF plnt == LC_P1_PREV_PL:
-         retvalu = lv_pl_arr[lv_pl_ind][LC_P2_C];
+         retvalu = lv_pl_mtrx[lv_pl_ind][LC_P2_C];
       ELSE:
          retvalu = LC_P1_ERR;
       IF_END
@@ -1922,11 +1927,11 @@ BLOCK:# ISA atmosphere
    BLOCK_DEF CONST LC_ISA_XLAPSERATE 2;
    BLOCK_DEF CONST LC_ISA_XPRESSURE 3;
    BLOCK_DEF CONST LC_ISA_XDENSITY 4;
-   BLOCK_DEF DBL lv_isa_arr[7][5];
+   BLOCK_DEF DBL lv_isa_mtrx[7][5];
    BLOCK_DEF DBL lv_isa_magic = 0.0;
    #   FFFFFFFFFFunction -------------------------- lf_isa_calc #
    BLOCK_DEF FUNC DBL lf_isa_calc(DBL height_m, INT state_x):
-      BLOCK_USE lv_isa_arr[];
+      BLOCK_USE lv_isa_mtrx[];
       BLOCK_USE lv_isa_magic;
       INT h_ind;
       DBL air_k_per_m;
@@ -1936,72 +1941,72 @@ BLOCK:# ISA atmosphere
       DBL ret_val;
       IF NOT Kw.ismagic(lv_isa_magic):
          # from https://en.wikipedia.org/wiki/Barometric_formula
-         lv_isa_arr[0][LC_ISA_XHEIGHT] = 0;
-         lv_isa_arr[0][LC_ISA_XTEMPERATURE] = 288.15;
-         lv_isa_arr[0][LC_ISA_XLAPSERATE] = -0.0065;
-         lv_isa_arr[0][LC_ISA_XPRESSURE] = Kw.ATM;
-         lv_isa_arr[0][LC_ISA_XDENSITY] = 1.2250;
-         lv_isa_arr[1][LC_ISA_XHEIGHT] = 11000;
-         lv_isa_arr[1][LC_ISA_XTEMPERATURE] = 216.65;
-         lv_isa_arr[1][LC_ISA_XLAPSERATE] = +0.0;
-         lv_isa_arr[1][LC_ISA_XPRESSURE] = 22632.10;
-         lv_isa_arr[1][LC_ISA_XDENSITY] = 0.36391;
-         lv_isa_arr[2][LC_ISA_XHEIGHT] = 20000;
-         lv_isa_arr[2][LC_ISA_XTEMPERATURE] = 216.65;
-         lv_isa_arr[2][LC_ISA_XLAPSERATE] = +0.001;
-         lv_isa_arr[2][LC_ISA_XPRESSURE] = 5474.89;
-         lv_isa_arr[2][LC_ISA_XDENSITY] = 0.08803;
-         lv_isa_arr[3][LC_ISA_XHEIGHT] = 32000;
-         lv_isa_arr[3][LC_ISA_XTEMPERATURE] = 228.65;
-         lv_isa_arr[3][LC_ISA_XLAPSERATE] = +0.0028;
-         lv_isa_arr[3][LC_ISA_XPRESSURE] = 868.02;
-         lv_isa_arr[3][LC_ISA_XDENSITY] = 0.01322;
-         lv_isa_arr[4][LC_ISA_XHEIGHT] = 47000;
-         lv_isa_arr[4][LC_ISA_XTEMPERATURE] = 270.65;
-         lv_isa_arr[4][LC_ISA_XLAPSERATE] = +0.0;
-         lv_isa_arr[4][LC_ISA_XPRESSURE] = 110.91;
-         lv_isa_arr[4][LC_ISA_XDENSITY] = 0.00143;
-         lv_isa_arr[5][LC_ISA_XHEIGHT] = 51000;
-         lv_isa_arr[5][LC_ISA_XTEMPERATURE] = 270.65;
-         lv_isa_arr[5][LC_ISA_XLAPSERATE] = -0.0028;
-         lv_isa_arr[5][LC_ISA_XPRESSURE] = 66.94;
-         lv_isa_arr[5][LC_ISA_XDENSITY] = 8.6E-4;
-         lv_isa_arr[6][LC_ISA_XHEIGHT] = 71000;
-         lv_isa_arr[6][LC_ISA_XTEMPERATURE] = 214.65;
-         lv_isa_arr[6][LC_ISA_XLAPSERATE] = -0.002;
-         lv_isa_arr[6][LC_ISA_XPRESSURE] = 3.96;
-         lv_isa_arr[6][LC_ISA_XDENSITY] = 6.4E-5;
+         lv_isa_mtrx[0][LC_ISA_XHEIGHT] = 0;
+         lv_isa_mtrx[0][LC_ISA_XTEMPERATURE] = 288.15;
+         lv_isa_mtrx[0][LC_ISA_XLAPSERATE] = -0.0065;
+         lv_isa_mtrx[0][LC_ISA_XPRESSURE] = Kw.ATM;
+         lv_isa_mtrx[0][LC_ISA_XDENSITY] = 1.2250;
+         lv_isa_mtrx[1][LC_ISA_XHEIGHT] = 11000;
+         lv_isa_mtrx[1][LC_ISA_XTEMPERATURE] = 216.65;
+         lv_isa_mtrx[1][LC_ISA_XLAPSERATE] = +0.0;
+         lv_isa_mtrx[1][LC_ISA_XPRESSURE] = 22632.10;
+         lv_isa_mtrx[1][LC_ISA_XDENSITY] = 0.36391;
+         lv_isa_mtrx[2][LC_ISA_XHEIGHT] = 20000;
+         lv_isa_mtrx[2][LC_ISA_XTEMPERATURE] = 216.65;
+         lv_isa_mtrx[2][LC_ISA_XLAPSERATE] = +0.001;
+         lv_isa_mtrx[2][LC_ISA_XPRESSURE] = 5474.89;
+         lv_isa_mtrx[2][LC_ISA_XDENSITY] = 0.08803;
+         lv_isa_mtrx[3][LC_ISA_XHEIGHT] = 32000;
+         lv_isa_mtrx[3][LC_ISA_XTEMPERATURE] = 228.65;
+         lv_isa_mtrx[3][LC_ISA_XLAPSERATE] = +0.0028;
+         lv_isa_mtrx[3][LC_ISA_XPRESSURE] = 868.02;
+         lv_isa_mtrx[3][LC_ISA_XDENSITY] = 0.01322;
+         lv_isa_mtrx[4][LC_ISA_XHEIGHT] = 47000;
+         lv_isa_mtrx[4][LC_ISA_XTEMPERATURE] = 270.65;
+         lv_isa_mtrx[4][LC_ISA_XLAPSERATE] = +0.0;
+         lv_isa_mtrx[4][LC_ISA_XPRESSURE] = 110.91;
+         lv_isa_mtrx[4][LC_ISA_XDENSITY] = 0.00143;
+         lv_isa_mtrx[5][LC_ISA_XHEIGHT] = 51000;
+         lv_isa_mtrx[5][LC_ISA_XTEMPERATURE] = 270.65;
+         lv_isa_mtrx[5][LC_ISA_XLAPSERATE] = -0.0028;
+         lv_isa_mtrx[5][LC_ISA_XPRESSURE] = 66.94;
+         lv_isa_mtrx[5][LC_ISA_XDENSITY] = 8.6E-4;
+         lv_isa_mtrx[6][LC_ISA_XHEIGHT] = 71000;
+         lv_isa_mtrx[6][LC_ISA_XTEMPERATURE] = 214.65;
+         lv_isa_mtrx[6][LC_ISA_XLAPSERATE] = -0.002;
+         lv_isa_mtrx[6][LC_ISA_XPRESSURE] = 3.96;
+         lv_isa_mtrx[6][LC_ISA_XDENSITY] = 6.4E-5;
          #                 m;      K;    K/m; Pa; kg/m**3
          lv_isa_magic = Kw.magicset();
       IF_END
       h_ind = 6;
-      WHILE height_m < lv_isa_arr[h_ind][0] AND 0 < h_ind:
+      WHILE height_m < lv_isa_mtrx[h_ind][0] AND 0 < h_ind:
          h_ind -= 1;
       WHILE_END
-      delta_h = height_m - lv_isa_arr[h_ind][LC_ISA_XHEIGHT];
-      this_temp = lv_isa_arr[h_ind][LC_ISA_XTEMPERATURE]
-            + lv_isa_arr[h_ind][LC_ISA_XLAPSERATE] * delta_h;
+      delta_h = height_m - lv_isa_mtrx[h_ind][LC_ISA_XHEIGHT];
+      this_temp = lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]
+            + lv_isa_mtrx[h_ind][LC_ISA_XLAPSERATE] * delta_h;
       IF state_x == LC_ISA_TEMPERATURE:
          ret_val = this_temp;
       ELSE:
          air_k_per_m = Kw.GRAVITY * Kwelements.AIR_MASS / Kw.GAS;
-         IF Kw.iszero(lv_isa_arr[h_ind][LC_ISA_XLAPSERATE]):
+         IF Kw.iszero(lv_isa_mtrx[h_ind][LC_ISA_XLAPSERATE]):
             ret_val = EXP(-air_k_per_m * delta_h
-                  / lv_isa_arr[h_ind][LC_ISA_XTEMPERATURE]);
+                  / lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]);
          ELSE:
             expon = air_k_per_m
-                  / lv_isa_arr[h_ind][LC_ISA_XLAPSERATE];
+                  / lv_isa_mtrx[h_ind][LC_ISA_XLAPSERATE];
             IF state_x == LC_ISA_DENSITY:
                expon += 1;
             IF_END
             ret_val
-                  = POW(lv_isa_arr[h_ind][LC_ISA_XTEMPERATURE]
+                  = POW(lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]
                   / this_temp, expon);
          IF_END
          IF state_x == LC_ISA_PRESSURE:
-            ret_val *= lv_isa_arr[h_ind][LC_ISA_XPRESSURE];
+            ret_val *= lv_isa_mtrx[h_ind][LC_ISA_XPRESSURE];
          ELSE:
-            ret_val *= lv_isa_arr[h_ind][LC_ISA_XDENSITY];
+            ret_val *= lv_isa_mtrx[h_ind][LC_ISA_XDENSITY];
          IF_END
       IF_END
       RETURN ret_val;
