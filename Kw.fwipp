@@ -1,6 +1,14 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-08-29 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-10-05 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2015-2020 by Kevin D. Woerner
+# 2020-10-03 kdw  Kw:s/print_.*/.*_print/
+# 2020-10-01 kdw  Kw:no net change
+# 2020-09-22 kdw  Kw:comment change
+# 2020-09-20 kdw  Kw:blackbody dist work
+# 2020-09-19 kdw  Kw:blackbody[lf] funcs
+# 2020-09-09 kdw  Kw:print_base_out_fix sz arg is min size
+# 2020-09-08 kdw  Kw:l[o]gx
+# 2020-09-07 kdw  Kw:print_base_out_fix func
 # 2020-08-20 kdw  Kw:boolean checks changed
 # 2020-08-19 kdw  Kw:comment change
 # 2020-08-17 kdw  Kw:macro syntax changed
@@ -427,6 +435,7 @@ IMPORT_MASTER;
 #   IIIIIIIIIInsert-End --------------------------- Macros.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------- constants.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-10-01 kdw  constants:cnstc macro
 # 2020-08-19 kdw  constants:comment change
 # 2020-08-18 kdw  constants:minor tweaks
 # 2020-08-17 kdw  constants:macro syntax changed
@@ -829,14 +838,22 @@ CONST LUX LUMEN / (METER * METER);#JA2L-2
 #   SI-constants  2019-05-20 - ---- ----- ----- ----- ----- -----
 CONST BOLTZMANN 1.380649E-23 * JOULE / KELVIN;#ML2T-2K-1
 CONST BOLTZMANN_ERR 0;#1
+CONST BOLTZMANNCONST 1.380649E-23 * JOULE / KELVIN;#ML2T-2K-1
+CONST BOLTZMANNCONST_ERR 0;#1
 CONST ELECTRONCHARGE 1.602176634E-19 * COULOMB;#TI
 CONST ELECTRONCHARGE_ERR 0;#1
 CONST LIGHT 2.99792458E+8 * METER / SECOND;#LT-1
 CONST LIGHT_ERR 0;#1
+CONST LIGHTCONST 2.99792458E+8 * METER / SECOND;#LT-1
+CONST LIGHTCONST_ERR 0;#1
 CONST AVOGADRO 6.02214076E+23 / MOLE;#N-1
 CONST AVOGADRO_ERR 0;#1
+CONST AVOGADROCONST 6.02214076E+23 / MOLE;#N-1
+CONST AVOGADROCONST_ERR 0;#1
 CONST PLANCK 6.62607015E-34 * JOULE * SECOND;#ML2T-1
 CONST PLANCK_ERR 0;#1
+CONST PLANCKCONST 6.62607015E-34 * JOULE * SECOND;#ML2T-1
+CONST PLANCKCONST_ERR 0;#1
 CONST KCD 6.83E+2 * LUMEN / WATT;#JA2S3M-1L-2
 CONST KCD_ERR 0;#1
 CONST dvCsHz 9.19263177E+9 / SECOND;#T-1
@@ -881,13 +898,21 @@ CONST VONKLITZING PLANCK / (ELECTRONCHARGE * ELECTRONCHARGE);
 CONST VONKLITZING_ERR 0;#1
 CONST FARADAY ELECTRONCHARGE * AVOGADRO;#TIN-1
 CONST FARADAY_ERR 0;#1
+CONST FARADAYCONST ELECTRONCHARGE * AVOGADRO;#TIN-1
+CONST FARADAYCONST_ERR 0;#1
 CONST GAS BOLTZMANN * AVOGADRO;#ML2T-2K-1N-1
 CONST GAS_ERR 0;#1
+CONST GASCONST BOLTZMANN * AVOGADRO;#ML2T-2K-1N-1
+CONST GASCONST_ERR 0;#1
 #   CODATA-2018 Measured-constants  ----- ----- ----- ----- -----
 CONST GRAVITATION 6.67430E-11 * UNITGM / KILOGRAM;#L3T-2M-1
 CONST GRAVITATION_ERR 2.2E-5;#1
+CONST GRAVITATIONCONST 6.67430E-11 * UNITGM / KILOGRAM;#L3T-2M-1
+CONST GRAVITATIONCONST_ERR 2.2E-5;#1
 CONST RYDBERG 1.0973731568160E+7 * LIGHT / METER;#T-1
 CONST RYDBERG_ERR 1.9E-12;#1
+CONST RYDBERGCONST 1.0973731568160E+7 * LIGHT / METER;#T-1
+CONST RYDBERGCONST_ERR 1.9E-12;#1
 CONST G GRAVITATION;#L3T-2M-1
 CONST G_ERR GRAVITATION_ERR;#1
 CONST ALPHA 7.2973525664E-3;#1
@@ -1224,6 +1249,8 @@ CONST RPS TURN / SECOND;#AT-1
 ##    NUCLEAR RELATED - ----- ----- ----- ----- ----- ----- -----
 CONST FINESTRUCTURE ALPHA;#1
 CONST FINESTRUCTURE_ERR ALPHA_ERR;#1
+CONST FINESTRUCTURECONST ALPHA;#1
+CONST FINESTRUCTURECONST_ERR ALPHA_ERR;#1
 CONST FINESTRUCTURE_REC ALPHA_REC;#1
 CONST FINESTRUCTURE_REC_ERR ALPHA_ERR;#1
 CONST MAGNETIC 2.0 * VONKLITZING * ALPHA / LIGHT;#ML/T2I2
@@ -1233,6 +1260,8 @@ CONST MU0_ERR ALPHA_ERR;#1
 # follows from LIGHT**2 * MAGNETIC * ELECTRIC 1.0
 CONST ELECTRIC 1.0 / (LIGHT * LIGHT * MU0);#ML/T2I2
 CONST ELECTRIC_ERR ALPHA_ERR;#1
+CONST ELECTRICCONST 1.0 / (LIGHT * LIGHT * MU0);#ML/T2I2
+CONST ELECTRICCONST_ERR ALPHA_ERR;#1
 CONST EPSILON0 ELECTRIC;#ML/T2I2
 CONST EPSILON0_ERR ALPHA_ERR;#1
 CONST COULOMBCONST 1.0 / (2.0 * TAU * ELECTRIC);#ML3/T4I2
@@ -1241,6 +1270,8 @@ CONST PROTONRADIUS 8.414E-16 * METER;#L
 CONST PROTONRADIUS_ERR 2.2E-3;#1
 CONST MOLARMASS 0.99999999965 * GRAM / MOLE;#M/N
 CONST MOLARMASS_ERR 2.0E-10;#1
+CONST MOLARMASSCONST 0.99999999965 * GRAM / MOLE;#M/N
+CONST MOLARMASSCONST_ERR 2.0E-10;#1
 CONST MOLARMASSX (1.0 - 3.5E-10) * GRAM / MOLE;#M/N
 CONST MOLARMASSX_ERR 2.0E-10;#1
 # defined to be exactly Mass(CARBON_12)/12
@@ -1349,6 +1380,10 @@ CONST STEFAN (TAU * TAU * LIGHT * BOLTZMANN) * ((BOLTZMANN
       / (LIGHT * HBAR)) * (BOLTZMANN / (LIGHT * HBAR))
       * (BOLTZMANN / (LIGHT * HBAR))) / 240.0;#M/K4T3
 CONST STEFAN_ERR 0;#1
+CONST STEFANCONST (TAU * TAU * LIGHT * BOLTZMANN) * ((BOLTZMANN
+      / (LIGHT * HBAR)) * (BOLTZMANN / (LIGHT * HBAR))
+      * (BOLTZMANN / (LIGHT * HBAR))) / 240.0;#M/K4T3
+CONST STEFANCONST_ERR 0;#1
 ##    SPORTS RELATED -- ----- ----- ----- ----- ----- ----- -----
 CONST PINGPONGBALLRADIUS 0.02 * METER;#L
 CONST GOLFBALLRADIUS 0.02135 * METER;#L
@@ -1397,6 +1432,8 @@ CONST EINSTEIN 4 * TAU * GRAVITATION / (LIGHT * LIGHT * LIGHT
 CONST EINSTEIN_ERR GRAVITATION_ERR;#1
 CONST HUBBLE 67.66E-3 * METER / (SECOND * PARSEC);#T-1
 CONST HUBBLE_ERR 6E-3;#1
+CONST HUBBLECONST 67.66E-3 * METER / (SECOND * PARSEC);#T-1
+CONST HUBBLECONST_ERR 6E-3;#1
 CONST BHMASSTEMP (HBAR * (LIGHT * LIGHT * LIGHT) / (4.0 * TAU
       * GRAVITATION * BOLTZMANN));#MK
 CONST BHMASS_RADIUS 0.5 * LIGHT * LIGHT / GRAVITATION;#ML-1
@@ -1728,6 +1765,12 @@ FUNC_END
 FUNC DBL log10(DBL xx):
    # log base 10 of XX
    RETURN LN(xx) / LN(10.0);
+FUNC_END
+#   FFFFFFFFFFunction ------------------------------------ logx #
+FUNC DBL logx(DBL xx
+      , DBL bb):
+   # log base BB of XX
+   RETURN LN(xx) / LN(bb);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------------- l10 #
 FUNC DBL l10(DBL xx):
@@ -3668,24 +3711,24 @@ BLOCK:# continued fraction
       AWAIT_END
       RETURN steps;
    FUNC_END
-   #   FFFFFFFFFFunction ------------------------ print_contfra #
-   FUNC INT print_contfra(DBL orig):
+   #   FFFFFFFFFFunction ------------------------ contfra_print #
+   FUNC INT contfra_print(DBL orig):
       # Print continued fraction coeffs of ORIG
       RETURN lf_continued_fraction(orig, - 1);
    FUNC_END
-   #   FFFFFFFFFFunction ----------------------- print_contfrac #
-   FUNC INT print_contfrac(DBL orig):
+   #   FFFFFFFFFFunction ----------------------- contfrac_print #
+   FUNC INT contfrac_print(DBL orig):
       # Print continued fraction of ORIG
       RETURN lf_continued_fraction(orig, 0);
    FUNC_END
-   #   FFFFFFFFFFunction ---------------------- print_contfracd #
-   FUNC INT print_contfracd(DBL orig):
+   #   FFFFFFFFFFunction ---------------------- contfracd_print #
+   FUNC INT contfracd_print(DBL orig):
       # Print continued fraction of ORIG w/ diffs
       RETURN lf_continued_fraction(orig, 1);
    FUNC_END
 BLOCK_END# continued fraction
-#   FFFFFFFFFFunction -------------------------- print_num2char #
-FUNC INT print_num2char(INT num):
+#   FFFFFFFFFFunction -------------------------- num2char_print #
+FUNC INT num2char_print(INT num):
    # print NUM as a character 0-9a-zA-Z_?
    IF num < 32:
       IF num < 16:
@@ -3884,8 +3927,8 @@ FUNC INT print_num2char(INT num):
    IF_END
    RETURN num;
 FUNC_END
-#   FFFFFFFFFFunction -------------------------- print_base_out #
-FUNC INT print_base_out(INT num
+#   FFFFFFFFFFunction -------------------------- base_out_print #
+FUNC INT base_out_print(INT num
       , INT baset):
    # print NUM out in base BASET
    # return number of characters printed
@@ -3904,13 +3947,41 @@ FUNC INT print_base_out(INT num
          num = FLOORL(num / baset);
       AWAIT_END
       FOR ii FROM dig_count - 1 TO 0 BY - 1:
-         CALL print_num2char(digits_arr[ii]);
+         CALL num2char_print(digits_arr[ii]);
       FOR_END
    MODE_INTEGER_END
    RETURN dig_count;
 FUNC_END
-#   FFFFFFFFFFunction ------------------------- print_base_outf #
-FUNC INT print_base_outf(DBL num
+#   FFFFFFFFFFunction ---------------------- base_out_fix_print #
+FUNC INT base_out_fix_print(INT num
+      , INT baset
+      , INT min_sz):
+   # print NUM out in base BASET
+   # return number of characters printed
+   INT digits_arr[65];
+   INT dig_count;
+   INT ii;
+   MODE_INTEGER:
+      IF num < 0:
+         num = -num;
+      IF_END
+      dig_count = 0;
+      AWAIT num == 0:
+         digits_arr[dig_count] = num % baset;
+         dig_count += 1;
+         num = FLOORL(num / baset);
+      AWAIT_END
+      FOR ii FROM dig_count TO min_sz - 1:
+         CALL num2char_print(0);
+      FOR_END
+      FOR ii FROM dig_count - 1 TO 0 BY - 1:
+         CALL num2char_print(digits_arr[ii]);
+      FOR_END
+   MODE_INTEGER_END
+   RETURN min_sz;
+FUNC_END
+#   FFFFFFFFFFunction ------------------------- base_outf_print #
+FUNC INT base_outf_print(DBL num
       , INT baset):
    # print NUM out in base BASET
    # return number of characters printed
@@ -3925,14 +3996,14 @@ FUNC INT print_base_outf(DBL num
       num = -num;
       dig_count += 1;
    IF_END
-   dig_count += print_base_out(FLOORL(num), baset) + 1;
+   dig_count += base_out_print(FLOORL(num), baset) + 1;
    PRINTSTR(".");
    lim = CEILL(-lg(DBLEPS) / lg(baset));
    frc = frac(num) * baset;
    ii = 1;
    WHILE ii <= lim AND NOT Kw.iszero(frc):
       dig = FLOORL(frc);
-      CALL print_num2char(dig);
+      CALL num2char_print(dig);
       frc -= dig;
       frc *= baset;
       ii += 1;
@@ -4497,6 +4568,11 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- integral.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- number.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-10-03 kdw  number:s/print_.*/.*_print/
+# 2020-09-22 kdw  number:var renam
+# 2020-09-10 kdw  number:kevy func III
+# 2020-09-07 kdw  number:kevy func II
+# 2020-09-06 kdw  number:kevy func
 # 2020-08-20 kdw  number:boolean checks changed
 # 2020-08-19 kdw  number:comment change
 # 2020-08-17 kdw  number:macro syntax changed
@@ -6069,8 +6145,8 @@ FUNC_END
 BLOCK:# Prime factors
    BLOCK_DEF CONST LC_MAX_FACTORS 65;
    # 1
-   #   FFFFFFFFFFunction ------------------------- print_factor #
-   FUNC INT print_factor(INT nn):
+   #   FFFFFFFFFFunction ------------------------- factor_print #
+   FUNC INT factor_print(INT nn):
       # Print out all prime factors of number NN
       INT ind;
       INT fac_arr[LC_MAX_FACTORS];
@@ -6428,37 +6504,44 @@ FUNC INT repetendlen(INT denm
    IF_END
    RETURN retvalu;
 FUNC_END
-#   FFFFFFFFFFunction ------------------------------ print_kevy #
-FUNC INT print_kevy(INT den
+#   FFFFFFFFFFunction ------------------------------ kevy_print #
+FUNC INT kevy_print(INT den
       , INT start
       , INT basee):
-   # print out number in base BASEE, starting with digit START
-   #    such that to divide number by DEN you move first digit of
-   #    number to last
-   # I.E. Given DEN, START, and BASEE: find NN such that
-   #   START * (BASEE ** NN - DEN) == 0 mod(BASEE * DEN - 1)
-   #   Then print out this number in base BASEE:
-   #      DEN * START * (BASEE ** NN - DEN) / (BASEE * DEN - 1)
+   # print out number in base BASEE, starting with START
+   #    such that to divide number by DEN you move START from
+   #    the beginning of the number to the end
+   # I.E. Given DEN, START, and BASEE:
+   #    Let KK = CEIL((LN(START) + 0.01) / LN(BASE)), and
+   #        NN = dlog(BASEE, DEN, BASEE**KK * DEN - 1)
+   #   Then print(in base BASEE):
+   #   DEN * START * (BASEE ** NN - DEN) / (BASEE**KK * DEN - 1)
    # Return number of digits printed
    INT numer;
    INT valu;
    INT leny;
+   INT rema;
+   INT overall_len;
+   INT baseek;
+   INT digits_in_start;
+   digits_in_start = FLOORL(LN(start) / LN(basee) + 1);
+   baseek = POW(basee, digits_in_start);
+   overall_len = (Kw.dlog(basee, den, den * baseek - 1) + 3)
+         * digits_in_start;
    MODE_INTEGER:
       leny = 0;
-      IF start < basee * den:
-         numer = start;
-         valu = start;
-         AWAIT numer == start OR den * basee < leny:
-            CALL print_num2char(valu);
-            leny += 1;
-            valu = FLOORL(numer / den);
-            numer = (numer % den) * basee + valu;
-         AWAIT_END
-         IF basee <= start:
-            PRINTSTR("-");
-            PRINTVAL(FLOORL(start / basee));
+      numer = start;
+      valu = start;
+      AWAIT 2 * overall_len < leny:
+         CALL base_out_fix_print(valu, basee, digits_in_start);
+         leny += digits_in_start;
+         valu = FLOORL(numer / den);
+         rema = numer % den;
+         numer = rema * baseek + valu;
+         IF numer == start:
+            AWAIT_EXIT;
          IF_END
-      IF_END
+      AWAIT_END
    MODE_INTEGER_END
    RETURN leny;
 FUNC_END
@@ -6494,13 +6577,13 @@ FUNC_END
 #   FFFFFFFFFFunction ------------------------------------ bkbn #
 FUNC INT bkbn(INT bb
       , INT kk
-      , INT bbb):
-   # return NN where KK*BBB*(BB**NN - 1) = 0 mod(KK * BB - 1)
+      , INT cc):
+   # return NN where KK*CC*(BB**NN - 1) = 0 mod(KK * BB - 1)
    INT mdls;
    MODE_INTEGER:
       mdls = kk * bb - 1;
-      IF mdls % bbb == 0:
-         mdls /= bbb;
+      IF mdls % cc == 0:
+         mdls /= cc;
       IF_END
    MODE_INTEGER_END
    RETURN znorder(bb, mdls);
@@ -10138,6 +10221,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End ---------------------------- gamma.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- combin.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-10-03 kdw  combin:s/print_.*/.*_print/
 # 2020-08-20 kdw  combin:boolean checks changed
 # 2020-08-17 kdw  combin:comment change
 # 2020-08-05 kdw  combin:pcoh[h]ammer func
@@ -11503,11 +11587,13 @@ FUNC INT n2perm(INT mm
    INT source_arr[];
    INT jj;
    INT kk;
+   INT mmm;
    INT sz_ind;
    MODE_INTEGER:
       REDIM pat_arr[], nn;
       REDIM source_arr[], nn;
-      kk = mm;
+      mmm = Kw.modulo(mm, factorial(nn));
+      kk = mmm;
       FOR ii FROM 1 TO nn:
          pat_arr[nn - ii] = kk % ii;
          kk = FLOOR(kk / ii);
@@ -11524,7 +11610,22 @@ FUNC INT n2perm(INT mm
    MODE_INTEGER_END
    REDIM pat_arr[];
    REDIM source_arr[];
-   RETURN mm;
+   RETURN mmm;
+FUNC_END
+#   FFFFFFFFFFunction ---------------------------- n2perm_print #
+FUNC INT n2perm_print(INT mm
+      , INT nn):
+   INT perm_arr[];
+   INT ii;
+   INT jj;
+   REDIM perm_arr[], nn;
+   jj = n2perm(mm, nn, perm_arr[]);
+   FOR ii FROM 0 TO nn - 1:
+      PRINTVAL(perm_arr[ii]);
+      PRINTSTR(" ");
+   FOR_END
+   REDIM perm_arr[];
+   RETURN jj;
 FUNC_END
 #   FFFFFFFFFFunction ---------------------------------- n2comb #
 FUNC INT n2comb(INT mm
@@ -11540,8 +11641,10 @@ FUNC INT n2comb(INT mm
    INT qq;
    INT ss;
    INT pp;
+   INT mmm;
    MODE_INTEGER:
-      kk = Kw.comb(nn, rr) - mm;
+      mmm = Kw.modulo(mm, Kw.comb(nn, rr));
+      kk = Kw.comb(nn, rr) - mmm;
       FOR ss FROM 0 TO rr - 1:
          pp = rr - ss;
          cc = 1;
@@ -11556,7 +11659,23 @@ FUNC INT n2comb(INT mm
          ret_comb_arr_p[ss] = nn - pp;
       FOR_END
    MODE_INTEGER_END
-   RETURN mm;
+   RETURN mmm;
+FUNC_END
+#   FFFFFFFFFFunction ---------------------------- n2comb_print #
+FUNC INT n2comb_print(INT mm
+      , INT nn
+      , INT rr):
+   INT comb_arr[];
+   INT ii;
+   INT jj;
+   REDIM comb_arr[], rr;
+   jj = n2comb(mm, nn, rr, comb_arr[]);
+   FOR ii FROM 0 TO rr - 1:
+      PRINTVAL(comb_arr[ii]);
+      PRINTSTR(" ");
+   FOR_END
+   REDIM comb_arr[];
+   RETURN jj;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------ pochhammer #
 FUNC DBL pochhammer(INT nn
@@ -11587,6 +11706,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- combin.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- julian.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-10-03 kdw  julian:s/print_.*/.*_print/
 # 2020-08-20 kdw  julian:boolean checks changed
 # 2020-08-19 kdw  julian:comment change
 # 2020-08-17 kdw  julian:comment change
@@ -12171,18 +12291,18 @@ BLOCK:# Julian specific defines
    FUNC_END
 BLOCK_END
       #   FFFFFFFFFFunction -----------------------------
-   #print_jd264 #
-FUNC DBL print_jd264(DBL jjulid):
+   #jd264_print #
+FUNC DBL jd264_print(DBL jjulid):
    # print out gregorian day in tthe format
    #   YYMDhms as a base-64 string for the date
    # corresponding to Julian day JJULID
    CALL jd2ymdhms(jjulid);
-   CALL print_base_out(ymdhms_get(LC_GD_YEAR), 64);
-   CALL print_base_out(ymdhms_get(LC_GD_MONTH), 64);
-   CALL print_base_out(ymdhms_get(LC_GD_DAY), 64);
-   CALL print_base_out(ymdhms_get(LC_GD_HOUR), 64);
-   CALL print_base_out(ymdhms_get(LC_GD_MIN), 64);
-   CALL print_base_outf(ymdhms_get(LC_GD_SEC), 64);
+   CALL base_out_print(ymdhms_get(LC_GD_YEAR), 64);
+   CALL base_out_print(ymdhms_get(LC_GD_MONTH), 64);
+   CALL base_out_print(ymdhms_get(LC_GD_DAY), 64);
+   CALL base_out_print(ymdhms_get(LC_GD_HOUR), 64);
+   CALL base_out_print(ymdhms_get(LC_GD_MIN), 64);
+   CALL base_outf_print(ymdhms_get(LC_GD_SEC), 64);
    RETURN jjulid;
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------- ymdhms2jd #
@@ -12583,6 +12703,7 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- julian.fwip #
 #   IIIIIIIIIInsert-Begin --------------------------- mean.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-09-30 kdw  mean:agmeaninv[ag]
 # 2020-08-17 kdw  mean:macro syntax changed
 # 2020-08-11 kdw  mean:agc[m]ean added
 # 2020-07-07 kdw  mean:attempt to extend agmean to < 0
@@ -13233,6 +13354,28 @@ FUNC DBL rms(DBL xa
    # same as qmean
    RETURN SQRT((xa * xa + xb * xb) / 2.0);
 FUNC_END
+#   FFFFFFFFFFunction ------------------------------ agmeaninva #
+FUNC DBL agmeaninva(DBL aa
+      , DBL gg):
+   DBL new_aa;
+   IF gg < aa:
+      new_aa = aa + SQRT(aa * aa - gg * gg);
+   ELSE:
+      new_aa = gg + SQRT(gg * gg - aa * aa);
+   IF_END
+   RETURN new_aa;
+FUNC_END
+#   FFFFFFFFFFunction ------------------------------ agmeaninvg #
+FUNC DBL agmeaninvg(DBL aa
+      , DBL gg):
+   DBL new_gg;
+   IF gg < aa:
+      new_gg = gg * gg / aa;
+   ELSE:
+      new_gg = aa * aa / gg;
+   IF_END
+   RETURN new_gg;
+FUNC_END
 #   FFFFFFFFFFunction ------------------------------ agmean1inv #
 FUNC DBL agmean1inv(DBL yy):
    # The inverse arithmetic-geometric mean
@@ -13723,6 +13866,8 @@ BLOCK_END# Random numbers
 #   IIIIIIIIIInsert-End --------------------------- random.fwip #
 #   IIIIIIIIIInsert-Begin ----------------------- randdist.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-09-22 kdw  randdist:blackbody func renam
+# 2020-09-20 kdw  randdist:blackbody dist work
 # 2020-08-24 kdw  randdist:var renam
 # 2020-08-20 kdw  randdist:boolean checks changed
 # 2020-08-19 kdw  randdist:comment change
@@ -15795,27 +15940,28 @@ FUNC DBL maxwell_juttner_pdf(DBL temperature
    IF_END
    RETURN retvalu;
 FUNC_END
-#   FFFFFFFFFFunction ---------------------------------- bb_pdf #
-FUNC DBL bb_pdf(DBL wavelen):
-   # PDF black-body distribution over[0,Inf)
-   # output is spectral radiance which has units of
-   #    Power / Area / length
+#   FFFFFFFFFFunction -------------------------- blackbodyl_pdf #
+FUNC DBL blackbodyl_pdf(DBL wavelen):
+   # PDF blackbody distribution over[0,Inf)
    # MODE   1 / (wp(-5 * exp(-5)) + 5) == 0.201405235272642
    DBL retvalu;
    IF wavelen <= 0.0:
       retvalu = 0.0;
    ELSE:
-      retvalu = 1.0 / (POW(wavelen, 5.0) * (EXP(1.0 / wavelen)
-            - 1.0));
+      retvalu = POW(wavelen, - 5.0) / (EXP(1.0 / wavelen) - 1.0);
    IF_END
    RETURN retvalu * 15.0 / POW(Kw.PI, 4.0);
 FUNC_END
-#   FFFFFFFFFFunction --------------------------- blackbody_pdf #
-FUNC DBL blackbody_pdf(DBL wavelen):
-   # PDF black-body distribution over[0,Inf)
-   # output is spectral radiance which has units of
-   #    Power / Area / length
-   RETURN bb_pdf(wavelen);
+#   FFFFFFFFFFunction -------------------------- blackbodyf_pdf #
+FUNC DBL blackbodyf_pdf(DBL freq):
+   # PDF blackbody distribution over[0,Inf)
+   DBL retvalu;
+   IF freq <= 0.0:
+      retvalu = 0.0;
+   ELSE:
+      retvalu = POW(freq, 3.0) / (EXP(freq) - 1.0);
+   IF_END
+   RETURN retvalu * 15.0 / POW(Kw.PI, 4.0);
 FUNC_END
 #   FFFFFFFFFFunction ------------------------------- ints_rand #
 FUNC INT ints_rand(INT nn
@@ -16813,6 +16959,7 @@ BLOCK_END# Statistics block
 #   IIIIIIIIIInsert-End ----------------------------- stts.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- fit.fwip #
 #    COPYRIGHT C 2015-2020 by Kevin D. Woerner
+# 2020-09-22 kdw  fit:var renam
 # 2020-07-27 kdw  fit:block syntax
 # 2020-07-24 kdw  fit:comment cleanup
 # 2020-06-22 kdw  fit:local-use mved before var decls
@@ -17089,39 +17236,39 @@ BLOCK:# circle info
    BLOCK_DEF CONST LC_CIRCLE_RADIUS 2;
    BLOCK_DEF DBL lv_circle_arr[3];
    #   FFFFFFFFFFunction ------------------------- circle_solve #
-   FUNC DBL circle_solve(DBL aa_x
-         , DBL aa_y
-         , DBL bb_x
-         , DBL bb_y
-         , DBL cc_x
-         , DBL cc_y):
+   FUNC DBL circle_solve(DBL x_a
+         , DBL y_a
+         , DBL x_b
+         , DBL y_b
+         , DBL x_c
+         , DBL y_c):
       # return the radius of the circle going through the points
-      # (aa_x,aa_y) (bb_x,bb_y) (cc_x,cc_y)
+      # (x_a,y_a) (x_b,y_b) (x_c,y_c)
       # subsequently use with
       #   circle_get(0) to get the x-coordinate of the center and
       #   circle_get(1) to get the y-coordinate of the center
       BLOCK_USE lv_circle_arr[];
-      DBL ca_a;
-      DBL cb_a;
-      DBL ca_b;
-      DBL cb_b;
+      DBL y_ba;
+      DBL x_ba;
+      DBL y_ca;
+      DBL x_ca;
       DBL det;
-      DBL cc_a;
-      DBL cc_b;
+      DBL xy_ba;
+      DBL xy_ca;
       DBL center_x;
       DBL center_y;
       DBL radius;
-      ca_a = bb_y - aa_y;
-      cb_a = bb_x - aa_x;
-      ca_b = cc_y - aa_y;
-      cb_b = cc_x - aa_x;
-      det = 2.0 * (ca_a * cb_b - ca_b * cb_a);
+      y_ba = y_b - y_a;
+      x_ba = x_b - x_a;
+      y_ca = y_c - y_a;
+      x_ca = x_c - x_a;
+      det = 2.0 * (y_ba * x_ca - y_ca * x_ba);
       IF NOT Kw.iszero(det):
-         cc_a = -ca_a * (aa_y + bb_y) - cb_a * (aa_x + bb_x);
-         cc_b = -ca_b * (aa_y + cc_y) - cb_b * (aa_x + cc_x);
-         center_x = (ca_b * cc_a - ca_a * cc_b) / det;
-         center_y = (cb_a * cc_b - cb_b * cc_a) / det;
-         radius = Kw.hypot(center_x - aa_x, center_y - aa_y);
+         xy_ba = y_ba * (y_a + y_b) + x_ba * (x_a + x_b);
+         xy_ca = y_ca * (y_a + y_c) + x_ca * (x_a + x_c);
+         center_x = (y_ba * xy_ca - y_ca * xy_ba) / det;
+         center_y = (x_ca * xy_ba - x_ba * xy_ca) / det;
+         radius = Kw.hypot(center_x - x_a, center_y - y_a);
       ELSE:
          center_x = Kw.DBLMAX;
          center_y = Kw.DBLMAX;
@@ -17260,21 +17407,21 @@ FUNC_END
 BLOCK:
       #   FFFFFFFFFFunction ------------------
    #lf_signcrossproduct #
-   BLOCK_DEF FUNC DBL lf_signcrossproduct(DBL aa_x, DBL aa_y
-         , DBL bb_x, DBL bb_y, DBL cc_x, DBL cc_y):
+   BLOCK_DEF FUNC DBL lf_signcrossproduct(DBL x_a, DBL y_a
+         , DBL x_b, DBL y_b, DBL x_c, DBL y_c):
       # the z-component of the cross product of the vectors
-      #   (bb_x - aa_x, bb_y - aa_y, 0), and
-      #   (cc_x - aa_x, cc_y - aa_y, 0)
+      #   (x_b - x_a, y_b - y_a, 0), and
+      #   (x_c - x_a, y_c - y_a, 0)
       DBL cr;
-      DBL bbaa_x;
-      DBL bbaa_y;
-      DBL ccaa_x;
-      DBL ccaa_y;
-      bbaa_x = bb_x - aa_x;
-      bbaa_y = bb_y - aa_y;
-      ccaa_x = cc_x - aa_x;
-      ccaa_y = cc_y - aa_y;
-      cr = bbaa_x * ccaa_y - ccaa_x * bbaa_y;
+      DBL bbx_a;
+      DBL bby_a;
+      DBL ccx_a;
+      DBL ccy_a;
+      bbx_a = x_b - x_a;
+      bby_a = y_b - y_a;
+      ccx_a = x_c - x_a;
+      ccy_a = y_c - y_a;
+      cr = bbx_a * ccy_a - ccx_a * bby_a;
       RETURN cr;
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- fitx_minmax #
@@ -18179,6 +18326,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- approx.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- sphere.fwip #
 #    COPYRIGHT C 2016-2020 by Kevin D. Woerner
+# 2020-09-29 kdw  sphere:comments; var renam
+# 2020-09-25 kdw  sphere:volume, surface area
 # 2020-08-17 kdw  sphere:comment change
 # 2020-08-03 kdw  sphere:explicit module for pi and tau
 # 2020-07-27 kdw  sphere:block syntax
@@ -18516,6 +18665,62 @@ BLOCK:# ellipsiod funcitons
       RETURN alpha_rad;
    FUNC_END
 BLOCK_END# ellipsiod funcitons
+#   FFFFFFFFFFunction ----------------------- ellipsoid_surface #
+FUNC DBL ellipsoid_surface(DBL aa
+      , DBL bb
+      , DBL cc):
+   # surface area of a tri-axial ellipsoid
+   DBL absaa;
+   DBL absbb;
+   DBL abscc;
+   DBL phi;
+   DBL sinphi;
+   DBL cosphi;
+   DBL kk;
+   DBL retvalu;
+   absaa = ABS(aa);
+   absbb = ABS(bb);
+   abscc = ABS(cc);
+   # sort into abscc <= absbb <= absaa
+   IF absaa < absbb:
+      kk = absaa;
+      absaa = absbb;
+      absbb = kk;
+   IF_END
+   IF absbb < abscc:
+      kk = abscc;
+      abscc = absbb;
+      absbb = kk;
+      IF absaa < absbb:
+         kk = absaa;
+         absaa = absbb;
+         absbb = kk;
+      IF_END
+   IF_END
+   # Ok, Now abscc <= absbb <= absaa
+   IF abscc < absaa:
+      # general case
+      cosphi = (abscc / absaa);
+      phi = Kw.cosinv(cosphi);
+      sinphi = SIN(phi);
+      kk = SQRT((1.0 - abscc * abscc / (absbb * absbb)) / (1.0
+            - abscc * abscc / (absaa * absaa)));
+      retvalu = Kw.TAU * (abscc * abscc + absaa * absbb
+            / sinphi * (sinphi * sinphi * Kw.elliptic2ik(kk
+            , phi) + cosphi * cosphi * Kw.elliptic1ik(kk, phi)));
+   ELSE:
+      # regular sphere: abscc == absbb == absaa
+      retvalu = 2 * TAU * absaa * absaa;
+   IF_END
+   RETURN retvalu;
+FUNC_END
+#   FFFFFFFFFFunction ------------------------ ellipsoid_volume #
+FUNC DBL ellipsoid_volume(DBL aa
+      , DBL bb
+      , DBL cc):
+   # volume of a tri-axial ellipsoid
+   RETURN 2.0 * Kw.TAU * aa * bb * cc / 3.0;
+FUNC_END
 #   IIIIIIIIIInsert-End --------------------------- sphere.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- shc.fwip #
 #    COPYRIGHT C 2017-2020 by Kevin D. Woerner
@@ -19850,6 +20055,8 @@ FUNC_END
 #   IIIIIIIIIInsert-End ------------------------- elliptic.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------ ellipse.fwip #
 #    COPYRIGHT C 2020 by Kevin D. Woerner
+# 2020-09-30 kdw  ellipse:circumference work
+# 2020-09-29 kdw  ellipse:more comments; third flattening
 # 2020-08-11 kdw  ellipse:ell[i]ptic function renam
 # 2020-08-03 kdw  ellipse:explicit module for pi and tau
 # 2020-07-02 kdw  ellipse:more tests; circ computed
@@ -19869,9 +20076,7 @@ FUNC_END
 FUNC DBL ellipseecc(DBL aa
       , DBL bb):
    # eccentricity of an ellipse with semi-axes AA and BB
-   DBL rati;
-   rati = Kw.ratio(aa, bb);
-   RETURN SQRT(1.0 - rati * rati);
+   RETURN Kw.topyh1(Kw.ratio(aa, bb));
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- ellipsem #
 FUNC DBL ellipsem(DBL aa
@@ -19884,21 +20089,65 @@ FUNC_END
 #   FFFFFFFFFFunction ------------------------- ellipseflatness #
 FUNC DBL ellipseflatness(DBL aa
       , DBL bb):
-   # flatness of an ellipse with semi-axes AA and BB
+   # first flattening of an ellipse with semi-axes AA and BB
    RETURN 1.0 - Kw.ratio(aa, bb);
+FUNC_END
+#   FFFFFFFFFFunction -------------------------------- ellipsen #
+FUNC DBL ellipsen(DBL aa
+      , DBL bb):
+   # third flattening of an ellipse with semi-axes AA and BB
+   RETURN ABS(aa - bb) / (aa + bb);
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- flat2ecc #
 FUNC DBL flat2ecc(DBL flt):
+   # convert first flattening to eccentricity
    RETURN SQRT(flt * (2.0 - flt));
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- ecc2flat #
 FUNC DBL ecc2flat(DBL ecc):
+   # convert eccentricity to first flattening
    RETURN 1.0 - SQRT(1.0 - ecc * ecc);
+FUNC_END
+#   FFFFFFFFFFunction ------------------------------ ellipsecir #
+FUNC DBL ellipsecir(DBL aa_orig
+      , DBL bb_orig):
+   # circumference of an ellipse with semi-axes AA and BB
+   DBL aaa;
+   DBL bbb;
+   DBL mm;
+   DBL suma;
+   DBL temp;
+   INT ii;
+   DBL retvalu;
+   IF aa_orig < bb_orig:
+      aaa = bb_orig;
+      bbb = aa_orig;
+   ELSE:
+      aaa = aa_orig;
+      bbb = bb_orig;
+   IF_END
+   IF bbb <= SQRT(DBLEPS) * aaa:
+      retvalu = 4.0 * aaa;
+   ELSE:
+      suma = 0.0;
+      mm = 1.0;
+      AWAIT Kw.iseq(aaa, bbb) COUNT ii FROM 0 TO 30:
+         temp = (aaa + bbb) / 2.0;
+         bbb = SQRT(aaa * bbb);
+         aaa = temp;
+         mm += mm;
+         suma += mm * Kw.square(aaa - bbb);
+      AWAIT_END
+      retvalu = Kw.PI * (Kw.square(aa_orig + bb_orig) - suma)
+            / (aaa + bbb);
+   IF_END
+   RETURN retvalu;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------- ellipsecir__1 #
 FUNC DBL ellipsecir__1(DBL aa
       , DBL bb):
    # circumference of an ellipse with semi-axes AA and BB
+   # via the elliptic integral of the 2th kind
    DBL major_axis;
    DBL minor_axis;
    DBL rati;
@@ -19913,45 +20162,12 @@ FUNC DBL ellipsecir__1(DBL aa
    # now major_axis = max(AA, BB)
    RETURN 4.0 * major_axis * Kw.elliptic2m(1.0 - rati * rati);
 FUNC_END
-#   FFFFFFFFFFunction ------------------------------ ellipsecir #
-FUNC DBL ellipsecir(DBL aa
-      , DBL bb):
-   # circumference of an ellipse with semi-axes AA and BB
-   DBL xx;
-   DBL yy;
-   DBL mm;
-   DBL suma;
-   DBL temp;
-   INT ii;
-   DBL retvalu;
-   IF aa < bb:
-      xx = bb;
-      yy = aa;
-   ELSE:
-      xx = aa;
-      yy = bb;
-   IF_END
-   IF yy <= SQRT(DBLEPS) * xx:
-      retvalu = 4.0 * xx;
-   ELSE:
-      suma = 0.0;
-      mm = 1.0;
-      AWAIT Kw.iseq(xx, yy) COUNT ii FROM 0 TO 20:
-         temp = (xx + yy) / 2.0;
-         yy = SQRT(xx * yy);
-         xx = temp;
-         mm += mm;
-         suma += mm * Kw.square(xx - yy);
-      AWAIT_END
-      retvalu = Kw.PI * (Kw.square(aa + bb) - suma) / (xx + yy);
-   IF_END
-   RETURN retvalu;
-FUNC_END
 #TEST:ellipsecir(1,10)==40.639741801008957425577931011816563791;
 #TEST:ellipsearea(1,10)==31.41592653589793238462643383279502884;
 #   IIIIIIIIIInsert-End -------------------------- ellipse.fwip #
 #   IIIIIIIIIInsert-Begin ---------------------------- cdf.fwip #
 #    COPYRIGHT C 2019-2020 by Kevin D. Woerner
+# 2020-09-30 kdw  cdf:writeonly work
 # 2020-06-03 kdw  cdf:writeonly keyword
 # 2020-05-12 kdw  cdf:nul rets changed
 # 2020-03-02 kdw  cdf:s/_N[E]XT/_E[N]D/
@@ -20014,12 +20230,15 @@ FUNC DBL ecdf(DBL minvalx
    #    RET_CDF_ARR_P[II] = (# of DATA_ARR_PC[]
    #         < MINVALX + II * LEN)) / NN
    INT ii;
+   DBL sumcurr;
    CALL epdf(minvalx, maxvalx, nn, data_arr_pc[], mm
          , ret_cdf_arr_p[]);
+   sumcurr = ret_cdf_arr_p[0];
    FOR ii FROM 1 TO mm - 1:
-      ret_cdf_arr_p[ii] += ret_cdf_arr_p[ii - 1];
+      sumcurr += ret_cdf_arr_p[ii];
+      ret_cdf_arr_p[ii] = sumcurr;
    FOR_END
-   RETURN ret_cdf_arr_p[mm - 1];
+   RETURN sumcurr;
 FUNC_END
 #   FFFFFFFFFFunction -------------------------------- epdf2cdf #
 FUNC DBL epdf2cdf(INT nn
@@ -20033,7 +20252,7 @@ FUNC DBL epdf2cdf(INT nn
       sumcurr += pdf_arr_pc[ii];
       ret_cdf_arr_p[ii] = sumcurr;
    FOR_END
-   RETURN ret_cdf_arr_p[nn - 1];
+   RETURN sumcurr;
 FUNC_END
 #   IIIIIIIIIInsert-End ------------------------------ cdf.fwip #
 #   IIIIIIIIIInsert-Begin ------------------------- search.fwip #
@@ -20115,31 +20334,43 @@ BLOCK:# search
    FUNC_END
 BLOCK_END# search
 #   IIIIIIIIIInsert-End --------------------------- search.fwip #
-#   FFFFFFFFFFunction ------------------------------- blackbody #
-FUNC DBL blackbody(DBL wavelength
+#   FFFFFFFFFFunction ------------------------------ blackbodyl #
+FUNC DBL blackbodyl(DBL wavelen
       , DBL temperk):
-   # spectral radiance at WAVELENGTH and TEMPERK
+   # blackbody spectral radiance at WAVELENGTH and TEMPERK
    # returns WATT / (STERADIAN METER**3)
-   # == (2.0 * PI**4 * BOLTZMANN**5 * temperk**5)
-   #                    / (15 * PLANCK**4 * LIGHT**3)
-   #         * bb_pdf(temperk * wavelength * BOLTZMANN
-   #                           / (LIGHT * PLANCK))
    DBL hc;
    DBL hc_kt;
    DBL retvalu;
-   IF wavelength <= 0.0 OR temperk <= 0.0:
+   IF wavelen <= 0.0 OR temperk <= 0.0:
       retvalu = 0.0;
    ELSE:
       hc = Kw.PLANCK * Kw.LIGHT;
       hc_kt = hc / (Kw.BOLTZMANN * temperk);
-      retvalu = 2.0 * hc * Kw.LIGHT / (POW(wavelength, 5)
-            * (EXP(hc_kt / wavelength) - 1));
+      retvalu = 2.0 * hc * Kw.LIGHT / (POW(wavelen, 5)
+            * (EXP(hc_kt / wavelen) - 1.0));
+   IF_END
+   RETURN retvalu;
+FUNC_END
+#   FFFFFFFFFFunction ------------------------------ blackbodyf #
+FUNC DBL blackbodyf(DBL wavefreq
+      , DBL temperk):
+   # blackbody spectral radiance at WAVEFREQ and TEMPERK
+   # returns WATT / (STERADIAN METER**3)
+   DBL h_kt;
+   DBL retvalu;
+   IF wavefreq <= 0.0 OR temperk <= 0.0:
+      retvalu = 0.0;
+   ELSE:
+      h_kt = Kw.PLANCK / (Kw.BOLTZMANN * temperk);
+      retvalu = 2.0 * Kw.PLANCK * POW(wavefreq, 3)
+            / (POW(Kw.LIGHT, 2) * (EXP(h_kt * wavefreq) - 1.0));
    IF_END
    RETURN retvalu;
 FUNC_END
 #   FFFFFFFFFFunction --------------------------- blackbodymode #
 FUNC DBL blackbodymode(DBL temperk):
-   # Wavelength at mode of black body spectral radiance
+   # Wavelength at mode of blackbody spectral radiance
    # at TEMPERK
    DBL hc_kt;
    DBL retvalu;
@@ -20153,7 +20384,7 @@ FUNC DBL blackbodymode(DBL temperk):
 FUNC_END
 #   FFFFFFFFFFunction -------------------------- blackbodypower #
 FUNC DBL blackbodypower(DBL temperk):
-   # power output by a blackbody at temperature TEMPERK
+   # power output of a blackbody at temperature TEMPERK
    # Also known as Stefan-Boltzmann Law
    RETURN Kw.STEFAN * POW(temperk, 4.0);
 FUNC_END

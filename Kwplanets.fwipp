@@ -1,6 +1,10 @@
 #    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-08-31 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2020-10-01 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2017-2020 by Kevin D. Woerner
+# 2020-10-01 kdw  Kwplanets:water-boiling func
+# 2020-09-29 kdw  Kwplanets:comments changed
+# 2020-09-27 kdw  Kwplanets:PREM model
+# 2020-09-25 kdw  Kwplanets:surface area
 # 2020-08-29 kdw  Kwplanets:_a[r]r changed to _mt[r]x
 # 2020-08-20 kdw  Kwplanets:boolean checks changed
 # 2020-08-19 kdw  Kwplanets:comment change
@@ -189,12 +193,12 @@
 # basic, usefull things
 IMPORT "Kw";
 IMPORT "Kwelements";
-# need the molecular mass of air for ISA calculation
+# need molecular mass of air for ISA calculation
 # http://hpiers.obspm.fr/eop-pc/models/constants.html
 # See also https://en.wikipedia.org/wiki/Sidereal_time
-# Earths rotational period relative to the vernal equinox
+# Earths rotational period relative to vernal equinox
 CONST EARTHSIDEREALDAY Kw.DAY / 1.002737909350795;#T
-# Earths rotational period relative to the stars IERS
+# Earths rotational period relative to stars IERS
 CONST EARTHSTELLARDAY Kw.DAY / 1.00273781191135448;#T
 CONST EARTHTROPICALYEAR 365.242190402 * Kw.DAY;#T
 CONST EARTHSIDEREALYEAR 365.256363004 * Kw.DAY;#T
@@ -215,7 +219,7 @@ CONST SUN_A 6.957E+8 * Kw.METER;#L
 CONST SUN_C SUN_A;#L
 # Calculated consts for SUN
 CONST SUN_B SUN_A * (1.0 - SUNFLATNESS);#L
-CONST SUNRADIUS 0.333333333333333 * (SUN_A + SUN_B + SUN_C);#L
+CONST SUNRADIUS (SUN_A + SUN_B + SUN_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST SUNESCAPE SQRT(2 * SUNGM / SUNRADIUS);#L/T
    CONST SUNOBLATENESS SQRT(SUNFLATNESS * (2.0 - SUNFLATNESS));#1
@@ -224,6 +228,7 @@ CONST SUNGRAVITY SUNGM / (SUNRADIUS * SUNRADIUS);#LT-2
 CONST SUNMASS SUNGM / Kw.GRAVITATION;#M
 CONST SUNVOLUME 2.0 * Kw.TAU / 3.0 * SUNRADIUS * SUNRADIUS
       * SUNRADIUS;#L3
+CONST SUNSURFACE 2.0 * Kw.TAU * SUNRADIUS * SUNRADIUS;#L2
 CONST SUNDENSITY SUNMASS / SUNVOLUME;#ML-3
 CONST MERCURYGM 2.2032E+13 * Kw.UNITGM;#M3T-2
 CONST MERCURYYEAR 87.9691 * Kw.DAY;#T
@@ -233,8 +238,7 @@ CONST MERCURY_A 2.4397E+6 * Kw.METER;#L
 CONST MERCURY_C MERCURY_A;#L
 # Calculated consts for MERCURY
 CONST MERCURY_B MERCURY_A * (1.0 - MERCURYFLATNESS);#L
-CONST MERCURYRADIUS 0.333333333333333 * (MERCURY_A + MERCURY_B
-      + MERCURY_C);#L
+CONST MERCURYRADIUS (MERCURY_A + MERCURY_B + MERCURY_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST MERCURYESCAPE SQRT(2 * MERCURYGM / MERCURYRADIUS);#L/T
    CONST MERCURYOBLATENESS SQRT(MERCURYFLATNESS * (2.0
@@ -245,6 +249,8 @@ CONST MERCURYGRAVITY MERCURYGM / (MERCURYRADIUS
 CONST MERCURYMASS MERCURYGM / Kw.GRAVITATION;#M
 CONST MERCURYVOLUME 2.0 * Kw.TAU / 3.0 * MERCURYRADIUS
       * MERCURYRADIUS * MERCURYRADIUS;#L3
+CONST MERCURYSURFACE 2.0 * Kw.TAU * MERCURYRADIUS
+      * MERCURYRADIUS;#L2
 CONST MERCURYDENSITY MERCURYMASS / MERCURYVOLUME;#ML-3
 CONST VENUSGM 3.24859E+14 * Kw.UNITGM;#M3T-2
 CONST VENUSYEAR 224.701 * Kw.DAY;#T
@@ -254,8 +260,7 @@ CONST VENUS_A 6.0518E+6 * Kw.METER;#L
 CONST VENUS_C VENUS_A;#L
 # Calculated consts for VENUS
 CONST VENUS_B VENUS_A * (1.0 - VENUSFLATNESS);#L
-CONST VENUSRADIUS 0.333333333333333 * (VENUS_A + VENUS_B
-      + VENUS_C);#L
+CONST VENUSRADIUS (VENUS_A + VENUS_B + VENUS_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST VENUSESCAPE SQRT(2 * VENUSGM / VENUSRADIUS);#L/T
    CONST VENUSOBLATENESS SQRT(VENUSFLATNESS * (2.0
@@ -265,6 +270,7 @@ CONST VENUSGRAVITY VENUSGM / (VENUSRADIUS * VENUSRADIUS);#LT-2
 CONST VENUSMASS VENUSGM / Kw.GRAVITATION;#M
 CONST VENUSVOLUME 2.0 * Kw.TAU / 3.0 * VENUSRADIUS
       * VENUSRADIUS * VENUSRADIUS;#L3
+CONST VENUSSURFACE 2.0 * Kw.TAU * VENUSRADIUS * VENUSRADIUS;#L2
 CONST VENUSDENSITY VENUSMASS / VENUSVOLUME;#ML-3
 CONST EARTHGM 3.986004418E+14 * Kw.UNITGM;#M3T-2
 CONST EARTHYEAR EARTHSIDEREALYEAR;#T
@@ -276,8 +282,7 @@ CONST EARTH_A 6.378137E+6 * Kw.METER;
 CONST EARTH_C EARTH_A;#L
 # Calculated consts for EARTH
 CONST EARTH_B EARTH_A * (1.0 - EARTHFLATNESS);#L
-CONST EARTHRADIUS 0.333333333333333 * (EARTH_A + EARTH_B
-      + EARTH_C);#L
+CONST EARTHRADIUS (EARTH_A + EARTH_B + EARTH_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST EARTHESCAPE SQRT(2 * EARTHGM / EARTHRADIUS);#L/T
    CONST EARTHOBLATENESS SQRT(EARTHFLATNESS * (2.0
@@ -287,6 +292,7 @@ CONST EARTHGRAVITY EARTHGM / (EARTHRADIUS * EARTHRADIUS);#LT-2
 CONST EARTHMASS EARTHGM / Kw.GRAVITATION;#M
 CONST EARTHVOLUME 2.0 * Kw.TAU / 3.0 * EARTHRADIUS
       * EARTHRADIUS * EARTHRADIUS;#L3
+CONST EARTHSURFACE 2.0 * Kw.TAU * EARTHRADIUS * EARTHRADIUS;#L2
 CONST EARTHDENSITY EARTHMASS / EARTHVOLUME;#ML-3
 CONST EARTHPRECESSION 50.28792 * Kw.ARCSEC / Kw.JYEAR;#AT-1
 CONST EARTHTHETA_0 0.7790572732640 * Kw.TURN;#A
@@ -298,8 +304,7 @@ CONST MARS_A 3.3962E+6 * Kw.METER;#L
 CONST MARS_C MARS_A;#L
 # Calculated consts for MARS
 CONST MARS_B MARS_A * (1.0 - MARSFLATNESS);#L
-CONST MARSRADIUS 0.333333333333333 * (MARS_A + MARS_B
-      + MARS_C);#L
+CONST MARSRADIUS (MARS_A + MARS_B + MARS_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST MARSESCAPE SQRT(2 * MARSGM / MARSRADIUS);#L/T
    CONST MARSOBLATENESS SQRT(MARSFLATNESS * (2.0
@@ -309,6 +314,7 @@ CONST MARSGRAVITY MARSGM / (MARSRADIUS * MARSRADIUS);#LT-2
 CONST MARSMASS MARSGM / Kw.GRAVITATION;#M
 CONST MARSVOLUME 2.0 * Kw.TAU / 3.0 * MARSRADIUS * MARSRADIUS
       * MARSRADIUS;#L3
+CONST MARSSURFACE 2.0 * Kw.TAU * MARSRADIUS * MARSRADIUS;#L2
 CONST MARSDENSITY MARSMASS / MARSVOLUME;#ML-3
 CONST JUPITERGM 1.26686534E+17 * Kw.UNITGM;#M3T-2
 CONST JUPITERYEAR 4332.59 * Kw.DAY;#T
@@ -318,8 +324,7 @@ CONST JUPITER_A 7.1492E+7 * Kw.METER;#L
 CONST JUPITER_C JUPITER_A;#L
 # Calculated consts for JUPITER
 CONST JUPITER_B JUPITER_A * (1.0 - JUPITERFLATNESS);#L
-CONST JUPITERRADIUS 0.333333333333333 * (JUPITER_A + JUPITER_B
-      + JUPITER_C);#L
+CONST JUPITERRADIUS (JUPITER_A + JUPITER_B + JUPITER_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST JUPITERESCAPE SQRT(2 * JUPITERGM / JUPITERRADIUS);#L/T
    CONST JUPITEROBLATENESS SQRT(JUPITERFLATNESS * (2.0
@@ -330,6 +335,8 @@ CONST JUPITERGRAVITY JUPITERGM / (JUPITERRADIUS
 CONST JUPITERMASS JUPITERGM / Kw.GRAVITATION;#M
 CONST JUPITERVOLUME 2.0 * Kw.TAU / 3.0 * JUPITERRADIUS
       * JUPITERRADIUS * JUPITERRADIUS;#L3
+CONST JUPITERSURFACE 2.0 * Kw.TAU * JUPITERRADIUS
+      * JUPITERRADIUS;#L2
 CONST JUPITERDENSITY JUPITERMASS / JUPITERVOLUME;#ML-3
 CONST SATURNGM 3.7931187E+16 * Kw.UNITGM;#M3T-2
 CONST SATURNYEAR 10759.22 * Kw.DAY;#T
@@ -339,8 +346,7 @@ CONST SATURN_A 6.0268E+7 * Kw.METER;#L
 CONST SATURN_C SATURN_A;#L
 # Calculated consts for SATURN
 CONST SATURN_B SATURN_A * (1.0 - SATURNFLATNESS);#L
-CONST SATURNRADIUS 0.333333333333333 * (SATURN_A + SATURN_B
-      + SATURN_C);#L
+CONST SATURNRADIUS (SATURN_A + SATURN_B + SATURN_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST SATURNESCAPE SQRT(2 * SATURNGM / SATURNRADIUS);#L/T
    CONST SATURNOBLATENESS SQRT(SATURNFLATNESS * (2.0
@@ -351,6 +357,8 @@ CONST SATURNGRAVITY SATURNGM / (SATURNRADIUS * SATURNRADIUS);
 CONST SATURNMASS SATURNGM / Kw.GRAVITATION;#M
 CONST SATURNVOLUME 2.0 * Kw.TAU / 3.0 * SATURNRADIUS
       * SATURNRADIUS * SATURNRADIUS;#L3
+CONST SATURNSURFACE 2.0 * Kw.TAU * SATURNRADIUS * SATURNRADIUS;
+      #L2
 CONST SATURNDENSITY SATURNMASS / SATURNVOLUME;#ML-3
 CONST URANUSGM 5.793939E+15 * Kw.UNITGM;#M3T-2
 CONST URANUSYEAR 30688.5 * Kw.DAY;#T
@@ -360,8 +368,7 @@ CONST URANUS_A 2.5559E+7 * Kw.METER;#L
 CONST URANUS_C URANUS_A;#L
 # Calculated consts for URANUS
 CONST URANUS_B URANUS_A * (1.0 - URANUSFLATNESS);#L
-CONST URANUSRADIUS 0.333333333333333 * (URANUS_A + URANUS_B
-      + URANUS_C);#L
+CONST URANUSRADIUS (URANUS_A + URANUS_B + URANUS_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST URANUSESCAPE SQRT(2 * URANUSGM / URANUSRADIUS);#L/T
    CONST URANUSOBLATENESS SQRT(URANUSFLATNESS * (2.0
@@ -372,6 +379,8 @@ CONST URANUSGRAVITY URANUSGM / (URANUSRADIUS * URANUSRADIUS);
 CONST URANUSMASS URANUSGM / Kw.GRAVITATION;#M
 CONST URANUSVOLUME 2.0 * Kw.TAU / 3.0 * URANUSRADIUS
       * URANUSRADIUS * URANUSRADIUS;#L3
+CONST URANUSSURFACE 2.0 * Kw.TAU * URANUSRADIUS * URANUSRADIUS;
+      #L2
 CONST URANUSDENSITY URANUSMASS / URANUSVOLUME;#ML-3
 CONST NEPTUNEGM 6.836529E+15 * Kw.UNITGM;#M3T-2
 CONST NEPTUNEYEAR 6.0182E+4 * Kw.DAY;#T
@@ -381,8 +390,7 @@ CONST NEPTUNE_A 2.4764E+7 * Kw.METER;#L
 CONST NEPTUNE_C NEPTUNE_A;#L
 # Calculated consts for NEPTUNE
 CONST NEPTUNE_B NEPTUNE_A * (1.0 - NEPTUNEFLATNESS);#L
-CONST NEPTUNERADIUS 0.333333333333333 * (NEPTUNE_A + NEPTUNE_B
-      + NEPTUNE_C);#L
+CONST NEPTUNERADIUS (NEPTUNE_A + NEPTUNE_B + NEPTUNE_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST NEPTUNEESCAPE SQRT(2 * NEPTUNEGM / NEPTUNERADIUS);#L/T
    CONST NEPTUNEOBLATENESS SQRT(NEPTUNEFLATNESS * (2.0
@@ -393,6 +401,8 @@ CONST NEPTUNEGRAVITY NEPTUNEGM / (NEPTUNERADIUS
 CONST NEPTUNEMASS NEPTUNEGM / Kw.GRAVITATION;#M
 CONST NEPTUNEVOLUME 2.0 * Kw.TAU / 3.0 * NEPTUNERADIUS
       * NEPTUNERADIUS * NEPTUNERADIUS;#L3
+CONST NEPTUNESURFACE 2.0 * Kw.TAU * NEPTUNERADIUS
+      * NEPTUNERADIUS;#L2
 CONST NEPTUNEDENSITY NEPTUNEMASS / NEPTUNEVOLUME;#ML-3
 CONST PLUTOGM 8.71E+11 * Kw.UNITGM;#M3T-2
 CONST PLUTOYEAR 9.056E+4 * Kw.DAY;#T
@@ -402,8 +412,7 @@ CONST PLUTO_A 1.1899E+6 * Kw.METER;#L
 CONST PLUTO_C PLUTO_A;#L
 # Calculated consts for PLUTO
 CONST PLUTO_B PLUTO_A * (1.0 - PLUTOFLATNESS);#L
-CONST PLUTORADIUS 0.333333333333333 * (PLUTO_A + PLUTO_B
-      + PLUTO_C);#L
+CONST PLUTORADIUS (PLUTO_A + PLUTO_B + PLUTO_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST PLUTOESCAPE SQRT(2 * PLUTOGM / PLUTORADIUS);#L/T
    CONST PLUTOOBLATENESS SQRT(PLUTOFLATNESS * (2.0
@@ -413,6 +422,7 @@ CONST PLUTOGRAVITY PLUTOGM / (PLUTORADIUS * PLUTORADIUS);#LT-2
 CONST PLUTOMASS PLUTOGM / Kw.GRAVITATION;#M
 CONST PLUTOVOLUME 2.0 * Kw.TAU / 3.0 * PLUTORADIUS
       * PLUTORADIUS * PLUTORADIUS;#L3
+CONST PLUTOSURFACE 2.0 * Kw.TAU * PLUTORADIUS * PLUTORADIUS;#L2
 CONST PLUTODENSITY PLUTOMASS / PLUTOVOLUME;#ML-3
 CONST MOONGM 4.9048695E+12 * Kw.UNITGM;#M3T-2
 CONST MOONYEAR 27.32166155 * Kw.DAY;#T
@@ -422,8 +432,7 @@ CONST MOON_A 1.7381E+6 * Kw.METER;#L
 CONST MOON_C MOON_A;#L
 # Calculated consts for MOON
 CONST MOON_B MOON_A * (1.0 - MOONFLATNESS);#L
-CONST MOONRADIUS 0.333333333333333 * (MOON_A + MOON_B
-      + MOON_C);#L
+CONST MOONRADIUS (MOON_A + MOON_B + MOON_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST MOONESCAPE SQRT(2 * MOONGM / MOONRADIUS);#L/T
    CONST MOONOBLATENESS SQRT(MOONFLATNESS * (2.0
@@ -433,6 +442,7 @@ CONST MOONGRAVITY MOONGM / (MOONRADIUS * MOONRADIUS);#LT-2
 CONST MOONMASS MOONGM / Kw.GRAVITATION;#M
 CONST MOONVOLUME 2.0 * Kw.TAU / 3.0 * MOONRADIUS * MOONRADIUS
       * MOONRADIUS;#L3
+CONST MOONSURFACE 2.0 * Kw.TAU * MOONRADIUS * MOONRADIUS;#L2
 CONST MOONDENSITY MOONMASS / MOONVOLUME;#ML-3
 CONST MOONORBIT 3.843999E+8 * Kw.METER;#L
 CONST MOONECCENTRICITY 0.0549;#1
@@ -445,8 +455,7 @@ CONST CERES_A 4.826E+5 * Kw.METER;#L
 CONST CERES_C 4.806E+5 * Kw.METER;#L
 # Calculated consts for CERES
 CONST CERES_B CERES_A * (1.0 - CERESFLATNESS);#L
-CONST CERESRADIUS 0.333333333333333 * (CERES_A + CERES_B
-      + CERES_C);#L
+CONST CERESRADIUS (CERES_A + CERES_B + CERES_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST CERESESCAPE SQRT(2 * CERESGM / CERESRADIUS);#L/T
    CONST CERESOBLATENESS SQRT(CERESFLATNESS * (2.0
@@ -456,6 +465,7 @@ CONST CERESGRAVITY CERESGM / (CERESRADIUS * CERESRADIUS);#LT-2
 CONST CERESMASS CERESGM / Kw.GRAVITATION;#M
 CONST CERESVOLUME 2.0 * Kw.TAU / 3.0 * CERESRADIUS
       * CERESRADIUS * CERESRADIUS;#L3
+CONST CERESSURFACE 2.0 * Kw.TAU * CERESRADIUS * CERESRADIUS;#L2
 CONST CERESDENSITY CERESMASS / CERESVOLUME;#ML-3
 CONST ERISGM 1.108E+12 * Kw.UNITGM;#M3T-2
 CONST ERISYEAR 2.0383E+5 * Kw.DAY;#T
@@ -465,8 +475,7 @@ CONST ERIS_A 1.163E+6 * Kw.METER;#L
 CONST ERIS_C ERIS_A;#L
 # Calculated consts for ERIS
 CONST ERIS_B ERIS_A * (1.0 - ERISFLATNESS);#L
-CONST ERISRADIUS 0.333333333333333 * (ERIS_A + ERIS_B
-      + ERIS_C);#L
+CONST ERISRADIUS (ERIS_A + ERIS_B + ERIS_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST ERISESCAPE SQRT(2 * ERISGM / ERISRADIUS);#L/T
    CONST ERISOBLATENESS SQRT(ERISFLATNESS * (2.0
@@ -476,6 +485,7 @@ CONST ERISGRAVITY ERISGM / (ERISRADIUS * ERISRADIUS);#LT-2
 CONST ERISMASS ERISGM / Kw.GRAVITATION;#M
 CONST ERISVOLUME 2.0 * Kw.TAU / 3.0 * ERISRADIUS * ERISRADIUS
       * ERISRADIUS;#L3
+CONST ERISSURFACE 2.0 * Kw.TAU * ERISRADIUS * ERISRADIUS;#L2
 CONST ERISDENSITY ERISMASS / ERISVOLUME;#ML-3
 CONST MAKEMAKEGM 2.9366E+11 * Kw.UNITGM;#L3T-2
 CONST MAKEMAKEYEAR 1.12897E+5 * Kw.DAY;#T
@@ -485,8 +495,8 @@ CONST MAKEMAKE_A 7.39E+5 * Kw.METER;#L
 CONST MAKEMAKE_C MAKEMAKE_A;#L
 # Calculated consts for MAKEMAKE
 CONST MAKEMAKE_B MAKEMAKE_A * (1.0 - MAKEMAKEFLATNESS);#L
-CONST MAKEMAKERADIUS 0.333333333333333 * (MAKEMAKE_A
-      + MAKEMAKE_B + MAKEMAKE_C);#L
+CONST MAKEMAKERADIUS (MAKEMAKE_A + MAKEMAKE_B + MAKEMAKE_C)
+      / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST MAKEMAKEESCAPE SQRT(2 * MAKEMAKEGM / MAKEMAKERADIUS);
          #L/T
@@ -498,6 +508,8 @@ CONST MAKEMAKEGRAVITY MAKEMAKEGM / (MAKEMAKERADIUS
 CONST MAKEMAKEMASS MAKEMAKEGM / Kw.GRAVITATION;#M
 CONST MAKEMAKEVOLUME 2.0 * Kw.TAU / 3.0 * MAKEMAKERADIUS
       * MAKEMAKERADIUS * MAKEMAKERADIUS;#L3
+CONST MAKEMAKESURFACE 2.0 * Kw.TAU * MAKEMAKERADIUS
+      * MAKEMAKERADIUS;#L2
 CONST MAKEMAKEDENSITY MAKEMAKEMASS / MAKEMAKEVOLUME;#ML-3
 CONST HAUMEAGM 2.674E+11 * Kw.UNITGM;#L3T-2
 CONST HAUMEAYEAR 1.03774E+5 * Kw.DAY;#T
@@ -507,8 +519,7 @@ CONST HAUMEA_A 1.161E+6 * Kw.METER;#L
 CONST HAUMEA_C 8.52E+5 * Kw.METER;#L
 # Calculated consts for HAUMEA
 CONST HAUMEA_B HAUMEA_A * (1.0 - HAUMEAFLATNESS);#L
-CONST HAUMEARADIUS 0.333333333333333 * (HAUMEA_A + HAUMEA_B
-      + HAUMEA_C);#L
+CONST HAUMEARADIUS (HAUMEA_A + HAUMEA_B + HAUMEA_C) / 3.0;#L
 LANGUAGE_NOT LANG_VB6 LANG_VBDOTNET:# no sqrt in consts
    CONST HAUMEAESCAPE SQRT(2 * HAUMEAGM / HAUMEARADIUS);#L/T
    CONST HAUMEAOBLATENESS SQRT(HAUMEAFLATNESS * (2.0
@@ -519,6 +530,8 @@ CONST HAUMEAGRAVITY HAUMEAGM / (HAUMEARADIUS * HAUMEARADIUS);
 CONST HAUMEAMASS HAUMEAGM / Kw.GRAVITATION;#M
 CONST HAUMEAVOLUME 2.0 * Kw.TAU / 3.0 * HAUMEARADIUS
       * HAUMEARADIUS * HAUMEARADIUS;#L3
+CONST HAUMEASURFACE 2.0 * Kw.TAU * HAUMEARADIUS * HAUMEARADIUS;
+      #L2
 CONST HAUMEADENSITY HAUMEAMASS / HAUMEAVOLUME;#ML-3
 ##    ORBITAL INFORMATION --- ----- ----- ----- ----- ----- -----
 # from website https://ssd.jpl.nasa.gov/txt/p_elem_t1.txt
@@ -1181,18 +1194,18 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------------- pl #
    FUNC INT pl(INT plnt):
-      # set the selected planet to PLNT
+      # set selected planet to PLNT
       RETURN lf_pl_init(plnt);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- plsettime #
    FUNC DBL plsettime(DBL jtwokdate):
-      # set the planet-time to the JTWOKDATE
+      # set planet-time to JTWOKDATE
       lv_pl_jtwoktime = jtwokdate * Kw.JD;
       RETURN lv_pl_jtwoktime;
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- pl_gm #
    FUNC DBL pl_gm(INT plnt):
-      # the gm of planet PLNT
+      # gm of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1208,13 +1221,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction --------------------------------- plgm #
    FUNC DBL plgm(NUL):
-      # the gm of the previous selected planet
+      # gm of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_gm(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ pl_year #
    FUNC DBL pl_year(INT plnt):
-      # the year of planet PLNT
+      # year of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1230,13 +1243,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------- plyear #
    FUNC DBL plyear(NUL):
-      # the year of the previous selected planet
+      # year of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_year(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------- pl_day #
    FUNC DBL pl_day(INT plnt):
-      # the day of planet PLNT
+      # day of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1252,13 +1265,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- plday #
    FUNC DBL plday(NUL):
-      # the day of the previous selected planet
+      # day of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_day(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- pl_flatness #
    FUNC DBL pl_flatness(INT plnt):
-      # the flatness of planet PLNT
+      # flatness of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1274,13 +1287,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction --------------------------- plflatness #
    FUNC DBL plflatness(NUL):
-      # the flatness of the previous selected planet
+      # flatness of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_flatness(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction --------------------------------- pl_a #
    FUNC DBL pl_a(INT plnt):
-      # the a of planet PLNT
+      # a of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1296,13 +1309,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------------- pla #
    FUNC DBL pla(NUL):
-      # the a of the previous selected planet
+      # a of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_a(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction --------------------------------- pl_c #
    FUNC DBL pl_c(INT plnt):
-      # the c of planet PLNT
+      # c of planet PLNT
       BLOCK_USE lv_pl_mtrx[];
       BLOCK_USE lv_pl_ind;
       DBL retvalu;
@@ -1318,7 +1331,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------------- plc #
    FUNC DBL plc(NUL):
-      # the c of the previous selected planet
+      # c of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_c(LC_P1_PREV_PL);
    FUNC_END
@@ -1329,7 +1342,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ plorbit #
    FUNC DBL plorbit(NUL):
-      # the orbit of the previous selected planet
+      # orbit of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_orbit(LC_P1_PREV_PL);
    FUNC_END
@@ -1340,7 +1353,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------- pleccentricity #
    FUNC DBL pleccentricity(NUL):
-      # the eccentricity of the previous selected planet
+      # eccentricity of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_eccentricity(LC_P1_PREV_PL);
    FUNC_END
@@ -1351,7 +1364,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------ plinclination #
    FUNC DBL plinclination(NUL):
-      # the inclination of the previous selected planet
+      # inclination of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_inclination(LC_P1_PREV_PL);
    FUNC_END
@@ -1362,7 +1375,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- pllongitude #
    FUNC DBL pllongitude(NUL):
-      # the longitude of the previous selected planet
+      # longitude of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_longitude(LC_P1_PREV_PL);
    FUNC_END
@@ -1373,7 +1386,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- plperiapsis #
    FUNC DBL plperiapsis(NUL):
-      # the periapsis of the previous selected planet
+      # periapsis of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_periapsis(LC_P1_PREV_PL);
    FUNC_END
@@ -1384,13 +1397,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- plascending #
    FUNC DBL plascending(NUL):
-      # the ascending of the previous selected planet
+      # ascending of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_ascending(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ pl_mass #
    FUNC DBL pl_mass(INT plnt):
-      # The Mass kg of planet PLNT
+      # Mass kg of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1401,13 +1414,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------- plmass #
    FUNC DBL plmass(NUL):
-      # the mass of the previous selected planet
+      # mass of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_mass(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction --------------------------------- pl_b #
    FUNC DBL pl_b(INT plnt):
-      # The polar radius m of planet PLNT
+      # polar radius m of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1418,13 +1431,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------------- plb #
    FUNC DBL plb(NUL):
-      # the b of the previous selected planet
+      # b of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_b(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- pl_radius #
    FUNC DBL pl_radius(INT plnt):
-      # The average radius m of planet PLNT
+      # average radius m of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1435,13 +1448,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- plradius #
    FUNC DBL plradius(NUL):
-      # the radius of the previous selected planet
+      # radius of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_radius(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction --------------------------- pl_gravity #
    FUNC DBL pl_gravity(INT plnt):
-      # The mean surface gravity(m/s**2) of planet PLNT
+      # mean surface gravity(m/s**2) of planet PLNT
       #   GM / RADIUS**2
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
@@ -1453,13 +1466,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- plgravity #
    FUNC DBL plgravity(NUL):
-      # the gravity of the previous selected planet
+      # gravity of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_gravity(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ----------------------- pl_meananomaly #
    FUNC DBL pl_meananomaly(INT plnt):
-      # The mean anomaly of planet PLNT
+      # mean anomaly of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1471,13 +1484,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------ plmeananomaly #
    FUNC DBL plmeananomaly(NUL):
-      # the meananomaly of the previous selected planet
+      # meananomaly of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_meananomaly(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- pl_escape #
    FUNC DBL pl_escape(INT plnt):
-      # The mean escape velocity(m/s) of planet PLNT
+      # mean escape velocity(m/s) of planet PLNT
       #    SQRT(2.0 * GM / RADIUS);
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
@@ -1489,13 +1502,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- plescape #
    FUNC DBL plescape(NUL):
-      # the escape of the previous selected planet
+      # escape of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_escape(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction --------------------------- pl_synodic #
    FUNC DBL pl_synodic(INT plnt):
-      # the synodic period s of planet PLNT
+      # synodic period s of planet PLNT
       #    PL_YEAR * EARTHYEAR / (PL_YEAR - EARTHYEAR)
       BLOCK_USE lv_pl_earth_year;
       DBL yra;
@@ -1511,13 +1524,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- plsynodic #
    FUNC DBL plsynodic(NUL):
-      # the synodic of the previous selected planet
+      # synodic of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_synodic(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- pl_volume #
    FUNC DBL pl_volume(INT plnt):
-      # The volume(m**3) of planet PLNT
+      # volume(m**3) of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1529,13 +1542,31 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- plvolume #
    FUNC DBL plvolume(NUL):
-      # the volume of the previous selected planet
+      # volume of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_volume(LC_P1_PREV_PL);
    FUNC_END
+   #   FFFFFFFFFFunction --------------------------- pl_surface #
+   FUNC DBL pl_surface(INT plnt):
+      # surface area(m**2) of planet PLNT
+      DBL retvalu;
+      IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
+         retvalu = LC_P1_ERR;
+      ELSE:
+         retvalu = Kw.ellipsoid_surface(pl_a(plnt), pl_b(plnt)
+               , pl_c(plnt));
+      IF_END
+      RETURN retvalu;
+   FUNC_END
+   #   FFFFFFFFFFunction ---------------------------- plsurface #
+   FUNC DBL plsurface(NUL):
+      # surface of previous selected planet
+      BLOCK_USE lv_pl_ind;
+      RETURN pl_surface(LC_P1_PREV_PL);
+   FUNC_END
    #   FFFFFFFFFFunction --------------------------- pl_density #
    FUNC DBL pl_density(INT plnt):
-      # The density(kg/m**3) of planet PLNT
+      # density(kg/m**3) of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1546,13 +1577,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- pldensity #
    FUNC DBL pldensity(NUL):
-      # the density of the previous selected planet
+      # density of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_density(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- pl_argument #
    FUNC DBL pl_argument(INT plnt):
-      # The argument of perihelion of planet PLNT
+      # argument of perihelion of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1563,13 +1594,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction --------------------------- plargument #
    FUNC DBL plargument(NUL):
-      # the argument of the previous selected planet
+      # argument of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_argument(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------------- pl_margot #
    FUNC DBL pl_margot(INT plnt):
-      # Margot parameter for the given planet
+      # Margot parameter for given planet
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1580,13 +1611,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- plmargot #
    FUNC DBL plmargot(NUL):
-      # the margot of the previous selected planet
+      # margot of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_margot(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------- pl_sternlevison #
    FUNC DBL pl_sternlevison(INT plnt):
-      # Stern-Levison parameter for the given planet
+      # Stern-Levison parameter for given planet
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1597,13 +1628,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ----------------------- plsternlevison #
    FUNC DBL plsternlevison(NUL):
-      # the sternlevison of the previous selected planet
+      # sternlevison of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_sternlevison(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ------------------------ pl_perihelion #
    FUNC DBL pl_perihelion(INT plnt):
-      # The perihelion distance m of planet PLNT
+      # perihelion distance m of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1615,13 +1646,13 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------- plperihelion #
    FUNC DBL plperihelion(NUL):
-      # the perihelion of the previous selected planet
+      # perihelion of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_perihelion(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction -------------------------- pl_aphelion #
    FUNC DBL pl_aphelion(INT plnt):
-      # The aphelion distance m of planet PLNT
+      # aphelion distance m of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1633,7 +1664,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction --------------------------- plaphelion #
    FUNC DBL plaphelion(NUL):
-      # the aphelion of the previous selected planet
+      # aphelion of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_aphelion(LC_P1_PREV_PL);
    FUNC_END
@@ -1641,7 +1672,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC DBL eccentric_anomaly(DBL mean_ano_rad
          , DBL eccen):
       # solve 0 = EA - ECCEN * sin(EA) - MEAN_ANO_RAD for EA
-      #   using the Newton-Raphson method
+      #   using Newton-Raphson method
       DBL mrad;
       DBL xrad;
       INT nrvx_ii;
@@ -1673,7 +1704,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------ pl_eccentricanomaly #
    FUNC DBL pl_eccentricanomaly(INT plnt):
-      # the eccentric anomaly of planet PLNT
+      # eccentric anomaly of planet PLNT
       DBL retvalu;
       IF plnt < LC_P1_PREV_PL OR LC_P1_COUNT <= plnt:
          retvalu = LC_P1_ERR;
@@ -1685,15 +1716,15 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------- pleccentricanomaly #
    FUNC DBL pleccentricanomaly(NUL):
-      # the eccentricanomaly of the previous selected planet
+      # eccentricanomaly of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_eccentricanomaly(LC_P1_PREV_PL);
    FUNC_END
    #   FFFFFFFFFFunction ---------------------- pl_heliocentric #
    FUNC DBL pl_heliocentric(INT plnt
          , DBL jtwok):
-      # compute the heliocentric(and geocentric) coordinates
-      # for planet PLNT at the given J2K time.
+      # compute heliocentric(and geocentric) coordinates
+      # for planet PLNT at given J2K time.
       # use with functions plgeo, plhelio
       BLOCK_USE lv_pl_helio_arr[];
       BLOCK_USE lv_pl_geo_arr[];
@@ -1732,7 +1763,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
          arg_rad = per_rad - asc_rad;
          mean_anomaly_rad = Kw.fmod(lon_rad - per_rad
                , Kw.tur2rad(1.0));
-         # step 3: calculate the eccentric anomaly
+         # step 3: calculate eccentric anomaly
          eano_rad = eccentric_anomaly(mean_anomaly_rad, eccen);
          # step 4: compute planets heliocentric coordinates
          dxx_m = orb_m * (COS(eano_rad) - eccen);
@@ -1768,33 +1799,33 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ plhelio #
    FUNC DBL plhelio(INT indd):
-      # heliocentric distance, in m, computed by the
+      # heliocentric distance, in m, computed by
       #    previous call to pl_heliocentric
       BLOCK_USE lv_pl_helio_arr[];
-      DBL ret_val;
+      DBL retvalu;
       IF 0 <= indd AND indd < 3:
-         ret_val = lv_pl_helio_arr[indd];
+         retvalu = lv_pl_helio_arr[indd];
       ELSE:
-         ret_val = 0;
+         retvalu = 0;
       IF_END
-      RETURN ret_val;
+      RETURN retvalu;
    FUNC_END
    #   FFFFFFFFFFunction -------------------------------- plgeo #
    FUNC DBL plgeo(INT indd):
-      # geocentric distance, in m, computed by the
+      # geocentric distance, in m, computed by
       #    previous call to pl_heliocentric
       BLOCK_USE lv_pl_geo_arr[];
-      DBL ret_val;
+      DBL retvalu;
       IF 0 <= indd AND indd < 3:
-         ret_val = lv_pl_geo_arr[indd];
+         retvalu = lv_pl_geo_arr[indd];
       ELSE:
-         ret_val = 0;
+         retvalu = 0;
       IF_END
-      RETURN ret_val;
+      RETURN retvalu;
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------ pl_name #
    FUNC INT pl_name(INT plnt):
-      # print the name of planet PLNT
+      # print name of planet PLNT
       INT plnt_ind;
       plnt_ind = lf_pl_init(plnt);
       IF plnt_ind == LC_P1_SUN:
@@ -1833,7 +1864,7 @@ BLOCK:# SUN must be < 2**15 for VB6 VBDOTNET
    FUNC_END
    #   FFFFFFFFFFunction ------------------------------- plname #
    FUNC DBL plname(NUL):
-      # the name of the previous selected planet
+      # name of previous selected planet
       BLOCK_USE lv_pl_ind;
       RETURN pl_name(LC_P1_PREV_PL);
    FUNC_END
@@ -1857,8 +1888,8 @@ FUNC DBL earth_distance(DBL lata_deg
       , DBL lona_deg
       , DBL latb_deg
       , DBL lonb_deg):
-   # compute the great circle distance on the earth
-   # between the two sets of latitude and longitude
+   # compute great circle distance on earth
+   # between two sets of latitude and longitude
    RETURN (Kw.great_circle_distance(Kw.deg2rad(lata_deg)
          , Kw.deg2rad(lona_deg), Kw.deg2rad(latb_deg)
          , Kw.deg2rad(lonb_deg)) * EARTH_A);
@@ -1894,14 +1925,14 @@ FUNC_END
 #   FFFFFFFFFFunction --------------------------- earth_gravity #
 FUNC DBL earth_gravity(DBL lat_deg):
    # earth gravity, in m/s**2, at geoditic latitiude LAT_DEG
-   # using the Somigliana formula with WGS-84 parameters
+   # using Somigliana formula with WGS-84 parameters
    # See https://en.wikipedia.org/wiki/Normal_gravity_formula
    DBL slatsq;
    DBL obltsq;
    DBL kk;
    slatsq = Kw.square(Kw.sind(lat_deg));
-   # the following two variables are actually constants given
-   # the earth flatness, gravitya, and gravityb
+   # following two variables are actually constants given
+   #    earth flatness, gravitya, and gravityb
    # oblateness is calculated as
    #    oblateness = sqrt(flatness * (2 - flatness))
    obltsq = EARTHFLATNESS * (2.0 - EARTHFLATNESS);
@@ -1938,7 +1969,7 @@ BLOCK:# ISA atmosphere
       DBL expon;
       DBL this_temp;
       DBL delta_h;
-      DBL ret_val;
+      DBL retvalu;
       IF NOT Kw.ismagic(lv_isa_magic):
          # from https://en.wikipedia.org/wiki/Barometric_formula
          lv_isa_mtrx[0][LC_ISA_XHEIGHT] = 0;
@@ -1987,11 +2018,11 @@ BLOCK:# ISA atmosphere
       this_temp = lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]
             + lv_isa_mtrx[h_ind][LC_ISA_XLAPSERATE] * delta_h;
       IF state_x == LC_ISA_TEMPERATURE:
-         ret_val = this_temp;
+         retvalu = this_temp;
       ELSE:
          air_k_per_m = Kw.GRAVITY * Kwelements.AIR_MASS / Kw.GAS;
          IF Kw.iszero(lv_isa_mtrx[h_ind][LC_ISA_XLAPSERATE]):
-            ret_val = EXP(-air_k_per_m * delta_h
+            retvalu = EXP(-air_k_per_m * delta_h
                   / lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]);
          ELSE:
             expon = air_k_per_m
@@ -1999,34 +2030,34 @@ BLOCK:# ISA atmosphere
             IF state_x == LC_ISA_DENSITY:
                expon += 1;
             IF_END
-            ret_val
+            retvalu
                   = POW(lv_isa_mtrx[h_ind][LC_ISA_XTEMPERATURE]
                   / this_temp, expon);
          IF_END
          IF state_x == LC_ISA_PRESSURE:
-            ret_val *= lv_isa_mtrx[h_ind][LC_ISA_XPRESSURE];
+            retvalu *= lv_isa_mtrx[h_ind][LC_ISA_XPRESSURE];
          ELSE:
-            ret_val *= lv_isa_mtrx[h_ind][LC_ISA_XDENSITY];
+            retvalu *= lv_isa_mtrx[h_ind][LC_ISA_XDENSITY];
          IF_END
       IF_END
-      RETURN ret_val;
+      RETURN retvalu;
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- isa_temp #
    FUNC DBL isa_temp(DBL height_m):
-      # the temperature(in K) at a height HEIGHT_M
-      # of the International Standard Atmosphere
+      # temperature(in K) at a height HEIGHT_M
+      # of International Standard Atmosphere
       RETURN lf_isa_calc(height_m, LC_ISA_TEMPERATURE);
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- isa_pres #
    FUNC DBL isa_pres(DBL height_m):
-      # the pressure(in pascals) at a height HEIGHT_M
-      # of the International Standard Atmosphere
+      # pressure(in pascals) at a height HEIGHT_M
+      # of International Standard Atmosphere
       RETURN lf_isa_calc(height_m, LC_ISA_PRESSURE);
    FUNC_END
    #   FFFFFFFFFFunction ----------------------------- isa_dens #
    FUNC DBL isa_dens(DBL height_m):
-      # the density(in kg/m**3) at a height HEIGHT_M
-      # of the International Standard Atmosphere
+      # density(in kg/m**3) at a height HEIGHT_M
+      # of International Standard Atmosphere
       RETURN lf_isa_calc(height_m, LC_ISA_DENSITY);
    FUNC_END
 BLOCK_END# ISA atmosphere
@@ -2038,7 +2069,7 @@ FUNC DBL vin_distance(DBL lata_deg
       , DBL latb_deg
       , DBL lonb_deg
       , WRITEONLY DBL ret_bearings_arr_p[]):
-   # the distance meters from(LATA, LONA) to(LATB, LONB)
+   # distance meters from(LATA, LONA) to(LATB, LONB)
    # RET_BEARINGS_ARR_P[0] = bearing from A to B degrees
    # RET_BEARINGS_ARR_P[1] = bearing from B to A degrees
    DBL retvalu;
@@ -2057,7 +2088,7 @@ FUNC DBL vin_destination(DBL lata_deg
       , DBL heading_deg
       , DBL dist_m
       , WRITEONLY DBL ret_dest_arr_p[]):
-   # the bearing(degree CCW from North)
+   # bearing(degree CCW from North)
    # from(LATA, LONA) to point(LATB, LONB)
    # RET_DEST_ARR_P[0] = Latitude of destination degrees
    # RET_DEST_ARR_P[1] = Longitude of destination degrees
@@ -2071,5 +2102,169 @@ FUNC DBL vin_destination(DBL lata_deg
          , rad_arr[]));
    ret_dest_arr_p[0] = Kw.rad2deg(rad_arr[0]);
    ret_dest_arr_p[1] = Kw.rad2deg(rad_arr[1]);
+   RETURN retvalu;
+FUNC_END
+BLOCK:# PREM
+   BLOCK_DEF CONST LC_PREM_DENSITY 0;
+   BLOCK_DEF CONST LC_PREM_MASS 1;
+   BLOCK_DEF CONST LC_PREM_XHEIGHT 0;
+   BLOCK_DEF CONST LC_PREM_XCOEA 1;
+   BLOCK_DEF CONST LC_PREM_XCOEB 2;
+   BLOCK_DEF CONST LC_PREM_XCOEC 3;
+   BLOCK_DEF CONST LC_PREM_XMASSD 4;
+   BLOCK_DEF DBL lv_prem_mtrx[12][6];
+   BLOCK_DEF DBL lv_prem_magic = 0.0;
+   #   FFFFFFFFFFunction ------------------------------ lf_prem #
+   BLOCK_DEF FUNC DBL lf_prem(DBL height_m, INT state_x):
+      # density at of height meters, HEIGHT_M
+      # from center of earth
+      DBL coec;
+      DBL coeb;
+      DBL coea;
+      DBL hght_i;
+      DBL hght_j;
+      DBL retvalu;
+      DBL mass_a;
+      DBL mass_b;
+      DBL mass_i;
+      DBL mass_ip;
+      INT ii;
+      IF NOT Kw.ismagic(lv_prem_magic):
+         lv_prem_mtrx[0][LC_PREM_XHEIGHT] = 0;
+         lv_prem_mtrx[0][LC_PREM_XCOEA] = 0;
+         lv_prem_mtrx[0][LC_PREM_XCOEB] = 0;
+         lv_prem_mtrx[0][LC_PREM_XCOEC] = 0;
+         lv_prem_mtrx[1][LC_PREM_XHEIGHT] = 1.2215E6;
+         lv_prem_mtrx[1][LC_PREM_XCOEA] = 1.3088E4;
+         lv_prem_mtrx[1][LC_PREM_XCOEB] = 1.9110E-8;
+         lv_prem_mtrx[1][LC_PREM_XCOEC] = -2.1773E-10;
+         lv_prem_mtrx[2][LC_PREM_XHEIGHT] = 3.4800E6;
+         lv_prem_mtrx[2][LC_PREM_XCOEA] = 1.2346E4;
+         lv_prem_mtrx[2][LC_PREM_XCOEB] = 1.3976E-4;
+         lv_prem_mtrx[2][LC_PREM_XCOEC] = -2.4123E-10;
+         lv_prem_mtrx[3][LC_PREM_XHEIGHT] = 3.6300E6;
+         lv_prem_mtrx[3][LC_PREM_XCOEA] = 7.3067E3;
+         lv_prem_mtrx[3][LC_PREM_XCOEB] = -5.0007E-4;
+         lv_prem_mtrx[3][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[4][LC_PREM_XHEIGHT] = 5.7010E6;
+         lv_prem_mtrx[4][LC_PREM_XCOEA] = 6.7823E3;
+         lv_prem_mtrx[4][LC_PREM_XCOEB] = -2.4441E-4;
+         lv_prem_mtrx[4][LC_PREM_XCOEC] = -3.0922E-11;
+         lv_prem_mtrx[5][LC_PREM_XHEIGHT] = 5.7710E6;
+         lv_prem_mtrx[5][LC_PREM_XCOEA] = 5.3197E3;
+         lv_prem_mtrx[5][LC_PREM_XCOEB] = -2.3286E-4;
+         lv_prem_mtrx[5][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[6][LC_PREM_XHEIGHT] = 5.9710E6;
+         lv_prem_mtrx[6][LC_PREM_XCOEA] = 1.1249E4;
+         lv_prem_mtrx[6][LC_PREM_XCOEB] = -1.2603E-3;
+         lv_prem_mtrx[6][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[7][LC_PREM_XHEIGHT] = 6.1510E6;
+         lv_prem_mtrx[7][LC_PREM_XCOEA] = 7.1083E3;
+         lv_prem_mtrx[7][LC_PREM_XCOEB] = -5.9706E-4;
+         lv_prem_mtrx[7][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[8][LC_PREM_XHEIGHT] = 6.3466E6;
+         lv_prem_mtrx[8][LC_PREM_XCOEA] = 2.6910E3;
+         lv_prem_mtrx[8][LC_PREM_XCOEB] = 1.0869E-4;
+         lv_prem_mtrx[8][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[9][LC_PREM_XHEIGHT] = 6.3560E6;
+         lv_prem_mtrx[9][LC_PREM_XCOEA] = 2.9000E3;
+         lv_prem_mtrx[9][LC_PREM_XCOEB] = 0.0;
+         lv_prem_mtrx[9][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[10][LC_PREM_XHEIGHT] = 6.3680E6;
+         lv_prem_mtrx[10][LC_PREM_XCOEA] = 2.6000E3;
+         lv_prem_mtrx[10][LC_PREM_XCOEB] = 0.0;
+         lv_prem_mtrx[10][LC_PREM_XCOEC] = 0.0;
+         lv_prem_mtrx[11][LC_PREM_XHEIGHT] = 6.3710E6;
+         lv_prem_mtrx[11][LC_PREM_XCOEA] = 1.0200E3;
+         lv_prem_mtrx[11][LC_PREM_XCOEB] = 0.0;
+         lv_prem_mtrx[11][LC_PREM_XCOEC] = 0.0;
+         # Init mass difference
+         lv_prem_mtrx[0][LC_PREM_XMASSD] = 0;
+         mass_i = 0;
+         FOR ii FROM 1 TO 11:
+            hght_i = lv_prem_mtrx[ii - 1][LC_PREM_XHEIGHT];
+            mass_b = 2.0 * Kw.TAU * hght_i * hght_i * hght_i
+                  * ((lv_prem_mtrx[ii][LC_PREM_XCOEC] / 5.0
+                  * hght_i + lv_prem_mtrx[ii][LC_PREM_XCOEB]
+                  / 4.0) * hght_i
+                  + lv_prem_mtrx[ii][LC_PREM_XCOEA] / 3.0);
+            hght_j = lv_prem_mtrx[ii][LC_PREM_XHEIGHT];
+            mass_a = 2.0 * Kw.TAU * hght_j * hght_j * hght_j
+                  * ((lv_prem_mtrx[ii][LC_PREM_XCOEC] / 5.0
+                  * hght_j + lv_prem_mtrx[ii][LC_PREM_XCOEB]
+                  / 4.0) * hght_j
+                  + lv_prem_mtrx[ii][LC_PREM_XCOEA] / 3.0);
+            mass_ip = mass_i;
+            mass_i += (mass_a - mass_b);
+            lv_prem_mtrx[ii][LC_PREM_XMASSD] = mass_ip - mass_b;
+         FOR_END
+         lv_prem_magic = Kw.magicset();
+      IF_END
+      IF height_m <= 0:
+         retvalu = 0;
+      ELSIF EARTHRADIUS < height_m:
+         IF state_x == 0:
+            retvalu = 0;
+         ELSE:
+            retvalu = EARTHMASS;
+         IF_END
+      ELSE:
+         ii = 0;
+         WHILE lv_prem_mtrx[ii][LC_PREM_XHEIGHT] < height_m:
+            ii += 1;
+         WHILE_END
+         coea = lv_prem_mtrx[ii][LC_PREM_XCOEA];
+         coeb = lv_prem_mtrx[ii][LC_PREM_XCOEB];
+         coec = lv_prem_mtrx[ii][LC_PREM_XCOEC];
+         IF state_x == 0:
+            retvalu = (coec * height_m + coeb) * height_m + coea;
+         ELSIF state_x == 1:
+            hght_i = lv_prem_mtrx[ii][LC_PREM_XHEIGHT];
+            mass_a = 2.0 * Kw.TAU * height_m * height_m
+                  * height_m * ((coec / 5.0 * height_m + coeb
+                  / 4.0) * height_m + coea / 3.0);
+            retvalu = mass_a + lv_prem_mtrx[ii][LC_PREM_XMASSD];
+         IF_END
+      IF_END
+      RETURN retvalu;
+   FUNC_END
+   #   FFFFFFFFFFunction ------------------------- prem_density #
+   FUNC DBL prem_density(DBL height_m):
+      # Density(kg/m**3) of earth at a HEIGHT_M m from center
+      RETURN lf_prem(height_m, LC_PREM_DENSITY);
+   FUNC_END
+   #   FFFFFFFFFFunction ---------------------------- prem_mass #
+   FUNC DBL prem_mass(DBL height_m):
+      # Mass kg of a sphere, radius HEIGHT_M m,
+      # from center of earth
+      RETURN lf_prem(height_m, LC_PREM_MASS);
+   FUNC_END
+   #   FFFFFFFFFFunction ------------------------------- prem_g #
+   FUNC DBL prem_g(DBL height_m):
+      # Acceleration due to gravity(m/s**2) at a
+      # distance HEIGHT_M m from center of earth
+      DBL retvalu;
+      IF height_m <= 0:
+         retvalu = 0;
+      ELSE:
+         retvalu = Kw.GRAVITATION * prem_mass(height_m)
+               / (height_m * height_m);
+      IF_END
+      RETURN retvalu;
+   FUNC_END
+BLOCK_END
+      #   FFFFFFFFFFunction ---------------------------
+   #water_boiling #
+FUNC DBL water_boiling(DBL pressure_pa):
+   # Temperature in Kelvin of Boiling water at
+   # atmospheric pressure PRESSURE_PA
+   # via the Clausius-Clapeyron equation
+   DBL retvalu;
+   IF pressure_pa <= 0:
+      retvalu = 0.0;
+   ELSE:
+      retvalu = 1.0 / (1.0 / 373.15 - LN(pressure_pa / Kw.ATM)
+            * Kw.GAS / Kwelements.WATER_VAPORIZATION_JPMOLE);
+   IF_END
    RETURN retvalu;
 FUNC_END
