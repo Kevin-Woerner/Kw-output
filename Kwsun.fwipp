@@ -1,6 +1,8 @@
-#    Copyright (C) 2020 by Kevin D. Woerner
-# 2020-09-03 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+#    Copyright (C) 2021 by Kevin D. Woerner
+# 2021-01-05 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 #    Copyright C 2015-2020 by Kevin D. Woerner
+# 2020-12-03 kdw  Kwsun:float explicit const work
+# 2020-11-28 kdw  Kwsun:macro syntax overhaul
 # 2020-08-17 kdw  Kwsun:macro syntax changed
 # 2020-07-27 kdw  Kwsun:block syntax
 # 2020-07-24 kdw  Kwsun:s/LO[C]AL_/BL[O]CK_/
@@ -179,6 +181,7 @@
 # need secant code for the nth lunation
 #   IIIIIIIIIInsert-Begin ------------------------- Macros.fwip #
 #    COPYRIGHT C 2018-2020 by Kevin D. Woerner
+# 2020-11-28 kdw  Macros:macro syntax overhaul
 # 2020-08-17 kdw  Macros:macro syntax changed
 # 2020-07-24 kdw  Macros:comment cleanup
 # 2020-06-20 kdw  Macros:comment change
@@ -246,7 +249,7 @@ FUNC_END
 #   FFFFFFFFFFunction ---------------------- kwsun_eccentricity #
 FUNC DBL kwsun_eccentricity(DBL jtwok):
    # earths orbital eccentricity at J2000 day JTWOK
-   RETURN ((-1.2025E-9) * jtwok + 0.01671123);
+   RETURN ((-1.2025E-9) * jtwok + Kwplanets.EARTHECCENTRICITY);
    # (-1.041478E-9) * jtwok + 0.01671022
    # (-1.5151E-9)   * jtwok + 0.01671123
    # (-1.151E-9)    * jtwok + 0.016709
@@ -386,7 +389,7 @@ BLOCK:# sunx vars and funcs
       ELSIF 0.99999 <= lha:
          lv_x_loc_halfday_day = 0.0;
       ELSE:
-         lv_x_loc_halfday_day = Kw.costinv(lha) + 110
+         lv_x_loc_halfday_day = Kw.costinv(lha) + 110.0
                * Kw.SECOND / Kw.DAY;
          # WHY? No idea.
       IF_END
