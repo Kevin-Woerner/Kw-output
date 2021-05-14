@@ -1,0 +1,32 @@
+#    Copyright (C) 2021 by Kevin D. Woerner
+# 2021-05-14 kdw  Created by TMPDIR/objkdw/Tm_Const.fwipp.d
+# 2021-05-14 kdw  Created by TMPDIR/objkdw/Tm_Const.fwipp.d
+##-# =KDW= ################# BUILDER $KWROOT/0lib/vkkcp.sh ##################
+##-# =KDW= ########## SOURCE $KWROOT/codekdw/kw-lib/Tm_Const.fwipp ##########
+##-# =KDW= #### THIS FILE CAN BE OVERWRITTEN BY KEVIN D. WOERNER OR HIS #####
+##-# =KDW= ############ MINIONS AT *ANY* TIME. Caveat utilitor. #############
+# 2021-05-13 kdw  Tm_Const:TM_NGT_AO_.* consts
+# 2021-05-04 kdw  Tm_Const:BLT 8300X added; rx reorg
+# 2021-04-26 kdw  Tm_Const:NGRTM rx fixed
+# 2021-04-15 kdw  Tm_Const:indent work
+# 2021-04-14 kdw  Tm_Const:iso prefixes
+# 2021-04-13 kdw  Tm_Const:uvpv const from kw
+# 2021-04-11 kdw  Tm_Const:indent work
+# 2021-04-07 kdw  Tm_Const:PDTM const work
+# 2021-04-02 kdw  Tm_Const:comments changed
+# 2021-03-18 kdw  Tm_Const:const work
+# 2021-03-15 kdw  Tm_Const:lx_.* const names
+# 2021-03-12 kdw  Tm_Const:minor tweak
+# 2021-03-11 kdw  Tm_Const:renam vars; failed block work
+# 2021-03-08 kdw  Tm_Const:s700 and ngrtm a2d_cap fixed
+# 2021-03-05 kdw  Tm_Const:upped line length to 77
+# 2021-03-02 kdw  Tm_Const:hex number support
+# 2021-02-26 kdw  Tm_Const:p0 work
+# 2021-02-24 kdw  Tm_Const:regex work
+# 2021-02-23 kdw  Tm_Const:rmed explicit self-module ref
+# 2021-02-22 kdw  Tm_Const:regex work
+# 2021-02-19 kdw  Tm_Const:const renam
+# 2021-02-16 kdw  Tm_Const:units
+# 2021-02-15 kdw  Tm_Const:string work
+# 2021-02-14 kdw  Tm_Const:updated
+# 2021-02-13 kdw  Tm_Const:created

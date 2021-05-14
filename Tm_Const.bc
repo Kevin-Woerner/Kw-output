@@ -1,0 +1,282 @@
+#    Copyright (C) 2021 by Kevin D. Woerner
+##-# =KDW= ################# BUILDER $KWROOT/0lib/vkkcp.sh ##################
+##-# =KDW= ########## SOURCE $KWROOT/codekdw/kw-lib/Tm_Const.fwipp ##########
+##-# =KDW= #### THIS FILE CAN BE OVERWRITTEN BY KEVIN D. WOERNER OR HIS #####
+##-# =KDW= ############ MINIONS AT *ANY* TIME. Caveat utilitor. #############
+# 2021-05-14 kdw  For Changelog,See File Tm_Const.varylog
+true = 1;
+false = 0;
+#IMPORT "Kw";
+cxa2dcnt = cxbit;
+cxp0cnt = cxbit;
+cxengcnt = cxbit;
+cxdaccnt = cxbit;
+cxtm_test_time_sec = 3 * cxsecond;
+cxtm_daov_cap = 65536 * cxdaccnt;
+cxtm_daov_vref = 2.5 * cxvolt;
+cxlx_daov_rpre = 4.99 * cxkilo * cxohm;
+cxlx_daov_2r = 30.9 * cxkilo * cxohm;
+cxlx_daov_rgnd = 6.04 * cxkilo * cxohm;
+cxtm_daov_gain = cxlx_daov_2r * (1.0 / cxlx_daov_rpre + 1.0 /\
+         cxlx_daov_rgnd) + 1.0;
+cxtm_daov_dac_per_v = cxtm_daov_cap / (cxtm_daov_gain * cxtm_daov_vref);
+cxtm_daov_v_if_dacmin = - cxtm_daov_vref * cxlx_daov_2r / cxlx_daov_rpre;
+cxtm_daov_dac_if_0v = - cxtm_daov_v_if_dacmin * cxtm_daov_dac_per_v;
+cxtm_daov_dac_max = cxtm_daov_cap - cxtm_daov_dac_if_0v;
+cxtm_daov_dac_min = - cxtm_daov_dac_if_0v;
+cxtm_daov_v_if_dacmax = cxtm_daov_dac_max / cxtm_daov_dac_per_v;
+cxtm_daov_dac_if_p10v = cxtm_daov_dac_if_0v + 10.0 * cxvolt *\
+         cxtm_daov_dac_per_v;
+cxtm_daov_dac_if_m10v = cxtm_daov_dac_if_0v - 10.0 * cxvolt *\
+         cxtm_daov_dac_per_v;
+cxtm_daoi_gz_magic = 10.0 * cxamp / cxvolt;
+cxlx_daoi_1r = 45.3 * cxkilo * cxohm;
+cxlx_daoi_2r = 191.0 * cxkilo * cxohm;
+cxlx_daoi_3r = 18.2 * cxkilo * cxohm;
+cxlx_daoi_4r = 100.0 * cxohm;
+cxtm_daoi_ma_at_0v = (cxlx_daoi_3r * cxtm_daov_vref * cxtm_daoi_gz_magic)\
+         / cxlx_daoi_1r;
+cxtm_daoi_ma_per_v = cxlx_daoi_3r / (cxlx_daoi_2r * cxlx_daoi_4r * cxmilli);
+cxtm_daoi_ma_gain = (cxlx_daoi_3r * cxtm_daoi_ma_per_v) / cxlx_daoi_2r;
+cxtm_daoi_ma_if_0v = (cxlx_daoi_3r * cxtm_daoi_ma_per_v * cxtm_daov_vref)\
+         / cxlx_daoi_1r;
+cxtm_daoi_dac_per_ma = cxtm_daov_dac_per_v / cxtm_daoi_ma_per_v;
+cxtm_daoi_dac_if_00ma = cxtm_daov_dac_if_0v - cxtm_daoi_dac_per_ma *\
+         cxtm_daoi_ma_at_0v;
+cxtm_daoi_dac_if_04ma = cxtm_daoi_dac_if_00ma + cxtm_daoi_dac_per_ma *\
+         (4.0 * cxamp);
+cxtm_daoi_dac_if_12ma = cxtm_daoi_dac_if_00ma + cxtm_daoi_dac_per_ma *\
+         (12.0 * cxamp);
+cxtm_daoi_dac_if_20ma = cxtm_daoi_dac_if_00ma + cxtm_daoi_dac_per_ma *\
+         (20.0 * cxamp);
+cxtm_daoi_ma_if_dacmin = - cxtm_daoi_dac_if_00ma / cxtm_daoi_dac_per_ma;
+cxtm_daoi_ma_if_dacmax = cxtm_daoi_ma_if_dacmin + cxtm_daov_cap /\
+         cxtm_daoi_dac_per_ma;
+cxtm_ngt_count_at_fs = 20000.0 * cxengcnt;
+cxtm_ngt_p0_per_count = 32768 * cxp0cnt / cxengcnt;
+cxtm_ngt_p0_at_fs = cxtm_ngt_p0_per_count * cxtm_ngt_count_at_fs;
+cxtm_ngt_p0_max = cxtm_ngt_p0_at_fs * 1.5;
+cxtm_ngt_ao_mult = 8192.0;
+cxtm_ngt_ao_shft = 256.0;
+cxtm_ngt_a2d_cap = 262144 * cxa2dcnt;
+cxtm_ngt_ia_input_max = 16;
+cxtm_ngt_clock_hz = 60.0 * cxmega * cxhz;
+cxtm_ngt_rotor_clock_hz = 16.0 * cxmega * cxhz;
+cxtm_ngt_noise_max = (1.0);
+cxtm_ngt_noise_min = 0.3;
+cxlx_ngt_3r = 10.0 * cxkilo * cxohm;
+cxlx_ngt_7r = 130.0 * cxohm;
+cxtm_ngt_gain = 2.0 * cxlx_ngt_3r / cxlx_ngt_7r + 1.0;
+cxtm_ngt_a2d_per_uvpv = cxtm_ngt_a2d_cap * cxtm_ngt_gain * cxuvpv;
+cxlx_ngt_rotor_bridge = 1.0 * cxkilo * cxohm;
+cxlx_ngt_shunt_ohms = 100.0 * cxkilo * cxohm;
+cxtm_ngt_shunt_uvpv = 0.5 * cxlx_ngt_rotor_bridge / (cxuvpv * (2.0 *\
+         cxlx_ngt_shunt_ohms + cxlx_ngt_rotor_bridge));
+cxtm_ngt_shunt_a2d = cxtm_ngt_shunt_uvpv * cxtm_ngt_a2d_per_uvpv;
+cxlx_ngt00_rotor_bridge = 5.0 * cxkilo * cxohm;
+cxlx_ngt00_shunt_ohms = 270.0 * cxkilo * cxohm;
+cxtm_ngt00_shunt_uvpv = 0.5 * cxlx_ngt00_rotor_bridge / (cxuvpv * (2.0 *\
+         cxlx_ngt00_shunt_ohms + cxlx_ngt00_rotor_bridge));
+cxtm_ngt00_shunt_a2d = cxtm_ngt00_shunt_uvpv * cxtm_ngt_a2d_per_uvpv;
+cxtm_ngt_msp430_urv_a2d_fs_count = 32768;
+cxlx_ngt_msp430_urv_a2d_fs_v = 3.3 * cxvolt;
+cxlx_ngt_msp430_urv_a2d_0_v = 0.0 * cxvolt;
+cxtm_ngt_msp430_urv_a2d_per_v = cxtm_ngt_msp430_urv_a2d_fs_count /\
+         (cxlx_ngt_msp430_urv_a2d_fs_v - cxlx_ngt_msp430_urv_a2d_0_v);
+cxlx_ngt_urv_rotor_r_plus = 30100.0 * cxohm;
+cxlx_ngt_urv_rotor_r_gnd = 10000.0 * cxohm;
+cxlx_ngt_urv_gain = cxlx_ngt_urv_rotor_r_gnd / (cxlx_ngt_urv_rotor_r_plus\
+         + cxlx_ngt_urv_rotor_r_gnd);
+cxtm_ngt_urv_a2d_per_v = (cxlx_ngt_urv_gain * cxtm_ngt_msp430_urv_a2d_per_v);
+cxtm_blt_a2d_cap = 131072 * cxa2dcnt;
+cxtm_bltdc_noise_min = 0.3;
+cxtm_bltdc_noise_max = 0.7;
+cxtm_blt_count_at_fs = 20000 * cxengcnt;
+cxtm_blt_p0_per_count = 32768 * cxp0cnt / cxengcnt;
+cxtm_blt_p0_at_fs = cxtm_blt_count_at_fs * cxtm_blt_p0_per_count;
+cxtm_blt_diode_voltage_drop = 0.7 * cxvolt;
+cxlx_bltdc_rotor_24r = 100.0 * cxohm;
+cxlx_bltdc_rotor_25r = 499.0 * cxohm;
+cxlx_bltdc_rotor_26r = 200.0 * cxohm;
+cxlx_bltdc_rotor_27r = 2210.0 * cxohm;
+cxtm_bltdc_gain = (2.0 * cxlx_bltdc_rotor_25r / cxlx_bltdc_rotor_24r +\
+         1.0) * (2.0 * cxlx_bltdc_rotor_27r / cxlx_bltdc_rotor_26r + 1.0);
+cxtm_bltdc_a2d_per_uvpv = (cxtm_blt_a2d_cap * cxtm_bltdc_gain) * cxuvpv;
+cxlx_bltac_rotor_14r = 118.0 * cxohm;
+cxlx_bltac_rotor_13r = 15000.0 * cxohm;
+cxtm_bltac_gain = 1.0 + 2.0 * cxlx_bltac_rotor_13r / cxlx_bltac_rotor_14r;
+cxtm_bltac_a2d_per_uvpv = cxtm_blt_a2d_cap * cxtm_bltac_gain * cxuvpv;
+cxtm_bltac_noise_min = 0.1;
+cxtm_bltac_noise_max = 0.4;
+cxtm_blt_clock_hz = 60.0 * cxmega * cxhz;
+cxtm_blt_rotor_clock_hz = 20.0 * cxmega * cxhz;
+cxtm_blt_shunt_ohms = 100.0 * cxkilo * cxohm;
+cxtm_blt_acdc_ratio = 0.9929;
+cxtm_blt_mf_no_tare_shunt_bit = 1;
+cxtm_blt_mf_no_ls_bits_bit = 2;
+cxtm_blt_mf_lop_3_bits_bit = 4;
+cxtm_blt_mf_20khz_filter_bit = 8;
+cxtm_blt_mf_disable_button_bit = 16;
+cxtm_blt_mf_rf_filter_bit = 32;
+cxtm_blt_mf_old_rf_hw_bit = 64;
+cxtm_blt_rotor_bridge = 1000 * cxohm;
+cxtm_bltac_shunt_uvpv = cxtm_blt_rotor_bridge / (cxuvpv * (4.0 *\
+         cxtm_blt_shunt_ohms + 2.0 * cxtm_blt_rotor_bridge));
+cxtm_bltac_shunt_a2d = cxtm_bltac_shunt_uvpv * cxtm_bltac_a2d_per_uvpv;
+cxtm_bltdc_shunt_uvpv = cxtm_blt_rotor_bridge / (cxuvpv * (4.0 *\
+         cxtm_blt_shunt_ohms + 2.0 * cxtm_blt_rotor_bridge));
+cxtm_bltdc_shunt_a2d = cxtm_bltdc_shunt_uvpv * cxtm_bltdc_a2d_per_uvpv;
+cxtm_cdtm_clock_hz = 60.0 * cxmega * cxhz;
+cxtm_cdtm_count_at_fs = 15000.0 * cxengcnt;
+cxtm_cdtm_p0_per_count = 65536 * cxp0cnt / cxengcnt;
+cxtm_cdtm_nominal_hz_at_zero = 8.3 * cxkilo * cxhz;
+cxtm_cdtm_nominal_fs_span_hz = 3.5 * cxkilo * cxhz;
+cxtm_cdtm_min_hz = 2.0 * cxkilo * cxhz;
+cxlx_cdtm_2r = 10.0 * cxkilo * cxohm;
+cxlx_cdtm_5r = 10.0 * cxkilo * cxohm;
+cxlx_cdtm_8r = 100.0 * cxkilo * cxohm;
+cxlx_cdtm_7r = 499.0 * cxohm;
+cxlx_cdtm_7c = 1.5 * cxnano * cxfarad;
+cxlx_cdtm_8c = 1.5 * cxnano * cxfarad;
+cxlx_cdtm_2v = 2.5 * cxvolt;
+cxlx_cdtm_gaina = cxlx_cdtm_8r / cxlx_cdtm_7r;
+cxlx_cdtm_gainb = cxlx_cdtm_2r / (cxlx_cdtm_2r + cxlx_cdtm_5r);
+cxlx_cdtm_ct = cxlx_cdtm_7c + cxlx_cdtm_8c;
+cxlx_cdtm_rz = 1.0 / (1.0 / cxlx_cdtm_2r + 1.0 / cxlx_cdtm_5r);
+cxlx_cdtm_fout_per_vin = 0.1 / (cxlx_cdtm_2r * cxlx_cdtm_ct);
+cxlx_cdtm_fout_per_vinz = 0.1 / (cxlx_cdtm_rz * cxlx_cdtm_ct);
+cxlx_cdtm_v_offset = cxlx_cdtm_2v * cxlx_cdtm_gainb;
+cxtm_cdtm_gain = cxlx_cdtm_gaina * cxlx_cdtm_gainb;
+cxtm_cdtm_x = cxtm_cdtm_gain * cxlx_cdtm_fout_per_vinz;
+cxtm_cdtm_hz_per_uvpv = cxlx_cdtm_2v * cxtm_cdtm_x * cxuvpv;
+cxtm_cdtm_nominal_hz_at_0x = cxlx_cdtm_v_offset * cxlx_cdtm_fout_per_vinz;
+cxtm_cdtm_p0_at_fs = cxtm_cdtm_count_at_fs * cxtm_cdtm_p0_per_count;
+cxtm_cdtm_fs_uvpv = cxtm_cdtm_nominal_fs_span_hz / cxtm_cdtm_hz_per_uvpv;
+cxtm_cdtm_noise_min_old = 0.2;
+cxtm_cdtm_noise_max_old = 2.0;
+cxtm_cdtm_noise_min = 0.2;
+cxtm_cdtm_noise_max = 2.0;
+cxtm_pdtm_anaout_number = 3;
+cxtm_pdtm_channel_number = 4;
+cxtm_pdtm_filter_max = 10;
+cxtm_pdtm_noise_min = 7;
+cxtm_pdtm_noise_max = 25;
+cxtm_pdtm_a2d_fs = 5000;
+cxtm_pdtm_a2d_cap = 8192 * cxa2dcnt;
+cxtm_pdtm_mult = 2;
+cxtm_pdtm_count_per_a2d = 4;
+cxtm_pdtm_count_at_fs = cxtm_pdtm_a2d_fs * cxtm_pdtm_count_per_a2d;
+cxtm_pdtm_tc_per_degc = 16 / cxdegc;
+cxtm_pdtm_gain_values = 4096;
+cxtm_pdtm_clock_hz = 8.0 * cxmega * cxhz;
+cxtm_pdtm_sec_per_zrvalue = 32768 / cxtm_pdtm_clock_hz;
+cxlx_pdtm_22r = 6.65 * cxkilo * cxohm;
+cxlx_pdtm_23r = 30.1 * cxkilo * cxohm;
+cxlx_pdtm_18r = 49.9 * cxkilo * cxohm;
+cxlx_pdtm_19r = 10.0 * cxkilo * cxohm;
+cxlx_pdtm_10r = 49.9 * cxkilo * cxohm;
+cxlx_pdtm_11r = 30.1 * cxkilo * cxohm;
+cxlx_pdtm_gain_hwa = cxlx_pdtm_23r / cxlx_pdtm_22r;
+cxlx_pdtm_gain_hwb = cxlx_pdtm_18r / cxlx_pdtm_19r + 1.0;
+cxlx_pdtm_gain_hwc = 2.0 * cxtwosqrt / cxpi;
+cxlx_pdtm_gain_hwd = cxlx_pdtm_10r / cxlx_pdtm_11r + 1.0;
+cxtm_pdtm_gain_hw = cxlx_pdtm_gain_hwa * cxlx_pdtm_gain_hwb *\
+         cxlx_pdtm_gain_hwc * cxlx_pdtm_gain_hwd;
+cxtm_pdtm_gain_per_gain = cxtm_pdtm_gain_hw / cxtm_pdtm_gain_values;
+cxtm_pdtm_count_per_gain_uvpv = cxuvpv * cxtm_pdtm_a2d_cap *\
+         cxtm_pdtm_count_per_a2d * cxtm_pdtm_gain_per_gain;
+cxtm_pdtm_p0_at_fs = cxtm_pdtm_a2d_cap * cxtm_pdtm_count_per_a2d *\
+         cxtm_pdtm_count_at_fs;
+cxtm_pdtm_gain_mvpvatfs = 35340.0;
+cxtm_s700_number_channels = 3;
+cxtm_s700_filter_max = 10;
+cxtm_s700_count_at_fs = 10000.0 * cxengcnt;
+cxtm_s700_p0_per_count = 65536 * cxp0cnt / cxengcnt;
+cxtm_s700_p0_at_fs = cxtm_s700_p0_per_count * cxtm_s700_count_at_fs;
+cxtm_s700p_filter_max = 10;
+cxtm_s700p_a2d_cap = 8388608 * cxa2dcnt;
+cxtm_s700p_a2d_at_fs = 4.0 * cxmega * cxa2dcnt;
+cxtm_s700p_count_at_fs = 655360000.0 * cxengcnt;
+cxtm_s700p_p0_per_count = 1.0 * cxp0cnt / cxengcnt;
+cxtm_s700p_p0_at_fs = cxtm_s700p_p0_per_count * cxtm_s700p_count_at_fs;
+cxtm_ngrtm_clock_hz = 16.0 * cxmega * cxhz;
+cxtm_ngrtm_a2d_cap = 8388608 * cxa2dcnt;
+cxtm_ngrtm_p0_at_fs = 163840000.0 * cxp0cnt;
+cxtm_ngrtm_cameld = 16384;
+cxtm_ngrtm_camela = 1.0 * 16384 * 1048576 * cxp0cnt / cxdaccnt;
+cxtm_ngrtm_dacfs_per_cde = cxtm_ngrtm_p0_at_fs / cxtm_ngrtm_camela;
+cxtm_ngrtm_fsv_per_cde = cxtm_ngrtm_dacfs_per_cde / cxtm_daov_dac_per_v;
+cxtm_ngrtm_scale = cxtm_ngrtm_dacfs_per_cde * cxtm_ngrtm_cameld;
+cxtm_ngrtm_a2dfs_at_1gain = cxtm_ngrtm_p0_at_fs * 65536;
+cxlx_ngrtm_30r = 10.0 * cxkilo * cxohm;
+cxlx_ngrtm_28r = 130.0 * cxohm;
+cxtm_ngrtm_gain = 2.0 * cxlx_ngrtm_30r / cxlx_ngrtm_28r + 1.0;
+cxtm_ngrtm_a2d_per_uvpv = cxtm_ngrtm_a2d_cap * cxtm_ngrtm_gain * cxuvpv;
+cxtm_ngrtm_noise_min = 0.5;
+cxtm_ngrtm_noise_max = (1.0);
+cxtm_ad22103_vref = 3.3 * cxvolt;
+cxtm_ad22103_v_per_degc = 0.028 * cxvolt / cxdegc;
+cxtm_ad22103_v_at_0degc = 0.25 * cxvolt;
+cxtm_ngrtm_tempa2d_cap = 32768 * cxa2dcnt;
+cxtm_ngrtm_tempp0_per_a2d = 65536 * cxp0cnt / cxa2dcnt;
+cxtm_ngrtm_degc_offset = cxtm_ad22103_v_at_0degc / cxtm_ad22103_v_per_degc;
+cxtm_ngrtm_tempp0_per_degc = cxtm_ngrtm_tempa2d_cap *\
+         cxtm_ad22103_v_per_degc * cxtm_ngrtm_tempp0_per_a2d /\
+         cxtm_ad22103_vref;
+cxtm_ngrtm_tempp0_per_degf = cxdegf * cxtm_ngrtm_tempp0_per_degc / cxdegc;
+cxtm_ngrtm_tempp0_uvpv_per_degf = cxtm_ngrtm_tempp0_per_degf /\
+         (cxtm_ngrtm_a2d_per_uvpv * cxtm_ngrtm_tempp0_per_a2d * 4096);
+cxtm_bltdc_filter_hz = 20.0 * cxkilo * cxhz;
+cxtm_bltac_filter_hz = 20.0 * cxkilo * cxhz;
+cxtm_cdtm_filter_hz = 10.0 * cxkilo * cxhz;
+cxtm_ngt_filter_hz = 7.8125 * cxkilo * cxhz;
+cxtm_ngrtm_filter_hz = 7.8125 * cxkilo * cxhz;
+cxtm_s700p_filter_hz = 7.8125 * cxkilo * cxhz;
+cxtm_pdtm_filter_hz = 2.0 * cxkilo * cxhz;
+cxtm_s700_filter_hz = 2.0 * cxkilo * cxhz;
+cxtm_bltdc_uvpv_per_a2d = 1.0 / cxtm_bltdc_a2d_per_uvpv;
+cxtm_bltac_uvpv_per_a2d = 1.0 / cxtm_bltac_a2d_per_uvpv;
+cxtm_cdtm_uvpv_per_hz = 1.0 / cxtm_cdtm_hz_per_uvpv;
+cxtm_ngrtm_uvpv_per_a2d = 1.0 / cxtm_ngrtm_a2d_per_uvpv;
+cxtm_ngt_uvpv_per_a2d = 1.0 / cxtm_ngt_a2d_per_uvpv;
+cxtm_pdtm_gain_uvpv_per_count = 1.0 / cxtm_pdtm_count_per_gain_uvpv;
+cxtm_bltdc_uvpv_if_a2dmax = 1.0 / (cxuvpv * cxtm_bltdc_gain);
+cxtm_bltac_uvpv_if_a2dmax = 1.0 / (cxuvpv * cxtm_bltac_gain);
+cxtm_ngt_uvpv_if_a2dmax = 1.0 / (cxuvpv * cxtm_ngt_gain);
+cxtm_ngrtm_uvpv_if_a2dmax = 1.0 / (cxuvpv * cxtm_ngrtm_gain);
+define tmc_cdtm_uvpv_to_rotor_freq(uvpv_data) {
+   return (uvpv_data / cxtm_cdtm_uvpv_per_hz + cxtm_cdtm_nominal_hz_at_zero);
+}
+define tmc_cdtm_rotor_freq_to_uvpv(rf_data) {
+   return (cxtm_cdtm_uvpv_per_hz * (rf_data - cxtm_cdtm_nominal_hz_at_zero));
+}
+define tmc_dao_v_to_dac(volt_data) {
+   return (cxtm_daov_dac_per_v * (volt_data - cxtm_daov_v_if_dacmin));
+}
+define tmc_dao_dac_to_v(dac_data) {
+   return (dac_data / cxtm_daov_dac_per_v + cxtm_daov_v_if_dacmin);
+}
+define tmc_dao_deltav_to_dac(volt_data) {
+   return (cxtm_daov_dac_per_v * volt_data);
+}
+define tmc_shunt_value(bridge_ohms,shunt_ohms) {
+   return (bridge_ohms / (cxuvpv * (4.0 * shunt_ohms + 2.0 * bridge_ohms)));
+}
+#   DDDDDDDDDDescription ############################# tm_const_description #
+define tm_const_description() {
+   print "Usage: bcc [Expression]\n";
+   print "   Tm_Const 1-ary Functions: tmc_cdtm_rotor_freq_to_uVpV tmc_cdtm";
+   print "_uVpV_to_rotor_freq tmc_dao_DAC_to_V tmc_dao_deltaV_to_DAC tmc_da";
+   print "o_V_to_DAC";
+   print "\n";
+   print "   Tm_Const 2-ary Functions: tmc_shunt_value";
+   print "\n";
+}
+define tm_const_desc() {
+   print "Usage: bcc [Expression]\n";
+   print "   Tm_Const 1-ary Functions: tmc_(cdtm_(rotor_freq_to_uVpV|uVpV_t";
+   print "o_rotor_freq)|dao_(DAC_to_V|deltaV_to_DAC|V_to_DAC))";
+   print "\n";
+   print "   Tm_Const 2-ary Functions: tmc_shunt_value";
+   print "\n";
+}

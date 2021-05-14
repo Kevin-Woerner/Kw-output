@@ -1,0 +1,631 @@
+//   Copyright (C) 2021 by Kevin D. Woerner
+//-/ =KDW= ################# BUILDER $KWROOT/0lib/vkkcp.sh ##################
+//-/ =KDW= ########## SOURCE $KWROOT/codekdw/kw-lib/Tm_Const.fwipp ##########
+//-/ =KDW= #### THIS FILE CAN BE OVERWRITTEN BY KEVIN D. WOERNER OR HIS #####
+//-/ =KDW= ############ MINIONS AT *ANY* TIME. Caveat utilitor. #############
+// 2021-05-14 kdw  For Changelog, See File Tm_Const.varylog
+#ifndef INCLUDED_Tm_Const_h
+#define INCLUDED_Tm_Const_h
+#include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+//  IIIIIIIIIINCLUDE ############################################### LANG_C #
+#include "Kw.h"
+//  CCCCCCCCCC_DEF ################################################# LANG_C #
+#define A2DCNT (BIT)
+#define P0CNT (BIT)
+#define ENGCNT (BIT)
+#define DACCNT (BIT)
+#define TM_LIST_SEPARATOR ","
+#define TM_PDTM_MIN_VERSION "1.5.4"
+#define TM_REG_KEY "TM_INFO"
+#define TM_BLT_REGKEY "BLT"
+#define TM_CDTM_REGKEY "CDTM"
+#define TM_DPT_REGKEY "DPT"
+#define TM_NGRTM_REGKEY "NGRTM"
+#define TM_NGT_REGKEY "NGT"
+#define TM_PDTM_REGKEY "PDTM"
+#define TM_S700_REGKEY "700"
+#define TM_S700P_REGKEY "700+"
+#define TM_BLT_REGEX "(MCRT)?(80001|86108|86109|86110"\
+         "|8[14-7]00[24789]" "|8[14-7]01[01]" "|8[1458]70[24789]"\
+         "|8[1458]71[01]" "|8300[247])VS?"
+#define TM_CDTM_REGEX "(MCRT)?(4820[1-4])VS?"
+#define TM_NGRTM_REGEX "(CF28(56|82|84)"\
+         "|22(7[1-5]|8[1-7]|9[1-4]|90[89]|910)" "|23(0[24789]|10)D)"\
+         "V[NCJ]?S?"
+#define TM_NGT_REGEX "(MCRT)?"\
+         "(4[89]600VH?|(488|[457]98)(0[1234678]|[56]1|[5-8]0)V)S?"
+#define TM_PDTM_REGEX "(MCRT)?(278[234]0D|27835D" "|4[89]00[1-4678]P"\
+         "|4[89]0[67]0P" "|4[89]70[1-8]VH?" "|4[89]7[678]0VH?"\
+         "|4[89]761VH?" "|[57]970[1-4678]V" "|[57]97[67][01]V)S?"
+#define TM_S700_REGEX "(Model 7)" "(541|[0-478][0-478]) " "v[1-7]\\.[0-9] "
+#define TM_S700P_REGEX "(Model 7|......7)" "(541\\+|[0-478][0-478]\\+"\
+         ")v1\\.[0-9][0-9]?"
+#define TM_TEST_TIME_SEC (3 * SECOND)
+#define TM_DAOV_CAP (0x10000 * DACCNT)
+#define TM_DAOV_VREF (2.5 * VOLT)
+#define LX_DAOV_RPRE (4.99 * KILO * OHM)
+#define LX_DAOV_2R (30.9 * KILO * OHM)
+#define LX_DAOV_RGND (6.04 * KILO * OHM)
+#define TM_DAOV_GAIN (LX_DAOV_2R * (1.0 / LX_DAOV_RPRE + 1.0 /\
+         LX_DAOV_RGND) + 1.0)
+#define TM_DAOV_DAC_PER_V (TM_DAOV_CAP / (TM_DAOV_GAIN * TM_DAOV_VREF))
+#define TM_DAOV_V_IF_DACMIN (- TM_DAOV_VREF * LX_DAOV_2R / LX_DAOV_RPRE)
+#define TM_DAOV_DAC_IF_0V (- TM_DAOV_V_IF_DACMIN * TM_DAOV_DAC_PER_V)
+#define TM_DAOV_DAC_MAX (TM_DAOV_CAP - TM_DAOV_DAC_IF_0V)
+#define TM_DAOV_DAC_MIN (- TM_DAOV_DAC_IF_0V)
+#define TM_DAOV_V_IF_DACMAX (TM_DAOV_DAC_MAX / TM_DAOV_DAC_PER_V)
+#define TM_DAOV_DAC_IF_P10V (TM_DAOV_DAC_IF_0V + 10.0 * VOLT *\
+         TM_DAOV_DAC_PER_V)
+#define TM_DAOV_DAC_IF_M10V (TM_DAOV_DAC_IF_0V - 10.0 * VOLT *\
+         TM_DAOV_DAC_PER_V)
+#define TM_DAOI_GZ_MAGIC (10.0 * AMP / VOLT)
+#define LX_DAOI_1R (45.3 * KILO * OHM)
+#define LX_DAOI_2R (191.0 * KILO * OHM)
+#define LX_DAOI_3R (18.2 * KILO * OHM)
+#define LX_DAOI_4R (100.0 * OHM)
+#define TM_DAOI_mA_AT_0V ((LX_DAOI_3R * TM_DAOV_VREF * TM_DAOI_GZ_MAGIC)\
+         / LX_DAOI_1R)
+#define TM_DAOI_mA_PER_V (LX_DAOI_3R / (LX_DAOI_2R * LX_DAOI_4R * MILLI))
+#define TM_DAOI_mA_GAIN ((LX_DAOI_3R * TM_DAOI_mA_PER_V) / LX_DAOI_2R)
+#define TM_DAOI_mA_IF_0V ((LX_DAOI_3R * TM_DAOI_mA_PER_V * TM_DAOV_VREF)\
+         / LX_DAOI_1R)
+#define TM_DAOI_DAC_PER_mA (TM_DAOV_DAC_PER_V / TM_DAOI_mA_PER_V)
+#define TM_DAOI_DAC_IF_00mA (TM_DAOV_DAC_IF_0V - TM_DAOI_DAC_PER_mA *\
+         TM_DAOI_mA_AT_0V)
+#define TM_DAOI_DAC_IF_04mA (TM_DAOI_DAC_IF_00mA + TM_DAOI_DAC_PER_mA *\
+         (4.0 * AMP))
+#define TM_DAOI_DAC_IF_12mA (TM_DAOI_DAC_IF_00mA + TM_DAOI_DAC_PER_mA *\
+         (12.0 * AMP))
+#define TM_DAOI_DAC_IF_20mA (TM_DAOI_DAC_IF_00mA + TM_DAOI_DAC_PER_mA *\
+         (20.0 * AMP))
+#define TM_DAOI_mA_IF_DACMIN (- TM_DAOI_DAC_IF_00mA / TM_DAOI_DAC_PER_mA)
+#define TM_DAOI_mA_IF_DACMAX (TM_DAOI_mA_IF_DACMIN + TM_DAOV_CAP /\
+         TM_DAOI_DAC_PER_mA)
+#define TM_NGT_COUNT_AT_FS (20000.0 * ENGCNT)
+#define TM_NGT_P0_PER_COUNT (0x8000 * P0CNT / ENGCNT)
+#define TM_NGT_P0_AT_FS (TM_NGT_P0_PER_COUNT * TM_NGT_COUNT_AT_FS)
+#define TM_NGT_P0_MAX (TM_NGT_P0_AT_FS * 1.5)
+#define TM_NGT_AO_MULT (8192.0)
+#define TM_NGT_AO_SHFT (256.0)
+#define TM_NGT_A2D_CAP (0x40000 * A2DCNT)
+#define TM_NGT_IA_INPUT_MAX 16
+#define TM_NGT_CLOCK_Hz (60.0 * MEGA * Hz)
+#define TM_NGT_ROTOR_CLOCK_Hz (16.0 * MEGA * Hz)
+#define TM_NGT_NOISE_MAX (1.0)
+#define TM_NGT_NOISE_MIN (0.3)
+#define LX_NGT_3R (10.0 * KILO * OHM)
+#define LX_NGT_7R (130.0 * OHM)
+#define TM_NGT_GAIN (2.0 * LX_NGT_3R / LX_NGT_7R + 1.0)
+#define TM_NGT_A2D_PER_UVPV (TM_NGT_A2D_CAP * TM_NGT_GAIN * UVPV)
+#define LX_NGT_ROTOR_BRIDGE (1.0 * KILO * OHM)
+#define LX_NGT_SHUNT_OHMS (100.0 * KILO * OHM)
+#define TM_NGT_SHUNT_UVPV (0.5 * LX_NGT_ROTOR_BRIDGE / (UVPV * (2.0 *\
+         LX_NGT_SHUNT_OHMS + LX_NGT_ROTOR_BRIDGE)))
+#define TM_NGT_SHUNT_A2D (TM_NGT_SHUNT_UVPV * TM_NGT_A2D_PER_UVPV)
+#define LX_NGT00_ROTOR_BRIDGE (5.0 * KILO * OHM)
+#define LX_NGT00_SHUNT_OHMS (270.0 * KILO * OHM)
+#define TM_NGT00_SHUNT_UVPV (0.5 * LX_NGT00_ROTOR_BRIDGE / (UVPV * (2.0 *\
+         LX_NGT00_SHUNT_OHMS + LX_NGT00_ROTOR_BRIDGE)))
+#define TM_NGT00_SHUNT_A2D (TM_NGT00_SHUNT_UVPV * TM_NGT_A2D_PER_UVPV)
+#define TM_NGT_MSP430_URV_A2D_FS_COUNT (0x8000)
+#define LX_NGT_MSP430_URV_A2D_FS_V (3.3 * VOLT)
+#define LX_NGT_MSP430_URV_A2D_0_V (0.0 * VOLT)
+#define TM_NGT_MSP430_URV_A2D_PER_V (TM_NGT_MSP430_URV_A2D_FS_COUNT /\
+         (LX_NGT_MSP430_URV_A2D_FS_V - LX_NGT_MSP430_URV_A2D_0_V))
+#define LX_NGT_URV_ROTOR_R_PLUS (30100.0 * OHM)
+#define LX_NGT_URV_ROTOR_R_GND (10000.0 * OHM)
+#define LX_NGT_URV_GAIN (LX_NGT_URV_ROTOR_R_GND /\
+         (LX_NGT_URV_ROTOR_R_PLUS + LX_NGT_URV_ROTOR_R_GND))
+#define TM_NGT_URV_A2D_PER_V (LX_NGT_URV_GAIN * TM_NGT_MSP430_URV_A2D_PER_V)
+#define TM_BLT_A2D_CAP (0x20000 * A2DCNT)
+#define TM_BLTDC_NOISE_MIN (0.3)
+#define TM_BLTDC_NOISE_MAX (0.7)
+#define TM_BLT_COUNT_AT_FS (20000 * ENGCNT)
+#define TM_BLT_P0_PER_COUNT (0x8000 * P0CNT / ENGCNT)
+#define TM_BLT_P0_AT_FS (TM_BLT_COUNT_AT_FS * TM_BLT_P0_PER_COUNT)
+#define TM_BLT_DIODE_VOLTAGE_DROP (0.7 * VOLT)
+#define LX_BLTDC_ROTOR_24R (100.0 * OHM)
+#define LX_BLTDC_ROTOR_25R (499.0 * OHM)
+#define LX_BLTDC_ROTOR_26R (200.0 * OHM)
+#define LX_BLTDC_ROTOR_27R (2210.0 * OHM)
+#define TM_BLTDC_GAIN ((2.0 * LX_BLTDC_ROTOR_25R / LX_BLTDC_ROTOR_24R +\
+         1.0) * (2.0 * LX_BLTDC_ROTOR_27R / LX_BLTDC_ROTOR_26R + 1.0))
+#define TM_BLTDC_A2D_PER_UVPV ((TM_BLT_A2D_CAP * TM_BLTDC_GAIN) * UVPV)
+#define LX_BLTAC_ROTOR_14R (118.0 * OHM)
+#define LX_BLTAC_ROTOR_13R (15000.0 * OHM)
+#define TM_BLTAC_GAIN (1.0 + 2.0 * LX_BLTAC_ROTOR_13R / LX_BLTAC_ROTOR_14R)
+#define TM_BLTAC_A2D_PER_UVPV (TM_BLT_A2D_CAP * TM_BLTAC_GAIN * UVPV)
+#define TM_BLTAC_NOISE_MIN (0.1)
+#define TM_BLTAC_NOISE_MAX (0.4)
+#define TM_BLT_CLOCK_Hz (60.0 * MEGA * Hz)
+#define TM_BLT_ROTOR_CLOCK_Hz (20.0 * MEGA * Hz)
+#define TM_BLT_SHUNT_OHMS (100.0 * KILO * OHM)
+#define TM_BLT_ACDC_RATIO (0.9929)
+#define TM_BLT_MF_NO_TARE_SHUNT_BIT (0x01)
+#define TM_BLT_MF_NO_LS_BITS_BIT (0x02)
+#define TM_BLT_MF_LOP_3_BITS_BIT (0x04)
+#define TM_BLT_MF_20KHZ_FILTER_BIT (0x08)
+#define TM_BLT_MF_DISABLE_BUTTON_BIT (0x10)
+#define TM_BLT_MF_RF_FILTER_BIT (0x20)
+#define TM_BLT_MF_OLD_RF_HW_BIT (0x40)
+#define TM_BLT_ROTOR_BRIDGE (1000 * OHM)
+#define TM_BLTAC_SHUNT_UVPV (TM_BLT_ROTOR_BRIDGE / (UVPV * (4.0 *\
+         TM_BLT_SHUNT_OHMS + 2.0 * TM_BLT_ROTOR_BRIDGE)))
+#define TM_BLTAC_SHUNT_A2D (TM_BLTAC_SHUNT_UVPV * TM_BLTAC_A2D_PER_UVPV)
+#define TM_BLTDC_SHUNT_UVPV (TM_BLT_ROTOR_BRIDGE / (UVPV * (4.0 *\
+         TM_BLT_SHUNT_OHMS + 2.0 * TM_BLT_ROTOR_BRIDGE)))
+#define TM_BLTDC_SHUNT_A2D (TM_BLTDC_SHUNT_UVPV * TM_BLTDC_A2D_PER_UVPV)
+#define TM_CDTM_CLOCK_Hz (60.0 * MEGA * Hz)
+#define TM_CDTM_COUNT_AT_FS (15000.0 * ENGCNT)
+#define TM_CDTM_P0_PER_COUNT (0x10000 * P0CNT / ENGCNT)
+#define TM_CDTM_NOMINAL_Hz_AT_ZERO (8.3 * KILO * Hz)
+#define TM_CDTM_NOMINAL_FS_SPAN_Hz (3.5 * KILO * Hz)
+#define TM_CDTM_MIN_Hz (2.0 * KILO * Hz)
+#define LX_CDTM_2R (10.0 * KILO * OHM)
+#define LX_CDTM_5R (10.0 * KILO * OHM)
+#define LX_CDTM_8R (100.0 * KILO * OHM)
+#define LX_CDTM_7R (499.0 * OHM)
+#define LX_CDTM_7C (1.5 * NANO * FARAD)
+#define LX_CDTM_8C (1.5 * NANO * FARAD)
+#define LX_CDTM_2V (2.5 * VOLT)
+#define LX_CDTM_GAINA (LX_CDTM_8R / LX_CDTM_7R)
+#define LX_CDTM_GAINB (LX_CDTM_2R / (LX_CDTM_2R + LX_CDTM_5R))
+#define LX_CDTM_CT (LX_CDTM_7C + LX_CDTM_8C)
+#define LX_CDTM_RZ (1.0 / (1.0 / LX_CDTM_2R + 1.0 / LX_CDTM_5R))
+#define LX_CDTM_FOUT_PER_VIN (0.1 / (LX_CDTM_2R * LX_CDTM_CT))
+#define LX_CDTM_FOUT_PER_VINZ (0.1 / (LX_CDTM_RZ * LX_CDTM_CT))
+#define LX_CDTM_V_OFFSET (LX_CDTM_2V * LX_CDTM_GAINB)
+#define TM_CDTM_GAIN (LX_CDTM_GAINA * LX_CDTM_GAINB)
+#define TM_CDTM_X (TM_CDTM_GAIN * LX_CDTM_FOUT_PER_VINZ)
+#define TM_CDTM_Hz_PER_UVPV (LX_CDTM_2V * TM_CDTM_X * UVPV)
+#define TM_CDTM_NOMINAL_Hz_AT_0X (LX_CDTM_V_OFFSET * LX_CDTM_FOUT_PER_VINZ)
+#define TM_CDTM_P0_AT_FS (TM_CDTM_COUNT_AT_FS * TM_CDTM_P0_PER_COUNT)
+#define TM_CDTM_FS_UVPV (TM_CDTM_NOMINAL_FS_SPAN_Hz / TM_CDTM_Hz_PER_UVPV)
+#define TM_CDTM_NOISE_MIN_OLD (0.2)
+#define TM_CDTM_NOISE_MAX_OLD (2.0)
+#define TM_CDTM_NOISE_MIN (0.2)
+#define TM_CDTM_NOISE_MAX (2.0)
+#define TM_CDTM_SP_DELIM "\t"
+#define TM_PDTM_ANAOUT_NUMBER 3
+#define TM_PDTM_CHANNEL_NUMBER 4
+#define TM_PDTM_FILTER_MAX 10
+#define TM_PDTM_NOISE_MIN 7
+#define TM_PDTM_NOISE_MAX 25
+#define TM_PDTM_A2D_FS 5000
+#define TM_PDTM_A2D_CAP (0x2000 * A2DCNT)
+#define TM_PDTM_MULT 2
+#define TM_PDTM_COUNT_PER_A2D 4
+#define TM_PDTM_COUNT_AT_FS (TM_PDTM_A2D_FS * TM_PDTM_COUNT_PER_A2D)
+#define TM_PDTM_TC_PER_DEGC (16 / DEGC)
+#define TM_PDTM_GAIN_VALUES (0x1000)
+#define TM_PDTM_CLOCK_Hz (8.0 * MEGA * Hz)
+#define TM_PDTM_SEC_PER_ZRVALUE (0x8000 / TM_PDTM_CLOCK_Hz)
+#define LX_PDTM_22R (6.65 * KILO * OHM)
+#define LX_PDTM_23R (30.1 * KILO * OHM)
+#define LX_PDTM_18R (49.9 * KILO * OHM)
+#define LX_PDTM_19R (10.0 * KILO * OHM)
+#define LX_PDTM_10R (49.9 * KILO * OHM)
+#define LX_PDTM_11R (30.1 * KILO * OHM)
+#define LX_PDTM_GAIN_HWA (LX_PDTM_23R / LX_PDTM_22R)
+#define LX_PDTM_GAIN_HWB (LX_PDTM_18R / LX_PDTM_19R + 1.0)
+#define LX_PDTM_GAIN_HWC (2.0 * TWOSQRT / PI)
+#define LX_PDTM_GAIN_HWD (LX_PDTM_10R / LX_PDTM_11R + 1.0)
+#define TM_PDTM_GAIN_HW (LX_PDTM_GAIN_HWA * LX_PDTM_GAIN_HWB *\
+         LX_PDTM_GAIN_HWC * LX_PDTM_GAIN_HWD)
+#define TM_PDTM_GAIN_PER_GAIN (TM_PDTM_GAIN_HW / TM_PDTM_GAIN_VALUES)
+#define TM_PDTM_COUNT_PER_GAIN_UVPV (UVPV * TM_PDTM_A2D_CAP *\
+         TM_PDTM_COUNT_PER_A2D * TM_PDTM_GAIN_PER_GAIN)
+#define TM_PDTM_P0_AT_FS (TM_PDTM_A2D_CAP * TM_PDTM_COUNT_PER_A2D *\
+         TM_PDTM_COUNT_AT_FS)
+#define TM_PDTM_GAIN_MVPVATFS (35340.0)
+#define TM_S700_NUMBER_CHANNELS 3
+#define TM_S700_FILTER_MAX 10
+#define TM_S700_COUNT_AT_FS (10000.0 * ENGCNT)
+#define TM_S700_P0_PER_COUNT (0x10000 * P0CNT / ENGCNT)
+#define TM_S700_P0_AT_FS (TM_S700_P0_PER_COUNT * TM_S700_COUNT_AT_FS)
+#define TM_S700P_FILTER_MAX 10
+#define TM_S700P_A2D_CAP (0x800000 * A2DCNT)
+#define TM_S700P_A2D_AT_FS (4.0 * MEGA * A2DCNT)
+#define TM_S700P_COUNT_AT_FS (655360000.0 * ENGCNT)
+#define TM_S700P_P0_PER_COUNT (1.0 * P0CNT / ENGCNT)
+#define TM_S700P_P0_AT_FS (TM_S700P_P0_PER_COUNT * TM_S700P_COUNT_AT_FS)
+#define TM_NGRTM_CLOCK_Hz (16.0 * MEGA * Hz)
+#define TM_NGRTM_A2D_CAP (0x800000 * A2DCNT)
+#define TM_NGRTM_P0_AT_FS (163840000.0 * P0CNT)
+#define TM_NGRTM_CAMELD (0x4000)
+#define TM_NGRTM_CAMELA (1.0 * 0x4000 * 0x100000 * P0CNT / DACCNT)
+#define TM_NGRTM_DACFS_PER_CDE (TM_NGRTM_P0_AT_FS / TM_NGRTM_CAMELA)
+#define TM_NGRTM_FSV_PER_CDE (TM_NGRTM_DACFS_PER_CDE / TM_DAOV_DAC_PER_V)
+#define TM_NGRTM_SCALE (TM_NGRTM_DACFS_PER_CDE * TM_NGRTM_CAMELD)
+#define TM_NGRTM_A2DFS_AT_1GAIN (TM_NGRTM_P0_AT_FS * 0x10000)
+#define LX_NGRTM_30R (10.0 * KILO * OHM)
+#define LX_NGRTM_28R (130.0 * OHM)
+#define TM_NGRTM_GAIN (2.0 * LX_NGRTM_30R / LX_NGRTM_28R + 1.0)
+#define TM_NGRTM_A2D_PER_UVPV (TM_NGRTM_A2D_CAP * TM_NGRTM_GAIN * UVPV)
+#define TM_NGRTM_NOISE_MIN (0.5)
+#define TM_NGRTM_NOISE_MAX (1.0)
+#define TM_AD22103_VREF (3.3 * VOLT)
+#define TM_AD22103_V_PER_DEGC (0.028 * VOLT / DEGC)
+#define TM_AD22103_V_AT_0DEGC (0.25 * VOLT)
+#define TM_NGRTM_TEMPA2D_CAP (0x8000 * A2DCNT)
+#define TM_NGRTM_TEMPP0_PER_A2D (0x10000 * P0CNT / A2DCNT)
+#define TM_NGRTM_DEGC_OFFSET (TM_AD22103_V_AT_0DEGC / TM_AD22103_V_PER_DEGC)
+#define TM_NGRTM_TEMPP0_PER_DEGC (TM_NGRTM_TEMPA2D_CAP *\
+         TM_AD22103_V_PER_DEGC * TM_NGRTM_TEMPP0_PER_A2D / TM_AD22103_VREF)
+#define TM_NGRTM_TEMPP0_PER_DEGF (DEGF * TM_NGRTM_TEMPP0_PER_DEGC / DEGC)
+#define TM_NGRTM_TEMPP0_UVPV_PER_DEGF (TM_NGRTM_TEMPP0_PER_DEGF /\
+         (TM_NGRTM_A2D_PER_UVPV * TM_NGRTM_TEMPP0_PER_A2D * 0x1000))
+#define TM_BLTDC_FILTER_Hz (20.0 * KILO * Hz)
+#define TM_BLTAC_FILTER_Hz (20.0 * KILO * Hz)
+#define TM_CDTM_FILTER_Hz (10.0 * KILO * Hz)
+#define TM_NGT_FILTER_Hz (7.8125 * KILO * Hz)
+#define TM_NGRTM_FILTER_Hz (7.8125 * KILO * Hz)
+#define TM_S700P_FILTER_Hz (7.8125 * KILO * Hz)
+#define TM_PDTM_FILTER_Hz (2.0 * KILO * Hz)
+#define TM_S700_FILTER_Hz (2.0 * KILO * Hz)
+#define TM_BLTDC_UVPV_PER_A2D (1.0 / TM_BLTDC_A2D_PER_UVPV)
+#define TM_BLTAC_UVPV_PER_A2D (1.0 / TM_BLTAC_A2D_PER_UVPV)
+#define TM_CDTM_UVPV_PER_Hz (1.0 / TM_CDTM_Hz_PER_UVPV)
+#define TM_NGRTM_UVPV_PER_A2D (1.0 / TM_NGRTM_A2D_PER_UVPV)
+#define TM_NGT_UVPV_PER_A2D (1.0 / TM_NGT_A2D_PER_UVPV)
+#define TM_PDTM_GAIN_UVPV_PER_COUNT (1.0 / TM_PDTM_COUNT_PER_GAIN_UVPV)
+#define TM_BLTDC_UVPV_IF_A2DMAX (1.0 / (UVPV * TM_BLTDC_GAIN))
+#define TM_BLTAC_UVPV_IF_A2DMAX (1.0 / (UVPV * TM_BLTAC_GAIN))
+#define TM_NGT_UVPV_IF_A2DMAX (1.0 / (UVPV * TM_NGT_GAIN))
+#define TM_NGRTM_UVPV_IF_A2DMAX (1.0 / (UVPV * TM_NGRTM_GAIN))
+//  CCCCCCCCCCX_FUNC_PROTO ######################################### LANG_C #
+double cxA2DCNT(void);
+double cxP0CNT(void);
+double cxENGCNT(void);
+double cxDACCNT(void);
+const char * cxTM_LIST_SEPARATOR(void);
+const char * cxTM_PDTM_MIN_VERSION(void);
+const char * cxTM_REG_KEY(void);
+const char * cxTM_BLT_REGKEY(void);
+const char * cxTM_CDTM_REGKEY(void);
+const char * cxTM_DPT_REGKEY(void);
+const char * cxTM_NGRTM_REGKEY(void);
+const char * cxTM_NGT_REGKEY(void);
+const char * cxTM_PDTM_REGKEY(void);
+const char * cxTM_S700_REGKEY(void);
+const char * cxTM_S700P_REGKEY(void);
+const char * cxTM_BLT_REGEX(void);
+const char * cxTM_CDTM_REGEX(void);
+const char * cxTM_NGRTM_REGEX(void);
+const char * cxTM_NGT_REGEX(void);
+const char * cxTM_PDTM_REGEX(void);
+const char * cxTM_S700_REGEX(void);
+const char * cxTM_S700P_REGEX(void);
+double cxTM_TEST_TIME_SEC(void);
+double cxTM_DAOV_CAP(void);
+double cxTM_DAOV_VREF(void);
+double cxLX_DAOV_RPRE(void);
+double cxLX_DAOV_2R(void);
+double cxLX_DAOV_RGND(void);
+double cxTM_DAOV_GAIN(void);
+double cxTM_DAOV_DAC_PER_V(void);
+double cxTM_DAOV_V_IF_DACMIN(void);
+double cxTM_DAOV_DAC_IF_0V(void);
+double cxTM_DAOV_DAC_MAX(void);
+double cxTM_DAOV_DAC_MIN(void);
+double cxTM_DAOV_V_IF_DACMAX(void);
+double cxTM_DAOV_DAC_IF_P10V(void);
+double cxTM_DAOV_DAC_IF_M10V(void);
+double cxTM_DAOI_GZ_MAGIC(void);
+double cxLX_DAOI_1R(void);
+double cxLX_DAOI_2R(void);
+double cxLX_DAOI_3R(void);
+double cxLX_DAOI_4R(void);
+double cxTM_DAOI_mA_AT_0V(void);
+double cxTM_DAOI_mA_PER_V(void);
+double cxTM_DAOI_mA_GAIN(void);
+double cxTM_DAOI_mA_IF_0V(void);
+double cxTM_DAOI_DAC_PER_mA(void);
+double cxTM_DAOI_DAC_IF_00mA(void);
+double cxTM_DAOI_DAC_IF_04mA(void);
+double cxTM_DAOI_DAC_IF_12mA(void);
+double cxTM_DAOI_DAC_IF_20mA(void);
+double cxTM_DAOI_mA_IF_DACMIN(void);
+double cxTM_DAOI_mA_IF_DACMAX(void);
+double cxTM_NGT_COUNT_AT_FS(void);
+double cxTM_NGT_P0_PER_COUNT(void);
+double cxTM_NGT_P0_AT_FS(void);
+double cxTM_NGT_P0_MAX(void);
+double cxTM_NGT_AO_MULT(void);
+double cxTM_NGT_AO_SHFT(void);
+double cxTM_NGT_A2D_CAP(void);
+double cxTM_NGT_IA_INPUT_MAX(void);
+double cxTM_NGT_CLOCK_Hz(void);
+double cxTM_NGT_ROTOR_CLOCK_Hz(void);
+double cxTM_NGT_NOISE_MAX(void);
+double cxTM_NGT_NOISE_MIN(void);
+double cxLX_NGT_3R(void);
+double cxLX_NGT_7R(void);
+double cxTM_NGT_GAIN(void);
+double cxTM_NGT_A2D_PER_UVPV(void);
+double cxLX_NGT_ROTOR_BRIDGE(void);
+double cxLX_NGT_SHUNT_OHMS(void);
+double cxTM_NGT_SHUNT_UVPV(void);
+double cxTM_NGT_SHUNT_A2D(void);
+double cxLX_NGT00_ROTOR_BRIDGE(void);
+double cxLX_NGT00_SHUNT_OHMS(void);
+double cxTM_NGT00_SHUNT_UVPV(void);
+double cxTM_NGT00_SHUNT_A2D(void);
+double cxTM_NGT_MSP430_URV_A2D_FS_COUNT(void);
+double cxLX_NGT_MSP430_URV_A2D_FS_V(void);
+double cxLX_NGT_MSP430_URV_A2D_0_V(void);
+double cxTM_NGT_MSP430_URV_A2D_PER_V(void);
+double cxLX_NGT_URV_ROTOR_R_PLUS(void);
+double cxLX_NGT_URV_ROTOR_R_GND(void);
+double cxLX_NGT_URV_GAIN(void);
+double cxTM_NGT_URV_A2D_PER_V(void);
+double cxTM_BLT_A2D_CAP(void);
+double cxTM_BLTDC_NOISE_MIN(void);
+double cxTM_BLTDC_NOISE_MAX(void);
+double cxTM_BLT_COUNT_AT_FS(void);
+double cxTM_BLT_P0_PER_COUNT(void);
+double cxTM_BLT_P0_AT_FS(void);
+double cxTM_BLT_DIODE_VOLTAGE_DROP(void);
+double cxLX_BLTDC_ROTOR_24R(void);
+double cxLX_BLTDC_ROTOR_25R(void);
+double cxLX_BLTDC_ROTOR_26R(void);
+double cxLX_BLTDC_ROTOR_27R(void);
+double cxTM_BLTDC_GAIN(void);
+double cxTM_BLTDC_A2D_PER_UVPV(void);
+double cxLX_BLTAC_ROTOR_14R(void);
+double cxLX_BLTAC_ROTOR_13R(void);
+double cxTM_BLTAC_GAIN(void);
+double cxTM_BLTAC_A2D_PER_UVPV(void);
+double cxTM_BLTAC_NOISE_MIN(void);
+double cxTM_BLTAC_NOISE_MAX(void);
+double cxTM_BLT_CLOCK_Hz(void);
+double cxTM_BLT_ROTOR_CLOCK_Hz(void);
+double cxTM_BLT_SHUNT_OHMS(void);
+double cxTM_BLT_ACDC_RATIO(void);
+double cxTM_BLT_MF_NO_TARE_SHUNT_BIT(void);
+double cxTM_BLT_MF_NO_LS_BITS_BIT(void);
+double cxTM_BLT_MF_LOP_3_BITS_BIT(void);
+double cxTM_BLT_MF_20KHZ_FILTER_BIT(void);
+double cxTM_BLT_MF_DISABLE_BUTTON_BIT(void);
+double cxTM_BLT_MF_RF_FILTER_BIT(void);
+double cxTM_BLT_MF_OLD_RF_HW_BIT(void);
+double cxTM_BLT_ROTOR_BRIDGE(void);
+double cxTM_BLTAC_SHUNT_UVPV(void);
+double cxTM_BLTAC_SHUNT_A2D(void);
+double cxTM_BLTDC_SHUNT_UVPV(void);
+double cxTM_BLTDC_SHUNT_A2D(void);
+double cxTM_CDTM_CLOCK_Hz(void);
+double cxTM_CDTM_COUNT_AT_FS(void);
+double cxTM_CDTM_P0_PER_COUNT(void);
+double cxTM_CDTM_NOMINAL_Hz_AT_ZERO(void);
+double cxTM_CDTM_NOMINAL_FS_SPAN_Hz(void);
+double cxTM_CDTM_MIN_Hz(void);
+double cxLX_CDTM_2R(void);
+double cxLX_CDTM_5R(void);
+double cxLX_CDTM_8R(void);
+double cxLX_CDTM_7R(void);
+double cxLX_CDTM_7C(void);
+double cxLX_CDTM_8C(void);
+double cxLX_CDTM_2V(void);
+double cxLX_CDTM_GAINA(void);
+double cxLX_CDTM_GAINB(void);
+double cxLX_CDTM_CT(void);
+double cxLX_CDTM_RZ(void);
+double cxLX_CDTM_FOUT_PER_VIN(void);
+double cxLX_CDTM_FOUT_PER_VINZ(void);
+double cxLX_CDTM_V_OFFSET(void);
+double cxTM_CDTM_GAIN(void);
+double cxTM_CDTM_X(void);
+double cxTM_CDTM_Hz_PER_UVPV(void);
+double cxTM_CDTM_NOMINAL_Hz_AT_0X(void);
+double cxTM_CDTM_P0_AT_FS(void);
+double cxTM_CDTM_FS_UVPV(void);
+double cxTM_CDTM_NOISE_MIN_OLD(void);
+double cxTM_CDTM_NOISE_MAX_OLD(void);
+double cxTM_CDTM_NOISE_MIN(void);
+double cxTM_CDTM_NOISE_MAX(void);
+const char * cxTM_CDTM_SP_DELIM(void);
+double cxTM_PDTM_ANAOUT_NUMBER(void);
+double cxTM_PDTM_CHANNEL_NUMBER(void);
+double cxTM_PDTM_FILTER_MAX(void);
+double cxTM_PDTM_NOISE_MIN(void);
+double cxTM_PDTM_NOISE_MAX(void);
+double cxTM_PDTM_A2D_FS(void);
+double cxTM_PDTM_A2D_CAP(void);
+double cxTM_PDTM_MULT(void);
+double cxTM_PDTM_COUNT_PER_A2D(void);
+double cxTM_PDTM_COUNT_AT_FS(void);
+double cxTM_PDTM_TC_PER_DEGC(void);
+double cxTM_PDTM_GAIN_VALUES(void);
+double cxTM_PDTM_CLOCK_Hz(void);
+double cxTM_PDTM_SEC_PER_ZRVALUE(void);
+double cxLX_PDTM_22R(void);
+double cxLX_PDTM_23R(void);
+double cxLX_PDTM_18R(void);
+double cxLX_PDTM_19R(void);
+double cxLX_PDTM_10R(void);
+double cxLX_PDTM_11R(void);
+double cxLX_PDTM_GAIN_HWA(void);
+double cxLX_PDTM_GAIN_HWB(void);
+double cxLX_PDTM_GAIN_HWC(void);
+double cxLX_PDTM_GAIN_HWD(void);
+double cxTM_PDTM_GAIN_HW(void);
+double cxTM_PDTM_GAIN_PER_GAIN(void);
+double cxTM_PDTM_COUNT_PER_GAIN_UVPV(void);
+double cxTM_PDTM_P0_AT_FS(void);
+double cxTM_PDTM_GAIN_MVPVATFS(void);
+double cxTM_S700_NUMBER_CHANNELS(void);
+double cxTM_S700_FILTER_MAX(void);
+double cxTM_S700_COUNT_AT_FS(void);
+double cxTM_S700_P0_PER_COUNT(void);
+double cxTM_S700_P0_AT_FS(void);
+double cxTM_S700P_FILTER_MAX(void);
+double cxTM_S700P_A2D_CAP(void);
+double cxTM_S700P_A2D_AT_FS(void);
+double cxTM_S700P_COUNT_AT_FS(void);
+double cxTM_S700P_P0_PER_COUNT(void);
+double cxTM_S700P_P0_AT_FS(void);
+double cxTM_NGRTM_CLOCK_Hz(void);
+double cxTM_NGRTM_A2D_CAP(void);
+double cxTM_NGRTM_P0_AT_FS(void);
+double cxTM_NGRTM_CAMELD(void);
+double cxTM_NGRTM_CAMELA(void);
+double cxTM_NGRTM_DACFS_PER_CDE(void);
+double cxTM_NGRTM_FSV_PER_CDE(void);
+double cxTM_NGRTM_SCALE(void);
+double cxTM_NGRTM_A2DFS_AT_1GAIN(void);
+double cxLX_NGRTM_30R(void);
+double cxLX_NGRTM_28R(void);
+double cxTM_NGRTM_GAIN(void);
+double cxTM_NGRTM_A2D_PER_UVPV(void);
+double cxTM_NGRTM_NOISE_MIN(void);
+double cxTM_NGRTM_NOISE_MAX(void);
+double cxTM_AD22103_VREF(void);
+double cxTM_AD22103_V_PER_DEGC(void);
+double cxTM_AD22103_V_AT_0DEGC(void);
+double cxTM_NGRTM_TEMPA2D_CAP(void);
+double cxTM_NGRTM_TEMPP0_PER_A2D(void);
+double cxTM_NGRTM_DEGC_OFFSET(void);
+double cxTM_NGRTM_TEMPP0_PER_DEGC(void);
+double cxTM_NGRTM_TEMPP0_PER_DEGF(void);
+double cxTM_NGRTM_TEMPP0_UVPV_PER_DEGF(void);
+double cxTM_BLTDC_FILTER_Hz(void);
+double cxTM_BLTAC_FILTER_Hz(void);
+double cxTM_CDTM_FILTER_Hz(void);
+double cxTM_NGT_FILTER_Hz(void);
+double cxTM_NGRTM_FILTER_Hz(void);
+double cxTM_S700P_FILTER_Hz(void);
+double cxTM_PDTM_FILTER_Hz(void);
+double cxTM_S700_FILTER_Hz(void);
+double cxTM_BLTDC_UVPV_PER_A2D(void);
+double cxTM_BLTAC_UVPV_PER_A2D(void);
+double cxTM_CDTM_UVPV_PER_Hz(void);
+double cxTM_NGRTM_UVPV_PER_A2D(void);
+double cxTM_NGT_UVPV_PER_A2D(void);
+double cxTM_PDTM_GAIN_UVPV_PER_COUNT(void);
+double cxTM_BLTDC_UVPV_IF_A2DMAX(void);
+double cxTM_BLTAC_UVPV_IF_A2DMAX(void);
+double cxTM_NGT_UVPV_IF_A2DMAX(void);
+double cxTM_NGRTM_UVPV_IF_A2DMAX(void);
+//  FFFFFFFFFFUNC_PROTOTYPE ######################################## LANG_C #
+double timee(void);
+double tmc_cdtm_uVpV_to_rotor_freq(double uvpv_data);
+double tmc_cdtm_rotor_freq_to_uVpV(double rf_data);
+double tmc_dao_V_to_DAC(double volt_data);
+double tmc_dao_DAC_to_V(double dac_data);
+double tmc_dao_deltaV_to_DAC(double volt_data);
+double tmc_shunt_value(double bridge_ohms
+      , double shunt_ohms);
+//  DDDDDDDDDDescription ############################# tm_const_description #
+#define Tm_Const_DESCRIPTION \
+   "   Tm_Const Constants: A2DCNT DACCNT ENGCNT LX_BLTAC_ROTOR_13R LX_BLTAC"\
+   "_ROTOR_14R LX_BLTDC_ROTOR_24R LX_BLTDC_ROTOR_25R LX_BLTDC_ROTOR_26R LX_"\
+   "BLTDC_ROTOR_27R LX_CDTM_2R LX_CDTM_2V LX_CDTM_5R LX_CDTM_7C LX_CDTM_7R "\
+   "LX_CDTM_8C LX_CDTM_8R LX_CDTM_CT LX_CDTM_FOUT_PER_VIN LX_CDTM_FOUT_PER_"\
+   "VINZ LX_CDTM_GAINA LX_CDTM_GAINB LX_CDTM_RZ LX_CDTM_V_OFFSET LX_DAOI_1R"\
+   " LX_DAOI_2R LX_DAOI_3R LX_DAOI_4R LX_DAOV_2R LX_DAOV_RGND LX_DAOV_RPRE "\
+   "LX_NGRTM_28R LX_NGRTM_30R LX_NGT00_ROTOR_BRIDGE LX_NGT00_SHUNT_OHMS LX_"\
+   "NGT_3R LX_NGT_7R LX_NGT_MSP430_URV_A2D_0_V LX_NGT_MSP430_URV_A2D_FS_V L"\
+   "X_NGT_ROTOR_BRIDGE LX_NGT_SHUNT_OHMS LX_NGT_URV_GAIN LX_NGT_URV_ROTOR_R"\
+   "_GND LX_NGT_URV_ROTOR_R_PLUS LX_PDTM_10R LX_PDTM_11R LX_PDTM_18R LX_PDT"\
+   "M_19R LX_PDTM_22R LX_PDTM_23R LX_PDTM_GAIN_HWA LX_PDTM_GAIN_HWB LX_PDTM"\
+   "_GAIN_HWC LX_PDTM_GAIN_HWD P0CNT TM_AD22103_V_AT_0DEGC TM_AD22103_V_PER"\
+   "_DEGC TM_AD22103_VREF TM_BLT_A2D_CAP TM_BLT_ACDC_RATIO TM_BLT_CLOCK_Hz "\
+   "TM_BLT_COUNT_AT_FS TM_BLT_DIODE_VOLTAGE_DROP TM_BLT_MF_20KHZ_FILTER_BIT"\
+   " TM_BLT_MF_DISABLE_BUTTON_BIT TM_BLT_MF_LOP_3_BITS_BIT TM_BLT_MF_NO_LS_"\
+   "BITS_BIT TM_BLT_MF_NO_TARE_SHUNT_BIT TM_BLT_MF_OLD_RF_HW_BIT TM_BLT_MF_"\
+   "RF_FILTER_BIT TM_BLT_P0_AT_FS TM_BLT_P0_PER_COUNT TM_BLT_REGEX TM_BLT_R"\
+   "EGKEY TM_BLT_ROTOR_BRIDGE TM_BLT_ROTOR_CLOCK_Hz TM_BLT_SHUNT_OHMS TM_BL"\
+   "TAC_A2D_PER_UVPV TM_BLTAC_FILTER_Hz TM_BLTAC_GAIN TM_BLTAC_NOISE_MAX TM"\
+   "_BLTAC_NOISE_MIN TM_BLTAC_SHUNT_A2D TM_BLTAC_SHUNT_UVPV TM_BLTAC_UVPV_I"\
+   "F_A2DMAX TM_BLTAC_UVPV_PER_A2D TM_BLTDC_A2D_PER_UVPV TM_BLTDC_FILTER_Hz"\
+   " TM_BLTDC_GAIN TM_BLTDC_NOISE_MAX TM_BLTDC_NOISE_MIN TM_BLTDC_SHUNT_A2D"\
+   " TM_BLTDC_SHUNT_UVPV TM_BLTDC_UVPV_IF_A2DMAX TM_BLTDC_UVPV_PER_A2D TM_C"\
+   "DTM_CLOCK_Hz TM_CDTM_COUNT_AT_FS TM_CDTM_FILTER_Hz TM_CDTM_FS_UVPV TM_C"\
+   "DTM_GAIN TM_CDTM_Hz_PER_UVPV TM_CDTM_MIN_Hz TM_CDTM_NOISE_MAX TM_CDTM_N"\
+   "OISE_MAX_OLD TM_CDTM_NOISE_MIN TM_CDTM_NOISE_MIN_OLD TM_CDTM_NOMINAL_FS"\
+   "_SPAN_Hz TM_CDTM_NOMINAL_Hz_AT_0X TM_CDTM_NOMINAL_Hz_AT_ZERO TM_CDTM_P0"\
+   "_AT_FS TM_CDTM_P0_PER_COUNT TM_CDTM_REGEX TM_CDTM_REGKEY TM_CDTM_SP_DEL"\
+   "IM TM_CDTM_UVPV_PER_Hz TM_CDTM_X TM_DAOI_DAC_IF_00mA TM_DAOI_DAC_IF_04m"\
+   "A TM_DAOI_DAC_IF_12mA TM_DAOI_DAC_IF_20mA TM_DAOI_DAC_PER_mA TM_DAOI_GZ"\
+   "_MAGIC TM_DAOI_mA_AT_0V TM_DAOI_mA_GAIN TM_DAOI_mA_IF_0V TM_DAOI_mA_IF_"\
+   "DACMAX TM_DAOI_mA_IF_DACMIN TM_DAOI_mA_PER_V TM_DAOV_CAP TM_DAOV_DAC_IF"\
+   "_0V TM_DAOV_DAC_IF_M10V TM_DAOV_DAC_IF_P10V TM_DAOV_DAC_MAX TM_DAOV_DAC"\
+   "_MIN TM_DAOV_DAC_PER_V TM_DAOV_GAIN TM_DAOV_V_IF_DACMAX TM_DAOV_V_IF_DA"\
+   "CMIN TM_DAOV_VREF TM_DPT_REGKEY TM_LIST_SEPARATOR TM_NGRTM_A2D_CAP TM_N"\
+   "GRTM_A2D_PER_UVPV TM_NGRTM_A2DFS_AT_1GAIN TM_NGRTM_CAMELA TM_NGRTM_CAME"\
+   "LD TM_NGRTM_CLOCK_Hz TM_NGRTM_DACFS_PER_CDE TM_NGRTM_DEGC_OFFSET TM_NGR"\
+   "TM_FILTER_Hz TM_NGRTM_FSV_PER_CDE TM_NGRTM_GAIN TM_NGRTM_NOISE_MAX TM_N"\
+   "GRTM_NOISE_MIN TM_NGRTM_P0_AT_FS TM_NGRTM_REGEX TM_NGRTM_REGKEY TM_NGRT"\
+   "M_SCALE TM_NGRTM_TEMPA2D_CAP TM_NGRTM_TEMPP0_PER_A2D TM_NGRTM_TEMPP0_PE"\
+   "R_DEGC TM_NGRTM_TEMPP0_PER_DEGF TM_NGRTM_TEMPP0_UVPV_PER_DEGF TM_NGRTM_"\
+   "UVPV_IF_A2DMAX TM_NGRTM_UVPV_PER_A2D TM_NGT00_SHUNT_A2D TM_NGT00_SHUNT_"\
+   "UVPV TM_NGT_A2D_CAP TM_NGT_A2D_PER_UVPV TM_NGT_AO_MULT TM_NGT_AO_SHFT T"\
+   "M_NGT_CLOCK_Hz TM_NGT_COUNT_AT_FS TM_NGT_FILTER_Hz TM_NGT_GAIN TM_NGT_I"\
+   "A_INPUT_MAX TM_NGT_MSP430_URV_A2D_FS_COUNT TM_NGT_MSP430_URV_A2D_PER_V "\
+   "TM_NGT_NOISE_MAX TM_NGT_NOISE_MIN TM_NGT_P0_AT_FS TM_NGT_P0_MAX TM_NGT_"\
+   "P0_PER_COUNT TM_NGT_REGEX TM_NGT_REGKEY TM_NGT_ROTOR_CLOCK_Hz TM_NGT_SH"\
+   "UNT_A2D TM_NGT_SHUNT_UVPV TM_NGT_URV_A2D_PER_V TM_NGT_UVPV_IF_A2DMAX TM"\
+   "_NGT_UVPV_PER_A2D TM_PDTM_A2D_CAP TM_PDTM_A2D_FS TM_PDTM_ANAOUT_NUMBER "\
+   "TM_PDTM_CHANNEL_NUMBER TM_PDTM_CLOCK_Hz TM_PDTM_COUNT_AT_FS TM_PDTM_COU"\
+   "NT_PER_A2D TM_PDTM_COUNT_PER_GAIN_UVPV TM_PDTM_FILTER_Hz TM_PDTM_FILTER"\
+   "_MAX TM_PDTM_GAIN_HW TM_PDTM_GAIN_MVPVATFS TM_PDTM_GAIN_PER_GAIN TM_PDT"\
+   "M_GAIN_UVPV_PER_COUNT TM_PDTM_GAIN_VALUES TM_PDTM_MIN_VERSION TM_PDTM_M"\
+   "ULT TM_PDTM_NOISE_MAX TM_PDTM_NOISE_MIN TM_PDTM_P0_AT_FS TM_PDTM_REGEX "\
+   "TM_PDTM_REGKEY TM_PDTM_SEC_PER_ZRVALUE TM_PDTM_TC_PER_DEGC TM_REG_KEY T"\
+   "M_S700_COUNT_AT_FS TM_S700_FILTER_Hz TM_S700_FILTER_MAX TM_S700_NUMBER_"\
+   "CHANNELS TM_S700_P0_AT_FS TM_S700_P0_PER_COUNT TM_S700_REGEX TM_S700_RE"\
+   "GKEY TM_S700P_A2D_AT_FS TM_S700P_A2D_CAP TM_S700P_COUNT_AT_FS TM_S700P_"\
+   "FILTER_Hz TM_S700P_FILTER_MAX TM_S700P_P0_AT_FS TM_S700P_P0_PER_COUNT T"\
+   "M_S700P_REGEX TM_S700P_REGKEY TM_TEST_TIME_SEC"\
+   "\n"\
+   "   Tm_Const 1-ary Functions: tmc_cdtm_rotor_freq_to_uVpV tmc_cdtm_uVpV_"\
+   "to_rotor_freq tmc_dao_DAC_to_V tmc_dao_deltaV_to_DAC tmc_dao_V_to_DAC"\
+   "\n"\
+   "   Tm_Const 2-ary Functions: tmc_shunt_value"\
+   "\n"
+#define Tm_Const_DESC \
+   "   Tm_Const Constants: A2DCNT DACCNT ENGCNT LX_(BLT(AC_ROTOR_1(3R|4R)|D"\
+   "C_ROTOR_2(4R|5R|6R|7R))|CDTM_(2[RV]|5R|7[CR]|8[CR]|CT|FOUT_PER_VINZ?|GA"\
+   "IN[AB]|RZ|V_OFFSET)|DAO(I_(1R|2R|3R|4R)|V_(2R|R(GND|PRE)))|NG(RTM_(28R|"\
+   "30R)|T(00_(ROTOR_BRIDGE|SHUNT_OHMS)|_(3R|7R|MSP430_URV_A2D_(0_V|FS_V)|R"\
+   "OTOR_BRIDGE|SHUNT_OHMS|URV_(GAIN|ROTOR_R_(GND|PLUS)))))|PDTM_(1(0R|1R|8"\
+   "R|9R)|2(2R|3R)|GAIN_HW([AB]|[CD]))) P0CNT TM_(AD22103_V(_(AT_0DEGC|PER_"\
+   "DEGC)|REF)|BLT(_(A(2D_CAP|CDC_RATIO)|C(LOCK_Hz|OUNT_AT_FS)|DIODE_VOLTAG"\
+   "E_DROP|MF_(20KHZ_FILTER_BIT|DISABLE_BUTTON_BIT|LOP_3_BITS_BIT|NO_(LS_BI"\
+   "TS_BIT|TARE_SHUNT_BIT)|OLD_RF_HW_BIT|RF_FILTER_BIT)|P0_(AT_FS|PER_COUNT"\
+   ")|R(EG(EX|KEY)|OTOR_(BRIDGE|CLOCK_Hz))|SHUNT_OHMS)|AC_(A2D_PER_UVPV|FIL"\
+   "TER_Hz|GAIN|NOISE_M(AX|IN)|SHUNT_(A2D|UVPV)|UVPV_(IF_A2DMAX|PER_A2D))|D"\
+   "C_(A2D_PER_UVPV|FILTER_Hz|GAIN|NOISE_M(AX|IN)|SHUNT_(A2D|UVPV)|UVPV_(IF"\
+   "_A2DMAX|PER_A2D)))|CDTM_(C(LOCK_Hz|OUNT_AT_FS)|F(ILTER_Hz|S_UVPV)|GAIN|"\
+   "Hz_PER_UVPV|MIN_Hz|NO(ISE_M(AX(_OLD)?|IN(_OLD)?)|MINAL_(FS_SPAN_Hz|Hz_A"\
+   "T_0X|Hz_AT_ZERO))|P0_(AT_FS|PER_COUNT)|REG(EX|KEY)|SP_DELIM|UVPV_PER_Hz"\
+   "|X)|D(AO(I_(DAC_(IF_(0(0mA|4mA)|(12mA|20mA))|PER_mA)|GZ_MAGIC|mA_(AT_0V"\
+   "|GAIN|IF_(0V|DACM(AX|IN))|PER_V))|V_(CAP|DAC_(IF_(0|M10|P10)V|M(AX|IN)|"\
+   "PER_V)|GAIN|V(_IF_DACM(AX|IN)|REF)))|PT_REGKEY)|LIST_SEPARATOR|NG(RTM_("\
+   "A2D(_(CAP|PER_UVPV)|FS_AT_1GAIN)|C(AMEL[AD]|LOCK_Hz)|D(ACFS_PER_CDE|EGC"\
+   "_OFFSET)|F(ILTER_Hz|SV_PER_CDE)|GAIN|NOISE_M(AX|IN)|P0_AT_FS|REG(EX|KEY"\
+   ")|SCALE|TEMP(A2D_CAP|P0_(PER_(A2D|DEGC|DEGF)|UVPV_PER_DEGF))|UVPV_(IF_A"\
+   "2DMAX|PER_A2D))|T(00_SHUNT_(A2D|UVPV)|_(A(2D_(CAP|PER_UVPV)|O_(MULT|SHF"\
+   "T))|C(LOCK_Hz|OUNT_AT_FS)|FILTER_Hz|GAIN|IA_INPUT_MAX|MSP430_URV_A2D_(F"\
+   "S_COUNT|PER_V)|NOISE_M(AX|IN)|P0_(AT_FS|MAX|PER_COUNT)|R(EG(EX|KEY)|OTO"\
+   "R_CLOCK_Hz)|SHUNT_(A2D|UVPV)|U(RV_A2D_PER_V|VPV_(IF_A2DMAX|PER_A2D)))))"\
+   "|PDTM_(A(2D_(CAP|FS)|NAOUT_NUMBER)|C(HANNEL_NUMBER|LOCK_Hz|OUNT_(AT_FS|"\
+   "PER_(A2D|GAIN_UVPV)))|FILTER_(Hz|MAX)|GAIN_(HW|MVPVATFS|PER_GAIN|UVPV_P"\
+   "ER_COUNT|VALUES)|M(IN_VERSION|ULT)|NOISE_M(AX|IN)|P0_AT_FS|REG(EX|KEY)|"\
+   "SEC_PER_ZRVALUE|TC_PER_DEGC)|REG_KEY|S700(_(COUNT_AT_FS|FILTER_(Hz|MAX)"\
+   "|NUMBER_CHANNELS|P0_(AT_FS|PER_COUNT)|REG(EX|KEY))|P_(A2D_(AT_FS|CAP)|C"\
+   "OUNT_AT_FS|FILTER_(Hz|MAX)|P0_(AT_FS|PER_COUNT)|REG(EX|KEY)))|TEST_TIME"\
+   "_SEC)"\
+   "\n"\
+   "   Tm_Const 1-ary Functions: tmc_(cdtm_(rotor_freq_to_uVpV|uVpV_to_roto"\
+   "r_freq)|dao_(DAC_to_V|deltaV_to_DAC|V_to_DAC))"\
+   "\n"\
+   "   Tm_Const 2-ary Functions: tmc_shunt_value"\
+   "\n"
+#endif // #ifndef INCLUDED_Tm_Const_h

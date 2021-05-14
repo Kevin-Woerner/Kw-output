@@ -1,12 +1,213 @@
 #    Copyright (C) 2021 by Kevin D. Woerner
-# 2021-01-06 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
+# 2021-05-14 kdw  Created by TMPDIR/objkdw/Tm_Const.fwipp.d
+# 2021-05-14 kdw  mean:ghmean1inv init function work
+##-# =KDW= ################# BUILDER $KWROOT/0lib/vkkcp.sh ##################
+##-# =KDW= ############# SOURCE $KWROOT/codekdw/kw-lib/Kw.fwipp #############
+##-# =KDW= #### THIS FILE CAN BE OVERWRITTEN BY KEVIN D. WOERNER OR HIS #####
+##-# =KDW= ############ MINIONS AT *ANY* TIME. Caveat utilitor. #############
+# 2021-05-14 kdw  elliptic:var renam;[scd]n func rework
+# 2021-05-14 kdw  Created by TMPDIR/objkdw/Tm_Const.fwipp.d
+# 2021-05-12 kdw  gamma:comments; more betainc work
+# 2021-05-12 kdw  elliptic:minor var rename
+# 2021-05-12 kdw  bits:BC:attempt to remove recursion
+# 2021-05-11 kdw  number:recursion removal
+# 2021-05-11 kdw  gamma:comments; betainc work
+# 2021-05-11 kdw  elliptic:recursion work / calrification
+# 2021-05-11 kdw  Macros:secant loop simplified
+# 2021-05-10 kdw  constants:temp conversion work
+# 2021-05-10 kdw  Kw:temp conversion work
+# 2021-04-25 kdw  Kw:music cent funcs
+# 2021-04-21 kdw  number:var name change
+# 2021-04-20 kdw  sphere:var renam
+# 2021-04-20 kdw  round:var name change(mainly mm)
+# 2021-04-20 kdw  randdist:var name change(mainly mm)
+# 2021-04-20 kdw  print:print_array func
+# 2021-04-20 kdw  partition:var name change(mainly mm)
+# 2021-04-20 kdw  number:var name change(mainly mm)
+# 2021-04-20 kdw  julian:var name change(mainly mm)
+# 2021-04-20 kdw  gamma:var name change(mainly mm)
+# 2021-04-20 kdw  elliptic:var name change(mainly mm)
+# 2021-04-20 kdw  ellipse:semi-axis vars renamed
+# 2021-04-20 kdw  combin:var name change(mainly mm)
+# 2021-04-20 kdw  cdf:array size vars renam
+# 2021-04-20 kdw  bessel:var name change(mainly mm)
+# 2021-04-20 kdw  approx:var name change(mainly mm)
+# 2021-04-20 kdw  Kw:var name change(mainly mm)
+# 2021-04-15 kdw  trig:indent work
+# 2021-04-15 kdw  stts:indent work
+# 2021-04-15 kdw  stat:indent work
+# 2021-04-15 kdw  sphere:indent work
+# 2021-04-15 kdw  simple:indent work
+# 2021-04-15 kdw  random:indent work
+# 2021-04-15 kdw  randdist:indent work
+# 2021-04-15 kdw  print:indent work
+# 2021-04-15 kdw  number:indent work
+# 2021-04-15 kdw  mean:indent work
+# 2021-04-15 kdw  lambert:indent work
+# 2021-04-15 kdw  julian:indent work
+# 2021-04-15 kdw  hyper:indent work
+# 2021-04-15 kdw  gamma:indent work
+# 2021-04-15 kdw  fit:indent work
+# 2021-04-15 kdw  financial:indent work
+# 2021-04-15 kdw  erf:indent work
+# 2021-04-15 kdw  elliptic:indent work
+# 2021-04-15 kdw  constants:indent work
+# 2021-04-15 kdw  combin:indent work
+# 2021-04-15 kdw  cdf:indent work
+# 2021-04-15 kdw  bits:indent work
+# 2021-04-15 kdw  bessel:indent work
+# 2021-04-15 kdw  approx:indent work
+# 2021-04-15 kdw  Kw:indent work
+# 2021-04-14 kdw  constants:macro reformat
+# 2021-04-14 kdw  Macros:macro reformat
+# 2021-04-13 kdw  constants:uvpv defd
+# 2021-04-13 kdw  Kw:temp func work
+# 2021-04-12 kdw  constants:lbfin, ozfin, kgfm, et al.
+# 2021-04-11 kdw  trig:indent work
+# 2021-04-11 kdw  stts:indent work
+# 2021-04-11 kdw  random:indent work
+# 2021-04-11 kdw  mean:indent work
+# 2021-04-11 kdw  julian:indent work
+# 2021-04-11 kdw  is:indent work
+# 2021-04-11 kdw  fit:indent work
+# 2021-04-11 kdw  financial:indent work
+# 2021-04-11 kdw  erf:indent work
+# 2021-04-11 kdw  elliptic:indent work
+# 2021-04-11 kdw  constants:indent work
+# 2021-04-11 kdw  bessel:indent work
+# 2021-04-11 kdw  Kw:indent work
+# 2021-04-10 kdw  random:indent work
+# 2021-04-10 kdw  print:indent work
+# 2021-04-10 kdw  number:indent work
+# 2021-04-10 kdw  julian:indent work
+# 2021-04-10 kdw  gamma:indent work
+# 2021-04-10 kdw  combin:indent work
+# 2021-04-10 kdw  bits:indent work
+# 2021-04-09 kdw  trig:indent work
+# 2021-04-09 kdw  stts:indent work
+# 2021-04-09 kdw  stat:indent work
+# 2021-04-09 kdw  randdist:indent work
+# 2021-04-09 kdw  bits:indent work
+# 2021-04-09 kdw  bessel:indent work
+# 2021-04-08 kdw  randdist:comment changes
+# 2021-04-07 kdw  erf:long lines update II
+# 2021-04-06 kdw  sphere:indent work
+# 2021-04-06 kdw  fit:indent work
+# 2021-04-06 kdw  elliptic:indent work
+# 2021-04-06 kdw  approx:long lines
+# 2021-04-06 kdw  Kw:func sqr[t]xp1m1
+# 2021-04-04 kdw  Kw:time-[gv] mas[s]-v funcs
+# 2021-04-03 kdw  Kw:comment change
+# 2021-04-02 kdw  julian:comments changed
+# 2021-03-28 kdw  randdist:upped line length work
+# 2021-03-28 kdw  Kw:upped line length work
+# 2021-03-27 kdw  sphere:long lines update
+# 2021-03-27 kdw  random:long lines update
+# 2021-03-27 kdw  partition:long lines update
+# 2021-03-27 kdw  erf:long lines update
+# 2021-03-27 kdw  cdf:long lines update
+# 2021-03-25 kdw  number:upped line length
+# 2021-03-25 kdw  julian:rosh hashanah work; upped line length
+# 2021-03-25 kdw  gamma:upped line length
+# 2021-03-25 kdw  erf:mnor reformat
+# 2021-03-25 kdw  ellipse:upped line length
+# 2021-03-23 kdw  lambert:minor refactor
+# 2021-03-23 kdw  elliptic:long lines
+# 2021-03-21 kdw  fit:long lines
+# 2021-03-21 kdw  constants:const renam
+# 2021-03-20 kdw  constants:const name change
+# 2021-03-19 kdw  constants:dry volume
+# 2021-03-18 kdw  constants:const work
+# 2021-03-17 kdw  constants:julian  const renam
+# 2021-03-15 kdw  shc:lx_.* const names
+# 2021-03-15 kdw  randdist:lx_.* const names
+# 2021-03-15 kdw  julian:lx_.* const names
+# 2021-03-15 kdw  elliptic:lx_.* const names
+# 2021-03-15 kdw  constants:lx_.* const names
+# 2021-03-15 kdw  combin:lx_.* const names
+# 2021-03-15 kdw  bessel:lx_.* const names
+# 2021-03-15 kdw  approx:lx_.* const names
+# 2021-03-15 kdw  Kw:lx_.* const names
+# 2021-03-14 kdw  stts:const name renam
+# 2021-03-14 kdw  random:const name renam
+# 2021-03-14 kdw  number:const name renam
+# 2021-03-14 kdw  julian:const name renam
+# 2021-03-14 kdw  constants:const block experiment
+# 2021-03-13 kdw  sphere:line len upped to 77
+# 2021-03-13 kdw  shc:line len upped to 77
+# 2021-03-13 kdw  randdist:line len upped to 77
+# 2021-03-13 kdw  mean:line len upped to 77
+# 2021-03-13 kdw  lambert:line len upped to 77
+# 2021-03-13 kdw  fit:line len upped to 77
+# 2021-03-13 kdw  financial:line len upped to 77
+# 2021-03-13 kdw  constants:line len upped to 77
+# 2021-03-13 kdw  combin:line len upped to 77
+# 2021-03-13 kdw  bits:line len upped to 77
+# 2021-03-13 kdw  bessel:line len upped to 77
+# 2021-03-13 kdw  approx:line len upped to 77
+# 2021-03-13 kdw  Kw:line len upped to 77
+# 2021-03-08 kdw  trig:upped line length
+# 2021-03-08 kdw  stts:upped line length allowed
+# 2021-03-08 kdw  stat:upped line length allowed
+# 2021-03-08 kdw  constants:line lengthened
+# 2021-03-07 kdw  print:created
+# 2021-03-07 kdw  financial:reorg
+# 2021-03-07 kdw  Kw:print
+# 2021-03-06 kdw  financial:created
+# 2021-03-06 kdw  Kw:financial stuff
+# 2021-03-05 kdw  partition:test lines reworked
+# 2021-03-05 kdw  constants:line lengthened
+# 2021-03-05 kdw  Kw:long lines
+# 2021-02-26 kdw  random:fwip syntax debugging
+# 2021-02-26 kdw  number:fwip syntax debugging
+# 2021-02-24 kdw  constants:formulas come before explicit values
+# 2021-02-23 kdw  julian:gyear_at_0j2k defd
+# 2021-02-23 kdw  constants:gyear_at_0j2k defd
+# 2021-02-19 kdw  constants:unit conversion work
+# 2021-02-16 kdw  constants:units work
+# 2021-02-13 kdw  shc:localize consts
+# 2021-02-13 kdw  number:minor change
+# 2021-02-13 kdw  julian:various
+# 2021-02-13 kdw  constants:various
+# 2021-02-05 kdw  sphere:wikipedia refs
+# 2021-02-05 kdw  randdist:wikipedia refs
+# 2021-02-05 kdw  julian:test lines
+# 2021-02-05 kdw  integral:test comments
+# 2021-02-05 kdw  erf:wikipedia refs; test lines
+# 2021-02-05 kdw  constants:wikipedia refs
+# 2021-02-05 kdw  combin:add spaces to comments
+# 2021-02-05 kdw  approx:wikipedia refs
+# 2021-02-05 kdw  Kw:test lines
+# 2021-02-04 kdw  trig:add spaces to test lines
+# 2021-02-04 kdw  randdist:add spaces to test lines
+# 2021-02-04 kdw  number:add spaces to test lines
+# 2021-02-04 kdw  mean:add spaces to test lines
+# 2021-02-04 kdw  gamma:add spaces to test lines
+# 2021-02-04 kdw  erf:add spaces to test lines
+# 2021-02-04 kdw  elliptic:add spaces to test lines
+# 2021-02-04 kdw  ellipse:add spaces to test lines
+# 2021-02-04 kdw  constants:wave consts changed
+# 2021-02-04 kdw  combin:add spaces to test lines
+# 2021-02-04 kdw  approx:add spaces to test lines
+# 2021-02-04 kdw  Kw:add spaces to test lines
+# 2021-02-03 kdw  constants:comments changed
+# 2021-02-02 kdw  constants:eV added
+# 2021-02-02 kdw  Kw:var renam(temperature vars)
+# 2021-02-01 kdw  randdist:bool syntax debugging
+# 2021-02-01 kdw  number:bool syntax debugging
+# 2021-02-01 kdw  julian:bool syntax debugging
+# 2021-02-01 kdw  constants:macro renam
+# 2021-01-30 kdw  constants:atomic stuff
+# 2021-01-29 kdw  Kw:loan.* comments
+# 2021-01-20 kdw  Kw:loan payment
+# 2021-01-18 kdw  constants:planck-frequency
+# 2021-01-15 kdw  number:const renamd
+# 2021-01-15 kdw  constants:percent added
+# 2021-01-12 kdw  constants:lb[f]in uppercased
+# 2021-01-07 kdw  constants:arc.* consts
 # 2021-01-06 kdw  constants:added rph for completeness
-##-# =KDW= ########## DO NOT EDIT -- AUTOGENERATED CODE #########
-##-# =KDW= ############ BUILDER $KWROOT/0lib/vkkcp.sh ###########
-##-# =KDW= ######### SRC $KWROOT/codekdw/kw-lib/Kw.fwipp ########
-# 2021-01-06 kdw  Created by TMPDIR/objkdw/Kwsun.fwipp.d
 # 2021-01-04 kdw  constants:*lbfin* const work
-# 2020-12-27 kdw  constants:black hole work
+# 2020-12-27 kdw  constants:black-hole work
 # 2020-12-27 kdw  Kw:black hole work
 # 2020-12-26 kdw  constants:black-hole stuff
 # 2020-12-26 kdw  Kw:black-hole stuff
@@ -153,6 +354,7 @@
 # 2020-08-12 kdw  number:allow args <0 in znorder
 # 2020-08-12 kdw  elliptic:peak value for elliptic1
 # 2020-08-11 kdw  mean:agc[m]ean added
+# 2020-08-11 kdw  elliptic:botched extending elliptic1 to 1 < m II
 # 2020-08-11 kdw  ellipse:ell[i]ptic function renam
 # 2020-08-10 kdw  elliptic:k,a parameter funcs
 # 2020-08-07 kdw  elliptic:botched extending elliptic1 to 1 < m
@@ -660,10 +862,11 @@
 # 2020-03-06 kdw  Kw:L[A]NG.* names
 # 2020-03-05 kdw  stts:s/TRU[E]VAL/TR[U]E/;s/FALS[E]VAL/FA[L]SE/
 # 2020-03-05 kdw  search:minor tweak
-# 2020-03-05 kdw  number:TRU[E]VAL into TR[U]E; FALS[E]VAL into
+# 2020-03-05 kdw  randdist:s/TRU[E]VAL/TR[U]E/; s/FALS[E]VAL/FA[L]SE/
+# 2020-03-05 kdw  number:TRU[E]VAL into TR[U]E; FALS[E]VAL into FA[L]SE
 # 2020-03-05 kdw  is:s/TRU[E]VAL/TR[U]E/;s/FALS[E]VAL/FA[L]SE/;
 # 2020-03-05 kdw  fit:s/TRU[E]VAL/TR[U]E/;s/FALS[E]VAL/FA[L]SE/;
-# 2020-03-05 kdw  erf:s/TRU[E]VAL/TR[U]E/;s/FALS[E]VAL/FA[L]SE/
+# 2020-03-05 kdw  erf:s/TRU[E]VAL/TR[U]E/; s/FALS[E]VAL/FA[L]SE/
 # 2020-03-05 kdw  bessel:keywords TR[U]EVAL, FAL[S]EVAL changed
 # 2020-03-05 kdw  approx:appr[o]xexp.* refactor
 # 2020-03-04 kdw  bessel:refactor
@@ -1666,8 +1869,8 @@
 # 2018-04-19 kdw  randdist:comments added
 # 2018-04-19 kdw  Kw:consts rework
 # 2018-04-16 kdw  julian:.*_diff work
-# 2018-04-15 kdw  julian:kwt work
-# 2018-04-15 kdw  constants:kwt work
+# 2018-04-15 kdw  julian:(k)wt work
+# 2018-04-15 kdw  constants:(kw)t work
 # 2018-04-14 kdw  julian:ep(o)chx renamd to kwt
 # 2018-04-14 kdw  constants:ep(oc)hx renamd to kwt
 # 2018-04-10 kdw  trig:macros changed
@@ -1874,7 +2077,7 @@
 # 2017-11-21 kdw  approx:FR[O]M
 # 2017-11-20 kdw  gamma:fixed tgamma
 # 2017-11-19 kdw  gamma:double factorial tgamma2
-# 2017-11-19 kdw  combin:double factorial factorial2
+# 2017-11-19 kdw  combin:double factorial(factorial2)
 # 2017-11-14 kdw  round:mvd fm[o]du to Kw
 # 2017-11-14 kdw  is:use fm[o]du instead of fm[o]d
 # 2017-11-14 kdw  Kw:fm[o]du added
@@ -2149,7 +2352,7 @@
 # 2017-03-24 kdw  Kw:minor reorg
 # 2017-03-22 kdw  Kw:minor cleanup
 # 2017-03-21 kdw  gamma:lgammainv vs BC debugging
-# 2017-03-21 kdw  constants:long line error vs pytho
+# 2017-03-21 kdw  constants:long line error vs python
 # 2017-03-19 kdw  lambert:comment changed
 # 2017-03-19 kdw  julian:comments
 # 2017-03-19 kdw  gamma:comments
@@ -2297,7 +2500,7 @@
 # 2017-02-14 kdw  randdist:FWIP Loop syntax changed
 # 2017-02-14 kdw  number:FWIP Loop syntax changed
 # 2017-02-14 kdw  mean:FWIP Loop syntax changed
-# 2017-02-14 kdw  lambert:FWIP Loop syntax changed; LNG to INT
+# 2017-02-14 kdw  lambert:FWIP Loop syntax changed; (L)NG to(I)NT
 # 2017-02-14 kdw  julian:FWIP Loop syntax changed
 # 2017-02-14 kdw  is:cnv_dbl2* renam
 # 2017-02-14 kdw  hyper:FWIP Loop syntax changed
@@ -2426,9 +2629,9 @@
 # 2016-12-20 kdw  is:indent ?[?] lines
 # 2016-12-20 kdw  constants:indent preprocess stuff
 # 2016-12-20 kdw  Kw:failed experiment w/ powers
-# 2016-12-18 kdw  julian:jewish_* refactor
+# 2016-12-18 kdw  julian:(j)ewish_* refactor
 # 2016-12-18 kdw  constants:lunar stuff
-# 2016-12-16 kdw  julian:jewish_* refactor
+# 2016-12-16 kdw  julian:(j)ewish_* refactor
 # 2016-12-12 kdw  julian:var name change; comment changed
 # 2016-12-09 kdw  constants:epx per sec changed
 # 2016-12-08 kdw  constants:comment change
@@ -2462,6 +2665,7 @@
 # 2016-11-24 kdw  stat:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
 # 2016-11-24 kdw  random:while loops changed to await loops
 # 2016-11-24 kdw  randdist:reformatting of await loops
+# 2016-11-24 kdw  constants:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
 # 2016-11-24 kdw  combin:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
 # 2016-11-24 kdw  Kw:LAN[G]UAGE_N[O]T to LAN[G]UAGE_IFN[O]T
 # 2016-11-23 kdw  stts:comment cleanup
@@ -2479,7 +2683,7 @@
 # 2016-11-23 kdw  bits:comment cleanup
 # 2016-11-23 kdw  approx:no postfix increment
 # 2016-11-23 kdw  Kw:CNST changed to REA[D]ONLY
-# 2016-11-22 kdw  randdist:moved cdfno[r]mal2 to ap[p]rox and
+# 2016-11-22 kdw  randdist:moved cdfno[r]mal2 to ap[p]rox and renam
 # 2016-11-22 kdw  number:fixed[l]i
 # 2016-11-22 kdw  constants:high-precision eu(le)r experiment
 # 2016-11-22 kdw  combin:PRI?NTLN to PRI?NTLINE
@@ -2513,7 +2717,7 @@
 # 2016-11-20 kdw  round:language change
 # 2016-11-20 kdw  random:language change
 # 2016-11-20 kdw  randdist:language change
-# 2016-11-20 kdw  number:laanguage change
+# 2016-11-20 kdw  number:language change
 # 2016-11-20 kdw  mean:language change
 # 2016-11-20 kdw  lambert:language change
 # 2016-11-20 kdw  julian:language change
@@ -2534,9 +2738,9 @@
 # 2016-11-19 kdw  constants:angle stuff
 # 2016-11-19 kdw  Kw:minor rearrangement
 # 2016-11-18 kdw  randdist:__POD__
-# 2016-11-18 kdw  julian:__(P)OD(_)_
+# 2016-11-18 kdw  julian:(_)_(P)OD(_)_
 # 2016-11-18 kdw  is:refactor
-# 2016-11-18 kdw  gamma:tgamma refactor; __P(O)D(_)_
+# 2016-11-18 kdw  gamma:tgamma refactor; (_)_P(O)D(_)_
 # 2016-11-18 kdw  erf:_?_P?OD_?_
 # 2016-11-18 kdw  approx:_?_P?OD_?_
 # 2016-11-17 kdw  gamma:tgamma problem w/ args < 0.5
@@ -2554,7 +2758,7 @@
 # 2016-11-15 kdw  random:M?OD/B?IT* syntax change
 # 2016-11-15 kdw  randdist:MOD/BIT* syntax change
 # 2016-11-15 kdw  number:M[O]D/B[I]T* syntax change
-# 2016-11-15 kdw  lambert:MOD/BIT* syntax change
+# 2016-11-15 kdw  lambert:(M)OD/(B)IT* syntax change
 # 2016-11-15 kdw  julian:function descriptions
 # 2016-11-15 kdw  is:M?OD/B?IT* syntax change
 # 2016-11-15 kdw  gamma:1 to 1.0 for python
@@ -2728,7 +2932,7 @@
 # 2016-07-30 kdw  julian:ymd2j* refactor
 # 2016-07-29 kdw  julian:ymd2j* refactor
 # 2016-07-28 kdw  julian:ymd2j* refactor
-# 2016-07-28 kdw  constants:D(AY)E / YAR renamed
+# 2016-07-28 kdw  constants:D(AY)E / (YA)R renamed
 # 2016-07-27 kdw  julian:unix funcs
 # 2016-07-26 kdw  julian:ymdhms functions
 # 2016-07-26 kdw  constants:D(AY)_PER*
@@ -2812,19 +3016,19 @@
 # 2016-01-11 kdw  combin:printing long array change
 # 2016-01-11 kdw  approx:l?og / ex?p work
 # 2016-01-05 kdw  Kw:minor comment change
-# 2015-12-31 kdw  number:bounded possible infinite loops
-# 2015-12-31 kdw  mean:bounded possible infinite loops
-# 2015-12-31 kdw  lambert:bounded possible infinite loops
-# 2015-12-31 kdw  gamma:bounded possible infinite loops
+# 2015-12-31 kdw  number:bounded(possible) infinite loops
+# 2015-12-31 kdw  mean:bounded(possible) infinite loops
+# 2015-12-31 kdw  lambert:bounded(possible) infinite loops
+# 2015-12-31 kdw  gamma:bounded(possible) infinite loops
 # 2015-12-31 kdw  erf:bounded possible infinite loops
-# 2015-12-31 kdw  Kw:bounded possible infinite loops
+# 2015-12-31 kdw  Kw:bounded(possible) infinite loops
 # 2015-12-30 kdw  stts:co?rr_get_.* to co?rr_.*
 # 2015-12-30 kdw  random:ra?nd_se?ed to ra?nd_in?it, et al.
 # 2015-12-30 kdw  number:isdblequal renamed
 # 2015-12-30 kdw  mean:define ghm1 before use
 # 2015-12-30 kdw  lambert:tweak
 # 2015-12-30 kdw  is:_?_DEC?LARE_?_
-# 2015-12-30 kdw  gamma:isd(b)le(q)ual to ise(q)ual
+# 2015-12-30 kdw  gamma:(i)sd(b)le(q)ual to(i)se(q)ual
 # 2015-12-30 kdw  constants:O(ME)GA definition problems
 # 2015-12-30 kdw  bits:_?_DEC?LARE_?_
 # 2015-12-30 kdw  Kw:__DECLARE__
@@ -2844,7 +3048,7 @@
 # 2015-12-25 kdw  erf:rmed unused functions
 # 2015-12-25 kdw  approx:er?fap?prox
 # 2015-12-21 kdw  random:define local functions before use
-# 2015-12-21 kdw  constants:nested __(IF).*s
+# 2015-12-21 kdw  constants:nested(__)(IF).*s
 # 2015-12-21 kdw  combin:define local functions before use
 # 2015-12-21 kdw  bits:_[_]E[L]SE[_]_
 # 2015-12-21 kdw  approx:ex[p]appro[x]2 deleted
